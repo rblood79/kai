@@ -1,8 +1,7 @@
 .App {
   height: 100%;
-  
+  overflow: hidden;
   .container {
-    border: 2px solid #00f;
     width: 100%;
     height: inherit;
     overflow-y: auto;
