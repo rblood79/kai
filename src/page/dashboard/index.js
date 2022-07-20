@@ -6,9 +6,12 @@ import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 
+import Card from './card';
+
 const App = () => {
     return (
         <main className={styles.container}>
+            <Card />
             <section className={classNames(styles.section, styles.card)}>
                 <div className={classNames(styles.header)}>
                     <h2 className={classNames(styles.title)}>Flight No</h2>

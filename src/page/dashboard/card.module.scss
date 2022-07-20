@@ -1,0 +1,19 @@
+.container {
+  border: 1px solid #f00;
+  .contents {
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    height: 500px;
+    .item {
+      border: 1px solid #f00;
+      scroll-snap-align: center;
+      min-width: 75%;
+      min-height: 95%;
+      border-radius: 16px;
+    }
+  }
+}
