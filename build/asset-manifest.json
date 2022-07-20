@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/kai/build/static/css/main.4154e220.css",
+    "main.css": "/kai/build/static/css/main.dc9cd946.css",
     "main.js": "/kai/build/static/js/main.f0437f60.js",
     "static/js/787.ffdc7326.chunk.js": "/kai/build/static/js/787.ffdc7326.chunk.js",
     "static/media/remixicon.svg?t=1590207869815": "/kai/build/static/media/remixicon.9cedd2150922ead84869.svg",
@@ -9,12 +9,12 @@
     "static/media/remixicon.woff?t=1590207869815": "/kai/build/static/media/remixicon.8d09fa11700ed63cf96e.woff",
     "static/media/remixicon.woff2?t=1590207869815": "/kai/build/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
     "index.html": "/kai/build/index.html",
-    "main.4154e220.css.map": "/kai/build/static/css/main.4154e220.css.map",
+    "main.dc9cd946.css.map": "/kai/build/static/css/main.dc9cd946.css.map",
     "main.f0437f60.js.map": "/kai/build/static/js/main.f0437f60.js.map",
     "787.ffdc7326.chunk.js.map": "/kai/build/static/js/787.ffdc7326.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4154e220.css",
+    "static/css/main.dc9cd946.css",
     "static/js/main.f0437f60.js"
   ]
 }
