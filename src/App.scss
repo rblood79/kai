@@ -1,0 +1,29 @@
+.App {
+  height: 100%;
+  
+  .container {
+    border: 2px solid #00f;
+    width: 100%;
+    height: inherit;
+    overflow-y: auto;
+    display: grid;
+    gap: 16px;
+    /*grid-auto-rows: 56px auto 56px;*/
+    grid-template-rows: 56px auto 56px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
