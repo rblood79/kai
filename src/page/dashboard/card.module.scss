@@ -1,5 +1,5 @@
 .container {
-  border: 1px solid #f00;
+  
   .contents {
     scroll-snap-type: x mandatory;
     scroll-snap-align: center;
@@ -7,13 +7,21 @@
     overflow-y: hidden;
     display: flex;
     align-items: center;
-    height: 500px;
+    height: 100%;
     .item {
       border: 1px solid #f00;
       scroll-snap-align: center;
-      min-width: 75%;
-      min-height: 95%;
+      min-width: calc(100% - 96px);
+      min-height: 100%;
       border-radius: 16px;
+      margin: 12px;
+
+      &:first-child {
+        margin-left: 24px;
+      }
+      &:last-child {
+        margin-right: 24px;
+      }
     }
   }
 }
