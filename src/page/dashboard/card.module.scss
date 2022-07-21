@@ -8,20 +8,30 @@
     display: flex;
     align-items: center;
     height: 100%;
+    &::before {
+      content: "KF-21 LOGISTICS INFORMATION SYSTEM";
+      content: "";
+      display: flex;
+      width: 48px;
+      min-width: 48px;
+    }
     .item {
+      flex: 1;
       background-color: #000000;
+      color: #fff;
       overflow: hidden;
       scroll-snap-align: center;
       min-width: calc(100% - 96px);
       min-height: 100%;
       border-radius: 16px;
       margin: 12px;
+      padding: 16px;
 
       &:first-child {
-        margin-left: 48px;
+        margin-left: 0px;
       }
       &:last-child {
-        margin-right: 48px;
+        margin-right: 0px;
       }
     }
   }

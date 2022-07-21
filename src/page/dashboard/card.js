@@ -29,9 +29,11 @@ const App = () => {
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 112 }}>
             <div className={styles.contents}>
+                
                 <div className={styles.item}>
-                    AA
+                    <h3>Average Rate</h3>
                 </div>
+
                 <div className={styles.item}>
                     BB
                 </div>
