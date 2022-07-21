@@ -12,7 +12,7 @@ const App = () => {
     return (
         <main className={styles.main}>
             <Card />
-            {/*<section className={classNames(styles.section, styles.card)}>
+            <section className={classNames(styles.section, styles.card)}>
                 <div className={classNames(styles.header)}>
                     <h2 className={classNames(styles.title)}>Flight No</h2>
                 </div>
@@ -42,7 +42,7 @@ const App = () => {
                     <h2 className={classNames(styles.title)}>Consume</h2>
                 </div>
                 <div className={classNames(styles.body)}>contents</div>
-    </section>*/}
+            </section>
         </main>
     );
 }
