@@ -1,5 +1,7 @@
 .container {
   /*height: calc(100vh - 263px);*/
+
+  height: calc(100vh - 150px);
   .contents {
     scroll-snap-type: x mandatory;
     scroll-snap-align: center;
