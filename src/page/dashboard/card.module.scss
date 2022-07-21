@@ -1,5 +1,16 @@
 .container {
   /*height: calc(100vh - 263px);*/
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  .controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 8px;
+    border: 1px solid #f00;
+  }
   .contents {
     scroll-snap-type: x mandatory;
     scroll-snap-align: center;
@@ -8,30 +19,48 @@
     display: flex;
     align-items: center;
     height: 100%;
-    &::before {
-      content: "KF-21 LOGISTICS INFORMATION SYSTEM";
-      content: "";
-      display: flex;
-      width: 48px;
-      min-width: 48px;
-    }
+
     .item {
       flex: 1;
       background-color: #000000;
       color: #fff;
-      overflow: hidden;
       scroll-snap-align: center;
       min-width: calc(100% - 96px);
-      min-height: 100%;
+      min-height: calc(100% - 16px);
       border-radius: 16px;
       margin: 12px;
       padding: 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      /*filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.32));*/
+      box-shadow: 0 0 8px rgba(0,0,0,0.32);
 
       &:first-child {
-        margin-left: 0px;
+        margin-left: 48px;
+        &::before {
+          content: "KF-21 LOGISTICS INFORMATION SYSTEM";
+          display: flex;
+          transform: rotate(90deg);
+          transform-origin: left;
+          position: absolute;
+          top: 50%;
+          margin-top: -50%;
+          left: -16px;
+          font-size: 14px;
+          font-weight: 700;
+          color: #707070;
+
+        }
       }
       &:last-child {
-        margin-right: 0px;
+        margin-right: 48px;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+        padding: 8px 0;
       }
     }
   }

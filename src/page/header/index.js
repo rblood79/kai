@@ -17,7 +17,7 @@ const App = () => {
                 <h1 className={classNames(styles.title)}>KF-21 LIS</h1>
             </div>
             <div className={classNames(styles.navRight)}>
-                <button className={classNames(gloval.button)}><i className="ri-notification-line"></i></button>
+                <button className={classNames(gloval.button, styles.notification, styles.active)}><i className="ri-notification-line"></i></button>
                 <button className={classNames(gloval.button)}><i className="ri-menu-line"></i></button>
             </div>
         </header>

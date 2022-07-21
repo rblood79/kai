@@ -1,5 +1,4 @@
 .header {
-  border: 1px solid #f00;
   width: 100%;
   min-height: 56px;
   display: flex;
@@ -9,6 +8,7 @@
   padding: 0 4px;
   position: sticky;
   top: 0;
+  background-color: #fff;
   .location {
     flex: 1;
     display: flex;
@@ -29,5 +29,19 @@
   }
   .button {
     width: 48px;
+    
+  }
+  .notification {
+    position: relative;
+    &.active::after {
+      content: '';
+      position: absolute;
+      background-color: #f00;
+      border-radius: 8px;
+      width: 8px;
+      height: 8px;
+      right: 10px;
+      top: 10px;
+    }
   }
 }

@@ -28,20 +28,21 @@ const App = () => {
     }, [windowDimenion])*/
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 112 }}>
+            <div className={styles.controller}>controller</div>
             <div className={styles.contents}>
                 
                 <div className={styles.item}>
-                    <h3>Average Rate</h3>
+                    <h3 className={styles.title}>Average Rate</h3>
                 </div>
 
                 <div className={styles.item}>
-                    BB
+                    <h3 className={styles.title}>KF-21-001</h3>
                 </div>
                 <div className={styles.item}>
-                    CC
+                    <h3 className={styles.title}>KF-21-002</h3>
                 </div>
                 <div className={styles.item}>
-                    DD
+                    <h3 className={styles.title}>KF-21-003</h3>
                 </div>
             </div>
         </section>
