@@ -2,12 +2,22 @@
 
 
 */
+import { useState, useEffect } from 'react';
+
 import styles from './card.module.scss';
 import classNames from 'classnames';
 
+
 const App = () => {
+    const [windowDimenion, detectHW] = useState({
+        windWidth: window.innerWidth,
+        windHeight: window.innerHeight,
+    });
+    /*useEffect(() => {
+        console.log('//', windowDimenion.windHeight)
+    }, [])*/
     return (
-        <section className={styles.container}>
+        <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 112 }}>
             <div className={styles.contents}>
                 <div className={styles.item}>
                     AA
