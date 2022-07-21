@@ -1,5 +1,5 @@
 .container {
-  
+  height: 300px;
   .contents {
     scroll-snap-type: x mandatory;
     scroll-snap-align: center;
@@ -9,7 +9,8 @@
     align-items: center;
     height: 100%;
     .item {
-      border: 1px solid #f00;
+      background-color: #000000;
+      overflow: hidden;
       scroll-snap-align: center;
       min-width: calc(100% - 96px);
       min-height: 100%;
