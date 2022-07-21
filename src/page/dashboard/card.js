@@ -13,9 +13,19 @@ const App = () => {
         windWidth: window.innerWidth,
         windHeight: window.innerHeight,
     });
-    /*useEffect(() => {
-        console.log('//', windowDimenion.windHeight)
-    }, [])*/
+    /*const detectSize = () => {
+        detectHW({
+            winWidth: window.innerWidth,
+            winHeight: window.innerHeight,
+        })
+    }
+    useEffect(() => {
+        window.addEventListener('resize', detectSize)
+
+        return () => {
+            window.removeEventListener('resize', detectSize)
+        }
+    }, [windowDimenion])*/
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 112 }}>
             <div className={styles.contents}>

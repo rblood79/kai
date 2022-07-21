@@ -6,6 +6,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 0 4px;
   position: sticky;
   top: 0;
   .location {
@@ -24,9 +25,9 @@
   .navRight {
     display: flex;
     flex-direction: row;
-    width: calc(56px * 2);
+    width: calc(48px * 2);
   }
-  /*.button {
-    background-color: #f00;
-  }*/
+  .button {
+    width: 48px;
+  }
 }
