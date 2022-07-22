@@ -9,7 +9,8 @@
     background-color: #efefef;
     overflow: hidden;
     height: 40px;
-    margin: 0 48px 8px;
+    min-height: 40px;
+    margin: 0 48px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     .item {
@@ -24,8 +25,8 @@
     }
   }
   .contents {
-    scroll-snap-type: x mandatory;
-    scroll-snap-align: center;
+    /*scroll-snap-type: x mandatory;
+    scroll-snap-align: center;*/
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
@@ -48,7 +49,7 @@
       position: relative;
 
       /*filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.32));*/
-      box-shadow: 0 0 8px rgba(0,0,0,0.32);
+      /*box-shadow: 0 0 8px rgba(0,0,0,0.32);*/
       &.active {
         min-height: calc(100% - 16px);
       }

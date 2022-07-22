@@ -2,30 +2,40 @@
 
 
 */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useSpring, animated } from '@react-spring/web';
+import { useScroll } from "react-use-gesture";
 
 import styles from './card.module.scss';
 import classNames from 'classnames';
 
+const clamp = (value, clampAt = 30) => {
+    if (value > 0) {
+        return value > clampAt ? clampAt : value;
+    } else {
+        return value < -clampAt ? -clampAt : value;
+    }
+};
 
 const App = () => {
     const [windowDimenion, detectHW] = useState({
         windWidth: window.innerWidth,
         windHeight: window.innerHeight,
     });
-    /*const detectSize = () => {
-        detectHW({
-            winWidth: window.innerWidth,
-            winHeight: window.innerHeight,
-        })
-    }
-    useEffect(() => {
-        window.addEventListener('resize', detectSize)
 
-        return () => {
-            window.removeEventListener('resize', detectSize)
-        }
-    }, [windowDimenion])*/
+
+    const [style, set] = useSpring(() => ({
+        transform: "perspective(1000px) rotateY(0deg)"
+    }));
+
+    const bind = useScroll(event => {
+        //console.log(event)
+        set({
+            transform: `perspective(500px) rotateY(${event.scrolling ? clamp(event.delta[0]) : 0
+                }deg)`
+        });
+    });
+
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 118 }}>
 
@@ -34,21 +44,31 @@ const App = () => {
                 <div className={classNames(styles.item)}>grid</div>
             </div>
 
-            <div className={styles.contents}>
+            <div className={styles.contents} {...bind()}>
 
-                <div className={classNames(styles.item, styles.active)}>
+                <animated.div style={style} className={classNames(styles.item, styles.active)}>
                     <h3 className={styles.title}>Average Rate</h3>
-                </div>
+                </animated.div>
 
-                <div className={styles.item}>
+                <animated.div style={style} className={classNames(styles.item)}>
                     <h3 className={styles.title}>KF-21-001</h3>
-                </div>
-                <div className={styles.item}>
+                </animated.div>
+
+                <animated.div  style={style} className={classNames(styles.item)}>
                     <h3 className={styles.title}>KF-21-002</h3>
-                </div>
-                <div className={styles.item}>
+                </animated.div>
+
+                <animated.div  style={style} className={classNames(styles.item)}>
                     <h3 className={styles.title}>KF-21-003</h3>
-                </div>
+                </animated.div>
+
+                <animated.div  style={style} className={classNames(styles.item)}>
+                    <h3 className={styles.title}>KF-21-004</h3>
+                </animated.div>
+
+                <animated.div  style={style} className={classNames(styles.item)}>
+                    <h3 className={styles.title}>KF-21-005</h3>
+                </animated.div>
             </div>
         </section>
     );
