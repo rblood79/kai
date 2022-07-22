@@ -27,10 +27,15 @@ const App = () => {
         }
     }, [windowDimenion])*/
     return (
-        <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 112 }}>
-            <div className={styles.controller}>controller</div>
+        <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 88 }}>
+
+            <div className={styles.controller}>
+                <div className={classNames(styles.item, styles.active)}>list</div>
+                <div className={classNames(styles.item)}>grid</div>
+            </div>
+
             <div className={styles.contents}>
-                
+
                 <div className={styles.item}>
                     <h3 className={styles.title}>Average Rate</h3>
                 </div>
