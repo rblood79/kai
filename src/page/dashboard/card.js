@@ -27,7 +27,7 @@ const App = () => {
         }
     }, [windowDimenion])*/
     return (
-        <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 88 }}>
+        <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 120 }}>
 
             <div className={styles.controller}>
                 <div className={classNames(styles.item, styles.active)}>list</div>
