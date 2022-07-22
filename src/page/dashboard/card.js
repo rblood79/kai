@@ -36,7 +36,7 @@ const App = () => {
 
             <div className={styles.contents}>
 
-                <div className={styles.item}>
+                <div className={classNames(styles.item, styles.active)}>
                     <h3 className={styles.title}>Average Rate</h3>
                 </div>
 
