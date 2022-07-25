@@ -4,6 +4,7 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   .controller {
     border-radius: 40px;
     background-color: #efefef;
@@ -32,26 +33,31 @@
     display: flex;
     align-items: center;
     height: 100%;
-
+    position: relative;
+    /*touch-action: none;*/
     .item {
       flex: 1;
+      flex-shrink: 0;
       background-color: #000000;
       color: #fff;
       scroll-snap-align: center;
       min-width: calc(100% - 96px);
       min-height: calc(100% - 191px);
-      
+
       border-radius: 16px;
       margin: 12px;
       padding: 16px;
       display: flex;
       flex-direction: column;
       position: relative;
+      touch-action: none;
+      
+      transition: all 0.3s ease-in-out;
 
       /*filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.32));*/
       /*box-shadow: 0 0 8px rgba(0,0,0,0.32);*/
       &.active {
-        min-height: calc(100% - 16px);
+        min-height: 100%;
       }
       &:first-child {
         margin-left: 48px;
@@ -67,7 +73,6 @@
           font-size: 14px;
           font-weight: 700;
           color: #707070;
-
         }
       }
       &:last-child {
@@ -80,4 +85,9 @@
       }
     }
   }
+}
+
+.active {
+  background-color: #f00;
+  min-height: calc(100% - 16px);
 }
