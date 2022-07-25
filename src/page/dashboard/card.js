@@ -83,7 +83,7 @@ const App = () => {
         onDrag: ({ down, distance, velocity, delta: [xDelta], direction: [xDir], cancel }) => {
             console.log(distance[0] > slotWidth.current / 2)
             if (down && (distance[0] > slotWidth.current / 2 || velocity > 2)) {
-                console.log(down)
+                
                 cancel();
                 index.current = clamp(
                     index.current + (xDir > 0 ? -1 : 1),
@@ -93,6 +93,7 @@ const App = () => {
                 set({
                     x: index.current * -1 * slotWidth.current + (down ? (xDelta / slotWidth.current) * slotWidth.current : 0)
                 });
+                //console.log(x)
                 setCurrentIndex(index.current);
             }else{
                 //console.log('ssfes')
