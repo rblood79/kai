@@ -26,15 +26,15 @@ const App = () => {
         windWidth: window.innerWidth,
         windHeight: window.innerHeight,
     });
+    const [type, setType] = useState('list');
 
     const elementRef = useRef(null);
     const totalWidth = useRef(0);
     const slotWidth = useRef(0);
     const [currentIndex, setCurrentIndex] = useState(0);
-
     const index = useRef(0);
 
-    const [{ x }, set] = useSpring(() => ({ x: 48 }));
+    const [{ x }, set] = useSpring(() => ({ x: 36 }));
 
     const elementRefCallback = useCallback(
         (el) => {
@@ -46,9 +46,6 @@ const App = () => {
         },
         [elementRef]
     );
-
-
-
 
     const getCurrentIndex = (currentIndex, increment) => {
         if (increment > 0) {
@@ -74,12 +71,12 @@ const App = () => {
 
     const bind = useGesture({
         onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
-            if (active && Math.abs(mx) > (slotWidth.current - 96) * 0.5) {
+            if (active && Math.abs(mx) > (slotWidth.current - 72) * 0.5) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, elementRef.current.children.length - 1);
                 cancel();
             }
             set({
-                x: index.current * -1 * (slotWidth.current - 96) + (active ? mx + 48 : 48)
+                x: index.current * -1 * (slotWidth.current - 72) + (active ? mx + 36 : 36)
             });
             setCurrentIndex(index.current);
         },
@@ -92,37 +89,57 @@ const App = () => {
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 118 }}>
 
             <div className={styles.controller}>
-                <div className={classNames(styles.item, styles.active)}>list</div>
-                <div className={classNames(styles.item)}>grid</div>
+                <div className={classNames(styles.type, type === 'list' && styles.active)}>
+                    <button className={classNames(type === 'list' && styles.active)} onClick={()=>{setType('list')}}>LIST</button>
+                    <button className={classNames(type === 'grid' && styles.active)} onClick={()=>{setType('grid')}}>GRID</button>
+                </div>
             </div>
-            <button onClick={previuousSlide}>prev</button>
-            <button onClick={nextSlide}>next</button>
+            {/*<button onClick={previuousSlide}>prev</button>
+            <button onClick={nextSlide}>next</button>*/}
 
             <animated.div className={styles.contents} ref={elementRefCallback} {...bind()} style={{
                 transform: x.to(x => `translateX(${x}px)`)
             }}>
                 <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
-                    <h3 className={styles.title}>Average Rate</h3>
+                    <div className={styles.itemWrap}>
+                        <h3 className={styles.title}>Average Rate</h3>
+                        <div className={styles.itemBody}>aaaa</div>
+                    </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 1 && styles.active)}>
-                    <h3 className={styles.title}>KF-21-001</h3>
+                    <div className={styles.itemWrap}>
+                        <h3 className={styles.title}>KF-21-001</h3>
+                        <div className={styles.itemBody}>aaaa</div>
+                    </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 2 && styles.active)}>
-                    <h3 className={styles.title}>KF-21-002</h3>
+                    <div className={styles.itemWrap}>
+                        <h3 className={styles.title}>KF-21-002</h3>
+                        <div className={styles.itemBody}>aaaa</div>
+                    </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 3 && styles.active)}>
-                    <h3 className={styles.title}>KF-21-003</h3>
+                    <div className={styles.itemWrap}>
+                        <h3 className={styles.title}>KF-21-011</h3>
+                        <div className={styles.itemBody}>aaaa</div>
+                    </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 4 && styles.active)}>
-                    <h3 className={styles.title}>KF-21-004</h3>
+                    <div className={styles.itemWrap}>
+                        <h3 className={styles.title}>KF-21-012</h3>
+                        <div className={styles.itemBody}>aaaa</div>
+                    </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 5 && styles.active)}>
-                    <h3 className={styles.title}>KF-21-005</h3>
+                    <div className={styles.itemWrap}>
+                        <h3 className={styles.title}>KF-21-014</h3>
+                        <div className={styles.itemBody}>aaaa</div>
+                    </div>
                 </div>
             </animated.div>
         </section>
