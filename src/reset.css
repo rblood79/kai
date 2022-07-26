@@ -84,9 +84,14 @@ video {
   /*all: unset;*/
 }
 
+button {
+  all: unset;
+}
+
 i {
   font-size: 24px;
 }
+
 /*box-sizing*/
 * {
   box-sizing: border-box;
