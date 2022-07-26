@@ -81,7 +81,7 @@ time,
 mark,
 audio,
 video {
-  all: unset;
+  /*all: unset;*/
 }
 
 i {
