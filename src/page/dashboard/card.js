@@ -94,8 +94,8 @@ const App = () => {
                 <div className={classNames(styles.item)}>grid</div>
             </div>
             {x[0]}
-            <button onClick={previuousSlide}>Previous</button>
-            <button onClick={nextSlide}>Next</button>
+            <button onClick={previuousSlide}>prev</button>
+            <button onClick={nextSlide}>next</button>
 
             <animated.div className={styles.contents} ref={elementRefCallback} {...bind()} style={{
                 transform: x.to(x => `translateX(${x}px)`)
