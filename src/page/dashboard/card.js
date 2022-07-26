@@ -93,7 +93,7 @@ const App = () => {
                 <div className={classNames(styles.item, styles.active)}>list</div>
                 <div className={classNames(styles.item)}>grid</div>
             </div>
-            {x[0]}
+            {x.toJSON}
             <button onClick={previuousSlide}>prev</button>
             <button onClick={nextSlide}>next</button>
 
