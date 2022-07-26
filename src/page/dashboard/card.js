@@ -93,6 +93,7 @@ const App = () => {
                 <div className={classNames(styles.item, styles.active)}>list</div>
                 <div className={classNames(styles.item)}>grid</div>
             </div>
+            {x[0]}
             <button onClick={previuousSlide}>Previous</button>
             <button onClick={nextSlide}>Next</button>
 
