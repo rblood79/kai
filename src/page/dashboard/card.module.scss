@@ -27,9 +27,9 @@
   }
   .contents {
     /*scroll-snap-type: x mandatory;
-    scroll-snap-align: center;*/
+    scroll-snap-align: center;
     overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-y: hidden;*/
     display: flex;
     align-items: center;
     height: 100%;
@@ -41,16 +41,18 @@
       background-color: #000000;
       color: #fff;
       scroll-snap-align: center;
-      min-width: calc(100% - 96px);
+      //min-width: calc(100% - 96px);
+      min-width: 100%;
+      border: 2px solid #f00;
       min-height: calc(100% - 191px);
 
       border-radius: 16px;
-      margin: 12px;
+      //margin: 12px;
       padding: 16px;
       display: flex;
       flex-direction: column;
       position: relative;
-      touch-action: none;
+      //touch-action: none;
       
       transition: all 0.3s ease-in-out;
 
@@ -60,7 +62,7 @@
         min-height: 100%;
       }
       &:first-child {
-        margin-left: 48px;
+        //margin-left: 48px;
         &::before {
           content: "KF-21 LOGISTICS INFORMATION SYSTEM";
           display: flex;
