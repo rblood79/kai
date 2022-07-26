@@ -89,5 +89,5 @@ i {
 }
 /*box-sizing*/
 * {
-  box-sizing: border-box !important;
+  box-sizing: border-box;
 }
