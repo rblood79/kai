@@ -34,7 +34,7 @@
     align-items: center;
     height: 100%;
     position: relative;
-    /*touch-action: none;*/
+    touch-action: none;
     .item {
       flex: 1;
       flex-shrink: 0;
@@ -52,7 +52,6 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      //touch-action: none;
       
       transition: all 0.3s ease-in-out;
 
