@@ -3,7 +3,7 @@
 
 */
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useSpring, animated, a } from '@react-spring/web';
+import { useSpring, animated } from '@react-spring/web';
 import { useScroll, useGesture } from '@use-gesture/react'
 
 import styles from './card.module.scss';
@@ -16,10 +16,9 @@ import classNames from 'classnames';
         return value < -clampAt ? -clampAt : value;
     }
 };*/
-function clamp(value, lower, upper) {
+const clamp = (value, lower, upper) => {
     if (value < lower) return lower;
     if (value > upper) return upper;
-    console.log('//', value)
     return value;
 }
 const App = () => {
@@ -35,7 +34,6 @@ const App = () => {
     const elementRefCallback = useCallback(
         (el) => {
             if (el != null) {
-                console.log(el.scrollWidth, el.getBoundingClientRect().width)
                 elementRef.current = el;
                 totalWidth.current = el.scrollWidth - el.getBoundingClientRect().width;
                 slotWidth.current = el.getBoundingClientRect().width;
@@ -50,13 +48,13 @@ const App = () => {
         windHeight: window.innerHeight,
     });
 
-    function getCurrentIndex(currentIndex, increment) {
+    const getCurrentIndex = (currentIndex, increment) => {
         if (increment > 0) {
-            return (currentIndex + 1) % 6;
+            return (currentIndex + 1) % elementRef.current.children.length;
         }
-        return currentIndex === 0 ? 5 : currentIndex - 1;
+        return currentIndex === 0 ? elementRef.current.children.length - 1 : currentIndex - 1;
     }
-    function nextSlide() {
+    const nextSlide = () => {
         index.current = getCurrentIndex(index.current, 1);
         setCurrentIndex(index.current);
         set({
@@ -64,7 +62,7 @@ const App = () => {
         });
     }
 
-    function previuousSlide() {
+    const previuousSlide = () => {
         index.current = getCurrentIndex(index.current, -1);
         setCurrentIndex(index.current);
         set({
@@ -73,18 +71,13 @@ const App = () => {
     }
 
     const bind = useGesture({
-        onDrag: ({ down, distance, velocity, delta: [xDelta, yDelta], direction: [xDir], cancel }) => {
-            if (down && (distance[0] > slotWidth.current * 0.5 || velocity > 2)) {
+        onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
+            if (active && Math.abs(mx) > slotWidth.current * 0.5) {
+                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, elementRef.current.children.length - 1);
                 cancel();
-                index.current = clamp(
-                    index.current + (xDir > 0 ? -1 : 1),
-                    0,
-                    5
-                );
             }
-            console.log(x)
             set({
-                x: index.current * -1 * slotWidth.current + (down ? (xDelta * 10 / slotWidth.current) * slotWidth.current : 0)
+                x: index.current * -1 * slotWidth.current + (active ? mx : 0)
             });
             setCurrentIndex(index.current);
         },
@@ -105,10 +98,8 @@ const App = () => {
             <button onClick={nextSlide}>Next</button>
 
             <animated.div className={styles.contents} ref={elementRefCallback} {...bind()} style={{
-                //display: "flex",
                 transform: x.to(x => `translateX(${x}px)`)
             }}>
-
                 <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
                     <h3 className={styles.title}>Average Rate</h3>
                 </div>
