@@ -22,6 +22,11 @@ const clamp = (value, lower, upper) => {
     return value;
 }
 const App = () => {
+    const [windowDimenion, detectHW] = useState({
+        windWidth: window.innerWidth,
+        windHeight: window.innerHeight,
+    });
+
     const elementRef = useRef(null);
     const totalWidth = useRef(0);
     const slotWidth = useRef(0);
@@ -29,7 +34,7 @@ const App = () => {
 
     const index = useRef(0);
 
-    const [{ x }, set] = useSpring(() => ({ x: 0 }));
+    const [{ x }, set] = useSpring(() => ({ x: 48 }));
 
     const elementRefCallback = useCallback(
         (el) => {
@@ -43,10 +48,7 @@ const App = () => {
     );
 
 
-    const [windowDimenion, detectHW] = useState({
-        windWidth: window.innerWidth,
-        windHeight: window.innerHeight,
-    });
+
 
     const getCurrentIndex = (currentIndex, increment) => {
         if (increment > 0) {
@@ -72,12 +74,12 @@ const App = () => {
 
     const bind = useGesture({
         onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
-            if (active && Math.abs(mx) > slotWidth.current * 0.5) {
+            if (active && Math.abs(mx) > (slotWidth.current - 96) * 0.5) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, elementRef.current.children.length - 1);
                 cancel();
             }
             set({
-                x: index.current * -1 * slotWidth.current + (active ? mx : 0)
+                x: index.current * -1 * (slotWidth.current - 96) + (active ? mx + 48 : 48)
             });
             setCurrentIndex(index.current);
         },
@@ -93,7 +95,6 @@ const App = () => {
                 <div className={classNames(styles.item, styles.active)}>list</div>
                 <div className={classNames(styles.item)}>grid</div>
             </div>
-            {x.toJSON}
             <button onClick={previuousSlide}>prev</button>
             <button onClick={nextSlide}>next</button>
 

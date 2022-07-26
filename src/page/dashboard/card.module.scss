@@ -26,23 +26,20 @@
     }
   }
   .contents {
-    /*scroll-snap-type: x mandatory;
-    scroll-snap-align: center;
-    overflow-x: scroll;
-    overflow-y: hidden;*/
     display: flex;
     align-items: center;
     height: 100%;
     position: relative;
     touch-action: pan-y;
+    touch-action: none;
     .item {
       flex: 1;
       flex-shrink: 0;
       background-color: #000000;
       color: #fff;
       scroll-snap-align: center;
-      //min-width: calc(100% - 96px);
-      min-width: 100%;
+      min-width: calc(100% - 96px);
+      //min-width: 100%;
       min-height: calc(100% - 191px);
 
       border-radius: 16px;
