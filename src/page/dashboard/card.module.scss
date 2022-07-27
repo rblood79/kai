@@ -68,7 +68,7 @@
     align-items: center;
     height: 100%;
     position: relative;
-    /*touch-action: none;*/
+    touch-action: pan-down;
     .item {
       background-color: transparent;
       flex: 1;
@@ -80,7 +80,6 @@
       position: relative;
       transition: all 0.3s ease-in-out;
       padding: 12px;
-      //pointer-events: none;
       .itemWrap {
         background-color: #141414;
         color: #fff;
@@ -95,7 +94,6 @@
         }
       }
       &:first-child {
-        //margin-left: 48px;
         &::before {
           content: "KF-21 LOGISTICS INFORMATION SYSTEM";
           display: flex;
