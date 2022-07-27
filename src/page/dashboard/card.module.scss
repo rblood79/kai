@@ -46,9 +46,12 @@
         color: #939393;
         height: 40px;
         font-weight: 700;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &.active {
           color: #fff;
-          
         }
       }
     }
@@ -65,8 +68,7 @@
     align-items: center;
     height: 100%;
     position: relative;
-    touch-action: pan-y;
-    touch-action: none;
+    /*touch-action: none;*/
     .item {
       background-color: transparent;
       flex: 1;
