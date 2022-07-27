@@ -9,18 +9,13 @@ import { useScroll, useGesture } from '@use-gesture/react'
 import styles from './card.module.scss';
 import classNames from 'classnames';
 
-/*const clamp = (value, clampAt = 30) => {
-    if (value > 0) {
-        return value > clampAt ? clampAt : value;
-    } else {
-        return value < -clampAt ? -clampAt : value;
-    }
-};*/
+
 const clamp = (value, lower, upper) => {
     if (value < lower) return lower;
     if (value > upper) return upper;
     return value;
 }
+
 const App = () => {
     const [windowDimenion, detectHW] = useState({
         windWidth: window.innerWidth,
@@ -42,6 +37,7 @@ const App = () => {
                 elementRef.current = el;
                 totalWidth.current = el.scrollWidth - el.getBoundingClientRect().width;
                 slotWidth.current = el.getBoundingClientRect().width;
+                console.log(slotWidth.current)
             }
         },
         [elementRef]
@@ -57,7 +53,7 @@ const App = () => {
         index.current = getCurrentIndex(index.current, 1);
         setCurrentIndex(index.current);
         set({
-            x: index.current * -1 * slotWidth.current
+            x: index.current * -1 * (slotWidth.current - 96)
         });
     }
 
@@ -65,7 +61,7 @@ const App = () => {
         index.current = getCurrentIndex(index.current, -1);
         setCurrentIndex(index.current);
         set({
-            x: index.current * -1 * slotWidth.current
+            x: index.current * -1 * (slotWidth.current - 96)
         });
     }
 
@@ -103,14 +99,14 @@ const App = () => {
                 <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>Average Rate</h3>
-                        <div className={styles.itemBody}>aaaa</div>
+                        <div className={styles.itemBody}>Base Group A</div>
                     </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 1 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-001</h3>
-                        <div className={styles.itemBody}>aaaa</div>
+                        <div className={styles.itemBody}>First Intro</div>
                     </div>
                 </div>
 

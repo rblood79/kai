@@ -6,6 +6,10 @@
     height: inherit;
     display: grid;
     grid-auto-rows: minmax(56px, auto);
+    /*&::after {
+      content: 'aa';
+      border: 1px solid #f00;
+    }*/
   }
 }
 
