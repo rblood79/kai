@@ -68,7 +68,7 @@
     align-items: center;
     height: 100%;
     position: relative;
-    touch-action: pan-down;
+    touch-action: none;
     .item {
       background-color: transparent;
       flex: 1;
