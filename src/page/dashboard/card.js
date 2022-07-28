@@ -4,7 +4,7 @@
 */
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSpring, animated } from '@react-spring/web';
-import { useScroll, useGesture } from '@use-gesture/react'
+import { useDrag, useGesture } from '@use-gesture/react'
 
 import styles from './card.module.scss';
 import classNames from 'classnames';
@@ -29,7 +29,7 @@ const App = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0);
 
-    const [{ x }, set] = useSpring(() => ({ x: 36 }));
+    const [{ x, y }, set] = useSpring(() => ({ x: 36, y :0 }));
 
     const elementRefCallback = useCallback(
         (el) => {
@@ -81,21 +81,24 @@ const App = () => {
         }*/
     });
 
+    const bind2 = useDrag(({ down, movement: [mx, my] }) => {
+        set.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down })
+    })
+
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 118 }}>
 
             <div className={styles.controller}>
                 <div className={classNames(styles.type, type === 'list' && styles.active)}>
-                    <button className={classNames(type === 'list' && styles.active)} onClick={()=>{setType('list')}}>LIST</button>
-                    <button className={classNames(type === 'grid' && styles.active)} onClick={()=>{setType('grid')}}>GRID</button>
+                    <button className={classNames(type === 'list' && styles.active)} onClick={() => { setType('list') }}>LIST</button>
+                    <button className={classNames(type === 'grid' && styles.active)} onClick={() => { setType('grid') }}>GRID</button>
                 </div>
             </div>
             {/*<button onClick={previuousSlide}>prev</button>
             <button onClick={nextSlide}>next</button>*/}
 
-            <animated.div className={styles.contents} ref={elementRefCallback} {...bind()} style={{
-                transform: x.to(x => `translateX(${x}px)`)
-            }}>
+            <animated.div className={styles.contents} {...bind2()} style={{ x }} >
+
                 <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>Average Rate</h3>
