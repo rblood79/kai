@@ -23,72 +23,19 @@ const App = () => {
     });
     const [type, setType] = useState('list');
 
-    const elementRef = useRef(null);
-    const totalWidth = useRef(0);
-    const slotWidth = useRef(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0);
 
-    const [{ x, y }, set] = useSpring(() => ({ x: 36, y: 0 }));
-
-    const elementRefCallback = useCallback(
-        (el) => {
-            if (el != null) {
-                elementRef.current = el;
-                totalWidth.current = el.scrollWidth - el.getBoundingClientRect().width;
-                slotWidth.current = el.getBoundingClientRect().width;
-                console.log(slotWidth.current)
-            }
-        },
-        [elementRef]
-    );
-
-    const getCurrentIndex = (currentIndex, increment) => {
-        if (increment > 0) {
-            return (currentIndex + 1) % elementRef.current.children.length;
-        }
-        return currentIndex === 0 ? elementRef.current.children.length - 1 : currentIndex - 1;
-    }
-    const nextSlide = () => {
-        index.current = getCurrentIndex(index.current, 1);
-        setCurrentIndex(index.current);
-        set({
-            x: index.current * -1 * (slotWidth.current - 96)
-        });
-    }
-
-    const previuousSlide = () => {
-        index.current = getCurrentIndex(index.current, -1);
-        setCurrentIndex(index.current);
-        set({
-            x: index.current * -1 * (slotWidth.current - 96)
-        });
-    }
-
-    const bind2 = useGesture({
-        onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
-            if (active && Math.abs(mx) > (slotWidth.current - 72) * 0.5) {
-                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, elementRef.current.children.length - 1);
-                cancel();
-            }
-            set({
-                x: index.current * -1 * (slotWidth.current - 72) + (active ? mx + 36 : 36)
-            });
-            setCurrentIndex(index.current);
-        },
-        /*onDrag:(state) =>{
-            console.log(state)
-        }*/
-    });
+    const [{ x }, api] = useSpring(() => ({ x: 36 }));
 
     const bind = useGesture({
-        onDrag: ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
-            if (active && Math.abs(mx) > 159) {
+        onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
+            if (active && Math.abs(mx) > (windowDimenion.windWidth - 72) * 0.5) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 6);
                 cancel()
             }
-            set.start({ x: index.current * -1 * (159) + (active ? mx + 36 : 36), immediate: active })
-            
+            api.start({ x: index.current * -1 * (windowDimenion.windWidth - 72) + (active ? mx + 36 : 36) })
+
             setCurrentIndex(index.current);
         },
         /*onDrag:(state) =>{
@@ -105,8 +52,6 @@ const App = () => {
                     <button className={classNames(type === 'grid' && styles.active)} onClick={() => { setType('grid') }}>GRID</button>
                 </div>
             </div>
-            {/*<button onClick={previuousSlide}>prev</button>
-            <button onClick={nextSlide}>next</button>*/}
 
             <animated.div className={styles.contents} {...bind()} style={{ x }} >
 
