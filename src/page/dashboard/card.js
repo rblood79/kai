@@ -26,22 +26,37 @@ const App = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0);
 
-    const [{ x }, api] = useSpring(() => ({ x: 36 }));
+    const [{ x, y }, api] = useSpring(() => ({ x: 36, y: 0 }));
 
-    const bind = useGesture({
-        onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
+    /*const bind = useGesture({
+        onDrag: ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
             if (active && Math.abs(mx) > (windowDimenion.windWidth - 72) * 0.5) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 6);
                 cancel()
             }
-            api.start({ x: index.current * -1 * (windowDimenion.windWidth - 72) + (active ? mx + 36 : 36) })
+            api.start({ 
+                x: index.current * -1 * (windowDimenion.windWidth - 72) + (active ? mx + 36 : 36),
+                y: active ? my : 0
+            })
 
             setCurrentIndex(index.current);
         },
-        /*onDrag:(state) =>{
-            console.log(state)
-        }*/
-    });
+    });*/
+
+    const bind = useDrag(
+        ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
+            if (active && Math.abs(mx) > (windowDimenion.windWidth - 72) * 0.5) {
+                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 6);
+                cancel()
+            }
+            api.start({
+                x: index.current * -1 * (windowDimenion.windWidth - 72) + (active ? mx + 36 : 36),
+                y: active ? my : 0
+            })
+            setCurrentIndex(index.current);
+        },
+        { axis: 'lock' }
+    )
 
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 118 }}>
@@ -53,7 +68,7 @@ const App = () => {
                 </div>
             </div>
 
-            <animated.div className={styles.contents} {...bind()} style={{ x }} >
+            <animated.div className={styles.contents} {...bind()} style={{ x, y }} >
 
                 <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
                     <div className={styles.itemWrap}>
