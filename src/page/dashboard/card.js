@@ -29,7 +29,7 @@ const App = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0);
 
-    const [{ x, y }, set] = useSpring(() => ({ x: 36, y :0 }));
+    const [{ x, y }, set] = useSpring(() => ({ x: 36, y: 0 }));
 
     const elementRefCallback = useCallback(
         (el) => {
@@ -65,7 +65,7 @@ const App = () => {
         });
     }
 
-    const bind = useGesture({
+    const bind2 = useGesture({
         onDrag: ({ active, movement: [mx], direction: [xDir], cancel }) => {
             if (active && Math.abs(mx) > (slotWidth.current - 72) * 0.5) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, elementRef.current.children.length - 1);
@@ -81,9 +81,20 @@ const App = () => {
         }*/
     });
 
-    const bind2 = useDrag(({ down, movement: [mx, my] }) => {
-        set.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down })
-    })
+    const bind = useGesture({
+        onDrag: ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
+            if (active && Math.abs(mx) > 159) {
+                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 6);
+                cancel()
+            }
+            set.start({ x: index.current * -1 * (159) + (active ? mx + 36 : 36), immediate: active })
+            
+            setCurrentIndex(index.current);
+        },
+        /*onDrag:(state) =>{
+            console.log(state)
+        }*/
+    });
 
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 118 }}>
@@ -97,7 +108,7 @@ const App = () => {
             {/*<button onClick={previuousSlide}>prev</button>
             <button onClick={nextSlide}>next</button>*/}
 
-            <animated.div className={styles.contents} {...bind2()} style={{ x }} >
+            <animated.div className={styles.contents} {...bind()} style={{ x }} >
 
                 <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
                     <div className={styles.itemWrap}>
@@ -122,21 +133,21 @@ const App = () => {
 
                 <div className={classNames(styles.item, currentIndex === 3 && styles.active)}>
                     <div className={styles.itemWrap}>
-                        <h3 className={styles.title}>KF-21-011</h3>
+                        <h3 className={styles.title}>KF-21-003</h3>
                         <div className={styles.itemBody}>aaaa</div>
                     </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 4 && styles.active)}>
                     <div className={styles.itemWrap}>
-                        <h3 className={styles.title}>KF-21-012</h3>
+                        <h3 className={styles.title}>KF-21-004</h3>
                         <div className={styles.itemBody}>aaaa</div>
                     </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 5 && styles.active)}>
                     <div className={styles.itemWrap}>
-                        <h3 className={styles.title}>KF-21-014</h3>
+                        <h3 className={styles.title}>KF-21-005</h3>
                         <div className={styles.itemBody}>aaaa</div>
                     </div>
                 </div>
