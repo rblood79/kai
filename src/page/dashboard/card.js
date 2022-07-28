@@ -46,7 +46,7 @@ const App = () => {
     const bind = useDrag(
         ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
             if (active && Math.abs(mx) > (windowDimenion.windWidth - 72) * 0.5) {
-                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 6);
+                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 5);
                 cancel()
             }
             api.start({
