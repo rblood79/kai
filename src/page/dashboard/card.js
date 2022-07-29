@@ -72,42 +72,42 @@ const App = () => {
 
             <animated.div className={styles.contents} {...bind()} style={{ x, y }} >
 
-                <div className={classNames(styles.item, currentIndex === 0 && styles.active)}>
+                <div className={classNames(styles.item)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>Average Rate</h3>
                         <div className={styles.itemBody}>Base Group A</div>
                     </div>
                 </div>
 
-                <div className={classNames(styles.item, currentIndex === 1 && styles.active)}>
+                <div className={classNames(styles.item)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-001</h3>
                         <div className={styles.itemBody}>First Intro</div>
                     </div>
                 </div>
 
-                <div className={classNames(styles.item, currentIndex === 2 && styles.active)}>
+                <div className={classNames(styles.item)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-002</h3>
                         <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
 
-                <div className={classNames(styles.item, currentIndex === 3 && styles.active)}>
+                <div className={classNames(styles.item)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-003</h3>
                         <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
 
-                <div className={classNames(styles.item, currentIndex === 4 && styles.active)}>
+                <div className={classNames(styles.item)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-004</h3>
                         <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
 
-                <div className={classNames(styles.item, currentIndex === 5 && styles.active)}>
+                <div className={classNames(styles.item)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-005</h3>
                         <div className={styles.itemBody}>Contents</div>
