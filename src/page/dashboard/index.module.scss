@@ -5,6 +5,7 @@
   display: grid;
   grid-gap: 32px;
   grid-auto-rows: min-content;
+  grid-auto-rows: calc(100% - 48px);
 
   scroll-snap-type: y mandatory;
   /*scroll-snap-type: y proximity;*/
