@@ -14,7 +14,7 @@ const App = () => {
 
         <Dashboard />
 
-        {/*<Footer />*/}
+        {<Footer />}
       </div>
     </div>
   );

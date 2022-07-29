@@ -12,7 +12,7 @@
     display: flex;
     z-index: 1;
     .type {
-      background-color: #F4F4F4;
+      background-color: #f4f4f4;
       border-radius: 24px;
       width: 100%;
       height: 40px;
@@ -49,9 +49,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        &.active {
+        /*&.active {
           color: #fff;
-        }
+        }*/
       }
     }
     .item {
@@ -68,28 +68,34 @@
     height: 100%;
     position: relative;
     touch-action: none;
+    will-change: transform;
+
     .item {
       background-color: transparent;
       flex: 1;
       flex-shrink: 0;
       scroll-snap-align: center;
       min-width: calc(100% - 72px);
-      min-height: calc(100% - 96px);
+      min-height: calc(100% - 106px);
+      /*min-height: 100%;*/
       display: flex;
       position: relative;
       transition: min-height 0.16s ease-in-out;
+      will-change: min-height;
       padding: 12px;
       .itemWrap {
         background-color: #141414;
         color: #fff;
-        padding: 24px 16px;
+        padding: 16px 16px;
         flex: 1;
         border-radius: 16px;
+        display: flex;
+        flex-direction: column;
       }
       &.active {
         min-height: 100%;
         .itemWrap {
-          filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.48));
+          filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.16));
         }
       }
       &:first-child {
@@ -116,6 +122,28 @@
       .title {
         font-size: 24px;
         font-weight: 700;
+        padding: 8px 0;
+      }
+      .itemBody{
+        padding: 8px 0;
+      }
+      &:nth-child(1) .itemWrap {
+        background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+      }
+      &:nth-child(2) .itemWrap {
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      }
+      &:nth-child(3) .itemWrap {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+      &:nth-child(4) .itemWrap {
+        background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
+      }
+      &:nth-child(5) .itemWrap {
+        background: linear-gradient(135deg, #5ecce7 0%, #3bafcd 100%);
+      }
+      &:nth-child(6) .itemWrap {
+        background: linear-gradient(135deg, #e2c3e2 0%, #e2c3df 100%);
       }
     }
   }

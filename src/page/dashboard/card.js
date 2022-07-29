@@ -28,22 +28,24 @@ const App = () => {
 
     const [{ x, y }, api] = useSpring(() => ({ x: 36, y: 0 }));
 
-    /*const bind = useGesture({
+    const bind = useGesture({
         onDrag: ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
             if (active && Math.abs(mx) > (windowDimenion.windWidth - 72) * 0.5) {
-                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 6);
+                index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 5);
                 cancel()
             }
-            api.start({ 
+            api.start({
                 x: index.current * -1 * (windowDimenion.windWidth - 72) + (active ? mx + 36 : 36),
                 y: active ? my : 0
             })
 
             setCurrentIndex(index.current);
-        },
-    });*/
+        }
+    }, {
+        drag: { axis: 'lock' }
+    });
 
-    const bind = useDrag(
+    /*const bind = useDrag(
         ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
             if (active && Math.abs(mx) > (windowDimenion.windWidth - 72) * 0.5) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 5);
@@ -56,7 +58,7 @@ const App = () => {
             setCurrentIndex(index.current);
         },
         { axis: 'lock' }
-    )
+    )*/
 
     return (
         <section className={classNames(styles.container)} style={{ height: windowDimenion.windHeight - 118 }}>
@@ -87,28 +89,28 @@ const App = () => {
                 <div className={classNames(styles.item, currentIndex === 2 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-002</h3>
-                        <div className={styles.itemBody}>aaaa</div>
+                        <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 3 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-003</h3>
-                        <div className={styles.itemBody}>aaaa</div>
+                        <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 4 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-004</h3>
-                        <div className={styles.itemBody}>aaaa</div>
+                        <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
 
                 <div className={classNames(styles.item, currentIndex === 5 && styles.active)}>
                     <div className={styles.itemWrap}>
                         <h3 className={styles.title}>KF-21-005</h3>
-                        <div className={styles.itemBody}>aaaa</div>
+                        <div className={styles.itemBody}>Contents</div>
                     </div>
                 </div>
             </animated.div>
