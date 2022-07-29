@@ -75,19 +75,6 @@ const App = () => {
         drag: { axis: 'lock' }
     });
 
-    /*const bind = useDrag(({ active, movement: [mx], direction: [xDir], cancel }) => {
-        if (active && Math.abs(mx) > width / 2) {
-            index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, data.length - 1)
-            cancel()
-        }
-        api.start(i => {
-            if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
-            const x = (i - index.current) * width + (active ? mx + 48 : 48)
-            const scale = i === index.current ? 1 : 0.8
-            setCurrentIndex(index.current)
-            return { x, scale, display: 'flex' }
-        })
-    })*/
     return (
         <section className={classNames(styles.container)}>
             <div className={styles.controller}>
@@ -98,7 +85,7 @@ const App = () => {
             </div>
             <div className={styles.contents}>
                 {props.map(({ x, y, display, scale }, i) => (
-                    <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, y, scale }}>
+                    <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                         <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
                         <div className={styles.itemBody}>{data[i].info}</div>
                     </animated.div>
