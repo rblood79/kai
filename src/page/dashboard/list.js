@@ -2,11 +2,13 @@
 
 
 */
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useSpring, useSprings, animated } from '@react-spring/web';
-import { useDrag, useGesture } from '@use-gesture/react'
+import { useState, useRef } from 'react';
+import { useSprings, animated } from '@react-spring/web';
+import { useGesture } from '@use-gesture/react'
 
-import styles from './card.module.scss';
+import { Link } from 'react-router-dom';
+
+import styles from './list.module.scss';
 import classNames from 'classnames';
 
 const data = [
@@ -88,6 +90,7 @@ const App = () => {
                     <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                         <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
                         <div className={styles.itemBody}>{data[i].info}</div>
+                        <Link to='/flight'>flight</Link>
                     </animated.div>
                 ))}
             </div>

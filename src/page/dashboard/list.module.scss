@@ -50,9 +50,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        /*&.active {
-          color: #fff;
-        }*/
+        background: transparent;
+        border: none;
       }
     }
     .item {
@@ -93,8 +92,8 @@
       position: absolute;
       touch-action: none;
       will-change: transform;
-      &::after{
-        content: 'more';
+      &::after {
+        content: "more";
       }
       &:first-child {
         &::before {
