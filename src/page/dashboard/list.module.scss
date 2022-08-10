@@ -28,6 +28,7 @@
       position: absolute;
       touch-action: none;
       will-change: transform;
+      background: linear-gradient(135deg, #1e1e1e 0%, #474747 100%);
       &::after {
         content: "more";
       }
@@ -87,6 +88,7 @@
     gap: 16px;
     align-items: stretch;
     padding: 0 16px;
+    width: 100%;
     .item {
       background-color: #171717;
       padding: 16px;
