@@ -6,7 +6,7 @@ import { useState, useRef } from 'react';
 import { useSprings, animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react'
 
-import { Link } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 
 import styles from './list.module.scss';
 import classNames from 'classnames';
@@ -32,6 +32,51 @@ const data = [
         info: 'First Intro',
         image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
+    {
+        title: 'KF-21-004',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-005',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-006',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-007',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-008',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-009',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-010',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-011',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
+    {
+        title: 'KF-21-012',
+        info: 'First Intro',
+        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    },
 ]
 
 const clamp = (value, lower, upper) => {
@@ -41,11 +86,12 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    const [windowDimenion, detectHW] = useState({
+    /*const [windowDimenion, detectHW] = useState({
         windWidth: window.innerWidth,
         windHeight: window.innerHeight,
-    });
-    //const [type, setType] = useState('list');
+    });*/
+    const { type } = useOutletContext();
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
     const width = window.innerWidth - 96
@@ -79,17 +125,31 @@ const App = () => {
 
     return (
         <section className={classNames(styles.container)}>
-            <article className={styles.contents}>
-                {props.map(({ x, y, display, scale }, i) => (
-                    <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                        <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
-                        <div className={styles.itemBody}>{data[i].info}</div>
-                        <Link to='/flight'>flight</Link>
-                    </animated.div>
-                ))}
-            </article>
+            {
+                type === 'list' ?
+                    <div className={styles.listContents}>
+                        {props.map(({ x, y, display, scale }, i) => (
+                            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
+                                <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
+                                <div className={styles.itemBody}>{data[i].info}</div>
+                                <Link to='/flight'>flight</Link>
+                            </animated.div>
+                        ))}
+                    </div>
+                    :
+                    <div className={styles.gridContents}>
+                        {props.map(({ x, y }, i) => (
+                            <animated.div className={classNames(styles.item)} key={i}>
+                                <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
+                                <div className={styles.itemBody}>{data[i].info}</div>
+                                <Link to='/flight'>flight</Link>
+                            </animated.div>
+                        ))}
+                    </div>
+            }
         </section>
-    );
+
+    )
 }
 
 export default App;

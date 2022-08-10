@@ -25,7 +25,7 @@ const App = () => {
                     </div>
                 </div>
 
-                <Outlet />
+                <Outlet context={{ type }} />
 
                 <section className={classNames(styles.section, styles.card)}>
                     <div className={classNames(styles.header)}>

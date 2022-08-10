@@ -7,6 +7,7 @@ import NotFound from './page/404';
 import Sign from './page/sign';
 import Dashboard from './page/dashboard';
 import DashboardList from './page/dashboard/list';
+import DashboardGrid from './page/dashboard/grid';
 import Flight from './page/flight';
 import FlightList from './page/flight/list';
 import FlightDetail from './page/flight/detail';
@@ -36,6 +37,7 @@ const App = () => {
 
               <Route path="dashboard" element={<Dashboard />} >
                 <Route path="" element={<DashboardList />} />
+                <Route path="grid" element={<DashboardGrid />} />
               </Route>
 
               <Route path="flight" element={<Flight />}>

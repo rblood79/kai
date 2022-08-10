@@ -1,12 +1,12 @@
 .container {
   scroll-snap-align: start;
   width: 100%;
-  height: calc(100% - 88px);
+  height: calc(100% - 72px);
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-
-  .listContents {
+  
+  .contents {
     display: flex;
     align-items: center;
     align-items: flex-start;
@@ -18,13 +18,19 @@
       flex: 1;
       flex-shrink: 0;
       scroll-snap-align: center;
+      //min-width: calc(100% - 72px);
       width: calc(100% - 96px);
       height: calc(100% - 16px);
       height: 100%;
       border-radius: 16px;
       padding: 16px;
+      /*min-height: 100%;*/
       display: flex;
       flex-direction: column;
+      //position: relative;
+      //transition: min-height 0.16s ease-in-out;
+      //will-change: min-height;
+      //padding: 12px;
       position: absolute;
       touch-action: none;
       will-change: transform;
@@ -77,29 +83,6 @@
       }
       &:nth-child(6) {
         background: linear-gradient(135deg, #e2c3e2 0%, #e2c3df 100%);
-      }
-    }
-  }
-
-  .gridContents {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    align-items: stretch;
-    padding: 0 16px;
-    .item {
-      background-color: #171717;
-      padding: 16px;
-      border-radius: 16px;
-      aspect-ratio: 1;
-      .title {
-        font-size: 18px;
-        font-weight: 700;
-        padding: 8px 0;
-        color: #fff;
-      }
-      &:first-child {
-        grid-column: 1 / 3;
       }
     }
   }
