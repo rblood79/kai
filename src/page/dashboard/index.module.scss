@@ -8,8 +8,8 @@
   grid-auto-rows: min-content;
   grid-auto-rows: calc(100% - 48px);
   grid-template-rows: 56px auto;*/
+  overflow-x: hidden;
   overflow-y: scroll;
-  border: 1px solid rgb(228, 17, 200);
   .tabController {
     background-color: #f00;
     height: 56px;

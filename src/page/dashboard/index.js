@@ -2,7 +2,7 @@
 
 
 */
-import { useState} from 'react';
+import { useState } from 'react';
 
 import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
@@ -58,7 +58,7 @@ const App = () => {
                     </div>
                     <div className={classNames(styles.body)}>contents</div>
                 </section>
-                
+
             </main>
         </>
     );
