@@ -1,0 +1,36 @@
+.container {
+  border: 1px solid #f00;
+  position: absolute;
+  background-color: #000;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  .user {
+    color: #f00;
+    display: flex;
+    justify-content: center;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+    align-items: stretch;
+    padding: 16px;
+    width: 100%;
+    .item {
+      border: 1px solid #f00;
+      aspect-ratio: 1;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+}

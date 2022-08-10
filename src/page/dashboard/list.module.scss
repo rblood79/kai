@@ -84,8 +84,8 @@
 
   .gridContents {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     align-items: stretch;
     padding: 0 16px;
     width: 100%;
@@ -95,14 +95,18 @@
       border-radius: 16px;
       aspect-ratio: 1;
       .title {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
         padding: 8px 0;
         color: #fff;
       }
-      &:first-child {
-        grid-column: 1 / 3;
+      .rate {
+        color: #5ecce7;
       }
+      /*&:first-child {
+        grid-column: 1 / 3;
+        aspect-ratio: 2;
+      }*/
     }
   }
 }

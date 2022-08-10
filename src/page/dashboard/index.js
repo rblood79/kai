@@ -9,13 +9,18 @@ import styles from './index.module.scss';
 import classNames from 'classnames';
 
 import Header from '../../components/header';
+import Nav from '../../components/nav';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
     const [type, setType] = useState('list');
+    const [navState, setNavState] = useState(false);
+    const toggleNav = () => {
+        setNavState(navState => !navState)
+    }
     return (
         <>
-            <Header />
+            <Header title={'KF-21 LIS'} navState={toggleNav}/>
             <main className={styles.main}>
 
                 <div className={styles.tabController}>
@@ -27,39 +32,42 @@ const App = () => {
 
                 <Outlet context={{ type }} />
 
-                <section className={classNames(styles.section, styles.card)}>
-                    <div className={classNames(styles.header)}>
-                        <h2 className={classNames(styles.title)}>Flight No</h2>
-                    </div>
-                    <div className={classNames(styles.body)}>contents</div>
-                </section>
-
-                <section className={classNames(styles.section)}>
-                    <div className={classNames(styles.header)}>
-                        <h2 className={classNames(styles.title)}>Flight No</h2>
-                    </div>
-                    <div className={classNames(styles.body)}>contents</div>
-                </section>
-                <section className={classNames(styles.section)}>
-                    <div className={classNames(styles.header)}>
-                        <h2 className={classNames(styles.title)}>Defect</h2>
-                    </div>
-                    <div className={classNames(styles.body)}>contents</div>
-                </section>
-                <section className={classNames(styles.section)}>
-                    <div className={classNames(styles.header)}>
-                        <h2 className={classNames(styles.title)}>Maintenance</h2>
-                    </div>
-                    <div className={classNames(styles.body)}>contents</div>
-                </section>
-                <section className={classNames(styles.section)}>
-                    <div className={classNames(styles.header)}>
-                        <h2 className={classNames(styles.title)}>Consume</h2>
-                    </div>
-                    <div className={classNames(styles.body)}>contents</div>
-                </section>
+                {
+                    /*<section className={classNames(styles.section, styles.card)}>
+                        <div className={classNames(styles.header)}>
+                            <h2 className={classNames(styles.title)}>Flight No</h2>
+                        </div>
+                        <div className={classNames(styles.body)}>contents</div>
+                    </section>
+    
+                    <section className={classNames(styles.section)}>
+                        <div className={classNames(styles.header)}>
+                            <h2 className={classNames(styles.title)}>Flight No</h2>
+                        </div>
+                        <div className={classNames(styles.body)}>contents</div>
+                    </section>
+                    <section className={classNames(styles.section)}>
+                        <div className={classNames(styles.header)}>
+                            <h2 className={classNames(styles.title)}>Defect</h2>
+                        </div>
+                        <div className={classNames(styles.body)}>contents</div>
+                    </section>
+                    <section className={classNames(styles.section)}>
+                        <div className={classNames(styles.header)}>
+                            <h2 className={classNames(styles.title)}>Maintenance</h2>
+                        </div>
+                        <div className={classNames(styles.body)}>contents</div>
+                    </section>
+                    <section className={classNames(styles.section)}>
+                        <div className={classNames(styles.header)}>
+                            <h2 className={classNames(styles.title)}>Consume</h2>
+                        </div>
+                        <div className={classNames(styles.body)}>contents</div>
+                    </section>*/
+                }
 
             </main>
+            {navState && <Nav navState={navState} />}
         </>
     );
 }

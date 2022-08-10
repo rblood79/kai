@@ -5,9 +5,9 @@ import { useLocation, Routes, Route } from "react-router-dom";
 import './App.scss';
 import NotFound from './page/404';
 import Sign from './page/sign';
+import Notifycation from './page/notify';
 import Dashboard from './page/dashboard';
 import DashboardList from './page/dashboard/list';
-import DashboardGrid from './page/dashboard/grid';
 import Flight from './page/flight';
 import FlightList from './page/flight/list';
 import FlightDetail from './page/flight/detail';
@@ -21,7 +21,7 @@ const App = () => {
     enter: { transform: 'translate3d(0%,0,0)' },
     leave: { transform: 'translate3d(-50%,0,0)' },
     config: {
-      duration: 680,
+      duration: 480,
       easing: easings.easeInOutQuart,
     }
   })
@@ -35,9 +35,10 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Sign />} />
 
+              <Route path="notify" element={<Notifycation />} />
+
               <Route path="dashboard" element={<Dashboard />} >
                 <Route path="" element={<DashboardList />} />
-                <Route path="grid" element={<DashboardGrid />} />
               </Route>
 
               <Route path="flight" element={<Flight />}>

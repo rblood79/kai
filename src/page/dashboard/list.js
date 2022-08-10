@@ -15,31 +15,37 @@ const data = [
     {
         title: 'Average Rate',
         info: 'Base Group A',
+        rate: '78%',
         image: 'https://images.pexels.com/photos/62689/pexels-photo-62689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
         title: 'KF-21-001',
         info: 'First Intro',
+        rate: '89%',
         image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
         title: 'KF-21-002',
         info: 'First Intro',
+        rate: '76%',
         image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
         title: 'KF-21-003',
         info: 'First Intro',
+        rate: '69%',
         image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
         title: 'KF-21-004',
         info: 'First Intro',
+        rate: '51%',
         image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
         title: 'KF-21-005',
         info: 'First Intro',
+        rate: '44%',
         image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     /*{
@@ -86,10 +92,6 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    /*const [windowDimenion, detectHW] = useState({
-        windWidth: window.innerWidth,
-        windHeight: window.innerHeight,
-    });*/
     const { type } = useOutletContext();
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -102,7 +104,6 @@ const App = () => {
         y: 0,
         //display: 'flex',
     }))
-    //const [{ x, y, scale }, api] = useSpring(() => ({ x: 36, y: 0, scale: 1 }));
 
     const bind = useGesture({
         onDrag: ({ active, movement: [mx, my], direction: [xDir], cancel }) => {
@@ -141,7 +142,7 @@ const App = () => {
                         {props.map(({ x, y }, i) => (
                             <animated.div className={classNames(styles.item)} key={i}>
                                 <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
-                                <div className={styles.itemBody}>{data[i].info}</div>
+                                <div className={styles.rate}>{data[i].rate}</div>
                                 <Link to='/flight'>flight</Link>
                             </animated.div>
                         ))}

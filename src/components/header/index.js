@@ -29,8 +29,8 @@ const App = (props) => {
             {
                 location.pathname === '/dashboard' &&
                 <>
-                    <button className={classNames(gloval.button, styles.notification, styles.active)}><i className="ri-notification-line"></i></button>
-                    <button className={classNames(gloval.button, styles.menu)}><i className="ri-menu-line"></i></button>
+                    <button className={classNames(gloval.button, styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
+                    <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}><i className="ri-menu-line"></i></button>
                 </>
             }
             
