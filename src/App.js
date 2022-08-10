@@ -30,7 +30,7 @@ const App = () => {
       <div className='container'>
         {transitions((styles, item) => (
           <a.div style={styles}>
-            {<Routes location={item}>
+            <Routes location={item}>
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Sign />} />
 
@@ -42,7 +42,7 @@ const App = () => {
                 <Route path="" element={<FlightList />} />
                 <Route path=":id" element={<FlightDetail />} />
               </Route>
-            </Routes>}
+            </Routes>
           </a.div>
         ))}
 

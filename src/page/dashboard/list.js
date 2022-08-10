@@ -45,7 +45,7 @@ const App = () => {
         windWidth: window.innerWidth,
         windHeight: window.innerHeight,
     });
-    const [type, setType] = useState('list');
+    //const [type, setType] = useState('list');
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
     const width = window.innerWidth - 96
@@ -79,13 +79,7 @@ const App = () => {
 
     return (
         <section className={classNames(styles.container)}>
-            <div className={styles.controller}>
-                <div className={classNames(styles.type, type === 'list' && styles.active)}>
-                    <button className={classNames(type === 'list' && styles.active)} onClick={() => { setType('list') }}>LIST</button>
-                    <button className={classNames(type === 'grid' && styles.active)} onClick={() => { setType('grid') }}>GRID</button>
-                </div>
-            </div>
-            <div className={styles.contents}>
+            <article className={styles.contents}>
                 {props.map(({ x, y, display, scale }, i) => (
                     <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                         <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
@@ -93,7 +87,7 @@ const App = () => {
                         <Link to='/flight'>flight</Link>
                     </animated.div>
                 ))}
-            </div>
+            </article>
         </section>
     );
 }
