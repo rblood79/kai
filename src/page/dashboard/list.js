@@ -2,7 +2,7 @@
 
 
 */
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSprings, animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react'
 
@@ -100,8 +100,8 @@ const App = () => {
 
     const [props, api] = useSprings(data.length, i => ({
         x: (i * width) + 48,
-        scale: i === 0 ? 1 : 0.8,
         y: 0,
+        scale: i === 0 ? 1 : 0.8,
         //display: 'flex',
     }))
 
@@ -124,6 +124,9 @@ const App = () => {
         drag: { axis: 'lock' }
     });
 
+    useEffect(() => {
+        
+    },[])
     return (
         <section className={classNames(styles.container)}>
             {

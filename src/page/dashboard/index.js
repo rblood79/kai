@@ -15,12 +15,11 @@ import { Outlet } from 'react-router-dom';
 const App = () => {
     const [type, setType] = useState('list');
     const [navState, setNavState] = useState(false);
-    const toggleNav = () => {
-        setNavState(navState => !navState)
-    }
+    
+    const toggleNav = () => setNavState(!navState);
     return (
         <>
-            <Header title={'KF-21 LIS'} navState={toggleNav}/>
+            <Header title={'KF-21 LIS'} depth={0} navState={toggleNav}/>
             <main className={styles.main}>
 
                 <div className={styles.tabController}>
@@ -67,7 +66,7 @@ const App = () => {
                 }
 
             </main>
-            {navState && <Nav navState={navState} />}
+            <Nav navState={navState} />
         </>
     );
 }

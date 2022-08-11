@@ -1,14 +1,15 @@
 .container {
-  border: 1px solid #f00;
   position: absolute;
   background-color: #000;
-  height: 100%;
+  height: calc(100% - 56px);
+  top: 56px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 1;
+  will-change: transform;
   .user {
-    color: #f00;
+    color: #fff;
     display: flex;
     justify-content: center;
   }
@@ -24,6 +25,7 @@
       aspect-ratio: 1;
       padding: 8px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       color: #fff;
@@ -31,6 +33,9 @@
       font-weight: 700;
       text-align: center;
       text-decoration: none;
+      i {
+        font-weight: 100;
+      }
     }
   }
 }

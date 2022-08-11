@@ -1,7 +1,16 @@
 
+import Header from '../../components/header';
+
 const App = (props) => {
     return (
-        <div>notification</div>
+        <>
+            <Header title={'Notifycation'} depth={1} />
+            <main>
+                <div>
+                    notifycation
+                </div>
+            </main>
+        </>
     );
 }
 

@@ -1,23 +1,93 @@
-import styles from './index.module.scss';
 
+
+
+import { useSpring, animated, easings } from '@react-spring/web';
 import { Link } from "react-router-dom";
 
+import styles from './index.module.scss';
+
+const myCallback = (animatedValue) => {
+    console.log("animation frame, animatedValue: ", animatedValue);
+};
+
 const App = (props) => {
+    const data = [
+        {
+            link: '/flight',
+            icon: 'ri-flight-takeoff-line',
+            text: 'Flight No',
+        },
+        {
+            link: '/defact',
+            icon: 'ri-flight-takeoff-line',
+            text: 'Defact',
+        },
+        {
+            link: '/maintenance',
+            icon: 'ri-flight-takeoff-line',
+            text: 'Maintenance',
+        },
+        {
+            link: '/extenal',
+            icon: 'ri-flight-takeoff-line',
+            text: 'Extenal Change',
+        },
+        {
+            link: '/order',
+            icon: 'ri-flight-takeoff-line',
+            text: 'Maintenance Order Flight',
+        },
+        {
+            link: '/schedule',
+            icon: 'ri-flight-takeoff-line',
+            text: 'Schedule Maintenance',
+        },
+        {
+            link: '/tci',
+            icon: 'ri-flight-takeoff-line',
+            text: 'TCI Maintenance',
+        },
+        {
+            link: '/loc',
+            icon: 'ri-flight-takeoff-line',
+            text: 'A/C Loc & Status',
+        },
+    ]
+
+    const { opacity, xyz } = useSpring({
+        opacity: props.navState ? 1 : 0,
+        xyz: props.navState ? [0, 0, 0] : [390, 0, 0],
+        onFrame: myCallback,
+        config: {
+            duration: 480,
+            easing: easings.easeInOutQuart,
+        }
+    });
+
+    const item = (link, icon, text) => {
+        return (
+            <Link className={styles.item} to={link} key={link}>
+                <i className={icon} />
+                {text}
+            </Link>
+        )
+    }
 
     return (
-        <div className={styles.container}>
+        <animated.div className={styles.container} style={{
+            //opacity,
+            transform: xyz.to((x, y, z) => `translate3d(${x}px, ${y}px, ${z}px)`),
+        }}
+        >
             <div className={styles.user}>user info</div>
             <nav className={styles.list}>
-                <Link className={styles.item} to='/flight'>Flight No</Link>
-                <Link className={styles.item} to='/defact'>Defact</Link>
-                <Link className={styles.item} to='/maintenance'>Maintenance</Link>
-                <Link className={styles.item} to='/extenal'>Extenal Change</Link>
-                <Link className={styles.item} to='/order'>Maintenance Order Flight</Link>
-                <Link className={styles.item} to='/schedule'>Schedule Maintenance</Link>
-                <Link className={styles.item} to='/tci'>TCI Maintenance</Link>
-                <Link className={styles.item} to='/loc'>A/C Loc & Status</Link>
+                {
+                    data && data.map((d, i) => (
+                        item(d.link, d.icon, d.text)
+                    ))
+                }
             </nav>
-        </div>
+        </animated.div>
     );
 }
 
