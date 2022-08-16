@@ -8,6 +8,7 @@ import Sign from './page/sign';
 import Notifycation from './page/notify';
 import Dashboard from './page/dashboard';
 import DashboardList from './page/dashboard/list';
+import DashboardDetail from './page/dashboard/detail';
 import Flight from './page/flight';
 import FlightList from './page/flight/list';
 import FlightDetail from './page/flight/detail';
@@ -15,7 +16,8 @@ import FlightDetail from './page/flight/detail';
 
 
 const App = () => {
-  const location = useLocation()
+  const location = useLocation();
+  //console.log('///', location)
   const transitions = useTransition(location, {
     from: { transform: 'translate3d(100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
@@ -40,6 +42,7 @@ const App = () => {
               <Route path="dashboard" element={<Dashboard />} >
                 <Route path="" element={<DashboardList />} />
               </Route>
+              <Route path="dashboard/:id" element={<DashboardDetail />} />
 
               <Route path="flight" element={<Flight />}>
                 <Route path="" element={<FlightList />} />

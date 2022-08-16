@@ -19,37 +19,37 @@ const App = (props) => {
         },
         {
             link: '/defact',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-tools-line',
             text: 'Defact',
         },
         {
             link: '/maintenance',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-user-settings-line',
             text: 'Maintenance',
         },
         {
             link: '/extenal',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-arrow-left-right-line',
             text: 'Extenal Change',
         },
         {
             link: '/order',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-survey-line',
             text: 'Maintenance Order Flight',
         },
         {
             link: '/schedule',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-calendar-todo-line',
             text: 'Schedule Maintenance',
         },
         {
             link: '/tci',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-time-line',
             text: 'TCI Maintenance',
         },
         {
             link: '/loc',
-            icon: 'ri-flight-takeoff-line',
+            icon: 'ri-map-pin-2-line',
             text: 'A/C Loc & Status',
         },
     ]
@@ -68,13 +68,13 @@ const App = (props) => {
         return (
             <Link className={styles.item} to={link} key={link}>
                 <i className={icon} />
-                {text}
+                <span>{text}</span>
             </Link>
         )
     }
 
     return (
-        <animated.div className={styles.container} style={{
+        <animated.aside className={styles.container} style={{
             //opacity,
             transform: xyz.to((x, y, z) => `translate3d(${x}px, ${y}px, ${z}px)`),
         }}
@@ -87,7 +87,7 @@ const App = (props) => {
                     ))
                 }
             </nav>
-        </animated.div>
+        </animated.aside>
     );
 }
 

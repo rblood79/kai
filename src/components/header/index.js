@@ -14,7 +14,7 @@ const App = (props) => {
     const navigate = useNavigate();
     //console.log(location)
     return (
-        <header className={classNames(styles.header)}>
+        <header className={classNames(styles.header)} style={{ 'backgroundColor': props.backgroundColor }}>
             {
                 props.depth > 0 && <button className={classNames(gloval.button, styles.back)} onClick={() => navigate(-1)}><i className="ri-arrow-left-s-line"></i></button>
             }
@@ -40,3 +40,7 @@ const App = (props) => {
 }
 
 export default App;
+
+App.defaultProps = {
+    backgroundColor: 'transparent',
+};

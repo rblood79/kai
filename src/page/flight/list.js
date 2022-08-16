@@ -16,6 +16,11 @@ const App = (props) => {
         <>
             <Header title={'Flight No'} depth={1} />
             <main className={styles.main}>
+                <div>
+                    8 FIGHTERS WERE QUERIED
+                    DURING THIS
+                    PERIOD
+                </div>
                 <div className={styles.list}>
                     <Link to='40'>link</Link>
                     <Link to='41'>link</Link>

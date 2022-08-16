@@ -13,76 +13,47 @@ import classNames from 'classnames';
 
 const data = [
     {
+        id: 'total',
         title: 'Average Rate',
         info: 'Base Group A',
         rate: '78%',
         image: 'https://images.pexels.com/photos/62689/pexels-photo-62689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
+        id:'001',
         title: 'KF-21-001',
         info: 'First Intro',
         rate: '89%',
         image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
+        id:'002',
         title: 'KF-21-002',
         info: 'First Intro',
         rate: '76%',
         image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
+        id:'003',
         title: 'KF-21-003',
         info: 'First Intro',
         rate: '69%',
         image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
+        id:'004',
         title: 'KF-21-004',
         info: 'First Intro',
         rate: '51%',
         image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
     {
+        id:'005',
         title: 'KF-21-005',
         info: 'First Intro',
         rate: '44%',
         image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     },
-    /*{
-        title: 'KF-21-006',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },
-    {
-        title: 'KF-21-007',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },
-    {
-        title: 'KF-21-008',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },
-    {
-        title: 'KF-21-009',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },
-    {
-        title: 'KF-21-010',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },
-    {
-        title: 'KF-21-011',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },
-    {
-        title: 'KF-21-012',
-        info: 'First Intro',
-        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    },*/
 ]
 
 const clamp = (value, lower, upper) => {
@@ -136,7 +107,7 @@ const App = () => {
                             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                                 <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
                                 <div className={styles.itemBody}>{data[i].info}</div>
-                                <Link to='/flight'>flight</Link>
+                                <Link to={data[i].id}>Detail View</Link>
                             </animated.div>
                         ))}
                     </div>
@@ -146,7 +117,7 @@ const App = () => {
                             <animated.div className={classNames(styles.item)} key={i}>
                                 <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
                                 <div className={styles.rate}>{data[i].rate}</div>
-                                <Link to='/flight'>flight</Link>
+                                <Link to={data[i].id}>Detail View</Link>
                             </animated.div>
                         ))}
                     </div>
