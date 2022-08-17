@@ -117,7 +117,7 @@ const App = () => {
                             <animated.div className={classNames(styles.item)} key={i}>
                                 <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
                                 <div className={styles.rate}>{data[i].rate}</div>
-                                <Link to={data[i].id}>Detail View</Link>
+                                <Link to={data[i].id}>Detail</Link>
                             </animated.div>
                         ))}
                     </div>
