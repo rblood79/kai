@@ -98,6 +98,9 @@ i {
   font-size: 24px;
 }
 
+a, button {
+  all: unset;
+}
 /*box-sizing*/
 * {
   box-sizing: border-box;

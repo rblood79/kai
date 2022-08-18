@@ -29,9 +29,7 @@
       touch-action: none;
       will-change: transform;
       background: linear-gradient(135deg, #1e1e1e 0%, #474747 100%);
-      &::after {
-        content: "more";
-      }
+      
       &:first-child {
         &::before {
           content: "KF-21 BORAMAE LOGISTICS INFORMATION SYSTEM";

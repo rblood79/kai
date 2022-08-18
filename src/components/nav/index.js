@@ -92,3 +92,7 @@ const App = (props) => {
 }
 
 export default App;
+
+App.defaultProps = {
+    
+};

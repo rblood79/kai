@@ -27,7 +27,7 @@
         background: linear-gradient(90deg, #000428 0%, #3bafcd 100%);
         position: absolute;
       }
-      .base {
+      .baseIcon {
         background-color: #fff;
         width: 32px;
         height: 32px;
@@ -37,18 +37,18 @@
         border-radius: 32px;
         z-index: 1;
       }
-      .label {
+      .item {
         flex: 1;
         display: flex;
         flex-direction: column;
         &:last-child {
           align-items: flex-end;
         }
-        .title{
+        .title {
           padding: 8px 0;
           font-weight: 600;
         }
-        .value {
+        .text {
           padding: 8px 0;
           color: #fff;
         }
@@ -68,7 +68,7 @@
       .rate {
         width: 100%;
 
-        .label {
+        .item {
           display: flex;
           justify-content: space-between;
           padding: 8px 0;
@@ -77,10 +77,11 @@
             display: flex;
             align-items: flex-end;
           }
-          .value {
+          .text {
             color: #0c90e7;
             font-size: 34px;
-            padding: 4px;
+            font-weight: 200;
+            padding: 4px 0;
           }
         }
         .bar {
@@ -91,7 +92,7 @@
           border: 4px solid #efefef;
           .value {
             height: 100%;
-            background: linear-gradient(90deg, #3bafcd 0%, #004E92 100%);
+            background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
             width: 0%;
             border-radius: 8px;
           }
@@ -100,36 +101,210 @@
     }
     .footer {
       padding: 16px;
-      .label {
+      .item {
         display: flex;
         justify-content: space-between;
         padding: 4px 0;
         .title {
           color: #939393;
         }
-        .value {
+        .text {
           color: #fff;
         }
       }
     }
   }
+
   .card {
     background-color: #fff;
     border-radius: 16px;
-    padding: 16px;
+    padding: 8px 16px 16px 16px;
     box-shadow: 2px 4px 8px #efefef;
     .header {
-      min-height: 36px;
-      font-size: 24px;
+      min-height: 48px;
+      height: 56px;
       display: flex;
+      display: flex;
+      flex-direction: row;
       align-items: center;
+      justify-content: space-between;
+
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .more {
+        font-size: 12px;
+        background: #0c90e7;
+        color: #fff;
+        padding: 2px 12px;
+        border-radius: 16px;
+      }
+      & + .info {
+        border-top: 1px solid #ebebeb;
+      }
+    }
+    .info {
+      padding: 8px 0 0 0;
+      .item {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title {
+          color: #b4b4b4;
+        }
+        .text {
+          color: #606060;
+        }
+      }
     }
     .body {
+      margin-top: 8px;
       background-color: #f4f4f4;
       border: 1px solid #e1e1e1;
       border-radius: 8px;
       padding: 16px;
-      min-height: 400px;
+      position: relative;
+      .baseIcon {
+        background-color: #f4f4f4;
+        border: 1px solid #e1e1e1;
+        color: #0c90e7;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 32px;
+        z-index: 1;
+        position: absolute;
+        top: calc(0px - 16px);
+        left: calc(50% - 16px);
+        i {
+          background: linear-gradient(#2980b9, #6bd2f8);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 21px;
+        }
+      }
+      .list {
+        display: flex;
+        flex-direction: column;
+        &.row {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+        .itemGroup {
+          & + .itemGroup {
+            margin-top: 48px;
+          }
+          .title {
+            color: #141414;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            height: 56px;
+          }
+        }
+        .bar {
+          height: 16px;
+          display: flex;
+          background-color: #fff;
+          border-radius: 16px;
+          border: 4px solid #efefef;
+          margin-top: 8px;
+          position: relative;
+          .value {
+            height: 100%;
+            background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
+            width: 0%;
+            border-radius: 8px;
+          }
+          .text {
+            display: flex;
+            position: absolute;
+            right: -4px;
+            top: 16px;
+            font-weight: 600;
+            font-size: 16px;
+          }
+        }
+        .item {
+          height: 32px;
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          &.col {
+            flex-direction: column;
+            .title {
+              color: #141414;
+              font-size: 16px;
+              margin-bottom: 16px;
+            }
+          }
+          .title {
+            font-size: 14px;
+            font-weight: 400;
+            color: #b4b4b4;
+            padding: 0;
+            display: flex;
+            align-items: center;
+          }
+          .text {
+            color: #141414;
+          }
+          .textGroup {
+            display: flex;
+            flex-direction: column;
+            .text {
+              padding: 4px 0;
+            }
+          }
+          &.left {
+            height: auto;
+            align-items: flex-start;
+            .textGroup {
+              align-items: flex-end;
+              .text {
+                color: #e78a0c;
+              }
+            }
+          }
+          &.right {
+            height: auto;
+            align-items: flex-end;
+            .textGroup {
+              align-items: flex-end;
+              .text {
+                color: #0c90e7;
+              }
+            }
+          }
+          &.image {
+            flex-direction: column;
+            align-items: center;
+            & + .image {
+              margin-top: 48px;
+            }
+            img {
+              width: calc(100% - 32px);
+              margin-bottom: 8px;
+            }
+            .title {
+              color: #e78a0c;
+            }
+          }
+        }
+      }
     }
   }
 }
