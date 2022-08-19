@@ -15,7 +15,6 @@ import { Outlet } from 'react-router-dom';
 const App = () => {
     const [type, setType] = useState('list');
     const [navState, setNavState] = useState(false);
-    
     const toggleNav = () => setNavState(!navState);
     return (
         <>

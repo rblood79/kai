@@ -24,7 +24,7 @@ const App = () => {
     }, [id])
     return (
         <>
-            <Header title={title} backgroundColor={'#f8f8f8'} depth={1} />
+            <Header title={title} background={'#f8f8f8'} depth={1} />
             <main className={styles.main}>
                 <section className={styles.overview}>
                     <div className={styles.header}>

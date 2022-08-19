@@ -170,19 +170,19 @@
       padding: 16px;
       position: relative;
       .baseIcon {
-        background-color: #f4f4f4;
+        background-color: #fff;
         border: 1px solid #e1e1e1;
         color: #0c90e7;
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 32px;
         z-index: 1;
         position: absolute;
-        top: calc(0px - 16px);
-        left: calc(50% - 16px);
+        top: calc(0px - 18px);
+        left: calc(50% - 18px);
         i {
           background: linear-gradient(#2980b9, #6bd2f8);
           -webkit-background-clip: text;

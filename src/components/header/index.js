@@ -14,7 +14,7 @@ const App = (props) => {
     const navigate = useNavigate();
     //console.log(location)
     return (
-        <header className={classNames(styles.header)} style={{ 'backgroundColor': props.backgroundColor }}>
+        <header className={classNames(styles.header)} style={{ 'background': props.background }}>
             {
                 props.depth > 0 && <button className={classNames(gloval.button, styles.back)} onClick={() => navigate(-1)}><i className="ri-arrow-left-s-line"></i></button>
             }
@@ -35,6 +35,18 @@ const App = (props) => {
                     <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}><i className="ri-menu-line"></i></button>
                 </>
             }
+
+            {
+                props.right &&
+                <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}>
+                    {
+                        props.right === 'filter' ?
+                            <i className="ri-equalizer-line" /> :
+                            props.right === 'edit' ? <span className={styles.text}>edit</span> :
+                                props.right === 'save' ? <span className={styles.text}>save</span> : null
+                    }
+                </button>
+            }
         </header>
     );
 }
@@ -42,5 +54,5 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    
+
 };

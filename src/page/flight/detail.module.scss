@@ -1,1 +1,22 @@
-
+.main {
+  flex: 1;
+  width: 100%;
+  padding: 16px;
+  .header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 48px;
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 32px;
+      word-break: keep-all;
+      background: linear-gradient(#2980B9, #6DD5FA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .date {
+      color: #939393;
+    }
+  }
+}

@@ -1,12 +1,13 @@
 .header {
   width: 100%;
   min-height: 56px;
-  padding: 0 4px;
+  padding: 0 8px 0 4px;
   z-index: 10;
   position: sticky;
   top: 0;
   display: grid;
   grid-template-columns: 48px 48px auto 48px 48px;
+  grid-template-columns: 36px 36px auto 36px 36px;
   
   .back {
     grid-column: 1 / 2;
@@ -42,8 +43,12 @@
   }
   .menu {
     grid-column: 5 / 6;
+    .text {
+      font-size: 16px;
+      font-weight: 500;
+    }
   }
-  button {
+  /*button {
     width: 48px;
-  }
+  }*/
 }
