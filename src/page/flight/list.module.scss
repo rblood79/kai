@@ -1,0 +1,15 @@
+.main {
+  flex: 1;
+  width: 100%;
+  border: 1px solid #f00;
+  padding: 16px;
+  .header {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 26px;
+    word-break: keep-all;
+    background: linear-gradient(#141414, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

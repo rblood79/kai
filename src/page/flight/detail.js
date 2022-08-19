@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 
 import Header from '../../components/header';
-import styles from './index.module.scss';
+import styles from './detail.module.scss';
 
 const App = () => {
     const { id } = useParams();

@@ -9,13 +9,16 @@ import aircraftTop from '../../images/aircraftTop@3x.png';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams, Link } from 'react-router-dom';
 
+import { percentColor, gradient } from '../../util'
+
 import Header from '../../components/header';
 import styles from './detail.module.scss';
 import classNames from 'classnames';
 
 const App = () => {
     const { id } = useParams();
-    const [title, setTitle] = useState(null)
+    const [title, setTitle] = useState(null);
+    const [rate, setRate] = useState(89);
     useEffect(() => {
         setTitle('KF21-' + id)
     }, [id])
@@ -35,13 +38,13 @@ const App = () => {
                         </div>
                     </div>
                     <div className={styles.body}>
-                        <img className={styles.aircraft} src={aircraftFront} alt='aircraft' />
+                        <img className={styles.aircraft} src={aircraftFront} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(rate) + ')' }} />
                         <div className={styles.rate}>
                             <div className={styles.item}>
-                                <span className={styles.title}>Behavior Rate</span><span className={styles.text}>68%</span>
+                                <span className={styles.title}>Behavior Rate</span><span className={styles.text} style={{ color: percentColor(rate) }}>{rate}</span>
                             </div>
                             <div className={styles.bar}>
-                                <span className={styles.value} style={{ width: '68%' }} />
+                                <span className={styles.value} style={{ width: rate + '%', background: gradient(rate, 90) }} />
                             </div>
                         </div>
                     </div>
@@ -150,7 +153,7 @@ const App = () => {
                         <span className={styles.baseIcon}><i className="ri-user-settings-line"></i></span>
 
                         <div className={styles.list}>
-                        <div className={styles.itemGroup}>
+                            <div className={styles.itemGroup}>
                                 <span className={styles.title}>EVERY 60 DAYS(I)</span>
                                 <div className={styles.item}>
                                     <span className={styles.title}>Cycle</span>
@@ -161,8 +164,8 @@ const App = () => {
                                     <span className={styles.text}>24 MAY 2020</span>
                                 </div>
                                 <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '51%' }} />
-                                    <span className={styles.text}>51%</span>
+                                    <span className={styles.value} style={{ width: '18%', background: gradient(18, 90) }} />
+                                    <span className={styles.text}>18%</span>
                                 </div>
                             </div>
 
@@ -177,8 +180,8 @@ const App = () => {
                                     <span className={styles.text}>24 MAY 2020</span>
                                 </div>
                                 <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '86%' }} />
-                                    <span className={styles.text}>86%</span>
+                                    <span className={styles.value} style={{ width: '89%', background: gradient(89, 90) }} />
+                                    <span className={styles.text}>89%</span>
                                 </div>
                             </div>
 
@@ -193,8 +196,8 @@ const App = () => {
                                     <span className={styles.text}>24 MAY 2020</span>
                                 </div>
                                 <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '36%' }} />
-                                    <span className={styles.text}>36%</span>
+                                    <span className={styles.value} style={{ width: '66%', background: gradient(66, 90) }} />
+                                    <span className={styles.text}>66%</span>
                                 </div>
                             </div>
 
@@ -208,8 +211,36 @@ const App = () => {
                         <span className={styles.title}>Consume</span>
                         <Link className={styles.more} to='/consume'>more</Link>
                     </div>
+                    <div className={styles.info}>
+                        <div className={styles.item}>
+                            <span className={styles.title}>Serial</span>
+                            <span className={styles.text}>Turbine Change & Maintenance</span>
+                        </div>
+                        <div className={styles.item}>
+                            <span className={styles.title}>Consume No</span>
+                            <span className={styles.text}>2DX00004594XXF</span>
+                        </div>
+                    </div>
                     <div className={styles.body}>
                         <span className={styles.baseIcon}><i className="ri-shopping-bag-line"></i></span>
+                        <div className={styles.list}>
+                            <div className={styles.itemGroup}>
+                                <span className={styles.title}>EVERY 60 DAYS(I)</span>
+                                <div className={styles.item}>
+                                    <span className={styles.title}>Cycle</span>
+                                    <span className={styles.text}>18SVM</span>
+                                </div>
+                                <div className={styles.item}>
+                                    <span className={styles.title}>Date</span>
+                                    <span className={styles.text}>24 MAY 2020</span>
+                                </div>
+                                <div className={styles.bar}>
+                                    <span className={styles.value} style={{ width: '12%', background: gradient(12, 90) }} />
+                                    <span className={styles.text}>12%</span>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </section>
 

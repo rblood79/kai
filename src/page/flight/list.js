@@ -4,7 +4,7 @@
 */
 
 import gloval from '../../components/index.module.scss';
-import styles from './index.module.scss';
+import styles from './list.module.scss';
 import classNames from 'classnames';
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -16,11 +16,11 @@ const App = (props) => {
         <>
             <Header title={'Flight No'} depth={1} />
             <main className={styles.main}>
-                <div>
+                <header className={styles.header}>
                     8 FIGHTERS WERE QUERIED
                     DURING THIS
                     PERIOD
-                </div>
+                </header>
                 <div className={styles.list}>
                     <Link to='40'>link</Link>
                     <Link to='41'>link</Link>
