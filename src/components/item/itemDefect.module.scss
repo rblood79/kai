@@ -1,0 +1,110 @@
+.card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 8px 16px 16px 16px;
+  box-shadow: 2px 4px 8px #efefef;
+  & + .card {
+    margin-top: 48px;
+  }
+  .header {
+    min-height: 48px;
+    height: 56px;
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .more {
+      font-size: 12px;
+      background: #0c90e7;
+      color: #fff;
+      padding: 2px 12px;
+      border-radius: 16px;
+    }
+    & + .info {
+      border-top: 1px solid #ebebeb;
+    }
+  }
+  .body {
+    margin-top: 8px;
+    background-color: #f4f4f4;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 16px;
+    position: relative;
+    .baseIcon {
+      background-color: #fff;
+      border: 1px solid #e1e1e1;
+      color: #0c90e7;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 32px;
+      z-index: 1;
+      position: absolute;
+      top: calc(0px - 18px);
+      left: calc(50% - 18px);
+      i {
+        background: linear-gradient(#2980b9, #6bd2f8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+      }
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      .itemGroup {
+        & + .itemGroup {
+          margin-top: 36px;
+        }
+        .title {
+          color: #141414;
+          font-size: 16px;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          height: 56px;
+        }
+      }
+      .item {
+        height: 32px;
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+        
+        
+        &.image {
+          flex-direction: column;
+          align-items: center;
+          & + .image {
+            margin-top: 48px;
+          }
+          img {
+            width: calc(100% - 32px);
+            margin-bottom: 8px;
+          }
+          .title {
+            color: #e78a0c;
+          }
+        }
+      }
+    }
+  }
+}

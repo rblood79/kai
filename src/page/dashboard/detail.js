@@ -2,14 +2,15 @@
 
 
 */
-import aircraftFront from '../../images/aircraftFront@3x.png';
-import aircraftSide from '../../images/aircraftLeft@3x.png';
-import aircraftTop from '../../images/aircraftTop@3x.png';
 
 import { useEffect, useState } from 'react';
 import { useLocation, useParams, Link } from 'react-router-dom';
 
-import { percentColor, gradient } from '../../util'
+import Overview from '../../components/item/itemOverview';
+import FlightNo from '../../components/item/itemFlight';
+import Defect from '../../components/item/itemDefect';
+import Maintenance from '../../components/item/itemMaintenance';
+import Consume from '../../components/item/itemConsume';
 
 import Header from '../../components/header';
 import styles from './detail.module.scss';
@@ -18,7 +19,90 @@ import classNames from 'classnames';
 const App = () => {
     const { id } = useParams();
     const [title, setTitle] = useState(null);
-    const [rate, setRate] = useState(89);
+
+    const [data] = useState(
+        {
+            title: 'KF-21-001',
+            intro: '26 May 2022',
+            oh: '2,125',
+            fh: '235',
+            rate: 89,
+            status: 'at Maintenance',
+            maintenance: '24 June 2022'
+        }
+    );
+
+    const [dataF] = useState(
+        {
+            id: '/flight',
+            title: 'Flight No',
+            date: '24 march 2021',
+            no: '20-001',
+            planTO: '11:30:40',
+            planLD: '11:30:00',
+            actualTO: '12:30:00',
+            actualLD: '12:00:00',
+        }
+    );
+
+    const [dataD] = useState(
+        {
+            id: '/defect',
+            title: 'Defect',
+            cause: 'Turbine Lose',
+            no: '20-001',
+            date: '28 June 2021',
+        }
+    );
+
+    const [dataM] = useState(
+        {
+            id: '/maintenance',
+            title: 'Maintenance',
+            content: 'Turbine Defect',
+            no: '20-001',
+            date: '11 June 2021',
+            data: [
+                {
+                    title: 'EVERY 60 DAYS(I)',
+                    cycle: '18SVM',
+                    date: '24 MAY 2021',
+                    value: 18,
+                },
+                {
+                    title: 'EVERY 18 MONTHS(I)',
+                    cycle: '18SVM',
+                    date: '24 MAY 2021',
+                    value: 89,
+                },
+                {
+                    title: 'EVERY 36 MONTHS(I)',
+                    cycle: '18SVM',
+                    date: '24 MAY 2021',
+                    value: 66,
+                }
+            ]
+        }
+    );
+
+    const [dataC] = useState(
+        {
+            id: '/consume',
+            title: 'Consume',
+            content: 'Turbine Change & Maintenance',
+            no: '20-001',
+            date: '11 June 2021',
+            data: [
+                {
+                    title: 'EVERY 60 DAYS(I)',
+                    cycle: '18SVM',
+                    date: '24 MAY 2021',
+                    value: 18,
+                }
+            ]
+        }
+    );
+
     useEffect(() => {
         setTitle('KF21-' + id)
     }, [id])
@@ -26,224 +110,11 @@ const App = () => {
         <>
             <Header title={title} background={'#f8f8f8'} depth={1} />
             <main className={styles.main}>
-                <section className={styles.overview}>
-                    <div className={styles.header}>
-
-                        <div className={styles.item}>
-                            <span className={styles.title}>First Intro</span><span className={styles.text}>26 May 2020</span>
-                        </div>
-                        <span className={styles.baseIcon}><i className="ri-timer-2-line"></i></span>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Fuselage Time</span><span className={styles.text}>OH:2,125 / FH:235</span>
-                        </div>
-                    </div>
-                    <div className={styles.body}>
-                        <img className={styles.aircraft} src={aircraftFront} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(rate) + ')' }} />
-                        <div className={styles.rate}>
-                            <div className={styles.item}>
-                                <span className={styles.title}>Behavior Rate</span><span className={styles.text} style={{ color: percentColor(rate) }}>{rate}</span>
-                            </div>
-                            <div className={styles.bar}>
-                                <span className={styles.value} style={{ width: rate + '%', background: gradient(rate, 90) }} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.footer}>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Aircraft Status</span><span className={styles.text}>At Maintenance</span>
-                        </div>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Maintenance date</span><span className={styles.text}>24 June 2022</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section className={styles.card}>
-                    <div className={styles.header}>
-                        <span className={styles.title}>Flight No</span>
-                        <Link className={styles.more} to='/flight'>more</Link>
-                    </div>
-
-                    <div className={styles.info}>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Flight Date</span>
-                            <span className={styles.text}>24 June 2022</span>
-                        </div>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Tail No</span>
-                            <span className={styles.text}>220218-KFX-001</span>
-                        </div>
-                    </div>
-
-                    <div className={styles.body}>
-                        <span className={styles.baseIcon}><i className="ri-flight-takeoff-fill"></i></span>
-                        <div className={classNames(styles.list, styles.row)}>
-                            <div className={classNames(styles.item, styles.col, styles.left)}>
-                                <span className={styles.title}>Plan</span>
-                                <div className={styles.textGroup}>
-                                    <span className={styles.text}>T/O 17:30:40</span>
-                                    <span className={styles.text}>L/D 18:30:00</span>
-                                </div>
-                            </div>
-                            <div className={classNames(styles.item, styles.col, styles.right)}>
-                                <span className={styles.title}>Actual</span>
-                                <div className={styles.textGroup}>
-                                    <span className={styles.text}>T/O 17:30:40</span>
-                                    <span className={styles.text}>L/D 18:30:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className={styles.card}>
-                    <div className={styles.header}>
-                        <span className={styles.title}>Defect</span>
-                        <Link className={styles.more} to='/defect'>more</Link>
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Cause</span>
-                            <span className={styles.text}>Turbine Lose</span>
-                        </div>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Defect No</span>
-                            <span className={styles.text}>2DX00004594XXF</span>
-                        </div>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Defect Date</span>
-                            <span className={styles.text}>26 AUG 2021</span>
-                        </div>
-                    </div>
-                    <div className={styles.body}>
-                        <span className={styles.baseIcon}><i className="ri-tools-fill"></i></span>
-                        <div className={styles.list}>
-                            <div className={classNames(styles.item, styles.image)}>
-                                <img className={styles.aircraft} src={aircraftFront} alt='aircraft' />
-                                <span className={styles.title}>Front</span>
-                            </div>
-                            <div className={classNames(styles.item, styles.image)}>
-                                <img className={styles.aircraft} src={aircraftSide} alt='aircraft' />
-                                <span className={styles.title}>Side</span>
-                            </div>
-                            <div className={classNames(styles.item, styles.image)}>
-                                <img className={styles.aircraft} src={aircraftTop} alt='aircraft' />
-                                <span className={styles.title}>Top</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className={styles.card}>
-                    <div className={styles.header}>
-                        <span className={styles.title}>Maintenance</span>
-                        <Link className={styles.more} to='/maintenance'>more</Link>
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Content</span>
-                            <span className={styles.text}>Turbine Defect</span>
-                        </div>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Maintenance No</span>
-                            <span className={styles.text}>2DX00004594XXF</span>
-                        </div>
-                    </div>
-                    <div className={styles.body}>
-                        <span className={styles.baseIcon}><i className="ri-user-settings-line"></i></span>
-
-                        <div className={styles.list}>
-                            <div className={styles.itemGroup}>
-                                <span className={styles.title}>EVERY 60 DAYS(I)</span>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Cycle</span>
-                                    <span className={styles.text}>18SVM</span>
-                                </div>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Date</span>
-                                    <span className={styles.text}>24 MAY 2020</span>
-                                </div>
-                                <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '18%', background: gradient(18, 90) }} />
-                                    <span className={styles.text}>18%</span>
-                                </div>
-                            </div>
-
-                            <div className={styles.itemGroup}>
-                                <span className={styles.title}>EVERY 18 MONTHS(I)</span>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Cycle</span>
-                                    <span className={styles.text}>18SVM</span>
-                                </div>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Date</span>
-                                    <span className={styles.text}>24 MAY 2020</span>
-                                </div>
-                                <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '89%', background: gradient(89, 90) }} />
-                                    <span className={styles.text}>89%</span>
-                                </div>
-                            </div>
-
-                            <div className={styles.itemGroup}>
-                                <span className={styles.title}>EVERY 36 MONTHS(I)</span>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Cycle</span>
-                                    <span className={styles.text}>18SVM</span>
-                                </div>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Date</span>
-                                    <span className={styles.text}>24 MAY 2020</span>
-                                </div>
-                                <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '66%', background: gradient(66, 90) }} />
-                                    <span className={styles.text}>66%</span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </section>
-
-                <section className={styles.card}>
-                    <div className={styles.header}>
-                        <span className={styles.title}>Consume</span>
-                        <Link className={styles.more} to='/consume'>more</Link>
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Serial</span>
-                            <span className={styles.text}>Turbine Change & Maintenance</span>
-                        </div>
-                        <div className={styles.item}>
-                            <span className={styles.title}>Consume No</span>
-                            <span className={styles.text}>2DX00004594XXF</span>
-                        </div>
-                    </div>
-                    <div className={styles.body}>
-                        <span className={styles.baseIcon}><i className="ri-shopping-bag-line"></i></span>
-                        <div className={styles.list}>
-                            <div className={styles.itemGroup}>
-                                <span className={styles.title}>EVERY 60 DAYS(I)</span>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Cycle</span>
-                                    <span className={styles.text}>18SVM</span>
-                                </div>
-                                <div className={styles.item}>
-                                    <span className={styles.title}>Date</span>
-                                    <span className={styles.text}>24 MAY 2020</span>
-                                </div>
-                                <div className={styles.bar}>
-                                    <span className={styles.value} style={{ width: '12%', background: gradient(12, 90) }} />
-                                    <span className={styles.text}>12%</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
+                <Overview {...data} />
+                <FlightNo {...dataF} rightText={'more'} />
+                <Defect {...dataD} rightText={'more'} />
+                <Maintenance {...dataM} rightText={'more'} />
+                <Consume {...dataC} rightText={'more'} />
             </main>
         </>
     );

@@ -2,6 +2,9 @@
 
 
 */
+import menuIcon from '../../images/menu.svg';
+import filterIcon from '../../images/filter.svg';
+
 import { useLocation, useNavigate } from "react-router-dom";
 
 import gloval from '../../components/index.module.scss';
@@ -32,7 +35,7 @@ const App = (props) => {
                 props.depth === 0 &&
                 <>
                     <button className={classNames(gloval.button, styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
-                    <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}><i className="ri-menu-line"></i></button>
+                    <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}><img src={menuIcon} /></button>
                 </>
             }
 
@@ -41,7 +44,7 @@ const App = (props) => {
                 <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}>
                     {
                         props.right === 'filter' ?
-                            <i className="ri-equalizer-line" /> :
+                            <img src={filterIcon} /> :
                             props.right === 'edit' ? <span className={styles.text}>edit</span> :
                                 props.right === 'save' ? <span className={styles.text}>save</span> : null
                     }
