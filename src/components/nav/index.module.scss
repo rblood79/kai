@@ -1,46 +1,76 @@
 .container {
   position: absolute;
-  background-color: #000;
-  height: calc(100% - 56px);
-  top: 56px;
+  background-color: #141414;
+  padding: 16px;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: center;
   z-index: 1;
   will-change: transform;
-  .user {
-    color: #fff;
-    display: flex;
-    justify-content: center;
-  }
-  .list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0px;
-    align-items: stretch;
-    padding: 16px;
+  .contents {
+    flex: 1;
     width: 100%;
-    .item {
-      border: 1px solid #f00;
-      aspect-ratio: 1;
-      padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .user {
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      color: #fff;
-      font-size: 14px;
-      text-align: center;
-      text-decoration: none;
-      i {
-        font-weight: 100;
-        color: #0C90E7;
+      justify-content: center;
+      margin-bottom: 16px;
+      .avatar {
+        border: 4px solid #fff;
+        width: 98px;
+        height: 98px;
+        border-radius: 98px;
         display: flex;
         align-items: center;
+        justify-content: center;
+        i{
+          font-size: 36px;
+        }
       }
-      span {
-        min-height: 48px;
-        padding-top: 8px;
+      .name {
+        color: #fff;
+        padding: 8px 0;
+      }
+    }
+    .list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0px;
+      align-items: stretch;
+      padding: 0px;
+      width: 100%;
+      .item {
+        border: 1px solid #141414;
+        aspect-ratio: 1;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        i {
+          font-weight: 100;
+          color: #0c90e7;
+          display: flex;
+          align-items: center;
+        }
+        span {
+          min-height: 48px;
+          padding-top: 8px;
+        }
       }
     }
   }

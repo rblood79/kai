@@ -18,7 +18,7 @@ const App = () => {
     const toggleNav = () => setNavState(!navState);
     return (
         <>
-            <Header title={'KF-21 LIS'} depth={0} navState={toggleNav}/>
+            <Header title={'KF-21 LIS'} depth={0} navState={navState} toggleNav={toggleNav}/>
             <main className={styles.main}>
 
                 <div className={styles.tabController}>
@@ -31,7 +31,6 @@ const App = () => {
                 <Outlet context={{ type }} />
 
             </main>
-            <Nav navState={navState} />
         </>
     );
 }

@@ -3,7 +3,10 @@
 
 */
 import menuIcon from '../../images/menu.svg';
+import closeIcon from '../../images/close.svg';
 import filterIcon from '../../images/filter.svg';
+
+import Nav from '../nav';
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -15,9 +18,9 @@ import classNames from 'classnames';
 const App = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
-    //console.log(location)
     return (
         <header className={classNames(styles.header)} style={{ 'background': props.background }}>
+
             {
                 props.depth > 0 && <button className={classNames(gloval.button, styles.back)} onClick={() => navigate(-1)}><i className="ri-arrow-left-s-line"></i></button>
             }
@@ -35,7 +38,10 @@ const App = (props) => {
                 props.depth === 0 &&
                 <>
                     <button className={classNames(gloval.button, styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
-                    <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}><img src={menuIcon} /></button>
+                    <button className={classNames(gloval.button, styles.menu)} onClick={() => props.toggleNav()}>
+                        <img src={props.navState ? closeIcon : menuIcon} />
+                    </button>
+                    <Nav navState={props.navState} />
                 </>
             }
 
@@ -50,6 +56,7 @@ const App = (props) => {
                     }
                 </button>
             }
+
         </header>
     );
 }

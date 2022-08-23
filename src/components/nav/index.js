@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import styles from './index.module.scss';
 
 const myCallback = (animatedValue) => {
-    console.log("animation frame, animatedValue: ", animatedValue);
+    //console.log("animation frame, animatedValue: ", animatedValue);
 };
 
 const App = (props) => {
@@ -15,7 +15,7 @@ const App = (props) => {
         {
             link: '/flight',
             icon: 'ri-flight-takeoff-line',
-            text: 'Flight No',
+            text: 'Flight',
         },
         {
             link: '/defact',
@@ -56,7 +56,7 @@ const App = (props) => {
 
     const { opacity, xyz } = useSpring({
         opacity: props.navState ? 1 : 0,
-        xyz: props.navState ? [0, 0, 0] : [390, 0, 0],
+        xyz: props.navState ? [0, 0, 0] : [window.innerWidth, 0, 0],
         onFrame: myCallback,
         config: {
             duration: 480,
@@ -74,25 +74,34 @@ const App = (props) => {
     }
 
     return (
-        <animated.aside className={styles.container} style={{
+        <animated.nav className={styles.container} style={{
             //opacity,
             transform: xyz.to((x, y, z) => `translate3d(${x}px, ${y}px, ${z}px)`),
         }}
         >
-            <div className={styles.user}>user info</div>
-            <nav className={styles.list}>
-                {
-                    data && data.map((d, i) => (
-                        item(d.link, d.icon, d.text)
-                    ))
-                }
-            </nav>
-        </animated.aside>
+            <div className={styles.contents}>
+                <div className={styles.user}>
+                    <div className={styles.avatar}>
+                        <i className="ri-user-line"></i>
+                    </div>
+                    <div className={styles.name}>
+                        LEVEL 1, Bryan Fury
+                    </div>
+                </div>
+                <div className={styles.list}>
+                    {
+                        data && data.map((d, i) => (
+                            item(d.link, d.icon, d.text)
+                        ))
+                    }
+                </div>
+            </div>
+        </animated.nav>
     );
 }
 
 export default App;
 
 App.defaultProps = {
-    
+
 };

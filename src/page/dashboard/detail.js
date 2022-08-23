@@ -105,7 +105,8 @@ const App = () => {
 
     useEffect(() => {
         setTitle('KF21-' + id)
-    }, [id])
+    }, [id]);
+    
     return (
         <>
             <Header title={title} background={'#f8f8f8'} depth={1} />

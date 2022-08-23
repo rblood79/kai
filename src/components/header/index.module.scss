@@ -10,12 +10,15 @@
   grid-template-columns: 36px 36px auto 36px 36px;
   
   .back {
+    z-index: 0;
     grid-column: 1 / 2;
   }
   .home {
+    z-index: 0;
     grid-column: 2 / 3;
   }
   .location {
+    z-index: 0;
     grid-column: 3 / 4;
     display: flex;
     align-items: center;
@@ -28,6 +31,7 @@
     }
   }
   .notification {
+    z-index: 0;
     grid-column: 4 / 5;
     position: relative;
     &.active::after {
@@ -42,6 +46,7 @@
     }
   }
   .menu {
+    z-index: 2;
     grid-column: 5 / 6;
     .text {
       font-size: 16px;
