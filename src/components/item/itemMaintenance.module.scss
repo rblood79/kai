@@ -104,6 +104,7 @@
           height: 100%;
           background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
           width: 0%;
+          height: 100%;
           border-radius: 8px;
         }
         .text {
@@ -142,20 +143,6 @@
           }
         }
         
-        &.image {
-          flex-direction: column;
-          align-items: center;
-          & + .image {
-            margin-top: 48px;
-          }
-          img {
-            width: calc(100% - 32px);
-            margin-bottom: 8px;
-          }
-          .title {
-            color: #e78a0c;
-          }
-        }
       }
     }
   }

@@ -11,8 +11,8 @@
   overflow-x: hidden;
   overflow-y: scroll;
   .tabController {
-    padding: 8px 48px;
-    height: 56px;
+    padding: 0px 48px 8px 48px;
+    height: 48px;
     scroll-snap-align: start;
     .type {
       background-color: #f4f4f4;

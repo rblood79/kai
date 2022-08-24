@@ -18,9 +18,8 @@ const App = () => {
     const toggleNav = () => setNavState(!navState);
     return (
         <>
-            <Header title={'KF-21 LIS'} depth={0} navState={navState} toggleNav={toggleNav}/>
+            <Header title={'KF-21 LIS'} depth={0} state={navState} toggleNav={toggleNav}/>
             <main className={styles.main}>
-
                 <div className={styles.tabController}>
                     <div className={classNames(styles.type, type === 'list' && styles.active)}>
                         <button className={classNames(type === 'list' && styles.active)} onClick={() => { setType('list') }}>LIST</button>

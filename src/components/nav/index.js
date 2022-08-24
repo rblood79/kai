@@ -15,7 +15,7 @@ const App = (props) => {
         {
             link: '/flight',
             icon: 'ri-flight-takeoff-line',
-            text: 'Flight',
+            text: 'Flight List',
         },
         {
             link: '/defact',
@@ -55,8 +55,8 @@ const App = (props) => {
     ]
 
     const { opacity, xyz } = useSpring({
-        opacity: props.navState ? 1 : 0,
-        xyz: props.navState ? [0, 0, 0] : [window.innerWidth, 0, 0],
+        opacity: props.state ? 1 : 0,
+        xyz: props.state ? [0, 0, 0] : [window.innerWidth, 0, 0],
         onFrame: myCallback,
         config: {
             duration: 480,

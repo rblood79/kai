@@ -13,8 +13,13 @@ import { gradient } from '../../util'
 import styles from './itemMaintenance.module.scss';
 
 const App = (props) => {
+    const infoItems = props.info.map((item, index) => {
+        return (
+            <Item title={item.title} text={item.text} key={index}/>
+        )
+    });
 
-    const listItems = props.data.map((item, index) => {
+    const dataItems = props.data.map((item, index) => {
         return (
             <div className={styles.itemGroup} key={index}>
                 <span className={styles.title}>{item.title}</span>
@@ -27,7 +32,7 @@ const App = (props) => {
                     <span className={styles.text}>{item.date}</span>
                 </div>
                 <div className={styles.bar}>
-                    <span className={styles.value} style={{ width: item.value + '%', background: gradient(item.value, 90) }} />
+                    <span className={styles.value} style={{ width: item.text + '%', background: gradient(item.text, 90) }} />
                     <span className={styles.text}>{item.value}%</span>
                 </div>
             </div>
@@ -45,14 +50,12 @@ const App = (props) => {
                 <Link className={styles.more} to={props.id}>{props.rightText}</Link>
             </div>
             <div className={styles.info}>
-                <Item title={'Content'} text={props.content} />
-                <Item title={'Consume No'} text={props.no} />
-                <Item title={'Consume Date'} text={props.date} />
+                {infoItems}
             </div>
             <div className={styles.body}>
                 <span className={styles.baseIcon}><i className="ri-shopping-bag-line"></i></span>
                 <div className={styles.list}>
-                    {listItems}
+                    {dataItems}
                 </div>
             </div>
         </section>

@@ -13,6 +13,12 @@ import classNames from 'classnames';
 
 const App = (props) => {
 
+    const infoItems = props.info.map((item, index) => {
+        return (
+            <Item title={item.title} text={item.text} key={index}/>
+        )
+    });
+
     useEffect(() => {
     }, [])
 
@@ -25,8 +31,7 @@ const App = (props) => {
             </div>
 
             <div className={styles.info}>
-                <Item title={'Tail No'} text={props.no} />
-                <Item title={'Flight Date'} text={props.date} />
+                {infoItems}
             </div>
 
             <div className={styles.body}>

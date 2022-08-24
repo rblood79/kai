@@ -12,7 +12,7 @@ import styles from './itemCard.module.scss';
 const App = (props) => {
     const listItems = props.data.map((item, index) => {
         return (
-            <Item title={item.title} text={item.text} />
+            <Item title={item.title} text={item.text} key={index}/>
         )
     });
     useEffect(() => {

@@ -15,6 +15,7 @@ const App = () => {
     const [navState, setNavState] = useState(false);
     const toggleNav = () => console.log('edit');
 
+    
     const { id } = useParams();
     const [title, setTitle] = useState(null);
 

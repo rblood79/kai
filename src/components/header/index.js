@@ -2,9 +2,9 @@
 
 
 */
-import menuIcon from '../../images/menu.svg';
-import closeIcon from '../../images/close.svg';
-import filterIcon from '../../images/filter.svg';
+import { ReactComponent as MenuIcon } from '../../images/menu.svg';
+import { ReactComponent as CloseIcon } from '../../images/close.svg';
+import { ReactComponent as FilterIcon } from '../../images/filter.svg';
 
 import Nav from '../nav';
 
@@ -22,7 +22,7 @@ const App = (props) => {
         <header className={classNames(styles.header)} style={{ 'background': props.background }}>
 
             {
-                props.depth > 0 && <button className={classNames(gloval.button, styles.back)} onClick={() => navigate(-1)}><i className="ri-arrow-left-s-line"></i></button>
+                props.depth > 0 && <button className={classNames(gloval.button, styles.back)} onClick={() => navigate(-1)}><i className="ri-arrow-left-line"></i></button>
             }
 
             {
@@ -39,18 +39,20 @@ const App = (props) => {
                 <>
                     <button className={classNames(gloval.button, styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
                     <button className={classNames(gloval.button, styles.menu)} onClick={() => props.toggleNav()}>
-                        <img src={props.navState ? closeIcon : menuIcon} />
+                        {
+                            props.state ? <CloseIcon width={24} height={24} fill={'#fff'} /> : <MenuIcon width={24} height={24} fill={'#141414'} />
+                        }
                     </button>
-                    <Nav navState={props.navState} />
+                    <Nav state={props.state} />
                 </>
             }
 
             {
                 props.right &&
-                <button className={classNames(gloval.button, styles.menu)} onClick={() => props.navState()}>
+                <button className={classNames(gloval.button, styles.menu)} onClick={() => props.state()}>
                     {
                         props.right === 'filter' ?
-                            <img src={filterIcon} /> :
+                            <FilterIcon width={24} height={24} fill={'#141414'} /> :
                             props.right === 'edit' ? <span className={styles.text}>edit</span> :
                                 props.right === 'save' ? <span className={styles.text}>save</span> : null
                     }

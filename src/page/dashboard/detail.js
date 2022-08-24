@@ -36,12 +36,20 @@ const App = () => {
         {
             id: '/flight',
             title: 'Flight No',
-            date: '24 march 2021',
-            no: '20-001',
             planTO: '11:30:40',
             planLD: '11:30:00',
             actualTO: '12:30:00',
             actualLD: '12:00:00',
+            info:[
+                {
+                    title: 'Tail No',
+                    text: '20-001',
+                },
+                {
+                    title: 'Flight Date',
+                    text: '24 March 2021',
+                }
+            ],
         }
     );
 
@@ -49,9 +57,21 @@ const App = () => {
         {
             id: '/defect',
             title: 'Defect',
-            cause: 'Turbine Lose',
-            no: '20-001',
-            date: '28 June 2021',
+            info:[
+                {
+                    title: 'Cause',
+                    text: 'Turbine Lose',
+                },
+                {
+                    title: 'Defect No',
+                    text: '20-001',
+                },
+                {
+                    title: 'Defect Date',
+                    text: '28 June 2021',
+                }
+            ],
+            data: [],
         }
     );
 
@@ -59,27 +79,38 @@ const App = () => {
         {
             id: '/maintenance',
             title: 'Maintenance',
-            content: 'Turbine Defect',
-            no: '20-001',
-            date: '11 June 2021',
+            info:[
+                {
+                    title: 'Cause',
+                    text: 'Turbine Defect',
+                },
+                {
+                    title: 'Maintenance No',
+                    text: '20-001',
+                },
+                {
+                    title: 'Maintenance Date',
+                    text: '28 June 2021',
+                }
+            ],
             data: [
                 {
                     title: 'EVERY 60 DAYS(I)',
                     cycle: '18SVM',
                     date: '24 MAY 2021',
-                    value: 18,
+                    text: 18,
                 },
                 {
                     title: 'EVERY 18 MONTHS(I)',
                     cycle: '18SVM',
                     date: '24 MAY 2021',
-                    value: 89,
+                    text: 89,
                 },
                 {
                     title: 'EVERY 36 MONTHS(I)',
                     cycle: '18SVM',
                     date: '24 MAY 2021',
-                    value: 66,
+                    text: 66,
                 }
             ]
         }
@@ -89,15 +120,26 @@ const App = () => {
         {
             id: '/consume',
             title: 'Consume',
-            content: 'Turbine Change & Maintenance',
-            no: '20-001',
-            date: '11 June 2021',
+            info:[
+                {
+                    title: 'Content',
+                    text: 'Turbine Change & Maintenance',
+                },
+                {
+                    title: 'Consume No',
+                    text: '20-001',
+                },
+                {
+                    title: 'Consume Date',
+                    text: '28 June 2021',
+                }
+            ],
             data: [
                 {
                     title: 'EVERY 60 DAYS(I)',
                     cycle: '18SVM',
                     date: '24 MAY 2021',
-                    value: 18,
+                    text: 18,
                 }
             ]
         }
