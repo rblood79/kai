@@ -52,7 +52,7 @@ const App = (props) => {
         <div className={styles.container}>
             {/*<a.div className={styles.sheet} {...bind()} style={{}}>*/}
             <a.div className={styles.bg} style={bgStyle} onClick={() => props.close(false)} />
-            <a.div className={styles.sheet} {...bind()} style={{
+            <a.div className={styles.sheet} style={{
                 y, display,
                 height: `${height}px`
             }}>
