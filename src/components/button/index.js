@@ -5,12 +5,12 @@ import classNames from 'classnames';
 
 const App = (props) => {
     return (
-        <button className={classNames(styles.button, props.background, props.color)}>{props.text}</button>
+        <button className={classNames(styles.button)} style={{ background: props.background, color: props.color }} onClick={props.onClick}>{props.text}</button>
     );
 }
 
 export default App;
 
 App.defaultProps = {
-    
+    background: 'transparent',
 };

@@ -9,7 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
 
-import { List } from '../../components';
+import { List, Input } from '../../components';
 
 import Sheet from '../../components/sheet';
 
@@ -136,26 +136,13 @@ const App = (props) => {
                 </header>
                 <List data={data} type={'F'} />
             </main>
-            <Sheet title={'Conditional search'} state={navState} close={toggleNav}>
-                <div onClick={() => clk()}>List 0</div>
-                <div>List 1</div>
-                <div>List 2</div>
+            <Sheet title={'Conditional Search'} state={navState} close={toggleNav}>
+                <Input label={'Flight Range'}/>
+                <Input label={'Flight Date'}/>
+                <Input label={'Air Base'}/>
+                <Input label={'SQ'}/>
             </Sheet>
-            {/*
-                    <div className={styles.list}>
-                        <Link to='46'>link</Link>
-                        <Link
-                            to={{
-                                pathname: "48",
-                                state: { fromDashboard: true }
-                            }}
-                        >aaaa</Link>
-                        <button onClick={() => navigate('15', { state: { id: 15, title: 'sabaoon' } })}>button</button>
-                    </div>
-                        */}
-
         </>
-
     );
 }
 

@@ -33,7 +33,7 @@ const App = (props) => {
                 </div>
                 <div className={styles.bar}>
                     <span className={styles.value} style={{ width: item.text + '%', background: gradient(item.text, 90) }} />
-                    <span className={styles.text}>{item.value}%</span>
+                    <span className={styles.text}>{item.text}%</span>
                 </div>
             </div>
         )

@@ -18,10 +18,8 @@
 
     .title {
       font-size: 24px;
-      font-weight: 600;
     }
     .more {
-      font-size: 12px;
       background: #0c90e7;
       color: #fff;
       padding: 2px 12px;
@@ -101,6 +99,7 @@
             align-items: flex-end;
             .text {
               color: #e78a0c;
+              font-size: 16px;
             }
           }
         }
@@ -111,6 +110,7 @@
             align-items: flex-end;
             .text {
               color: #0c90e7;
+              font-size: 16px;
             }
           }
         }

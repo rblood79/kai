@@ -9,7 +9,8 @@ import { useEffect } from 'react';
 import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
 
-import {Button} from '../../components'
+import {Button} from '../../components';
+import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 
 const items = ['save item', 'open item', 'share item', 'delete item', 'cancel']
@@ -56,7 +57,7 @@ const App = (props) => {
                 height: `${height}px`
             }}>
                 <header className={styles.header}>
-                    <div className={styles.title}>{props.title}{height}</div>
+                    <div className={styles.title}>{props.title}</div>
                     <div className={styles.right}>
                         <button className={styles.close} onClick={() => props.close(false)}>
                             <CloseIcon width={24} height={24} fill={'#141414'} />
@@ -67,7 +68,7 @@ const App = (props) => {
                     {props.children}
                 </div>
                 <footer className={styles.footer}>
-                    <Button text={'Apply Btn'}/>
+                    <Button text={'Apply Btn'} background={'#0C90E7'} color={'#fff'} />
                 </footer>
             </a.div>
         </div>

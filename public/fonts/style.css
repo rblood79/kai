@@ -6,3 +6,10 @@
     font-weight: normal;
     src: local('Digital Numbers Regular'), url('DigitalNumbers-Regular.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'HelveticaNeue Condensed Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('HelveticaNeue Condensed Bold'), url('HelveticaNeue-CondensedBold.woff') format('woff');
+}

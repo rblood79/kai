@@ -1,18 +1,27 @@
-.input {
+.form {
+  display: flex;
+  flex-direction: column;
+  .label {
+    color: #939393;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .input {
     outline: none;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 8px;
+    width: 100%;
     height: 48px;
     font-family: inherit;
-    font-weight: 700;
     font-size: 16px;
     padding: 0 16px;
-    background-color: #F8F8F8;
-    
+    background-color: #f8f8f8;
+
     &::placeholder {
-        color: #B4B4B4;
+      color: #b4b4b4;
     }
     &:focus {
-        border-color: #f00;
+      border-color: #828282;
     }
+  }
 }

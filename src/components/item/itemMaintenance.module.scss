@@ -14,10 +14,8 @@
 
     .title {
       font-size: 24px;
-      font-weight: 600;
     }
     .more {
-      font-size: 12px;
       background: #0c90e7;
       color: #fff;
       padding: 2px 12px;
@@ -86,7 +84,6 @@
         .title {
           color: #141414;
           font-size: 16px;
-          font-weight: 500;
           display: flex;
           align-items: center;
           height: 56px;
@@ -112,7 +109,6 @@
           position: absolute;
           right: -4px;
           top: 16px;
-          font-weight: 600;
           font-size: 16px;
         }
       }
@@ -125,14 +121,14 @@
         justify-content: space-between;
         
         .title {
-          font-size: 14px;
-          font-weight: 400;
+          font-size: 16px;
           color: #b4b4b4;
           padding: 0;
           display: flex;
           align-items: center;
         }
         .text {
+          font-size: 16px;
           color: #141414;
         }
         .textGroup {
@@ -140,6 +136,7 @@
           flex-direction: column;
           .text {
             padding: 4px 0;
+            font-size: 16px;
           }
         }
         
