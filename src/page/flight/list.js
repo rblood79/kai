@@ -51,15 +51,20 @@ const App = (props) => {
         opacity: y.to([0, height], [0.4, 1], 'clamp')
     }*/
 
-    const clk = () => {
-        console.log('click')
-    }
-
-    const navigate = useNavigate();
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
-
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [sheet, setSheet] = useState(
+        {
+            range: '1d',
+            startDate : '20000101',
+            endDate : '20221231',
+            base: '1Q',
+        }
+    );
+    const filter = () => {
+        console.log('filter', sheet)
+    }
 
     useEffect(() => {
         setData(
@@ -136,11 +141,12 @@ const App = (props) => {
                 </header>
                 <List data={data} type={'F'} />
             </main>
-            <Sheet title={'Conditional Search'} state={navState} close={toggleNav}>
-                <Input label={'Flight Range'}/>
-                <Input label={'Flight Date'}/>
-                <Input label={'Air Base'}/>
-                <Input label={'SQ'}/>
+            <Sheet title={'Conditional Search'} state={navState} close={toggleNav} callBack={filter}>
+                <Input label={'Flight Range'} type={'select'} value={'1Month'}/>
+                <Input label={'Flight Date'} type={'date'} value={['22. 06. 2011', '22. 06. 2020']}/>
+                <Input label={'Flight Time'} type={'time'} value={['11:30:00','12:00:00']}/>
+                <Input label={'Air Base'} type={'select'} required={true} value={'Daegu'}/>
+                <Input label={'SQ'}disabled={true} value={'1Q'} />
             </Sheet>
         </>
     );

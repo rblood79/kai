@@ -7,9 +7,9 @@ import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
 import { useEffect } from 'react';
 import { useGesture, useDrag } from '@use-gesture/react'
-import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
+import { a, useSpring, easings, animated, config } from '@react-spring/web';
 
-import {Button} from '../../components';
+import { Button } from '../../components';
 import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 
@@ -19,14 +19,16 @@ const height = 72 + 80 + items.length * 70;
 const App = (props) => {
     const [{ y }, api] = useSpring(() => ({ y: height }))
     const open = ({ canceled }) => {
-        api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
+        //api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
+        api.start({ y: 0, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart } })
     }
     const close = (velocity = 0) => {
+        //api.start({ y: height, immediate: false, config: { ...config.stiff, velocity } })
         api.start({ y: height, immediate: false, config: { ...config.stiff, velocity } })
         velocity > 0 && props.close(false)
     }
 
-    const bind = useDrag(
+    /*const bind = useDrag(
         ({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel, canceled }) => {
             if (my < -70) cancel()
             if (last) {
@@ -35,7 +37,7 @@ const App = (props) => {
             else api.start({ y: my, immediate: true })
         },
         { from: () => [0, y.get()], filterTaps: true, bounds: { top: 0 }, rubberband: true }
-    )
+    )*/
 
     const display = y.to((py) => (py < height ? 'flex' : 'none'))
 
@@ -53,8 +55,7 @@ const App = (props) => {
             {/*<a.div className={styles.sheet} {...bind()} style={{}}>*/}
             <a.div className={styles.bg} style={bgStyle} onClick={() => props.close(false)} />
             <a.div className={styles.sheet} style={{
-                y, display,
-                height: `${height}px`
+                y, display, height: `${height}px`
             }}>
                 <header className={styles.header}>
                     <div className={styles.title}>{props.title}</div>
@@ -68,7 +69,7 @@ const App = (props) => {
                     {props.children}
                 </div>
                 <footer className={styles.footer}>
-                    <Button text={'Apply Btn'} background={'#0C90E7'} color={'#fff'} />
+                    <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
                 </footer>
             </a.div>
         </div>
