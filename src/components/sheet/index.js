@@ -50,10 +50,10 @@ const App = (props) => {
 
     return (
         <div className={styles.container}>
+            {/*<a.div className={styles.sheet} {...bind()} style={{}}>*/}
             <a.div className={styles.bg} style={bgStyle} onClick={() => props.close(false)} />
             <a.div className={styles.sheet} {...bind()} style={{
                 y, display,
-                //bottom: `calc(-100vh + ${height}px)`,
                 height: `${height}px`
             }}>
                 <header className={styles.header}>
