@@ -18,9 +18,9 @@ const App = (props) => {
             text: 'Flight List',
         },
         {
-            link: '/defact',
+            link: '/defect',
             icon: 'ri-tools-line',
-            text: 'Defact',
+            text: 'Defect',
         },
         {
             link: '/maintenance',

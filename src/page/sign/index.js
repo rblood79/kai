@@ -15,7 +15,6 @@ const App = () => {
                     </div>
                 </div>
                 <span className={styles.subTitle}>Next-Generation Fighter</span>
-
             </div>
 
             <div className={styles.main}>
@@ -23,7 +22,13 @@ const App = () => {
                     <Input placeholder={'ID'} />
                     <Input placeholder={'PASSWORD'} />
                 </div>
-                <Button text={'Sign In'} background={'#0C90E7'} color={'#fff'} onClick={() => { navigate('/dashboard') }} />
+                <Button text={'Sign In'} background={'#0C90E7'} color={'#fff'} onClick={() => {
+                    navigate('/dashboard', {
+                        state: {
+                            data: null,
+                        },
+                    })
+                }} />
                 <Button text={'Need help?'} color={'#939393'} onClick={() => { console.log('help') }} />
             </div>
         </main>

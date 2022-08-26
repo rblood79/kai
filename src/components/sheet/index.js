@@ -5,39 +5,32 @@
 */
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGesture, useDrag } from '@use-gesture/react'
-import { a, useSpring, easings, animated, config } from '@react-spring/web';
+import { a, useSpring, easings, config } from '@react-spring/web';
 
 import { Button } from '../../components';
-import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 
-const items = ['save item', 'open item', 'share item', 'delete item', 'cancel']
-const height = 72 + 80 + items.length * 70;
 
 const App = (props) => {
+    const [height] = useState(
+        props.height === 'full' ? window.innerHeight :
+            props.height === 'body' ? window.innerHeight - 56 :
+                Math.min((props.children.length * 120) + 72 + 80, window.innerHeight - 56)
+    )
     const [{ y }, api] = useSpring(() => ({ y: height }))
     const open = ({ canceled }) => {
         //api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
         api.start({ y: 0, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart } })
     }
+    
     const close = (velocity = 0) => {
-        //api.start({ y: height, immediate: false, config: { ...config.stiff, velocity } })
-        api.start({ y: height, immediate: false, config: { ...config.stiff, velocity } })
-        velocity > 0 && props.close(false)
+        api.start({
+            y: height, immediate: false, config: { ...config.stiff, velocity },
+            onRest: () => props.close(false),
+        })
     }
-
-    /*const bind = useDrag(
-        ({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel, canceled }) => {
-            if (my < -70) cancel()
-            if (last) {
-                my > height * 0.5 || (vy > 0.5 && dy > 0) ? close(vy) : open({ canceled })
-            }
-            else api.start({ y: my, immediate: true })
-        },
-        { from: () => [0, y.get()], filterTaps: true, bounds: { top: 0 }, rubberband: true }
-    )*/
 
     const display = y.to((py) => (py < height ? 'flex' : 'none'))
 
@@ -51,28 +44,30 @@ const App = (props) => {
     }, [props.state])
 
     return (
-        <div className={styles.container}>
+        <>
+        {props.state && <a.div className={styles.container}>
             {/*<a.div className={styles.sheet} {...bind()} style={{}}>*/}
-            <a.div className={styles.bg} style={bgStyle} onClick={() => props.close(false)} />
+            <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
             <a.div className={styles.sheet} style={{
                 y, display, height: `${height}px`
             }}>
                 <header className={styles.header}>
                     <div className={styles.title}>{props.title}</div>
                     <div className={styles.right}>
-                        <button className={styles.close} onClick={() => props.close(false)}>
+                        <button className={styles.close} onClick={() => close()}>
                             <CloseIcon width={24} height={24} fill={'#141414'} />
                         </button>
                     </div>
                 </header>
-                <div className={styles.body}>
+                <div className={styles.body} >
                     {props.children}
                 </div>
                 <footer className={styles.footer}>
                     <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
                 </footer>
             </a.div>
-        </div>
+        </a.div>}
+        </>
     )
 }
 

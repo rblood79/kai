@@ -78,12 +78,17 @@ const App = (props) => {
 
     const selectItem = () => {
         return (
-            <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} >
-                {props.value}
-                <button className={styles.button} onClick={() => fnSelect()}>
-                    <i className="ri-arrow-down-s-line" />
-                </button>
-            </div>
+            <>
+                <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} >
+                    {props.value}
+                    <button className={styles.button} onClick={() => fnSelect()}>
+                        <i className="ri-arrow-down-s-line" />
+                    </button>
+                </div>
+                <div className={styles.list}>
+                    list
+                </div>
+            </>
         )
     }
 

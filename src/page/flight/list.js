@@ -141,7 +141,7 @@ const App = (props) => {
                 </header>
                 <List data={data} type={'F'} />
             </main>
-            <Sheet title={'Conditional Search'} state={navState} close={toggleNav} callBack={filter}>
+            <Sheet title={'Conditional Search'} state={navState} close={toggleNav} callBack={filter} height={'body'}>
                 <Input label={'Flight Range'} type={'select'} value={'1Month'}/>
                 <Input label={'Flight Date'} type={'date'} value={['22. 06. 2011', '22. 06. 2020']}/>
                 <Input label={'Flight Time'} type={'time'} value={['11:30:00','12:00:00']}/>

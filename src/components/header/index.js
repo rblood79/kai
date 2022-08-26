@@ -31,7 +31,7 @@ const App = (props) => {
             }
 
             <div className={classNames(styles.location)}>
-                <h1 className={classNames(styles.title)}>{props.title}</h1>
+                <h1 className={classNames(styles.title, location.pathname === '/dashboard' && styles.active)}>{props.title}</h1>
             </div>
 
             {

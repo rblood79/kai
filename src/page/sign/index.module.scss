@@ -15,7 +15,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: 48px;
       transform: skew(-20deg);
       .title {
         margin-right: 8px;
@@ -23,7 +22,7 @@
         font-size: 48px;
         line-height: 48px;
         word-break: keep-all;
-        background: linear-gradient(90deg, #141414, #194BB5);
+        background: linear-gradient(90deg, #141414, #194bb5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -36,15 +35,28 @@
         line-height: 20px;
         padding-top: 2px;
         color: #b4b4b4;
-        background: linear-gradient(90deg, #194BB5, #009DE4, #5AC8FA);
+        background: linear-gradient(90deg, #194bb5, #009de4, #5ac8fa);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        position: relative;
+        &::after {
+          content: "TM";
+          position: absolute;
+          width: 128%;
+          height: 2px;
+          top: 50%;
+          border-radius: 4px;
+          background: linear-gradient(90deg, #194bb5, #009de4, #fff);
+        }
       }
     }
     .subTitle {
       transform: skew(-20deg);
       letter-spacing: 0.46em;
       color: #b4b4b4;
+      background: linear-gradient(135deg, #ccc, #141414);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 

@@ -13,6 +13,8 @@ import Flight from './page/flight';
 import FlightList from './page/flight/list';
 import FlightDetail from './page/flight/detail';
 
+import Defect from './page/defect';
+
 
 
 const App = () => {
@@ -48,6 +50,10 @@ const App = () => {
                 <Route path="" element={<FlightList />} />
                 <Route path=":id" element={<FlightDetail />} />
               </Route>
+
+              <Route path="defect" element={<Defect />}>
+              </Route>
+
             </Routes>
           </a.div>
         ))}

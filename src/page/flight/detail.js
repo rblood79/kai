@@ -12,7 +12,7 @@ import styles from './detail.module.scss';
 import Card from '../../components/item/itemCard';
 
 const App = () => {
-    const [navState, setNavState] = useState(false);
+    const [state, seState] = useState(false);
     const toggleNav = () => console.log('edit');
 
     
@@ -151,7 +151,7 @@ const App = () => {
 
     return (
         <>
-            <Header title={title} depth={2} right={'edit'} navState={toggleNav} background={'#fff'} />
+            <Header title={title} depth={2} right={'edit'} state={toggleNav} background={'#fff'} />
             <main className={styles.main}>
                 <header className={styles.header}>
                     <div className={styles.title}>
