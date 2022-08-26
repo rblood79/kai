@@ -52,6 +52,11 @@ const App = (props) => {
             icon: 'ri-map-pin-2-line',
             text: 'A/C Loc & Status',
         },
+        {
+            link: '/',
+            icon: 'ri-logout-box-r-line',
+            text: 'Sign Out',
+        },
     ]
 
     const { opacity, xyz } = useSpring({
