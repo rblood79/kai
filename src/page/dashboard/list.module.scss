@@ -56,6 +56,9 @@
       }
       .itemBody {
         padding: 8px 0;
+        border: 1px solid #f00;
+        position: absolute;
+        width: 100%;
       }
       &:nth-child(1) {
         background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);

@@ -4,17 +4,23 @@
 */
 
 import { useEffect, useState } from 'react';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+import Card from '../../components/card';
+import Item from '../../components/item/item';
+import ItemFlight from '../../components/item/itemFlight';
+import ItemDefect from '../../components/item/itemDefect';
+import ItemMaintenance from '../../components/item/itemMaintenance';
+import ItemConsume from '../../components/item/itemConsume';
 
 import Overview from '../../components/item/itemOverview';
-import FlightNo from '../../components/item/itemFlight';
-import Defect from '../../components/item/itemDefect';
-import Maintenance from '../../components/item/itemMaintenance';
-import Consume from '../../components/item/itemConsume';
+
+
+
 
 import Header from '../../components/header';
 import styles from './detail.module.scss';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 
 const App = () => {
     const { id } = useParams();
@@ -36,11 +42,7 @@ const App = () => {
         {
             id: '/flight',
             title: 'Flight No',
-            planTO: '11:30:40',
-            planLD: '11:30:00',
-            actualTO: '12:30:00',
-            actualLD: '12:00:00',
-            info:[
+            header: [
                 {
                     title: 'Tail No',
                     text: '20-001',
@@ -50,6 +52,18 @@ const App = () => {
                     text: '24 March 2021',
                 }
             ],
+            body: [
+                {
+                    title: 'Plan',
+                    to: '11:30:40',
+                    ld: '11:30:00'
+                },
+                {
+                    title: 'Actual',
+                    to: '12:40:00',
+                    ld: '12:30:00'
+                }
+            ]
         }
     );
 
@@ -57,7 +71,7 @@ const App = () => {
         {
             id: '/defect',
             title: 'Defect',
-            info:[
+            header: [
                 {
                     title: 'Cause',
                     text: 'Turbine Lose',
@@ -71,7 +85,7 @@ const App = () => {
                     text: '28 June 2021',
                 }
             ],
-            data: [],
+            body: [],
         }
     );
 
@@ -79,7 +93,7 @@ const App = () => {
         {
             id: '/maintenance',
             title: 'Maintenance',
-            info:[
+            header: [
                 {
                     title: 'Cause',
                     text: 'Turbine Defect',
@@ -93,7 +107,7 @@ const App = () => {
                     text: '28 June 2021',
                 }
             ],
-            data: [
+            body: [
                 {
                     title: 'EVERY 60 DAYS(I)',
                     cycle: '18SVM',
@@ -120,7 +134,7 @@ const App = () => {
         {
             id: '/consume',
             title: 'Consume',
-            info:[
+            header: [
                 {
                     title: 'Content',
                     text: 'Turbine Change & Maintenance',
@@ -134,7 +148,7 @@ const App = () => {
                     text: '28 June 2021',
                 }
             ],
-            data: [
+            body: [
                 {
                     title: 'EVERY 60 DAYS(I)',
                     cycle: '18SVM',
@@ -148,16 +162,42 @@ const App = () => {
     useEffect(() => {
         setTitle('KF21-' + id)
     }, [id]);
-    
+
     return (
         <>
             <Header title={title} background={'#f8f8f8'} depth={1} />
             <main className={styles.main}>
-                <Overview {...data} />
-                <FlightNo {...dataF} rightText={'more'} />
-                <Defect {...dataD} rightText={'more'} />
-                <Maintenance {...dataM} rightText={'more'} />
-                <Consume {...dataC} rightText={'more'} />
+                <Overview
+                    data={data}
+                />
+                <Card
+                    rightText={'more'}
+                    rightType={'button'}
+                    header={Item}
+                    body={ItemFlight}
+                    data={dataF}
+                />
+                <Card
+                    rightText={'more'}
+                    rightType={'button'}
+                    header={Item}
+                    body={ItemDefect}
+                    data={dataD}
+                />
+                <Card
+                    rightText={'more'}
+                    rightType={'button'}
+                    header={Item}
+                    body={ItemMaintenance}
+                    data={dataM}
+                />
+                <Card
+                    rightText={'more'}
+                    rightType={'button'}
+                    header={Item}
+                    body={ItemConsume}
+                    data={dataC}
+                />
             </main>
         </>
     );

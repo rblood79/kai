@@ -4,18 +4,19 @@
 */
 
 import { useEffect, useState } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 
 import Header from '../../components/header';
 import styles from './detail.module.scss';
 
-import Card from '../../components/item/itemCard';
+import Card from '../../components/card';
+import ItemList from '../../components/item/itemList';
 
 const App = () => {
-    const [state, seState] = useState(false);
+    //const [state, seState] = useState(false);
     const toggleNav = () => console.log('edit');
 
-    
+
     const { id } = useParams();
     const [title, setTitle] = useState(null);
 
@@ -24,7 +25,7 @@ const App = () => {
             id: id,
             title: 'Geneal',
             text: '16 May 2021',
-            data: [
+            body: [
                 {
                     title: 'Aircraft',
                     text: '220218-KFX-002',
@@ -58,7 +59,7 @@ const App = () => {
             id: id,
             title: 'Plan',
             text: 'Actual',
-            data: [
+            body: [
                 {
                     title: 'Take-Off',
                     text: '16:00:00',
@@ -104,7 +105,7 @@ const App = () => {
             id: id,
             title: 'Actual',
             text: 'Plan',
-            data: [
+            body: [
                 {
                     title: 'Take-Off',
                     text: '17:00:00',
@@ -161,9 +162,24 @@ const App = () => {
                     </div>
                     <span className={styles.date}>LAST INFO OF 19 OCTOBER 2021</span>
                 </header>
-                <Card {...dataG} background={'#0C90E7'} titleColor={'#fff'} icon={'ri-survey-line'} />
-                <Card {...dataP} icon={'ri-pencil-ruler-2-line'} />
-                <Card {...dataA} icon={'ri-play-fill'} />
+                <Card
+                    background={'#0C90E7'}
+                    titleColor={'#fff'}
+                    rightText={'Not Editabled'}
+                    icon={'ri-survey-line'}
+                    body={ItemList}
+                    data={dataG}
+                />
+                <Card
+                    icon={'ri-pencil-ruler-2-line'}
+                    body={ItemList}
+                    data={dataP}
+                />
+                <Card
+                    icon={'ri-play-fill'}
+                    body={ItemList}
+                    data={dataA}
+                />
             </main>
         </>
     );

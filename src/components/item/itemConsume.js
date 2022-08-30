@@ -3,23 +3,16 @@
 
 
 */
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
-import Item from './item';
+import { useEffect, useState } from 'react';
 
 import { gradient } from '../../util'
 
 import styles from './itemMaintenance.module.scss';
 
 const App = (props) => {
-    const infoItems = props.info.map((item, index) => {
-        return (
-            <Item title={item.title} text={item.text} key={index}/>
-        )
-    });
+    const [data, setData] = useState([]);
 
-    const dataItems = props.data.map((item, index) => {
+    const listItem = data.map((item, index) => {
         return (
             <div className={styles.itemGroup} key={index}>
                 <span className={styles.title}>{item.title}</span>
@@ -40,30 +33,22 @@ const App = (props) => {
     });
 
     useEffect(() => {
-        //console.log(props.data)
+        setData(props.data)
     }, [])
 
     return (
-        <section className={styles.card}>
-            <div className={styles.header}>
-                <span className={styles.title}>{props.title}</span>
-                <Link className={styles.more} to={props.id}>{props.rightText}</Link>
+        <div className={styles.container}>
+            <span className={styles.baseIcon}><i className={props.icon}></i></span>
+            <div className={styles.list}>{
+                listItem
+            }
             </div>
-            <div className={styles.info}>
-                {infoItems}
-            </div>
-            <div className={styles.body}>
-                <span className={styles.baseIcon}><i className="ri-shopping-bag-line"></i></span>
-                <div className={styles.list}>
-                    {dataItems}
-                </div>
-            </div>
-        </section>
+        </div>
     )
 }
 
 export default App;
 
 App.defaultProps = {
-    rightText: 'detail'
+    icon: 'ri-shopping-bag-line'
 };

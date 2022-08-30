@@ -66,7 +66,7 @@ const clamp = (value, lower, upper) => {
 const App = () => {
     const { type } = useOutletContext();
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    //const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
     const width = window.innerWidth - 96
 
@@ -74,6 +74,7 @@ const App = () => {
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,
+        o : i === 0 ? 200 : 0,
         //display: 'flex',
     }))
 
@@ -88,8 +89,9 @@ const App = () => {
                 const x = (i - index.current) * width + (active ? mx + 48 : 48)
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
-                setCurrentIndex(index.current)
-                return { x, y, scale, display: 'flex' }
+                const o = i === index.current ? 200 : 0
+                //setCurrentIndex(index.current)
+                return { x, y, scale, o, display: 'flex'}
             })
         }
     }, {
@@ -104,10 +106,10 @@ const App = () => {
             {
                 type === 'list' ?
                     <div className={styles.listContents}>
-                        {props.map(({ x, y, display, scale }, i) => (
-                            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                                <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
-                                <div className={styles.itemBody}>{data[i].info}</div>
+                        {props.map(({ x, y, display, scale, o }, i) => (
+                            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale}}>
+                                <h3 className={styles.title}>{data[i].title}</h3>
+                                <animated.div className={styles.itemBody} style={{top: o}}>{data[i].info}</animated.div>
                                 <Link to={data[i].id}>Detail View</Link>
                             </animated.div>
                         ))}
@@ -116,7 +118,7 @@ const App = () => {
                     <div className={styles.gridContents}>
                         {props.map(({ x, y }, i) => (
                             <animated.div className={classNames(styles.item)} key={i}>
-                                <h3 className={styles.title}>{data[i].title}{currentIndex}</h3>
+                                <h3 className={styles.title}>{data[i].title}</h3>
                                 <div className={styles.rate}>{data[i].rate}</div>
                                 <Link to={data[i].id}>Detail</Link>
                             </animated.div>

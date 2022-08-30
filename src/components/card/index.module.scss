@@ -1,0 +1,32 @@
+.container {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 8px 16px 16px 16px;
+  box-shadow: 2px 4px 8px #efefef;
+  .head {
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+      font-size: 24px;
+    }
+    .text {
+      font-size: 16px;
+    }
+    .button {
+      background: #0C90E7;
+      color: #fff;
+      height: 28px;
+      padding: 0 16px;
+      border-radius: 16px;
+      font-size: 16px;
+    }
+  }
+  .header {
+    border-top: 1px solid #ebebeb;
+    padding: 8px 0 0 0;
+  }
+}

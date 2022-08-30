@@ -4,24 +4,26 @@
 */
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 
-import { useGesture, useDrag } from '@use-gesture/react'
-import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
+//import { useGesture, useDrag } from '@use-gesture/react'
+//import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
 
-import { List, Input } from '../../components';
+import { Input } from '../../components';
+import Card from '../../components/card';
+import Item from '../../components/item/item';
+import ItemFlight from '../../components/item/itemFlight';
 
 import Sheet from '../../components/sheet';
 
-import gloval from '../../components/index.module.scss';
+//import gloval from '../../components/index.module.scss';
 import styles from './list.module.scss';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 
 
 import Header from '../../components/header';
 
-const items = ['save item', 'open item', 'share item', 'delete item', 'cancel']
-const height = items.length * 60 + 80;
+//const items = ['save item', 'open item', 'share item', 'delete item', 'cancel']
+//const height = items.length * 60 + 80;
 
 const App = (props) => {
     /*const [{ y }, api] = useSpring(() => ({ y: height }))
@@ -57,11 +59,27 @@ const App = (props) => {
     const [sheet, setSheet] = useState(
         {
             range: '1d',
-            startDate : '20000101',
-            endDate : '20221231',
+            startDate: '20000101',
+            endDate: '20221231',
             base: '1Q',
         }
     );
+
+
+
+    const listItem = data.map((item, index) => {
+        return (
+            <Card
+                key={index}
+                rightText={'detail'}
+                rightType={'button'}
+                header={Item}
+                body={ItemFlight}
+                data={item}
+            />
+        )
+    });
+
     const filter = () => {
         console.log('filter', sheet)
     }
@@ -71,12 +89,8 @@ const App = (props) => {
             [
                 {
                     id: '001',
-                    title: '220218-KFX-001',
-                    planTO: '17:30:40',
-                    planLD: '18:30:00',
-                    actualTO: '17:30:00',
-                    actualLD: '18:00:00',
-                    info: [
+                    title: 'KF-21-001',
+                    header: [
                         {
                             title: 'Tail No',
                             text: '20-001',
@@ -86,15 +100,23 @@ const App = (props) => {
                             text: '24 March 2021',
                         }
                     ],
+                    body: [
+                        {
+                            title: 'Plan',
+                            to: '11:30:40',
+                            ld: '11:30:00'
+                        },
+                        {
+                            title: 'Actual',
+                            to: '12:40:00',
+                            ld: '12:30:00'
+                        }
+                    ]
                 },
                 {
                     id: '002',
-                    title: '210218-KFX-002',
-                    planTO: '11:30:40',
-                    planLD: '11:30:00',
-                    actualTO: '12:30:00',
-                    actualLD: '12:00:00',
-                    info: [
+                    title: 'KF-21-002',
+                    header: [
                         {
                             title: 'Tail No',
                             text: '20-001',
@@ -104,24 +126,18 @@ const App = (props) => {
                             text: '24 March 2021',
                         }
                     ],
-                },
-                {
-                    id: '003',
-                    title: '220224-KFX-003',
-                    planTO: '11:30:40',
-                    planLD: '11:30:00',
-                    actualTO: '12:30:00',
-                    actualLD: '12:00:00',
-                    info: [
+                    body: [
                         {
-                            title: 'Tail No',
-                            text: '20-001',
+                            title: 'Plan',
+                            to: '11:30:40',
+                            ld: '11:30:00'
                         },
                         {
-                            title: 'Flight Date',
-                            text: '24 March 2021',
+                            title: 'Actual',
+                            to: '12:40:00',
+                            ld: '12:30:00'
                         }
-                    ],
+                    ]
                 }
             ]
         )
@@ -139,14 +155,18 @@ const App = (props) => {
                     </div>
                     <span className={styles.date}>25 JUNE 2020 - 19 OCTOBER 2021</span>
                 </header>
-                <List data={data} type={'F'} />
+                {data &&
+                    <div className={styles.list}>
+                        {listItem}
+                    </div>
+                }
             </main>
             <Sheet title={'Conditional Search'} state={navState} close={toggleNav} callBack={filter} height={'body'}>
-                <Input label={'Flight Range'} type={'select'} value={'1Month'}/>
-                <Input label={'Flight Date'} type={'date'} value={['22. 06. 2011', '22. 06. 2020']}/>
-                <Input label={'Flight Time'} type={'time'} value={['11:30:00','12:00:00']}/>
-                <Input label={'Air Base'} type={'select'} required={true} value={'Daegu'}/>
-                <Input label={'SQ'}disabled={true} value={'1Q'} />
+                <Input label={'Flight Range'} type={'select'} value={'1Month'} />
+                <Input label={'Flight Date'} type={'date'} value={['22. 06. 2011', '22. 06. 2020']} />
+                <Input label={'Flight Time'} type={'time'} value={['11:30:00', '12:00:00']} />
+                <Input label={'Air Base'} type={'select'} required={true} value={'Daegu'} />
+                <Input label={'SQ'} disabled={true} value={'1Q'} />
             </Sheet>
         </>
     );
