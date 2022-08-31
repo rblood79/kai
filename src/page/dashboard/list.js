@@ -140,7 +140,7 @@ const App = () => {
                                         />
                                     </div>
                                     <div className={styles.body}>
-                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
+                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 128px ' + percentColor(data[i].rate) + ')' }} />
                                     </div>
                                     <div className={styles.footer}>
                                         <div className={styles.rate}>
@@ -154,7 +154,7 @@ const App = () => {
 
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                                 </div>
-                                <animated.div className={styles.bottom} style={{ bottom: o }}>
+                                <animated.div className={styles.bottom} style={{ }}>
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
                                     <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
                                 </animated.div>
