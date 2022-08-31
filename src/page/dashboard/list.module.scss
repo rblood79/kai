@@ -2,6 +2,7 @@
   scroll-snap-align: start;
   width: 100%;
   height: calc(100% - 88px);
+  height: calc(100% - 48px);
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -65,7 +66,7 @@
         justify-content: space-between;
         flex: 1;
         height: calc(100% - 80px);
-        background: linear-gradient(180deg, #141414 0%, #474747 100%);
+        background: linear-gradient(180deg, #141414 0%, #282828 100%);
         .header {
           gap: 16px;
           display: flex;
@@ -138,15 +139,14 @@
       .bottom {
         z-index: 0;
         padding: 32px 16px 16px 16px;
-        //position: absolute;
         width: 100%;
-        //width: calc(100% - 2px);
         height: 96px;
         background: #141414;
         color: #fff;
         border-radius: 0 0 16px 16px;
         box-shadow: inset 0 24px 8px #000;
         will-change: transform;
+        transform: translate3d(0, -16px, 0)
       }
 
       /*&:nth-child(1) {
