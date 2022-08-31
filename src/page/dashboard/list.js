@@ -7,7 +7,7 @@ import aircraftSide from '../../images/aircraftLeft@3x.png';
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSprings, animated } from '@react-spring/web';
+import { useSprings, animated, to } from '@react-spring/web';
 
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
@@ -97,7 +97,7 @@ const App = () => {
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,
-        o: i === 0 ? 0 : 96,
+        ty: i === 0 ? -16 : -96,
         //display: 'flex',
     }))
 
@@ -112,9 +112,9 @@ const App = () => {
                 const x = (i - index.current) * width + (active ? mx + 48 : 48)
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
-                const o = i === index.current ? 0 : 96
+                const ty = i === index.current ? -16 : -96
                 //setCurrentIndex(index.current)
-                return { x, y, scale, o, display: 'flex' }
+                return { x, y, ty, scale, display: 'flex' }
             })
         }
     }, {
@@ -129,7 +129,7 @@ const App = () => {
             {
                 type === 'list' ?
                     <div className={styles.listContents}>
-                        {props.map(({ x, y, display, scale, o }, i) => (
+                        {props.map(({ x, y, display, scale, ty }, i) => (
                             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                                 <div className={styles.main}>
                                     <div className={styles.header}>
@@ -140,7 +140,7 @@ const App = () => {
                                         />
                                     </div>
                                     <div className={styles.body}>
-                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 128px ' + percentColor(data[i].rate) + ')' }} />
+                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
                                     </div>
                                     <div className={styles.footer}>
                                         <div className={styles.rate}>
@@ -154,7 +154,9 @@ const App = () => {
 
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                                 </div>
-                                <animated.div className={styles.bottom} style={{ }}>
+                                <animated.div className={styles.bottom}
+                                    style={{transform: ty.to((ty) => `translateY(${ty}px)`),}}
+                                >
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
                                     <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
                                 </animated.div>

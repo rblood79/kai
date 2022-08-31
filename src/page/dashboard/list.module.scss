@@ -16,6 +16,8 @@
     .item {
       display: flex;
       justify-content: center;
+      display: flex;
+      flex-direction: column;
       flex: 1;
       flex-shrink: 0;
       scroll-snap-align: center;
@@ -138,7 +140,7 @@
       .bottom {
         z-index: 0;
         padding: 32px 16px 16px 16px;
-        position: absolute;
+        //position: absolute;
         width: 100%;
         //width: calc(100% - 2px);
         height: 96px;
