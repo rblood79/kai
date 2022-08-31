@@ -7,7 +7,7 @@ import aircraftSide from '../../images/aircraftLeft@3x.png';
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSprings, animated, to } from '@react-spring/web';
+import { useSprings, animated, easings, config } from '@react-spring/web';
 
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
@@ -21,27 +21,27 @@ const data = [
     {
         id: 'total',
         title: 'Average Rate',
-        intro: 'Base Group A',
+        intro: '18 June 2021',
         oh: '2,125',
         fh: '235',
         rate: '96',
         status: 'At Maintenance',
-        date: '24 June 2021',
+        date: '18 June 2021',
     },
     {
         id: '001',
         title: 'KF-21-001',
-        intro: 'First Intro',
+        intro: '18 June 2020',
         oh: '2,125',
         fh: '235',
         rate: '82',
         status: 'At Maintenance',
-        date: '24 June 2021',
+        date: '11 June 2021',
     },
     {
         id: '002',
         title: 'KF-21-002',
-        intro: 'First Intro',
+        intro: '23 July 2021',
         oh: '2,125',
         fh: '235',
         rate: '18',
@@ -56,7 +56,7 @@ const data = [
         fh: '235',
         rate: '43',
         status: 'At Maintenance',
-        date: '24 June 2021',
+        date: '04 June 2021',
     },
     {
         id: '004',
@@ -66,7 +66,7 @@ const data = [
         fh: '235',
         rate: '79',
         status: 'At Maintenance',
-        date: '24 June 2021',
+        date: '17 June 2021',
     },
     {
         id: '005',
@@ -114,7 +114,17 @@ const App = () => {
                 const scale = i === index.current ? 1 : 0.8
                 const ty = i === index.current ? -16 : -96
                 //setCurrentIndex(index.current)
-                return { x, y, ty, scale, display: 'flex' }
+                return {
+                    x, y, ty, scale, display: 'flex',
+                    
+                    config: {
+                        //...config.molasses
+                        clamp: true,
+                        mass: 1, 
+                        tension: 270, 
+                        friction: 26,
+                    }
+                }
             })
         }
     }, {
@@ -156,9 +166,9 @@ const App = () => {
                                 </div>
                                 <animated.div className={styles.bottom}
                                     style={{
-                                        transform: ty.to((ty) => `translateY(${ty}px)`),
+                                        transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`),
                                     }}
-                                >A
+                                >
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
                                     <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
                                 </animated.div>
