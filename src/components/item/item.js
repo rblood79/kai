@@ -13,7 +13,7 @@ const App = (props) => {
     }, [])
 
     return (
-        <div className={styles.item} style={{ height: props.height }}>
+        <div className={styles.item} style={{ height: props.direction === 'row' && props.height, flexDirection: props.direction, alignItems: props.align }}>
             <span className={styles.title} style={{ color: props.titleColor }}>{props.title}</span>
             <span className={styles.text} style={{ color: props.textColor }}>{props.text}</span>
         </div>
@@ -28,4 +28,6 @@ App.defaultProps = {
     text: 'text',
     titleColor: '#b4b4b4',
     textColor: '#606060',
+    align: 'center',
+    direction: 'row',
 };

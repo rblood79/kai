@@ -9,6 +9,7 @@ import { useSprings, animated } from '@react-spring/web';
 
 import { useOutletContext, Link } from 'react-router-dom';
 
+import Item from '../../components/item/item';
 import styles from './list.module.scss';
 import classNames from 'classnames';
 
@@ -16,44 +17,62 @@ const data = [
     {
         id: 'total',
         title: 'Average Rate',
-        info: 'Base Group A',
+        intro: 'Base Group A',
+        oh: '2,125',
+        fh: '235',
         rate: '78%',
-        image: 'https://images.pexels.com/photos/62689/pexels-photo-62689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        status: 'At Maintenance',
+        date: '24 June 2021',
     },
     {
-        id:'001',
+        id: '001',
         title: 'KF-21-001',
-        info: 'First Intro',
+        intro: 'First Intro',
+        oh: '2,125',
+        fh: '235',
         rate: '89%',
-        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        status: 'At Maintenance',
+        date: '24 June 2021',
     },
     {
-        id:'002',
+        id: '002',
         title: 'KF-21-002',
-        info: 'First Intro',
+        intro: 'First Intro',
+        oh: '2,125',
+        fh: '235',
         rate: '76%',
-        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        status: 'At Maintenance',
+        date: '24 June 2021',
     },
     {
-        id:'003',
+        id: '003',
         title: 'KF-21-003',
-        info: 'First Intro',
+        intro: 'First Intro',
+        oh: '2,125',
+        fh: '235',
         rate: '69%',
-        image: 'https://images.pexels.com/photos/351265/pexels-photo-351265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        status: 'At Maintenance',
+        date: '24 June 2021',
     },
     {
-        id:'004',
+        id: '004',
         title: 'KF-21-004',
-        info: 'First Intro',
+        intro: 'First Intro',
+        oh: '2,125',
+        fh: '235',
         rate: '51%',
-        image: 'https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        status: 'At Maintenance',
+        date: '24 June 2021',
     },
     {
-        id:'005',
+        id: '005',
         title: 'KF-21-005',
-        info: 'First Intro',
+        intro: 'First Intro',
+        oh: '2,125',
+        fh: '235',
         rate: '44%',
-        image: 'https://images.pexels.com/photos/4016596/pexels-photo-4016596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        status: 'At Maintenance',
+        date: '24 June 2021',
     },
 ]
 
@@ -74,7 +93,7 @@ const App = () => {
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,
-        o : i === 0 ? 200 : 0,
+        o: i === 0 ? 0 : 96,
         //display: 'flex',
     }))
 
@@ -89,9 +108,9 @@ const App = () => {
                 const x = (i - index.current) * width + (active ? mx + 48 : 48)
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
-                const o = i === index.current ? 200 : 0
+                const o = i === index.current ? 0 : 96
                 //setCurrentIndex(index.current)
-                return { x, y, scale, o, display: 'flex'}
+                return { x, y, scale, o, display: 'flex' }
             })
         }
     }, {
@@ -99,18 +118,29 @@ const App = () => {
     });
 
     useEffect(() => {
-        
-    },[])
+
+    }, [])
     return (
         <section className={classNames(styles.container)}>
             {
                 type === 'list' ?
                     <div className={styles.listContents}>
                         {props.map(({ x, y, display, scale, o }, i) => (
-                            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale}}>
-                                <h3 className={styles.title}>{data[i].title}</h3>
-                                <animated.div className={styles.itemBody} style={{top: o}}>{data[i].info}</animated.div>
-                                <Link to={data[i].id}>Detail View</Link>
+                            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
+                                <div className={styles.main}>
+                                    <div className={styles.header}>
+                                        <h3 className={styles.title}>{data[i].title}</h3>
+                                        <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'#0C90E7'} text={data[i].intro} />
+                                        <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'#0C90E7'}
+                                            text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
+                                        />
+                                    </div>
+                                    <Link className={styles.button} to={data[i].id}><i className="ri-arrow-up-s-line"></i></Link>
+                                </div>
+                                <animated.div className={styles.bottom} style={{ bottom: o }}>
+                                    <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
+                                    <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
+                                </animated.div>
                             </animated.div>
                         ))}
                     </div>
@@ -133,5 +163,5 @@ const App = () => {
 export default App;
 
 App.defaultProps = {
-    
+
 };
