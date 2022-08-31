@@ -2,12 +2,16 @@
 
 
 */
+import aircraftSide from '../../images/aircraftLeft@3x.png';
+
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
 import { useSprings, animated } from '@react-spring/web';
 
-import { useOutletContext, Link } from 'react-router-dom';
+import { useOutletContext, useNavigate, Link } from 'react-router-dom';
+
+import { percentColor, gradient } from '../../util';
 
 import Item from '../../components/item/item';
 import styles from './list.module.scss';
@@ -20,7 +24,7 @@ const data = [
         intro: 'Base Group A',
         oh: '2,125',
         fh: '235',
-        rate: '78%',
+        rate: '96',
         status: 'At Maintenance',
         date: '24 June 2021',
     },
@@ -30,7 +34,7 @@ const data = [
         intro: 'First Intro',
         oh: '2,125',
         fh: '235',
-        rate: '89%',
+        rate: '82',
         status: 'At Maintenance',
         date: '24 June 2021',
     },
@@ -40,7 +44,7 @@ const data = [
         intro: 'First Intro',
         oh: '2,125',
         fh: '235',
-        rate: '76%',
+        rate: '18',
         status: 'At Maintenance',
         date: '24 June 2021',
     },
@@ -50,7 +54,7 @@ const data = [
         intro: 'First Intro',
         oh: '2,125',
         fh: '235',
-        rate: '69%',
+        rate: '43',
         status: 'At Maintenance',
         date: '24 June 2021',
     },
@@ -60,7 +64,7 @@ const data = [
         intro: 'First Intro',
         oh: '2,125',
         fh: '235',
-        rate: '51%',
+        rate: '79',
         status: 'At Maintenance',
         date: '24 June 2021',
     },
@@ -70,7 +74,7 @@ const data = [
         intro: 'First Intro',
         oh: '2,125',
         fh: '235',
-        rate: '44%',
+        rate: '44',
         status: 'At Maintenance',
         date: '24 June 2021',
     },
@@ -84,7 +88,7 @@ const clamp = (value, lower, upper) => {
 
 const App = () => {
     const { type } = useOutletContext();
-
+    const navigate = useNavigate();
     //const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
     const width = window.innerWidth - 96
@@ -135,7 +139,20 @@ const App = () => {
                                             text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
                                         />
                                     </div>
-                                    <Link className={styles.button} to={data[i].id}><i className="ri-arrow-up-s-line"></i></Link>
+                                    <div className={styles.body}>
+                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
+                                    </div>
+                                    <div className={styles.footer}>
+                                        <div className={styles.rate}>
+                                            <span className={styles.title}>Behavior Rate</span>
+                                            <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
+                                        </div>
+                                        <div className={styles.bar}>
+                                            <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
+                                        </div>
+                                    </div>
+
+                                    <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                                 </div>
                                 <animated.div className={styles.bottom} style={{ bottom: o }}>
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />

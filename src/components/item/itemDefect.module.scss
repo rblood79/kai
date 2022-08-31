@@ -58,7 +58,7 @@
         margin-top: 48px;
       }
       img {
-        width: calc(100% - 32px);
+        width: min(294px, calc(100% - 32px));
         margin-bottom: 8px;
       }
       .title {
