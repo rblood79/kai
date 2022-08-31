@@ -155,8 +155,10 @@ const App = () => {
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                                 </div>
                                 <animated.div className={styles.bottom}
-                                    style={{transform: ty.to((ty) => `translateY(${ty}px)`),}}
-                                >
+                                    style={{
+                                        transform: ty.to((ty) => `translateY(${ty}px)`),
+                                    }}
+                                >A
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
                                     <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
                                 </animated.div>

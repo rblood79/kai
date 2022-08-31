@@ -86,8 +86,6 @@
             width: min(294px, calc(100% - 0px));
             margin-bottom: 8px;
           }
-          .aircraft {
-          }
         }
         .footer {
           .rate {
@@ -148,6 +146,7 @@
         color: #fff;
         border-radius: 0 0 16px 16px;
         box-shadow: inset 0 24px 8px #000;
+        will-change: transform;
       }
 
       /*&:nth-child(1) {
