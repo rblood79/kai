@@ -116,12 +116,11 @@ const App = () => {
                 //setCurrentIndex(index.current)
                 return {
                     x, y, scale, display: 'flex',
-                    config: {
-                        clamp: true,
+                    /*config: {
                         mass: 1, 
                         tension: 270, 
                         friction: 26,
-                    }
+                    }*/
                 }
             })
         }

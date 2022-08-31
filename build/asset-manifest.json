@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/kai/build/static/css/main.ba5421bb.css",
-    "main.js": "/kai/build/static/js/main.43aa6399.js",
+    "main.css": "/kai/build/static/css/main.8a67592b.css",
+    "main.js": "/kai/build/static/js/main.71424dc6.js",
     "static/js/787.ffdc7326.chunk.js": "/kai/build/static/js/787.ffdc7326.chunk.js",
     "static/media/remixicon.svg?t=1590207869815": "/kai/build/static/media/remixicon.9cedd2150922ead84869.svg",
     "static/media/remixicon.eot?t=1590207869815": "/kai/build/static/media/remixicon.5cb99e6cba5a4619063f.eot",
@@ -15,12 +15,12 @@
     "static/media/close.svg": "/kai/build/static/media/close.a1c8b92acd012cef74bc9282aa27fc9a.svg",
     "static/media/filter.svg": "/kai/build/static/media/filter.4e18c0eccf2ac347436b48f31b66f129.svg",
     "static/media/menu.svg": "/kai/build/static/media/menu.6a539039e1a01add003a123365f905c4.svg",
-    "main.ba5421bb.css.map": "/kai/build/static/css/main.ba5421bb.css.map",
-    "main.43aa6399.js.map": "/kai/build/static/js/main.43aa6399.js.map",
+    "main.8a67592b.css.map": "/kai/build/static/css/main.8a67592b.css.map",
+    "main.71424dc6.js.map": "/kai/build/static/js/main.71424dc6.js.map",
     "787.ffdc7326.chunk.js.map": "/kai/build/static/js/787.ffdc7326.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba5421bb.css",
-    "static/js/main.43aa6399.js"
+    "static/css/main.8a67592b.css",
+    "static/js/main.71424dc6.js"
   ]
 }
