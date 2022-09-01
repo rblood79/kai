@@ -148,7 +148,7 @@ const App = () => {
                                     </div>
 
                                     <div className={styles.body}>
-                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' />
+                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft'/>
                                     </div>
 
                                     <div className={styles.footer}>
