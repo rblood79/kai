@@ -2,7 +2,7 @@
 
 
 */
-import aircraftSide from '../../images/aircraftLeft@3x.png';
+import aircraftSide from '../../images/aircraftLeft@2x.png';
 
 import { useEffect, useState, useRef } from 'react';
 
@@ -51,7 +51,7 @@ const data = [
     {
         id: '003',
         title: 'KF-21-003',
-        intro: 'First Intro',
+        intro: '18 June 2021',
         oh: '2,125',
         fh: '235',
         rate: '43',
@@ -61,7 +61,7 @@ const data = [
     {
         id: '004',
         title: 'KF-21-004',
-        intro: 'First Intro',
+        intro: '18 June 2021',
         oh: '2,125',
         fh: '235',
         rate: '79',
@@ -71,7 +71,7 @@ const data = [
     {
         id: '005',
         title: 'KF-21-005',
-        intro: 'First Intro',
+        intro: '18 June 2021',
         oh: '2,125',
         fh: '235',
         rate: '44',
@@ -128,6 +128,44 @@ const App = () => {
         drag: { axis: 'lock' }
     });
 
+    const item = (x, y, display, scale, ty, i) => {
+        const color = percentColor(data[i].rate);
+        return (
+            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
+                <div className={styles.main}>
+                    <div className={styles.header}>
+                        <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line}/></div>
+                        <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={color} text={data[i].intro} />
+                        <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={color}
+                            text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
+                        />
+                    </div>
+
+                    <div className={styles.body}>
+                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' />
+                    </div>
+
+                    <div className={styles.footer}>
+                        <div className={styles.rate}>
+                            <span className={styles.title}>Behavior Rate</span>
+                            <span className={styles.text} style={{ color: color }}>{data[i].rate + '%'}</span>
+                        </div>
+                        <div className={styles.bar}>
+                            <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
+                        </div>
+                    </div>
+
+                    <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
+                </div>
+                <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
+                    {/*<div className={styles.bottom}>*/}
+                    <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
+                    <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
+                </animated.div>
+            </animated.div>
+        )
+    }
+
     useEffect(() => {
 
     }, [])
@@ -137,38 +175,7 @@ const App = () => {
                 type === 'list' ?
                     <div className={styles.listContents}>
                         {props.map(({ x, y, display, scale, ty }, i) => (
-                            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                                <div className={styles.main}>
-                                    <div className={styles.header}>
-                                        <h3 className={styles.title}>{data[i].title}</h3>
-                                        <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'#0C90E7'} text={data[i].intro} />
-                                        <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'#0C90E7'}
-                                            text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
-                                        />
-                                    </div>
-
-                                    <div className={styles.body}>
-                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft'/>
-                                    </div>
-
-                                    <div className={styles.footer}>
-                                        <div className={styles.rate}>
-                                            <span className={styles.title}>Behavior Rate</span>
-                                            <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
-                                        </div>
-                                        <div className={styles.bar}>
-                                            <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
-                                        </div>
-                                    </div>
-
-                                    <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
-                                </div>
-                                <animated.div className={styles.bottom} style={{transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`)}}>
-                                {/*<div className={styles.bottom}>*/}
-                                    <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
-                                    <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
-                                </animated.div>
-                            </animated.div>
+                            item(x, y, display, scale, ty, i)
                         ))}
                     </div>
                     :
