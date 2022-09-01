@@ -146,12 +146,12 @@ const App = () => {
                                             text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
                                         />
                                     </div>
-                                    
-                                    <div className={styles.body}>
-                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
-                                    </div>
 
-                                    {/*<div className={styles.footer}>
+                                    {/*<div className={styles.body}>
+                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
+                                    </div>*/}
+
+                                    <div className={styles.footer}>
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
                                             <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
@@ -159,7 +159,7 @@ const App = () => {
                                         <div className={styles.bar}>
                                             <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
                                         </div>
-                        </div>*/}
+                                    </div>
 
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                                 </div>
