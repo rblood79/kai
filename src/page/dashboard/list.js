@@ -138,7 +138,7 @@ const App = () => {
                     <div className={styles.listContents}>
                         {props.map(({ x, y, display, scale }, i) => (
                             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                                <div className={styles.main}>
+                                {/*<div className={styles.main}>
                                     <div className={styles.header}>
                                         <h3 className={styles.title}>{data[i].title}</h3>
                                         <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'#0C90E7'} text={data[i].intro} />
@@ -160,7 +160,7 @@ const App = () => {
                                     </div>
 
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
-                                </div>
+                        </div>*/}
                                 {/*<div className={styles.bottom} style={{transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`)}}>*/}
                                 <div className={styles.bottom}>
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
