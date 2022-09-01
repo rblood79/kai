@@ -147,9 +147,9 @@ const App = () => {
                                         />
                                     </div>
 
-                                    {/*<div className={styles.body}>
+                                    <div className={styles.body}>
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
-                                    </div>*/}
+                                    </div>
 
                                     <div className={styles.footer}>
                                         <div className={styles.rate}>
