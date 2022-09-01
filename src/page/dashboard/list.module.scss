@@ -10,13 +10,12 @@
 
   .slideCount {
     position: absolute;
-    writing-mode: vertical-rl;
-    height: 100%;
-    width: 24px;
-    top: 16px;
-    right: 24px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
     color: #141414;
     z-index: 0;
+    text-align: center;
   }
   .listContents {
     /*display: flex;
