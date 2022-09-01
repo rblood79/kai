@@ -138,7 +138,7 @@ const App = () => {
                     <div className={styles.listContents}>
                         {props.map(({ x, y, display, scale }, i) => (
                             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                                {/*<div className={styles.main}>
+                                <div className={styles.main}>
                                     <div className={styles.header}>
                                         <h3 className={styles.title}>{data[i].title}</h3>
                                         <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'#0C90E7'} text={data[i].intro} />
@@ -146,10 +146,12 @@ const App = () => {
                                             text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
                                         />
                                     </div>
+                                    
                                     <div className={styles.body}>
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(data[i].rate) + ')' }} />
                                     </div>
-                                    <div className={styles.footer}>
+
+                                    {/*<div className={styles.footer}>
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
                                             <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
@@ -157,10 +159,10 @@ const App = () => {
                                         <div className={styles.bar}>
                                             <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
                                         </div>
-                                    </div>
+                        </div>*/}
 
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
-                        </div>*/}
+                                </div>
                                 {/*<div className={styles.bottom} style={{transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`)}}>*/}
                                 <div className={styles.bottom}>
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
