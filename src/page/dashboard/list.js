@@ -97,7 +97,7 @@ const App = () => {
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,
-        //ty: i === 0 ? -16 : -96,
+        ty: i === 0 ? -16 : -96,
         //display: 'flex',
     }))
 
@@ -112,10 +112,10 @@ const App = () => {
                 const x = (i - index.current) * width + (active ? mx + 48 : 48)
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
-                //const ty = i === index.current ? -16 : -96
+                const ty = i === index.current ? -16 : -96
                 //setCurrentIndex(index.current)
                 return {
-                    x, y, scale, display: 'flex',
+                    x, y, scale, display: 'flex', ty
                     /*config: {
                         mass: 1, 
                         tension: 270, 
@@ -136,7 +136,7 @@ const App = () => {
             {
                 type === 'list' ?
                     <div className={styles.listContents}>
-                        {props.map(({ x, y, display, scale }, i) => (
+                        {props.map(({ x, y, display, scale, ty }, i) => (
                             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                                 <div className={styles.main}>
                                     <div className={styles.header}>
@@ -163,11 +163,11 @@ const App = () => {
 
                                     <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                                 </div>
-                                {/*<div className={styles.bottom} style={{transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`)}}>*/}
-                                <div className={styles.bottom}>
+                                <animated.div className={styles.bottom} style={{transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`)}}>
+                                {/*<div className={styles.bottom}>*/}
                                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
                                     <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
-                                </div>
+                                </animated.div>
                             </animated.div>
                         ))}
                     </div>
