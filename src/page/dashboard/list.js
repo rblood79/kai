@@ -3,6 +3,7 @@
 
 */
 import aircraftSide from '../../images/aircraftLeft@2x.png';
+import { ReactComponent as UpIcon } from '../../images/up.svg';
 
 import { useEffect, useState, useRef } from 'react';
 
@@ -89,7 +90,7 @@ const clamp = (value, lower, upper) => {
 const App = () => {
     const { type } = useOutletContext();
     const navigate = useNavigate();
-    //const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
     const width = window.innerWidth - 96
 
@@ -113,55 +114,46 @@ const App = () => {
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
                 const ty = i === index.current ? -16 : -96
-                //setCurrentIndex(index.current)
+                setCurrentIndex(index.current)
                 return {
-                    x, y, scale, display: 'flex', ty
-                    /*config: {
-                        mass: 1, 
-                        tension: 270, 
+                    x, y, scale, display: 'grid', ty,
+                    config: {
+                        mass: 1,
+                        tension: 210,
                         friction: 26,
-                    }*/
+                    }
                 }
             })
         }
     }, {
         drag: { axis: 'lock' }
     });
-
     const item = (x, y, display, scale, ty, i) => {
         const color = percentColor(data[i].rate);
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={styles.main}>
-                    <div className={styles.header}>
-                        <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
-                        <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={color} text={data[i].intro} />
-                        <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={color}
-                            text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
-                        />
+                    <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={color} text={data[i].intro} />
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={color}
+                        text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
+                    />
+                    <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
+                    <div className={styles.rate}>
+                        <span className={styles.title}>Behavior Rate</span>
+                        <span className={styles.text} style={{ color: color }}>{data[i].rate + '%'}</span>
                     </div>
-
-                    <div className={styles.body}>
-                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
+                    <div className={styles.bar}>
+                        <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
                     </div>
-
-                    <div className={styles.footer}>
-                        <div className={styles.rate}>
-                            <span className={styles.title}>Behavior Rate</span>
-                            <span className={styles.text} style={{ color: color }}>{data[i].rate + '%'}</span>
-                        </div>
-                        <div className={styles.bar}>
-                            <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
-                        </div>
-                    </div>
-
-                    <button className={styles.button} onClick={() => navigate(data[i].id)}><i className="ri-arrow-up-s-line"></i></button>
                 </div>
                 <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    {/*<div className={styles.bottom}>*/}
                     <Item height={24} title={'Aircraft Status'} textColor={'#fff'} text={data[i].status} />
                     <Item height={24} title={'Maintenance Date'} textColor={'#fff'} text={data[i].date} />
                 </animated.div>
+                <button className={styles.button} onClick={() => navigate(data[i].id)}>
+                    <UpIcon width={32} height={32} fill={'#2699fb'} />
+                </button>
             </animated.div>
         )
     }
@@ -171,13 +163,17 @@ const App = () => {
     }, [])
     return (
         <section className={classNames(styles.container)}>
+
             {
                 type === 'list' ?
-                    <div className={styles.listContents}>
-                        {props.map(({ x, y, display, scale, ty }, i) => (
-                            item(x, y, display, scale, ty, i)
-                        ))}
-                    </div>
+                    <>
+                        <div className={styles.listContents}>
+                            {props.map(({ x, y, display, scale, ty }, i) => (
+                                item(x, y, display, scale, ty, i)
+                            ))}
+                        </div>
+                        <div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>
+                    </>
                     :
                     <div className={styles.gridContents}>
                         {props.map(({ x, y }, i) => (
