@@ -134,7 +134,7 @@ const App = () => {
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={styles.main}>
                     <div className={styles.header}>
-                        <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line}/></div>
+                        <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
                         <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={color} text={data[i].intro} />
                         <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={color}
                             text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
@@ -142,7 +142,7 @@ const App = () => {
                     </div>
 
                     <div className={styles.body}>
-                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' />
+                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                     </div>
 
                     <div className={styles.footer}>
