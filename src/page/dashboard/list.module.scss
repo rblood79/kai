@@ -86,9 +86,6 @@
           justify-content: center;
           img {
             width: min(294px, calc(100% - 0px));
-            margin-bottom: 8px;
-            z-index: 1;
-            filter: drop-shadow(rgba(17, 222, 228, 0.2) 0px 0px 8px);
           }
         }
         .footer {
