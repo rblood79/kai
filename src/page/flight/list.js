@@ -61,10 +61,31 @@ const App = (props) => {
             range: '1d',
             startDate: '20000101',
             endDate: '20221231',
-            base: '1Q',
+            startTime: '11:00:00',
+            endTime: '12:00:00',
+            base: 'daegu',
+            sq: '4Q',
         }
     );
 
+    const [temp, setTemp] = useState({});
+
+    const rangeData = [
+        { id: '0', value: '1d', text: '1 Day' },
+        { id: '1', value: '1w', text: '1 Week' },
+        { id: '2', value: '1m', text: '1 Month' },
+        { id: '3', value: '3m', text: '3 Month' },
+        { id: '4', value: '6m', text: '6 Month' },
+        { id: '5', value: '1y', text: '1 Year' },
+    ]
+
+    const baseData = [
+        { id: '0', value: 'seoul', text: 'Seoul' },
+        { id: '1', value: 'busan', text: 'Busan' },
+        { id: '2', value: 'daegu', text: 'Daegu' },
+        { id: '3', value: 'jeju', text: 'Jeju' },
+        { id: '4', value: 'incheon', text: 'Incheon' },
+    ]
 
 
     const listItem = data.map((item, index) => {
@@ -80,9 +101,16 @@ const App = (props) => {
         )
     });
 
-    const filter = () => {
-        console.log('filter', sheet)
+    const sheetCallBack = (data) => {
+        console.log('temp', temp)
+        toggleNav();
     }
+
+    /*const inputCallBack = (e) => {       
+        setTemp((prevState) => {
+            return { ...prevState, [e[0]]: e[1] }
+        })
+    }*/
 
     useEffect(() => {
         setData(
@@ -153,7 +181,7 @@ const App = (props) => {
                         DURING THIS<br />
                         PERIOD
                     </div>
-                    <span className={styles.date}>25 JUNE 2020 - 19 OCTOBER 2021</span>
+                    <span className={styles.date}>{sheet.startDate} - {sheet.endDate}</span>
                 </header>
                 {data &&
                     <div className={styles.list}>
@@ -161,11 +189,12 @@ const App = (props) => {
                     </div>
                 }
             </main>
-            <Sheet title={'Conditional Search'} state={navState} close={toggleNav} callBack={filter} height={'body'}>
-                <Input label={'Flight Range'} type={'select'} value={'1Month'} />
-                <Input label={'Flight Date'} type={'date'} value={['22. 06. 2011', '22. 06. 2020']} />
-                <Input label={'Flight Time'} type={'time'} value={['11:30:00', '12:00:00']} />
-                <Input label={'Air Base'} type={'select'} required={true} value={'Daegu'} />
+
+            <Sheet title={'Conditional Search'} state={navState} close={setNavState} callBack={sheetCallBack} height={'body'}>
+                <Input label={'Flight Range'} type={'select'} value={sheet.range} data={rangeData} column={'range'} callBack={setTemp} />
+                <Input label={'Flight Date'} type={'date'} value={[sheet.startDate, sheet.endDate]} />
+                <Input label={'Flight Time'} type={'time'} value={[sheet.startTime, sheet.endTime]} />
+                <Input label={'Air Base'} type={'select'} required={true} value={sheet.base} data={baseData} column={'base'} callBack={setTemp}/>
                 <Input label={'SQ'} disabled={true} value={'1Q'} />
             </Sheet>
         </>

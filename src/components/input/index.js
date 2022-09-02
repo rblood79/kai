@@ -1,8 +1,15 @@
 
+import { useState, useEffect } from 'react';
+
+import Sheet from '../sheet';
+
 import classNames from 'classnames';
 import styles from './index.module.scss';
 
 const App = (props) => {
+    const [navState, setNavState] = useState(false);
+    const toggleNav = () => setNavState(!navState);
+
     const fnSelect = () => {
         console.log('fnSelect')
     }
@@ -12,6 +19,7 @@ const App = (props) => {
     const fnTime = () => {
         console.log('fnTime')
     }
+
     const textItem = () => {
         return (
             <input className={classNames(styles.input, props.required && styles.required, props.disabled && styles.disabled)}
@@ -77,20 +85,36 @@ const App = (props) => {
     }
 
     const selectItem = () => {
+        const callBack = (v) => {
+            props.callBack((prevState) => {
+                return { ...prevState, [props.column]: v }
+            })
+            toggleNav();
+        }
         return (
             <>
                 <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} >
                     {props.value}
-                    <button className={styles.button} onClick={() => fnSelect()}>
+                    <button className={styles.button} onClick={toggleNav}>
                         <i className="ri-arrow-down-s-line" />
                     </button>
                 </div>
-                <div className={styles.list}>
-                    list
-                </div>
+                <Sheet title={props.label} state={navState} close={setNavState}>
+                    {
+                        props.data && props.data.map((item, index) => {
+                            return (
+                                <div key={index} onClick={() => { callBack(item.value) }}>{item.text}</div>
+                            )
+                        })
+                    }
+                </Sheet>
             </>
         )
     }
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div className={styles.form}>

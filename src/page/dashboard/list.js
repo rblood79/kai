@@ -117,6 +117,7 @@ const App = () => {
                 setCurrentIndex(index.current)
                 return {
                     x, y, scale, display: 'grid', ty,
+                    //immediate: true,
                     config: {
                         mass: 1,
                         tension: 210,
@@ -129,7 +130,7 @@ const App = () => {
         drag: { axis: 'lock' }
     });
     const item = (x, y, display, scale, ty, i) => {
-        const color = percentColor(data[i].rate);
+        const color = '#fff';//percentColor(data[i].rate);
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={styles.main}>
@@ -141,7 +142,7 @@ const App = () => {
                     <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
-                        <span className={styles.text} style={{ color: color }}>{data[i].rate + '%'}</span>
+                        <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
                     </div>
                     <div className={styles.bar}>
                         <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>

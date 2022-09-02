@@ -13,11 +13,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 import classNames from 'classnames';
+import { useEffect } from 'react';
 //const cx = classNames.bind(styles);
 
 const App = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        //console.log('header')
+    }, [])
+
     return (
         <header className={classNames(styles.header)} style={{ 'background': props.background }}>
 
@@ -49,7 +56,7 @@ const App = (props) => {
 
             {
                 props.right &&
-                <button className={classNames(gloval.button, styles.menu)} onClick={() => props.state()}>
+                <button className={classNames(gloval.button, styles.menu)} onClick={props.state}>
                     {
                         props.right === 'filter' ?
                             <FilterIcon width={24} height={24} fill={'#141414'} /> :

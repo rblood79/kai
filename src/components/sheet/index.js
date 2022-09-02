@@ -6,7 +6,7 @@
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
 import { useEffect, useState } from 'react';
-import { useGesture, useDrag } from '@use-gesture/react'
+//import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, easings, config } from '@react-spring/web';
 
 import { Button } from '../../components';
@@ -14,17 +14,17 @@ import styles from './index.module.scss';
 
 
 const App = (props) => {
-    const [height] = useState(
+    const [height, setHeight] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
-                Math.min((props.children.length * 120) + 72 + 80, window.innerHeight - 56)
+                Math.min((props.children.length * 48) + 72 + 80, window.innerHeight - 56)
     )
     const [{ y }, api] = useSpring(() => ({ y: height }))
     const open = ({ canceled }) => {
         //api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
         api.start({ y: 0, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart } })
     }
-    
+
     const close = (velocity = 0) => {
         api.start({
             y: height, immediate: false, config: { ...config.stiff, velocity },
@@ -45,28 +45,52 @@ const App = (props) => {
 
     return (
         <>
-        {props.state && <a.div className={styles.container}>
-            {/*<a.div className={styles.sheet} {...bind()} style={{}}>*/}
-            <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
-            <a.div className={styles.sheet} style={{
-                y, display, height: `${height}px`
-            }}>
-                <header className={styles.header}>
-                    <div className={styles.title}>{props.title}</div>
-                    <div className={styles.right}>
-                        <button className={styles.close} onClick={() => close()}>
-                            <CloseIcon width={24} height={24} fill={'#141414'} />
-                        </button>
+            <a.div className={styles.container}>
+                <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
+                <a.div className={styles.sheet} style={{
+                    y, display, height: `${height}px`
+                }}>
+                    <header className={styles.header}>
+                        <div className={styles.title}>{props.title}</div>
+                        <div className={styles.right}>
+                            <button className={styles.close} onClick={() => close()}>
+                                <CloseIcon width={24} height={24} fill={'#141414'} />
+                            </button>
+                        </div>
+                    </header>
+                    <div className={styles.body} >
+                        {props.children}
                     </div>
-                </header>
-                <div className={styles.body} >
-                    {props.children}
-                </div>
-                <footer className={styles.footer}>
-                    <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
-                </footer>
+                    {
+                        props.callBack && <footer className={styles.footer}>
+                            <Button text={'Reset'} /><Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
+                        </footer>
+                    }
+                </a.div>
             </a.div>
-        </a.div>}
+            {/*props.state && <a.div className={styles.container}>
+                <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
+                <a.div className={styles.sheet} style={{
+                    y, display, height: `${height}px`
+                }}>
+                    <header className={styles.header}>
+                        <div className={styles.title}>{props.title}</div>
+                        <div className={styles.right}>
+                            <button className={styles.close} onClick={() => close()}>
+                                <CloseIcon width={24} height={24} fill={'#141414'} />
+                            </button>
+                        </div>
+                    </header>
+                    <div className={styles.body} >
+                        {props.children}
+                    </div>
+                    {
+                        props.callBack && <footer className={styles.footer}>
+                            <Button text={'Reset'} /><Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
+                        </footer>
+                    }
+                </a.div>
+                </a.div>*/}
         </>
     )
 }
