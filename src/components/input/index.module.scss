@@ -70,7 +70,9 @@
     align-items: center;
     justify-content: space-between;
     height: 56px;
+    color: #b4b4b4;
     &.active {
+      color: #141414;
       background: url('../../images/check.svg');
       background-repeat: no-repeat;
       background-position: calc(100% - 4px) center;
