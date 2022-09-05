@@ -7,8 +7,6 @@
     display: grid;
     //grid-auto-rows: 56px auto;
     & > div {
-      //overflow-x: hidden;
-      //overflow-y: auto;
       overflow: hidden;
       background: #f8f8f8;
       position: fixed;
@@ -20,6 +18,17 @@
       main {
         overflow-y: auto;
       }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .App {
+    .container {
+      filter: invert(1);
+      /*& > div {
+        background: #141414;
+      }*/
     }
   }
 }

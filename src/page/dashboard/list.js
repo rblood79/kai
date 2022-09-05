@@ -130,13 +130,13 @@ const App = () => {
         drag: { axis: 'lock' }
     });
     const item = (x, y, display, scale, ty, i) => {
-        const color = '#fff';//percentColor(data[i].rate);
+        const color = percentColor(data[i].rate);
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={styles.main}>
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={color} text={data[i].intro} />
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={color}
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'#fff'} text={data[i].intro} />
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'#fff'}
                         text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
                     />
                     <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />

@@ -68,3 +68,12 @@
     }
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: #e0e0e0;
+    .item {
+      filter: invert(1);
+    }
+  }
+}
