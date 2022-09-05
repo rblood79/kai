@@ -5,6 +5,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 
+import moment from 'moment';
+
 //import { useGesture, useDrag } from '@use-gesture/react'
 //import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
 
@@ -36,8 +38,6 @@ const App = (props) => {
             range: '1d',
             startDate: '20000101',
             endDate: '20221231',
-            startTime: '11:00:00',
-            endTime: '12:00:00',
             base: 'daegu',
             sq: '4Q',
         }
@@ -159,7 +159,7 @@ const App = (props) => {
                         DURING THIS<br />
                         PERIOD
                     </div>
-                    <span className={styles.date}>{sheet.startDate} - {sheet.endDate}</span>
+                    <span className={styles.date}>{moment(sheet.startDate).format('DD MMM YYYY')} - {moment(sheet.endDate).format('DD MMM YYYY')}</span>
                 </header>
                 {data &&
                     <div className={styles.list}>
@@ -170,8 +170,11 @@ const App = (props) => {
 
             <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} >
                 <Input label={'Flight Range'} type={'select'} value={temp.range} data={rangeData} column={'range'} callBack={setTemp} />
-                <Input label={'Flight Date'} type={'date'} value={[temp.startDate, temp.endDate]} />
-                <Input label={'Flight Time'} type={'time'} value={[temp.startTime, temp.endTime]} />
+
+                <Input label={'Flight Start'} type={'date'} value={temp.startDate} column={'startDate'}/>
+
+                <Input label={'Flight End'} type={'date'} value={temp.endDate} column={'endDate'} />
+                
                 <Input label={'Air Base'} type={'select'} required={true} value={temp.base} data={baseData} column={'base'} callBack={setTemp} />
                 <Input label={'SQ'} disabled={true} value={'1Q'} />
             </Sheet>

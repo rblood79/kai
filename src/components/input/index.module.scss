@@ -30,6 +30,12 @@
     grid-template-columns: auto 36px;
 
     transition: all 0.32s ease-in-out;
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
     &.required {
       background-color: #fdebdf;
     }
@@ -73,7 +79,7 @@
     color: #b4b4b4;
     &.active {
       color: #141414;
-      background: url('../../images/check.svg');
+      background: url("../../images/check.svg");
       background-repeat: no-repeat;
       background-position: calc(100% - 4px) center;
     }

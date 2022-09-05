@@ -9,7 +9,6 @@ import styles from './index.module.scss';
 import classNames from 'classnames';
 
 import Header from '../../components/header';
-import Nav from '../../components/nav';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {

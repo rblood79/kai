@@ -17,8 +17,10 @@ const App = (props) => {
     const [height, setHeight] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
-                Math.min((props.children.length * 48) + 72 + 80, window.innerHeight - 56)
+                props.children.length > 0 ? Math.min((props.children.length * 56) + 72 + 80, window.innerHeight - 56) :
+                    300
     )
+    //console.log(window.innerHeight, 'h: ', height)
     const [{ y }, api] = useSpring(() => ({ y: height }))
     const open = ({ canceled }) => {
         //api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
@@ -63,7 +65,7 @@ const App = (props) => {
                     </div>
                     {
                         props.apply && <footer className={styles.footer}>
-                            <Button text={'Reset'} onClick={() => props.cancel()}/>
+                            <Button text={'Reset'} onClick={() => props.cancel()} />
                             <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.apply()} />
                         </footer>
                     }
