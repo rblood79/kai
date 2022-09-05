@@ -62,8 +62,9 @@ const App = (props) => {
                         {props.children}
                     </div>
                     {
-                        props.callBack && <footer className={styles.footer}>
-                            <Button text={'Reset'} /><Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
+                        props.apply && <footer className={styles.footer}>
+                            <Button text={'Reset'} onClick={() => props.cancel()}/>
+                            <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.apply()} />
                         </footer>
                     }
                 </a.div>

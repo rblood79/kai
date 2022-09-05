@@ -184,15 +184,3 @@
     }
   }
 }
-
-
-@media (prefers-color-scheme: dark) {
-  
-  /*.header {
-    filter: invert(1);
-    
-  }*/
-  .item, .bottom  {
-    filter: invert(1);
-  }
-}

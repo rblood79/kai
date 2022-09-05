@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import './reset.css';
 import './index.scss';
 import 'remixicon/fonts/remixicon.css';
@@ -8,11 +10,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const history = createBrowserHistory({ window });
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={'kai/build/'}>
+    {
+      <BrowserRouter basename={'kai/build/'} history={history}>
+        <App />
+      </BrowserRouter>
+    }
+    {/*<HistoryRouter basename={'kai/build/'} history={history}>
       <App />
-    </BrowserRouter>
+  </HistoryRouter>*/}
   </React.StrictMode>
 );
 

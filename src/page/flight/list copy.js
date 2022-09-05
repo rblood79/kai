@@ -26,11 +26,36 @@ import Header from '../../components/header';
 //const height = items.length * 60 + 80;
 
 const App = (props) => {
+    /*const [{ y }, api] = useSpring(() => ({ y: height }))
+    const open = ({ canceled }) => {
+        api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
+    }
+    const close = (velocity = 0) => {
+        api.start({ y: height, immediate: false, config: { ...config.stiff, velocity } })
+    }
+
+    const bind = useDrag(
+        ({ last, velocity: [, vy], direction: [, dy], movement: [, my], cancel, canceled }) => {
+            if (my < -70) cancel()
+            if (last) {
+                my > height * 0.5 || (vy > 0.5 && dy > 0) ? close(vy) : open({ canceled })
+                setNavState(false)
+            }
+            else api.start({ y: my, immediate: true })
+        },
+        { from: () => [0, y.get()], filterTaps: true, bounds: { top: 0 }, rubberband: true }
+    )
+
+    const display = y.to((py) => (py < height ? 'block' : 'none'))
+
+    const bgStyle = {
+        transform: y.to([0, height], ['translateY(-8%) scale(1.16)', 'translateY(0px) scale(1)']),
+        opacity: y.to([0, height], [0.4, 1], 'clamp')
+    }*/
 
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
     const [data, setData] = useState([]);
-    const [temp, setTemp] = useState({});
     const [sheet, setSheet] = useState(
         {
             range: '1d',
@@ -42,6 +67,8 @@ const App = (props) => {
             sq: '4Q',
         }
     );
+
+    const [temp, setTemp] = useState({});
 
     const rangeData = [
         { id: '0', value: '1d', text: '1 Day' },
@@ -59,6 +86,7 @@ const App = (props) => {
         { id: '3', value: 'jeju', text: 'Jeju' },
         { id: '4', value: 'incheon', text: 'Incheon' },
     ]
+
 
     const listItem = data.map((item, index) => {
         return (
@@ -168,7 +196,7 @@ const App = (props) => {
                 }
             </main>
 
-            <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} >
+            <Sheet title={'Conditional Search'} state={navState} close={setNavState} apply={apply} cancel={cancle} height={'body'}>
                 <Input label={'Flight Range'} type={'select'} value={temp.range} data={rangeData} column={'range'} callBack={setTemp} />
                 <Input label={'Flight Date'} type={'date'} value={[temp.startDate, temp.endDate]} />
                 <Input label={'Flight Time'} type={'time'} value={[temp.startTime, temp.endTime]} />

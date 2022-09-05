@@ -103,7 +103,9 @@ const App = (props) => {
                     {
                         props.data && props.data.map((item, index) => {
                             return (
-                                <div key={index} onClick={() => { callBack(item.value) }}>{item.text}</div>
+                                <div className={classNames(styles.selectList, props.value === item.value && styles.active)} key={index} onClick={() => { callBack(item.value) }}>
+                                    {item.text}
+                                </div>
                             )
                         })
                     }

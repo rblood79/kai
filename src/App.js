@@ -2,6 +2,7 @@
 import { useTransition, a, easings } from 'react-spring';
 import { useLocation, Routes, Route } from "react-router-dom";
 
+
 import './App.scss';
 import NotFound from './page/404';
 import Sign from './page/sign';
@@ -14,12 +15,12 @@ import FlightList from './page/flight/list';
 import FlightDetail from './page/flight/detail';
 
 import Defect from './page/defect';
-
+//import { useEffect, useState, useMemo } from 'react';
 
 
 const App = () => {
   const location = useLocation();
-  //console.log('///', location)
+  
   const transitions = useTransition(location, {
     from: { transform: 'translate3d(100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
@@ -27,7 +28,8 @@ const App = () => {
     config: {
       duration: 480,
       easing: easings.easeInOutQuart,
-    }
+    },
+    //onRest: () => {},
   })
 
   return (
