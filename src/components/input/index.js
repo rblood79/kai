@@ -98,7 +98,7 @@ const App = (props) => {
         )
     }*/
     const dateItem = () => {
-        console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
+        //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
         const callBack = (v) => {
             props.callBack((prevState) => {
                 return { ...prevState, [props.column]: v }

@@ -20,6 +20,7 @@ import Defect from './page/defect';
 
 const App = () => {
   const location = useLocation();
+  //console.log(location)
   
   const transitions = useTransition(location, {
     from: { transform: 'translate3d(100%,0,0)' },

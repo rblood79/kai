@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { BrowserRouter} from "react-router-dom";
 
 import './reset.css';
 import './index.scss';
@@ -11,18 +10,12 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const history = createBrowserHistory({ window });
 
 root.render(
   <React.StrictMode>
-    {
-      <BrowserRouter basename={'kai/build/'} history={history}>
+    <BrowserRouter basename={'kai/build/'}>
         <App />
       </BrowserRouter>
-    }
-    {/*<HistoryRouter basename={'kai/build/'} history={history}>
-      <App />
-  </HistoryRouter>*/}
   </React.StrictMode>
 );
 

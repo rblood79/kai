@@ -3,6 +3,7 @@
 
 */
 import { useNavigate} from 'react-router-dom';
+import moment from 'moment';
 
 import styles from './index.module.scss';
 import classNames from 'classnames';
@@ -17,7 +18,7 @@ const App = (props) => {
 
     const headerItems = () => data.header.map((item, index) => {
         return (
-            <props.header key={index} title={item.title} text={item.text} />
+            <props.header key={index} title={item.title} text={item.type !== 'date' ? item.text : moment(item.text).format('DD MMM YYYY')} />
         )
     });
 

@@ -29,7 +29,15 @@ const App = (props) => {
         <header className={classNames(styles.header)} style={{ 'background': props.background }}>
 
             {
-                props.depth > 0 && <button className={classNames(gloval.button, styles.back)} onClick={() => navigate(-1)}><i className="ri-arrow-left-line"></i></button>
+                props.depth > 0 &&
+                <button className={classNames(gloval.button, styles.back)}
+                    onClick={(e) => {
+                        navigate(-1,
+                            { state: { back: true } }
+                        )
+                    }
+                    }><i className="ri-arrow-left-line"></i>
+                </button>
             }
 
             {
