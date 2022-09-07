@@ -22,13 +22,13 @@ const data = [
     {
         id: 'total',
         title: 'Average Rate',
-        intro: '18 June 2021',
-        oh: '2,125',
-        fh: '235',
-        rate: '96.58',
-        status: 'At Maintenance',
-        date: '18 June 2021',
+        base: '11 base camp',
+
+        rate: '79.01',
+        flight: '220218-658KFX',
+        defect: 'Turbine defect',
     },
+
     {
         id: '001',
         title: 'KF-21-001',
@@ -117,7 +117,6 @@ const App = () => {
                 setCurrentIndex(index.current)
                 return {
                     x, y, scale, display: 'grid', ty,
-                    //immediate: true,
                     config: {
                         mass: 1,
                         tension: 210,
@@ -129,7 +128,8 @@ const App = () => {
     }, {
         drag: { axis: 'lock' }
     });
-    const item = (x, y, display, scale, ty, i) => {
+
+    const listItem = (x, y, display, scale, ty, i) => {
         const color = percentColor(data[i].rate);
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
@@ -157,6 +157,32 @@ const App = () => {
                 </button>
             </animated.div>
         )
+    };
+
+    const mainItem = (x, y, display, scale, ty, i) => {
+
+        return (
+            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
+                <div className={classNames(styles.main, styles.over)}>
+                    <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
+                    <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'#0C90E7'} text={data.length + ' Air Fighter in this Unit'} />
+                    <div className={styles.graph}>
+                        Graph
+                    </div>
+                    <div className={styles.rate}>
+                        <span className={styles.title}>Behavior Rate</span>
+                        <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
+                    </div>
+                </div>
+                <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
+                    <Item height={24} title={'Last Flight No'} textColor={'#fff'} text={data[i].flight} />
+                    <Item height={24} title={'Last Defect'} textColor={'#fff'} text={data[i].defect} />
+                </animated.div>
+                <button className={styles.button} onClick={() => navigate(data[i].id)}>
+                    <UpIcon width={32} height={32} fill={'#2699fb'} />
+                </button>
+            </animated.div>
+        )
     }
 
     useEffect(() => {
@@ -170,7 +196,7 @@ const App = () => {
                     <>
                         <div className={styles.listContents}>
                             {props.map(({ x, y, display, scale, ty }, i) => (
-                                item(x, y, display, scale, ty, i)
+                                i !== 0 ? listItem(x, y, display, scale, ty, i) : mainItem(x, y, display, scale, ty, i)
                             ))}
                         </div>
                         <div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>

@@ -58,7 +58,7 @@
       &:last-child {
         margin-right: 48px;
       }
-
+      
       .main {
         z-index: 1;
         background: linear-gradient(180deg, #141414 0%, #282828 100%);
@@ -128,6 +128,29 @@
           }
         }
       }
+      .over {
+        grid-template-rows: 36px 40px auto 88px ;
+        .graph {
+          background: linear-gradient(0deg, #fff 0%, #efefef 100%);
+          border-radius: 16px;
+          padding: 16px;
+        }
+        .rate {
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          .title {
+            color: #b4b4b4;
+            font-size: 16px;
+          }
+          .text {
+            font-size: 34px;
+            line-height: 36px;
+            font-family: "Digital Numbers Regular";
+          }
+        }
+      }
       .bottom {
         z-index: 0;
         padding: 32px 16px 16px 16px;
@@ -154,6 +177,7 @@
         bottom: 72px;
         left: calc(50% - 24px);
       }
+      
     }
   }
 
