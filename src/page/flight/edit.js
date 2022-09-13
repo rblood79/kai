@@ -21,7 +21,7 @@ const App = () => {
     const [title, setTitle] = useState(null);
 
     useEffect(() => {
-        setTitle('KF21-000' + id)
+        setTitle('KF21-' + id)
     }, [])
 
     return (

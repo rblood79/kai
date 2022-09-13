@@ -31,18 +31,25 @@ const App = (props) => {
 
     return (
         <section className={classNames(styles.container)} style={{ background: props.background }}>
-            {data && <>
-                <div className={styles.head}>
-                    <span className={styles.title} style={{ color: props.titleColor }}>{data.title && data.title}</span>
-                    {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
-                    {props.rightType === 'button' && props.rightText && <button className={styles.button} onClick={() => { navigate(data.id) }}>{props.rightText}</button>}
+            <div className={styles.head}>
+                <span className={styles.title} style={{ color: props.titleColor }}>{props.title}</span>
+                {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
+                {props.rightType === 'button' && props.rightText && <button className={styles.button} onClick={() => { navigate(props.rightLink) }}>{props.rightText}</button>}
+            </div>
+            {data &&
+                <>
+                    {
+                        data.header &&
+                        <div className={styles.header}>
+                            {headerItems()}
+                        </div>
+                    }
 
-                </div>
-                {data.header && <div className={styles.header}>{headerItems()}</div>}
-
-                {data.body && <props.body data={data.body} icon={props.icon} />}
-
-            </>
+                    {
+                        data.body &&
+                        <props.body data={data.body} icon={props.icon} />
+                    }
+                </>
             }
             {props.children && props.children}
         </section>
@@ -52,6 +59,8 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    rightText: null,
+    title: 'Title',
     rightType: 'text',
+    rightText: null,
+    rightLink: null,
 };

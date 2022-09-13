@@ -16,8 +16,6 @@ import ItemConsume from '../../components/item/itemConsume';
 import Overview from '../../components/item/itemOverview';
 
 
-
-
 import Header from '../../components/header';
 import styles from './detail.module.scss';
 //import classNames from 'classnames';
@@ -40,8 +38,7 @@ const App = () => {
 
     const [dataF] = useState(
         {
-            id: '/flight',
-            title: 'Flight No',
+            id: '001',
             header: [
                 {
                     title: 'Tail No',
@@ -69,8 +66,7 @@ const App = () => {
 
     const [dataD] = useState(
         {
-            id: '/defect',
-            title: 'Defect',
+            id: '002',
             header: [
                 {
                     title: 'Cause',
@@ -91,8 +87,7 @@ const App = () => {
 
     const [dataM] = useState(
         {
-            id: '/maintenance',
-            title: 'Maintenance',
+            id: '003',
             header: [
                 {
                     title: 'Cause',
@@ -173,6 +168,8 @@ const App = () => {
                 <Card
                     rightText={'more'}
                     rightType={'button'}
+                    rightLink={'/flight'}
+                    title={'Flight No'}
                     header={Item}
                     body={ItemFlight}
                     data={dataF}
@@ -180,6 +177,8 @@ const App = () => {
                 <Card
                     rightText={'more'}
                     rightType={'button'}
+                    rightLink={'/defect'}
+                    title={'Defect'}
                     header={Item}
                     body={ItemDefect}
                     data={dataD}
@@ -187,6 +186,8 @@ const App = () => {
                 <Card
                     rightText={'more'}
                     rightType={'button'}
+                    rightLink={'/maintenance'}
+                    title={'Maintenance'}
                     header={Item}
                     body={ItemMaintenance}
                     data={dataM}
@@ -194,6 +195,8 @@ const App = () => {
                 <Card
                     rightText={'more'}
                     rightType={'button'}
+                    rightLink={'/consume'}
+                    title={'Consume'}
                     header={Item}
                     body={ItemConsume}
                     data={dataC}

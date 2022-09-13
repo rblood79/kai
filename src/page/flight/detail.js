@@ -26,7 +26,6 @@ const App = () => {
     const [dataG] = useState(
         {
             id: id,
-            title: 'Geneal',
             text: '16 May 2021',
             body: [
                 {
@@ -60,8 +59,6 @@ const App = () => {
     const [dataP] = useState(
         {
             id: id,
-            title: 'Plan',
-            text: 'Actual',
             body: [
                 {
                     title: 'Take-Off',
@@ -106,8 +103,6 @@ const App = () => {
     const [dataA] = useState(
         {
             id: id,
-            title: 'Actual',
-            text: 'Plan',
             body: [
                 {
                     title: 'Take-Off',
@@ -150,7 +145,7 @@ const App = () => {
     );
 
     useEffect(() => {
-        setTitle('KF21-000' + id)
+        setTitle('KF21-' + id)
     }, [])
 
     return (
@@ -168,6 +163,7 @@ const App = () => {
                 <Card
                     background={'#0C90E7'}
                     titleColor={'#fff'}
+                    title={'Geneal'}
                     rightText={'Not Editabled'}
                     icon={'ri-survey-line'}
                     body={ItemList}
@@ -175,11 +171,13 @@ const App = () => {
                 />
                 <Card
                     icon={'ri-pencil-ruler-2-line'}
+                    title={'Plan'}
                     body={ItemList}
                     data={dataP}
                 />
                 <Card
                     icon={'ri-play-fill'}
+                    title={'Acture'}
                     body={ItemList}
                     data={dataA}
                 />

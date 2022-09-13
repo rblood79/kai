@@ -40,8 +40,6 @@ const App = (props) => {
     const [data, setData] = useState([
         {
             id: '001',
-            title: 'KF-21-001',
-            base: 'seoul',
             header: [
                 {
                     title: 'Tail No',
@@ -68,8 +66,6 @@ const App = (props) => {
         },
         {
             id: '002',
-            title: 'KF-21-001',
-            base: 'daegu',
             header: [
                 {
                     title: 'Tail No',
@@ -96,8 +92,6 @@ const App = (props) => {
         },
         {
             id: '003',
-            title: 'KF-21-002',
-            base: 'seoul',
             header: [
                 {
                     title: 'Tail No',
@@ -124,8 +118,6 @@ const App = (props) => {
         },
         {
             id: '004',
-            title: 'KF-21-003',
-            base: 'daegu',
             header: [
                 {
                     title: 'Tail No',
@@ -187,12 +179,14 @@ const App = (props) => {
     ]
 
     //list component
-    const listItem = result.map((item, index) => {
+    const listItem = data.map((item, index) => {
         return (
             <Card
                 key={index}
                 rightText={'detail'}
                 rightType={'button'}
+                rightLink={item.id}
+                title={'KF-21-' + item.id}
                 header={Item}
                 body={ItemFlight}
                 data={item}
@@ -224,7 +218,6 @@ const App = (props) => {
 
     useEffect(() => {
         const temp = _.filter(data, function (o) {
-            
             return (
                 moment(o.header[1].text) >= moment(sheet.startDate) && moment(o.header[1].text) <= moment(sheet.endDate) &&
                 o.base === sheet.base
@@ -239,7 +232,7 @@ const App = (props) => {
     }, [navState, sheet])
 
     useEffect(() => {
-        
+
     }, [])
 
     return (
@@ -248,7 +241,7 @@ const App = (props) => {
             <main className={styles.main}>
                 <header className={styles.header}>
                     <div className={styles.title}>
-                        {result && result.length} FIGHTERS WERE QUERIED<br />
+                        {data && data.length} FIGHTERS WERE QUERIED<br />
                         DURING THIS<br />
                         PERIOD
                     </div>
@@ -270,7 +263,9 @@ const App = (props) => {
                 <Input label={'End Date'} type={'date'} value={temp.endDate} column={'endDate'} />
 
                 <Input label={'Air Base'} type={'select'} required={true} value={temp.base} data={baseData} column={'base'} callBack={setTemp} />
+                
                 <Input label={'SQ'} disabled={true} value={'1Q'} />
+                
             </Sheet>
         </>
     );
