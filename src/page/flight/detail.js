@@ -4,7 +4,7 @@
 */
 
 import { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 
 import Header from '../../components/header';
 import styles from './detail.module.scss';
@@ -14,7 +14,10 @@ import ItemList from '../../components/item/itemList';
 
 const App = () => {
     //const [state, seState] = useState(false);
-    const toggleNav = () => console.log('edit');
+    const navigate = useNavigate(); 
+    const toggleNav = () => {
+        navigate('edit')
+    };
 
 
     const { id } = useParams();

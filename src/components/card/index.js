@@ -2,7 +2,7 @@
 
 
 */
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 import styles from './index.module.scss';
@@ -36,14 +36,15 @@ const App = (props) => {
                     <span className={styles.title} style={{ color: props.titleColor }}>{data.title && data.title}</span>
                     {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
                     {props.rightType === 'button' && props.rightText && <button className={styles.button} onClick={() => { navigate(data.id) }}>{props.rightText}</button>}
-                    
+
                 </div>
                 {data.header && <div className={styles.header}>{headerItems()}</div>}
 
-                {data.body && <props.body data={data.body} icon={props.icon}/>}
+                {data.body && <props.body data={data.body} icon={props.icon} />}
 
             </>
             }
+            {props.children && props.children}
         </section>
     );
 }

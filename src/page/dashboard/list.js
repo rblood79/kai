@@ -167,7 +167,7 @@ const App = () => {
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'#0C90E7'} text={data.length + ' Air Fighter in this Unit'} />
                     <div className={styles.graph}>
-                        Graph
+                        Graph2
                     </div>
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>

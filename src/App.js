@@ -7,13 +7,16 @@ import './App.scss';
 import NotFound from './page/404';
 import Sign from './page/sign';
 import Notifycation from './page/notify';
+//dashboard
 import Dashboard from './page/dashboard';
 import DashboardList from './page/dashboard/list';
 import DashboardDetail from './page/dashboard/detail';
+//flight
 import Flight from './page/flight';
 import FlightList from './page/flight/list';
 import FlightDetail from './page/flight/detail';
-
+import FlightEdit from './page/flight/edit';
+//defect
 import Defect from './page/defect';
 //import { useEffect, useState, useMemo } from 'react';
 
@@ -21,7 +24,7 @@ import Defect from './page/defect';
 const App = () => {
   const location = useLocation();
   //console.log(location)
-  
+
   const transitions = useTransition(location, {
     from: { transform: 'translate3d(100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
@@ -52,6 +55,7 @@ const App = () => {
               <Route path="flight" element={<Flight />}>
                 <Route path="" element={<FlightList />} />
                 <Route path=":id" element={<FlightDetail />} />
+                <Route path=":id/edit" element={<FlightEdit />} />
               </Route>
 
               <Route path="defect" element={<Defect />}>
