@@ -4,11 +4,11 @@
 */
 import { useState } from 'react';
 
-import gloval from '../../components/index.module.scss';
+//import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 
-import Header from '../../components/header';
+import {Header} from '../../components';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {

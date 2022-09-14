@@ -5,150 +5,30 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 
-import _ from 'lodash';
 import moment from 'moment';
 
 //import { useGesture, useDrag } from '@use-gesture/react'
 //import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
 
-import { Input } from '../../components';
-import Card from '../../components/card';
-import Item from '../../components/item/item';
-import ItemFlight from '../../components/item/itemFlight';
+import { Api, Header, Input, Card, Sheet, Item, ItemFlight } from '../../components';
 
-import Sheet from '../../components/sheet';
-
-//import gloval from '../../components/index.module.scss';
 import styles from './list.module.scss';
 //import classNames from 'classnames';
 
-
-import Header from '../../components/header';
-
-//const items = ['save item', 'open item', 'share item', 'delete item', 'cancel']
-//const height = items.length * 60 + 80;
 
 const App = (props) => {
 
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
-    //filter result data
-    const [result, setResult] = useState([]);
+    //filter empty data
+    const [temp, setTemp] = useState(null)
 
     //list data
-    const [data, setData] = useState([
-        {
-            id: '001',
-            header: [
-                {
-                    title: 'Tail No',
-                    text: '20-001',
-                },
-                {
-                    title: 'Flight Date',
-                    text: '20220901',
-                    type: 'date',
-                }
-            ],
-            body: [
-                {
-                    title: 'Plan',
-                    to: '11:30:40',
-                    ld: '11:30:00'
-                },
-                {
-                    title: 'Actual',
-                    to: '12:40:00',
-                    ld: '12:30:00'
-                }
-            ]
-        },
-        {
-            id: '002',
-            header: [
-                {
-                    title: 'Tail No',
-                    text: '20-001',
-                },
-                {
-                    title: 'Flight Date',
-                    text: '20220821',
-                    type: 'date',
-                }
-            ],
-            body: [
-                {
-                    title: 'Plan',
-                    to: '11:30:40',
-                    ld: '11:30:00'
-                },
-                {
-                    title: 'Actual',
-                    to: '12:40:00',
-                    ld: '12:30:00'
-                }
-            ]
-        },
-        {
-            id: '003',
-            header: [
-                {
-                    title: 'Tail No',
-                    text: '20-001',
-                },
-                {
-                    title: 'Flight Date',
-                    text: '20220830',
-                    type: 'date',
-                }
-            ],
-            body: [
-                {
-                    title: 'Plan',
-                    to: '11:30:40',
-                    ld: '11:30:00'
-                },
-                {
-                    title: 'Actual',
-                    to: '12:40:00',
-                    ld: '12:30:00'
-                }
-            ]
-        },
-        {
-            id: '004',
-            header: [
-                {
-                    title: 'Tail No',
-                    text: '20-022',
-                },
-                {
-                    title: 'Flight Date',
-                    text: '20210920',
-                    type: 'date',
-                }
-            ],
-            body: [
-                {
-                    title: 'Plan',
-                    to: '11:30:40',
-                    ld: '11:30:00'
-                },
-                {
-                    title: 'Actual',
-                    to: '12:40:00',
-                    ld: '12:30:00'
-                }
-            ]
-        }
-    ]);
-
-    //filter empty data
-    const [temp, setTemp] = useState({});
+    const [data, setData] = useState(null);
 
     //filter default data
-    const [sheet, setSheet] = useState(
+    const [filter, setFilter] = useState(
         {
             range: '1M',
             endDate: moment().format(),
@@ -179,61 +59,64 @@ const App = (props) => {
     ]
 
     //list component
-    const listItem = data.map((item, index) => {
+    
+    const onLoad = async () => {
+        setTemp(JSON.parse(JSON.stringify(filter)))
+        try {
+            const response = await Api({
+                //baseURL: state.url,
+                url: 'flight',
+                method: 'get',
+                params: filter,
+            });
+            setData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    //bottom sheet cancle
+    const cancle = () => {
+        setFilter(JSON.parse(JSON.stringify(temp)))
+    }
+
+    //bottom sheet apply
+    const apply = () => {
+        onLoad();
+        toggleNav();
+    }
+
+    //bottom sheet range change
+    useEffect(() => {
+        const num = filter.range && filter.range.replace(/[^0-9]/g, '');
+        const format = filter.range && filter.range.replace(/[^A-Z]/g, '');
+        setFilter((prevState) => ({
+            ...prevState,
+            startDate: moment(filter.endDate).add(-num, format)
+        }
+        ));
+    }, [filter.range, filter.endDate])
+
+
+    // 초기 설정
+    useEffect(() => {
+        onLoad();
+    }, [])
+
+    const listItem = data && data.map((item, index) => {
         return (
             <Card
                 key={index}
                 rightText={'detail'}
                 rightType={'button'}
                 rightLink={item.id}
-                title={'KF-21-' + item.id}
+                title={item.title}
                 header={Item}
                 body={ItemFlight}
                 data={item}
             />
         )
     });
-
-    //bottom sheet cancle
-    const cancle = () => {
-        setTemp(JSON.parse(JSON.stringify(sheet)))
-    }
-
-    //bottom sheet apply
-    const apply = () => {
-        setSheet(JSON.parse(JSON.stringify(temp)))
-        toggleNav();
-    }
-
-    //bottom sheet range change
-    useEffect(() => {
-        const num = temp.range && temp.range.replace(/[^0-9]/g, '');
-        const format = temp.range && temp.range.replace(/[^A-Z]/g, '');
-        setTemp((prevState) => ({
-            ...prevState,
-            startDate: moment(temp.endDate).add(-num, format)
-        }
-        ));
-    }, [temp.range, temp.endDate])
-
-    useEffect(() => {
-        const temp = _.filter(data, function (o) {
-            return (
-                moment(o.header[1].text) >= moment(sheet.startDate) && moment(o.header[1].text) <= moment(sheet.endDate) &&
-                o.base === sheet.base
-                //_.filter()
-            )
-        })
-        setResult(temp);
-    }, [data, sheet])
-
-    useEffect(() => {
-        navState && setTemp(JSON.parse(JSON.stringify(sheet)))
-    }, [navState, sheet])
-
-    useEffect(() => {
-
-    }, [])
 
     return (
         <>
@@ -245,27 +128,28 @@ const App = (props) => {
                         DURING THIS<br />
                         PERIOD
                     </div>
-                    <span className={styles.date}>{moment(sheet.startDate).format('DD MMM YYYY')} - {moment(sheet.endDate).format('DD MMM YYYY')}</span>
+                    <span className={styles.date}>{moment(filter.startDate).format('DD MMM YYYY')} - {moment(filter.endDate).format('DD MMM YYYY')}</span>
                 </header>
-                {result &&
+                {
+
                     <div className={styles.list}>
-                        {listItem}
+                        {data ? listItem : <div>no data</div>}
                     </div>
                 }
             </main>
 
             <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} >
 
-                <Input label={'Search Range'} type={'select'} value={temp.range} data={rangeData} column={'range'} callBack={setTemp} />
+                <Input label={'Search Range'} type={'select'} value={filter.range} data={rangeData} column={'range'} callBack={setFilter} />
 
-                <Input label={'Start Date'} type={'date'} value={temp.startDate} column={'startDate'} />
+                <Input label={'Start Date'} type={'date'} value={filter.startDate} column={'startDate'} />
 
-                <Input label={'End Date'} type={'date'} value={temp.endDate} column={'endDate'} />
+                <Input label={'End Date'} type={'date'} value={filter.endDate} column={'endDate'} />
 
-                <Input label={'Air Base'} type={'select'} required={true} value={temp.base} data={baseData} column={'base'} callBack={setTemp} />
-                
-                <Input label={'SQ'} disabled={true} value={'1Q'} />
-                
+                <Input label={'Air Base'} type={'select'} required={true} value={filter.base} data={baseData} column={'base'} callBack={setFilter} />
+
+                <Input label={'SQ'} value={filter.sq} column={'sq'} callBack={setFilter} />
+
             </Sheet>
         </>
     );

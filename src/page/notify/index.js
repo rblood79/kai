@@ -1,5 +1,5 @@
 
-import Header from '../../components/header';
+import {Header} from '../../components';
 
 const App = (props) => {
     return (

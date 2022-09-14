@@ -4,19 +4,17 @@
 */
 
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import Header from '../../components/header';
 import styles from './detail.module.scss';
 
-import Card from '../../components/card';
-import ItemList from '../../components/item/itemList';
+import { Header, Card, ItemList } from '../../components';
 
 const App = () => {
     //const [state, seState] = useState(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const toggleNav = () => {
-        navigate('edit')
+        navigate('edit', { state: { dataG: dataG, dataP: dataP, dataA: dataA } });
     };
 
 
@@ -26,7 +24,6 @@ const App = () => {
     const [dataG] = useState(
         {
             id: id,
-            text: '16 May 2021',
             body: [
                 {
                     title: 'Aircraft',
@@ -39,6 +36,10 @@ const App = () => {
                 {
                     title: 'Mission',
                     text: 'Basic Fighter Maneuver',
+                },
+                {
+                    title: 'Date',
+                    text: '16 May 2021',
                 },
                 {
                     title: 'Call-Sign',

@@ -30,6 +30,11 @@ const App = (props) => {
                 disabled={props.disabled}
                 placeholder={props.placeholder}
                 value={props.value}
+                onChange={(e) => {
+                    props.callBack((prevState) => {
+                        return { ...prevState, [props.column]: e.target.value }
+                    })
+                }}
             />
         )
     }

@@ -26,7 +26,6 @@ const App = (props) => {
         if (props.data !== 'undefined' && props.data !== null) {
             setData(props.data)
         }
-
     }, [props.data]);
 
     return (
@@ -51,7 +50,10 @@ const App = (props) => {
                     }
                 </>
             }
-            {props.children && props.children}
+            {
+                props.children &&
+                <div className={styles.children}>{props.children}</div>
+            }
         </section>
     );
 }

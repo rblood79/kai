@@ -14,72 +14,9 @@ import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
 import { percentColor, gradient } from '../../util';
 
-import Item from '../../components/item/item';
+import { Api, Item } from '../../components';
 import styles from './list.module.scss';
 import classNames from 'classnames';
-
-const data = [
-    {
-        id: 'total',
-        title: 'Average Rate',
-        base: '11 base camp',
-
-        rate: '79.01',
-        flight: '220218-658KFX',
-        defect: 'Turbine defect',
-    },
-
-    {
-        id: '001',
-        title: 'KF-21-001',
-        intro: '18 June 2020',
-        oh: '2,125',
-        fh: '235',
-        rate: '82.6',
-        status: 'At Maintenance',
-        date: '11 June 2021',
-    },
-    {
-        id: '002',
-        title: 'KF-21-002',
-        intro: '23 July 2021',
-        oh: '2,125',
-        fh: '235',
-        rate: '18.02',
-        status: 'At Maintenance',
-        date: '24 June 2021',
-    },
-    {
-        id: '003',
-        title: 'KF-21-003',
-        intro: '18 June 2021',
-        oh: '2,125',
-        fh: '235',
-        rate: '43.00',
-        status: 'At Maintenance',
-        date: '04 June 2021',
-    },
-    {
-        id: '004',
-        title: 'KF-21-004',
-        intro: '18 June 2021',
-        oh: '2,125',
-        fh: '235',
-        rate: '79.18',
-        status: 'At Maintenance',
-        date: '17 June 2021',
-    },
-    {
-        id: '005',
-        title: 'KF-21-005',
-        intro: '18 June 2021',
-        oh: '2,125',
-        fh: '235',
-        rate: '44.96',
-        status: 'At Maintenance',
-        date: '24 June 2021',
-    },
-]
 
 const clamp = (value, lower, upper) => {
     if (value < lower) return lower;
@@ -88,11 +25,27 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    const { type } = useOutletContext();
     const navigate = useNavigate();
+    const { type } = useOutletContext();
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
-    const width = window.innerWidth - 96
+    const width = window.innerWidth - 96;
+
+    const [data, setData] = useState([])
+
+    const onLoad = async () => {
+        try {
+            const response = await Api({
+                //baseURL: state.url,
+                url: 'dashboard',
+                method: 'get',
+                params: {},
+            });
+            setData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const [props, api] = useSprings(data.length, i => ({
         x: (i * width) + 48,
@@ -186,31 +139,35 @@ const App = () => {
     }
 
     useEffect(() => {
-
+        onLoad();
     }, [])
     return (
         <section className={classNames(styles.container)}>
 
             {
-                type === 'list' ?
-                    <>
-                        <div className={styles.listContents}>
-                            {props.map(({ x, y, display, scale, ty }, i) => (
-                                i !== 0 ? listItem(x, y, display, scale, ty, i) : mainItem(x, y, display, scale, ty, i)
+                data.length > 0 ?
+                    type === 'list' ?
+                        <>
+                            <div className={styles.listContents}>
+                                {
+                                    props.map(({ x, y, display, scale, ty }, i) => (
+                                        i !== 0 ? listItem(x, y, display, scale, ty, i) : mainItem(x, y, display, scale, ty, i)
+                                    ))
+                                }
+                            </div>
+                            <div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>
+                        </>
+                        :
+                        <div className={styles.gridContents}>
+                            {props.map(({ x, y }, i) => (
+                                <animated.div className={classNames(styles.item)} key={i}>
+                                    <h3 className={styles.title}>{data[i].title}</h3>
+                                    <div className={styles.rate}>{data[i].rate}</div>
+                                    <Link to={data[i].id}>Detail</Link>
+                                </animated.div>
                             ))}
-                        </div>
-                        <div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>
-                    </>
-                    :
-                    <div className={styles.gridContents}>
-                        {props.map(({ x, y }, i) => (
-                            <animated.div className={classNames(styles.item)} key={i}>
-                                <h3 className={styles.title}>{data[i].title}</h3>
-                                <div className={styles.rate}>{data[i].rate}</div>
-                                <Link to={data[i].id}>Detail</Link>
-                            </animated.div>
-                        ))}
-                    </div>
+                        </div> :
+                    <div>not Found Data</div>
             }
         </section>
 
