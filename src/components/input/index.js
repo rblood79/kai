@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-
+import Button from '../button';
 import _ from 'lodash';
 import moment from 'moment';
 
@@ -9,7 +9,10 @@ import Sheet from '../sheet';
 import classNames from 'classnames';
 import styles from './index.module.scss';
 
+import Date from './date';
+
 const App = (props) => {
+
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
@@ -104,6 +107,7 @@ const App = (props) => {
     }*/
     const dateItem = () => {
         //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
+        //const [date, setDate] = useEffect(null);
         const callBack = (v) => {
             props.callBack((prevState) => {
                 return { ...prevState, [props.column]: v }
@@ -124,7 +128,10 @@ const App = (props) => {
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState}>
                     {
-                        <div>2022</div>
+                        <>
+                            <Date type={'date'} />
+                            <Button text={'Apply'} onClick={()=>{callBack('2020') }}/>
+                        </>
                     }
                 </Sheet>
             </>

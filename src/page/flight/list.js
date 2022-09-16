@@ -142,9 +142,9 @@ const App = (props) => {
 
                 <Input label={'Search Range'} type={'select'} value={filter.range} data={rangeData} column={'range'} callBack={setFilter} />
 
-                <Input label={'Start Date'} type={'date'} value={filter.startDate} column={'startDate'} />
+                <Input label={'Start Date'} type={'date'} value={filter.startDate} column={'startDate'} callBack={setFilter}/>
 
-                <Input label={'End Date'} type={'date'} value={filter.endDate} column={'endDate'} />
+                <Input label={'End Date'} type={'date'} value={filter.endDate} column={'endDate'}callBack={setFilter} />
 
                 <Input label={'Air Base'} type={'select'} required={true} value={filter.base} data={baseData} column={'base'} callBack={setFilter} />
 

@@ -15,4 +15,9 @@ const gradient = (percent, deg) => {
     return 'linear-gradient(' + deg + 'deg, hsl(' + hue + ' 86% 48%) 0%, hsl(' + hue + ', 86%, 24%) 100%)';
 }
 
-export { rangeColor, percentColor, gradient };
+const numberPad = (n, width) => {
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+}
+
+export { rangeColor, percentColor, gradient, numberPad };
