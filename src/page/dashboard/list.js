@@ -8,7 +8,7 @@ import { ReactComponent as UpIcon } from '../../images/up.svg';
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSprings, animated, easings, config } from '@react-spring/web';
+import { useSprings, animated, easings, config, useSpringRef } from '@react-spring/web';
 
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
@@ -79,9 +79,12 @@ const App = () => {
             })
         }
     }, {
-        drag: { axis: 'lock' }
+        drag: { 
+            axis: 'lock'
+        }
     });
 
+    
     const listItem = (x, y, display, scale, ty, i) => {
         const color = percentColor(data[i].rate);
         return (
