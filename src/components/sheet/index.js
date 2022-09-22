@@ -18,7 +18,7 @@ const App = (props) => {
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
                 props.children.length > 0 ? Math.min((props.children.length * 56) + 72 + 80, window.innerHeight - 56) :
-                    300
+                    320
     )
     //console.log(window.innerHeight, 'h: ', height)
     const [{ y }, api] = useSpring(() => ({ y: height }))
@@ -71,29 +71,6 @@ const App = (props) => {
                     }
                 </a.div>
             </a.div>
-            {/*props.state && <a.div className={styles.container}>
-                <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
-                <a.div className={styles.sheet} style={{
-                    y, display, height: `${height}px`
-                }}>
-                    <header className={styles.header}>
-                        <div className={styles.title}>{props.title}</div>
-                        <div className={styles.right}>
-                            <button className={styles.close} onClick={() => close()}>
-                                <CloseIcon width={24} height={24} fill={'#141414'} />
-                            </button>
-                        </div>
-                    </header>
-                    <div className={styles.body} >
-                        {props.children}
-                    </div>
-                    {
-                        props.callBack && <footer className={styles.footer}>
-                            <Button text={'Reset'} /><Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.callBack()} />
-                        </footer>
-                    }
-                </a.div>
-                </a.div>*/}
         </>
     )
 }

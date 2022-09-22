@@ -1,42 +1,61 @@
 
 
-import { useEffect, useState, useRef } from 'react';
-import { useGesture } from '@use-gesture/react'
-import { useSprings, animated, a } from '@react-spring/web';
-
+import { useEffect, useRef } from 'react';
 import _ from 'lodash';
-import moment from 'moment';
 
 import styles from './swipeItem.module.scss';
-
-const clamp = (value, lower, upper) => {
-    if (value < lower) return lower;
-    if (value > upper) return upper;
-    return value;
-}
-
 
 const height = 48;
 
 const App = (props) => {
-    const [data, setData] = useState(props.data)
+    const viewport = useRef(null);
 
-
+    const scroll = (e) => {
+        viewport.current.scrollTop = e+'px';
+    }
+    const callback = (entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                //console.log(entry.target.dataset.item)
+                props.callBack(entry.target.dataset.item)
+            }
+        });
+    };
 
     useEffect(() => {
-        console.log(data)
-    }, [])
+        const list = Array.from(viewport.current.children);
+        const observer = new IntersectionObserver(callback, {
+            root: null,
+            threshold: 1,
+        });
+        list.map((item) => {
+            observer.observe(item);
+            return () => {
+                observer.disconnect(item); // *** Use the same element
+            }
+        })
+        
 
+    }, [viewport.current])
+
+    useEffect(() => {
+        //console.log('//', props.state)
+        var findItem = props.data.findIndex((item) => item === props.set);
+        //console.log(props.set, '>', findItem)
+        scroll(100)
+    }, [props.state])
 
     return (
         <div className={styles.container}>
-            <ul className={styles.contents}>
+            <ul className={styles.contents} ref={viewport} >
                 {
-                    data.map(i => (
-                        <li className={styles.item} key={i} >
-                            {i}
-                        </li>
-                    ))
+                    props.data && props.data.map((item, index) => {
+                        return (
+                            <li className={styles.item} key={index} data-item={item}>
+                                {item}
+                            </li>
+                        )
+                    })
                 }
             </ul>
         </div>

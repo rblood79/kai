@@ -1,62 +1,66 @@
 
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
 import Item from './swipeItem';
-import _ from 'lodash';
 import moment from 'moment';
 
 import styles from './index.module.scss';
 
 
 const App = (props) => {
-    const [date, setDate] = useState(
+    const [data, setData] = useState(
         {
-            year: '2020',
-            month: '01',
-            day: '01',
+            year: moment(props.value).format('YYYY'),
+            month: moment(props.value).format('MM'),
+            day: moment(props.value).format('DD'),
         }
     )
-    const [year, setYear] = useState(['2020','2021','2022'])
+    const [year, setYear] = useState(['2022'])
     const month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-    const [day, setDay] = useState(['01', '02', '03']);
+    const [day, setDay] = useState(['01']);
 
     const fnYear = (e) => {
-        setDate(prevState => ({ ...prevState, 'year': e }))
+        setData(prevState => ({ ...prevState, 'year': e }))
     }
 
     const fnMonth = (e) => {
-        setDate(prevState => ({ ...prevState, 'month': e }))
+        setData(prevState => ({ ...prevState, 'month': e }))
     }
 
     const fnDay = (e) => {
-        setDate(prevState => ({ ...prevState, 'day': e }))
+        setData(prevState => ({ ...prevState, 'day': e }))
     }
-    
+
     useEffect(() => {
-        const dates = [];
-        for (let i = 0; i < moment(date.year + date.month).daysInMonth(); i++) {
+        const temp = [];
+        for (let i = 0; i < moment(data.year + data.month).daysInMonth(); i++) {
             let num = i + 1;
-            dates.push(numberPad(num, 2));
+            temp.push(numberPad(num, 2));
         }
-        setDay(dates)
-
-    }, [date])
+        setDay(temp)
+    }, [data.year, data.month])
 
     useEffect(() => {
-        const now = moment('2000'), dates = [];
+        props.callBack(data)
+    }, [data])
+
+    useEffect(() => {
+        const now = moment('2010'), temp = [];
         while (now.isSameOrBefore(moment())) {
-            dates.push(now.format('YYYY'));
+            temp.push(now.format('YYYY'));
             now.add(1, 'y');
         }
-        setYear(dates)
-        //setYear(_.sortBy(dates).reverse())
+        setYear(temp)
     }, [])
 
     return (
         <div className={styles.date}>
-            <span className={styles.title}>Date</span><Item data={year} callBack={fnYear} /><Item data={month} callBack={fnMonth} /><Item data={day} callBack={fnDay}/>
+            <span className={styles.title}>Date</span>
+            <Item data={year} set={data.year} callBack={fnYear} />
+            <Item data={month} set={data.month} callBack={fnMonth} />
+            <Item data={day} set={data.day} callBack={fnDay} />
         </div>
     );
 }
@@ -64,7 +68,5 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    year: '2020',
-    month: '01',
-    day: '01'
+
 };

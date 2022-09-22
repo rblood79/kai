@@ -82,20 +82,22 @@ const App = (props) => {
 
     //bottom sheet apply
     const apply = () => {
+        console.log('filter', filter)
         onLoad();
         toggleNav();
     }
 
     //bottom sheet range change
-    useEffect(() => {
+    /*useEffect(() => {
         const num = filter.range && filter.range.replace(/[^0-9]/g, '');
         const format = filter.range && filter.range.replace(/[^A-Z]/g, '');
+
         setFilter((prevState) => ({
             ...prevState,
             startDate: moment(filter.endDate).add(-num, format)
         }
         ));
-    }, [filter.range, filter.endDate])
+    }, [filter.range, filter.endDate])*/
 
 
     // 초기 설정

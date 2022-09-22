@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import styles from './index.module.scss';
 
 import Date from './date';
+import Time from './time';
 
 const App = (props) => {
 
@@ -105,12 +106,19 @@ const App = (props) => {
             </>
         )
     }*/
+
+    const [date, setDate] = useState(props.value);
+    const [time, setTime] = useState(props.value);
+
     const dateItem = () => {
         //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
         //const [date, setDate] = useEffect(null);
-        const callBack = (v) => {
+
+
+        const callBack = (d, t) => {
+            const temp = moment(d.year + d.month + d.day + t.hour + t.min + t.sec, 'YYYYMMDDHHmmss');
             props.callBack((prevState) => {
-                return { ...prevState, [props.column]: v }
+                return { ...prevState, [props.column]: temp }
             })
             toggleNav();
         }
@@ -118,19 +126,20 @@ const App = (props) => {
             <>
                 <div className={styles.inputGroup}>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value).format('DD MMM YYYY')}
+                        {moment(props.value, 'YYYYMMDDHHmmss').format('DD MM YYYY')}
                         <i className="ri-calendar-2-line" />
                     </div>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value).format('h:mm:ss')}
+                        {moment(props.value, 'YYYYMMDDHHmmss').format('HH:mm:ss')}
                         <i className="ri-time-line" />
                     </div>
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState}>
                     {
                         <>
-                            <Date type={'date'} />
-                            <Button text={'Apply'} onClick={()=>{callBack('2020') }}/>
+                            <Date type={'date'} callBack={setDate} data={props.value} state={navState} />
+                            <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
+                            <Button text={'Apply'} onClick={() => { callBack(date, time) }} />
                         </>
                     }
                 </Sheet>

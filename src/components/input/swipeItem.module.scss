@@ -2,8 +2,18 @@
   display: flex;
   flex-direction: row;
   width: 96px;
-  height: 96px;
+  height: 72px;
   overflow: hidden;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(255,255,255,0.5) 49%, rgba(255,255,255,0.8) 100%);
+  }
   .contents {
     width: 100%;
     display: flex;
@@ -37,7 +47,7 @@
       //touch-action: none;
       //will-change: transform;
       &:last-child {
-        margin-bottom: 48px;
+        margin-bottom: 24px;
       }
     }
   }
