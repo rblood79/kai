@@ -49,7 +49,7 @@ const App = (props) => {
 
     return (
         <div className={styles.container}>
-            d{xx}
+            {xx}
             <ul className={styles.contents} ref={viewport} >
                 {
                     props.data && props.data.map((item, index) => {

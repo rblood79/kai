@@ -22,6 +22,7 @@ const App = (props) => {
 
     const fnYear = (e) => {
         setData(prevState => ({ ...prevState, 'year': e }))
+
     }
 
     const fnMonth = (e) => {
@@ -45,14 +46,9 @@ const App = (props) => {
         props.callBack(data)
     }, [data])
 
-    /*useEffect(() => {
-        const temp = [];
-        for (let i = 0; i < moment(data.year + data.month).daysInMonth(); i++) {
-            let num = i + 1;
-            temp.push(numberPad(num, 2));
-        }
-        setDay(temp)
-    }, [data.year, data.month])*/
+    useEffect(() => {
+        setDay(getDay)
+    }, [data.year, data.month])
 
     useEffect(() => {
         const now = moment('2010'), temp = [];
