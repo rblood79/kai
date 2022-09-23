@@ -44,7 +44,7 @@ const App = (props) => {
 
     useEffect(() => {
         props.callBack(data)
-    }, [data])
+    }, [data, props])
 
     useEffect(() => {
         const now = moment('2010'), temp = [];
