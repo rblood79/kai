@@ -16,7 +16,7 @@ const App = (props) => {
     const callback = (entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                //console.log(entry.target.dataset.item)
+                console.log(entry.target.dataset.item)
                 setXX(entry.target.dataset.item)
                 props.callBack(entry.target.dataset.item)
             }
@@ -45,7 +45,8 @@ const App = (props) => {
     }, [props.state])*/
 
     return (
-        <div className={styles.container}>{xx}
+        <div className={styles.container}>
+            {xx}
             <ul className={styles.contents} ref={viewport} >
                 {
                     props.data && props.data.map((item, index) => {
