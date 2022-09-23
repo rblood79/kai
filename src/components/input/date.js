@@ -18,7 +18,7 @@ const App = (props) => {
         }
     )
     const [year, setYear] = useState(['2022'])
-    const month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+    const [month] = useState(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
     const [day, setDay] = useState(['01']);
 
     const fnYear = (e) => {
@@ -58,8 +58,7 @@ const App = (props) => {
     return (
         <div className={styles.date}>
             <span className={styles.title}>Date</span>
-            <Item data={year} set={data.year} callBack={fnYear} />
-            <Item data={month} set={data.month} callBack={fnMonth} />
+            
             <Item data={day} set={data.day} callBack={fnDay} />
         </div>
     );

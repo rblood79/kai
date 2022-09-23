@@ -110,9 +110,9 @@ const App = (props) => {
     const [date, setDate] = useState(props.value);
     const [time, setTime] = useState(props.value);
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         console.log('aa')
-    },[date])
+    },[date])*/
 
     const dateItem = () => {
         //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
