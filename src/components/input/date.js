@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
+import moment from 'moment';
 import Item from './swipeItem';
 
 import styles from './index.module.scss';
@@ -43,7 +44,14 @@ const App = (props) => {
             num <= 23 && hour.push(numberPad(num, 2));
             min.push(numberPad(num, 2));
         }
-        setYear(hour)
+
+        const now = moment('2010'), temp = [];
+        while (now.isSameOrBefore(moment())) {
+            temp.push(now.format('YYYY'));
+            now.add(1, 'y');
+        }
+
+        setYear(temp)
         setMonth(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
         setDay(min)
     }, [])
