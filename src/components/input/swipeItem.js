@@ -1,6 +1,6 @@
 
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 
 import styles from './swipeItem.module.scss';
@@ -9,14 +9,15 @@ const height = 48;
 
 const App = (props) => {
     const viewport = useRef(null);
-
+    const [xx, setXX] = useState(0);
     const scroll = (e) => {
         viewport.current.scrollTop = e;
     }
     const callback = (entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                console.log(entry.target.dataset.item)
+                //console.log(entry.target.dataset.item)
+                setXX(entry.target.dataset.item)
                 props.callBack(entry.target.dataset.item)
             }
         });
@@ -38,15 +39,13 @@ const App = (props) => {
 
     }, [props.data])
 
-    useEffect(() => {
-        //console.log('//', props.state)
+    /*useEffect(() => {
         var findItem = props.data.findIndex((item) => item === props.set);
-        //console.log(props.set, '>', findItem)
         scroll(100)
-    }, [props.state])
+    }, [props.state])*/
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container}>{xx}
             <ul className={styles.contents} ref={viewport} >
                 {
                     props.data && props.data.map((item, index) => {
