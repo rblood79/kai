@@ -128,11 +128,11 @@ const App = (props) => {
             <>
                 <div className={styles.inputGroup}>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {props.value}
+                        {moment(props.value, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')}
                         <i className="ri-calendar-2-line" />
                     </div>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {props.value}
+                        {moment(props.value, 'YYYYMMDDHHmmss').format('HH:mm:ss')}
                         <i className="ri-time-line" />
                     </div>
                 </div>
