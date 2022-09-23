@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
 import Item from './swipeItem';
-import moment from 'moment';
 
 import styles from './index.module.scss';
 
@@ -12,55 +11,49 @@ import styles from './index.module.scss';
 const App = (props) => {
     const [data, setData] = useState(
         {
-            year: moment(props.value).format('YYYY'),
-            month: moment(props.value).format('MM'),
-            day: moment(props.value).format('DD'),
+            hour: '00',
+            min: '00',
+            sec: '00',
         }
     )
-    const [year, setYear] = useState([])
-    const [month, setMonth] = useState([])
-    const [day, setDay] = useState([]);
+    const [hour, setHour] = useState([])
+    const [min, setMin] = useState([])
+    const [sec, setSec] = useState([])
 
-    const fnYear = (e) => {
-        setData(prevState => ({ ...prevState, 'year': e }))
+    const fnHour = (e) => {
+        setData(prevState => ({ ...prevState, 'hour': e }))
     }
 
-    const fnMonth = (e) => {
-        setData(prevState => ({ ...prevState, 'month': e }))
+    const fnMin = (e) => {
+        setData(prevState => ({ ...prevState, 'min': e }))
     }
 
-    const fnDay = (e) => {
-        setData(prevState => ({ ...prevState, 'day': e }))
+    const fnSec = (e) => {
+        setData(prevState => ({ ...prevState, 'sec': e }))
     }
-
-    /*useEffect(() => {
-        const temp = [];
-        for (let i = 0; i < moment(data.year + data.month).daysInMonth(); i++) {
-            let num = i + 1;
-            temp.push(numberPad(num, 2));
-        }
-        setDay(temp)
-    }, [data.year, data.month, data.day])*/
 
     useEffect(() => {
         props.callBack(data)
     }, [data])
 
     useEffect(() => {
-        const now = moment('2010'), temp = [];
-        /*while (now.isSameOrBefore(moment())) {
-            temp.push(now.format('YYYY'));
-            now.add(1, 'y');
-        }*/
-        setYear(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
-        setMonth(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
+        const hour = [], min = [];
+        for (let i = 0; i < 60; i++) {
+            let num = i;
+            num <= 23 && hour.push(numberPad(num, 2));
+            min.push(numberPad(num, 2));
+        }
+        setHour(hour)
+        setMin(min)
+        setSec(min)
     }, [])
 
     return (
         <div className={styles.date}>
-            <span className={styles.title}>Date</span>
-            <Item data={year} set={data.year} callBack={fnYear} />
-            <Item data={month} set={data.month} callBack={fnMonth} />
+            <span className={styles.title}>Time</span>
+            <Item data={hour} set={data.hour} callBack={fnHour} />
+            <Item data={min} set={data.min} callBack={fnMin} />
+            <Item data={sec} set={data.sec} callBack={fnSec} />
         </div>
     );
 }
