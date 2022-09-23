@@ -139,8 +139,9 @@ const App = (props) => {
                 <Sheet title={props.label} state={navState} close={setNavState}>
                     {
                         <>
-                            <Date type={'date'} callBack={setDate} data={props.value} state={navState} />
-                            <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
+                            
+                            <Time callBack={setTime} data={props.value} state={navState} />
+                            <Date callBack={setDate} data={props.value} state={navState} />
                             <Button text={'Apply'} onClick={() => { callBack(date, time) }} />
                         </>
                     }

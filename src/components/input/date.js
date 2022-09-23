@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
 import Item from './swipeItem';
-import Item2 from './swipeItem';
 import moment from 'moment';
 
 import styles from './index.module.scss';
@@ -49,11 +48,11 @@ const App = (props) => {
 
     useEffect(() => {
         const now = moment('2010'), temp = [];
-        while (now.isSameOrBefore(moment())) {
+        /*while (now.isSameOrBefore(moment())) {
             temp.push(now.format('YYYY'));
             now.add(1, 'y');
-        }
-        setYear(temp)
+        }*/
+        setYear(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
         setMonth(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
     }, [])
 
