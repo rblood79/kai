@@ -17,6 +17,7 @@ import styles from './list.module.scss';
 
 
 const App = (props) => {
+    
 
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
@@ -28,11 +29,11 @@ const App = (props) => {
     const [data, setData] = useState(null);
 
     //filter default data
-    const [filter, setFilter] = useState(
+    const [params, setParams] = useState(
         {
             range: '1M',
-            endDate: moment().format(),
-            startDate: moment().add(-1, 'M'),
+            endDate: moment().format('YYYYMMDDHHmmss'),
+            startDate: moment().add(-1, 'M').format('YYYYMMDDHHmmss'),
             base: 'seoul',
             sq: '4Q',
         }
@@ -61,13 +62,13 @@ const App = (props) => {
     //list component
     
     const onLoad = async () => {
-        setTemp(JSON.parse(JSON.stringify(filter)))
+        setTemp(JSON.parse(JSON.stringify(params)))
         try {
             const response = await Api({
                 //baseURL: state.url,
                 url: 'flight',
                 method: 'get',
-                params: filter,
+                params: params,
             });
             setData(response.data);
         } catch (error) {
@@ -77,12 +78,12 @@ const App = (props) => {
 
     //bottom sheet cancle
     const cancle = () => {
-        setFilter(JSON.parse(JSON.stringify(temp)))
+        setParams(JSON.parse(JSON.stringify(temp)))
     }
 
     //bottom sheet apply
     const apply = () => {
-        console.log('filter', filter)
+        console.log('filter', params)
         onLoad();
         toggleNav();
     }
@@ -92,7 +93,7 @@ const App = (props) => {
         const num = filter.range && filter.range.replace(/[^0-9]/g, '');
         const format = filter.range && filter.range.replace(/[^A-Z]/g, '');
 
-        setFilter((prevState) => ({
+        setParams((prevState) => ({
             ...prevState,
             startDate: moment(filter.endDate).add(-num, format)
         }
@@ -130,7 +131,7 @@ const App = (props) => {
                         DURING THIS<br />
                         PERIOD
                     </div>
-                    <span className={styles.date}>{moment(filter.startDate).format('DD MMM YYYY')} - {moment(filter.endDate).format('DD MMM YYYY')}</span>
+                    <span className={styles.date}>{params.startDate} - {params.endDate}</span>
                 </header>
                 {
 
@@ -142,15 +143,15 @@ const App = (props) => {
 
             <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} >
 
-                <Input label={'Search Range'} type={'select'} value={filter.range} data={rangeData} column={'range'} callBack={setFilter} />
+                <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} callBack={setParams} />
 
-                <Input label={'Start Date'} type={'date'} value={filter.startDate} column={'startDate'} callBack={setFilter}/>
+                <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} callBack={setParams}/>
 
-                <Input label={'End Date'} type={'date'} value={filter.endDate} column={'endDate'}callBack={setFilter} />
+                <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'}callBack={setParams} />
 
-                <Input label={'Air Base'} type={'select'} required={true} value={filter.base} data={baseData} column={'base'} callBack={setFilter} />
+                <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} callBack={setParams} />
 
-                <Input label={'SQ'} value={filter.sq} column={'sq'} callBack={setFilter} />
+                <Input label={'SQ'} value={params.sq} column={'sq'} callBack={setParams} />
 
             </Sheet>
         </>

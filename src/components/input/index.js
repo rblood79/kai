@@ -116,7 +116,7 @@ const App = (props) => {
 
 
         const callBack = (d, t) => {
-            const temp = moment(d.year + d.month + d.day + t.hour + t.min + t.sec, 'YYYYMMDDHHmmss');
+            const temp = d.year + d.month + d.day + t.hour + t.min + t.sec;//moment(d.year + d.month + d.day + t.hour + t.min + t.sec, 'YYYYMMDDHHmmss');
             props.callBack((prevState) => {
                 return { ...prevState, [props.column]: temp }
             })
@@ -126,11 +126,11 @@ const App = (props) => {
             <>
                 <div className={styles.inputGroup}>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value, 'YYYYMMDDHHmmss').format('DD MM YYYY')}
+                        {props.value}
                         <i className="ri-calendar-2-line" />
                     </div>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value, 'YYYYMMDDHHmmss').format('HH:mm:ss')}
+                        {props.value}
                         <i className="ri-time-line" />
                     </div>
                 </div>

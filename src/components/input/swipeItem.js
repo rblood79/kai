@@ -11,7 +11,7 @@ const App = (props) => {
     const viewport = useRef(null);
 
     const scroll = (e) => {
-        viewport.current.scrollTop = e+'px';
+        viewport.current.scrollTop = e;
     }
     const callback = (entries) => {
         entries.forEach((entry, index) => {
