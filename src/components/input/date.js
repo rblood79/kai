@@ -40,7 +40,7 @@ const App = (props) => {
             temp.push(numberPad(num, 2));
         }
         setDay(temp)
-    }, [data.year, data.month])
+    }, [data.year, data.month, data.day])
 
     useEffect(() => {
         props.callBack(data)
@@ -58,6 +58,7 @@ const App = (props) => {
     return (
         <div className={styles.date}>
             <span className={styles.title}>Date</span>
+            <Item data={year} set={data.year} callBack={fnYear} />
             <Item data={month} set={data.month} callBack={fnMonth} />
             <Item data={day} set={data.day} callBack={fnDay} />
         </div>

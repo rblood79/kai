@@ -16,7 +16,7 @@ const App = (props) => {
     const callback = (entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                //console.log(entry.target.dataset.item)
+                console.log(entry.target.dataset.item)
                 props.callBack(entry.target.dataset.item)
             }
         });
@@ -36,7 +36,7 @@ const App = (props) => {
         })
         
 
-    }, [viewport.current])
+    }, [props.data])
 
     useEffect(() => {
         //console.log('//', props.state)
