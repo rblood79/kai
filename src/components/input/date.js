@@ -18,9 +18,9 @@ const App = (props) => {
             day: moment(props.value).format('DD'),
         }
     )
-    const [year, setYear] = useState(['2022'])
-    const [month] = useState(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
-    const [day, setDay] = useState(['01']);
+    const [year, setYear] = useState([])
+    const [month, setMonth] = useState([])
+    const [day, setDay] = useState([]);
 
     const fnYear = (e) => {
         setData(prevState => ({ ...prevState, 'year': e }))
@@ -45,21 +45,23 @@ const App = (props) => {
 
     useEffect(() => {
         props.callBack(data)
-    }, [data, props])
+    }, [data])
 
-    /*useEffect(() => {
+    useEffect(() => {
         const now = moment('2010'), temp = [];
         while (now.isSameOrBefore(moment())) {
             temp.push(now.format('YYYY'));
             now.add(1, 'y');
         }
         setYear(temp)
-    }, [])*/
+        setMonth(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
+    }, [])
 
     return (
         <div className={styles.date}>
             <span className={styles.title}>Date</span>
-            <Item2 data={month} set={data.month} callBack={fnMonth} />
+            <Item data={year} set={data.year} callBack={fnYear} />
+            <Item data={month} set={data.month} callBack={fnMonth} />
         </div>
     );
 }

@@ -21,7 +21,7 @@ const App = (props) => {
         const callback = (entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    console.log(entry.target.dataset.item)
+                    //console.log(entry.target.dataset.item)
                     setXX(entry.target.dataset.item)
                     props.callBack(entry.target.dataset.item)
                 }

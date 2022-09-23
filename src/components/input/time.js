@@ -16,9 +16,9 @@ const App = (props) => {
             sec: '00',
         }
     )
-    const [hour, setHour] = useState(['00', '01'])
-    const [min, setMin] = useState(['00', '01'])
-    const [sec, setSec] = useState(['00', '01']);
+    const [hour, setHour] = useState([])
+    const [min, setMin] = useState([])
+    const [sec, setSec] = useState([])
 
     const fnHour = (e) => {
         setData(prevState => ({ ...prevState, 'hour': e }))

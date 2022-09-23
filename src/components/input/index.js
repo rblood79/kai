@@ -117,8 +117,6 @@ const App = (props) => {
     const dateItem = () => {
         //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
         //const [date, setDate] = useEffect(null);
-        
-
         const callBack = (d, t) => {
             const temp = d.year + d.month + d.day + t.hour + t.min + t.sec;//moment(d.year + d.month + d.day + t.hour + t.min + t.sec, 'YYYYMMDDHHmmss');
             props.callBack((prevState) => {
@@ -130,7 +128,7 @@ const App = (props) => {
             <>
                 <div className={styles.inputGroup}>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {date.year + date.month + date.day }
+                        {props.value}
                         <i className="ri-calendar-2-line" />
                     </div>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
