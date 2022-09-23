@@ -22,7 +22,6 @@ const App = (props) => {
 
     const fnYear = (e) => {
         setData(prevState => ({ ...prevState, 'year': e }))
-
     }
 
     const fnMonth = (e) => {
@@ -69,11 +68,11 @@ const App = (props) => {
 
         setYear(temp)
         setMonth(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
-        setDay(getDay)
+        setDay(getDay())
     }, [])
 
     return (
-        <div className={styles.date}>
+        <div className={styles.picker}>
             <span className={styles.title}>Date</span>
             <Item data={year} set={data.year} callBack={fnYear} />
             <Item data={month} set={data.month} callBack={fnMonth} />

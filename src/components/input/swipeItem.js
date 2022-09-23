@@ -17,7 +17,6 @@ const App = (props) => {
 
     useEffect(() => {
         const list = Array.from(viewport.current.children);
-
         const callback = (entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -32,7 +31,8 @@ const App = (props) => {
             root: null,
             threshold: 1,
         });
-        list.map((item) => {
+        
+        list && list.map((item) => {
             observer.observe(item);
             return () => {
                 observer.disconnect(item); // *** Use the same element
@@ -40,7 +40,7 @@ const App = (props) => {
         })
         
 
-    }, [props.data, viewport])
+    }, [props.data])
 
     /*useEffect(() => {
         var findItem = props.data.findIndex((item) => item === props.set);

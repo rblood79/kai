@@ -49,7 +49,7 @@ const App = (props) => {
     }, [])
 
     return (
-        <div className={styles.date}>
+        <div className={styles.picker}>
             <span className={styles.title}>Time</span>
             <Item data={hour} set={data.hour} callBack={fnHour} />
             <Item data={min} set={data.min} callBack={fnMin} />

@@ -13,14 +13,16 @@
       margin-left: 8px;
     }
   }
-  .date {
+  .picker {
     border-bottom: 1px solid #efefef;
     display: flex;
     flex-direction: row;
-    padding-top: 16px;
+    padding-top: 20px;
+    
+  justify-content: space-between;
     .title{
       width: 100px;
-      height: 38px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
