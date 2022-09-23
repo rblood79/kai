@@ -50,6 +50,16 @@ const App = (props) => {
         setDay(getDay)
     }, [data.year, data.month])
 
+    /*useEffect(() => {
+        async function fetchAndSetUser() {
+            const data = await getDay();
+            setDay(data);
+        }
+        fetchAndSetUser();
+
+    }, [data.year, data.month]);*/
+
+
     useEffect(() => {
         const now = moment('2010'), temp = [];
         while (now.isSameOrBefore(moment())) {
@@ -64,7 +74,7 @@ const App = (props) => {
 
     return (
         <div className={styles.date}>
-            <span className={styles.title}>Time</span>
+            <span className={styles.title}>Date</span>
             <Item data={year} set={data.year} callBack={fnYear} />
             <Item data={month} set={data.month} callBack={fnMonth} />
             <Item data={day} set={data.day} callBack={fnDay} />
