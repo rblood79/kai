@@ -34,32 +34,32 @@ const App = (props) => {
         setData(prevState => ({ ...prevState, 'day': e }))
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         const temp = [];
         for (let i = 0; i < moment(data.year + data.month).daysInMonth(); i++) {
             let num = i + 1;
             temp.push(numberPad(num, 2));
         }
         setDay(temp)
-    }, [data.year, data.month, data.day])
+    }, [data.year, data.month, data.day])*/
 
     useEffect(() => {
         props.callBack(data)
     }, [data, props])
 
-    useEffect(() => {
+    /*useEffect(() => {
         const now = moment('2010'), temp = [];
         while (now.isSameOrBefore(moment())) {
             temp.push(now.format('YYYY'));
             now.add(1, 'y');
         }
         setYear(temp)
-    }, [])
+    }, [])*/
 
     return (
         <div className={styles.date}>
             <span className={styles.title}>Date</span>
-            <Item data={day} set={data.day} callBack={fnDay} />
+            <Item2 data={month} set={data.month} callBack={fnMonth} />
         </div>
     );
 }

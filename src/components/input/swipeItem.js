@@ -40,7 +40,7 @@ const App = (props) => {
         })
         
 
-    }, [props.data])
+    }, [props.data, viewport])
 
     /*useEffect(() => {
         var findItem = props.data.findIndex((item) => item === props.set);
