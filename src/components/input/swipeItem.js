@@ -13,18 +13,21 @@ const App = (props) => {
     const scroll = (e) => {
         viewport.current.scrollTop = e;
     }
-    const callback = (entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                console.log(entry.target.dataset.item)
-                setXX(entry.target.dataset.item)
-                props.callBack(entry.target.dataset.item)
-            }
-        });
-    };
+    
 
     useEffect(() => {
         const list = Array.from(viewport.current.children);
+
+        const callback = (entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    console.log(entry.target.dataset.item)
+                    setXX(entry.target.dataset.item)
+                    props.callBack(entry.target.dataset.item)
+                }
+            });
+        };
+        
         const observer = new IntersectionObserver(callback, {
             root: null,
             threshold: 1,

@@ -51,9 +51,9 @@ const App = (props) => {
     return (
         <div className={styles.date}>
             <span className={styles.title}>Time</span>
-            <Item data={hour} set={data.year} callBack={fnHour} />
-            <Item data={min} set={data.month} callBack={fnMin} />
-            <Item data={sec} set={data.day} callBack={fnSec} />
+            <Item data={hour} set={data.hour} callBack={fnHour} />
+            <Item data={min} set={data.min} callBack={fnMin} />
+            <Item data={sec} set={data.sec} callBack={fnSec} />
         </div>
     );
 }
