@@ -58,7 +58,7 @@ const App = (props) => {
     return (
         <div className={styles.date}>
             <span className={styles.title}>Date</span>
-            
+            <Item data={month} set={data.month} callBack={fnMonth} />
             <Item data={day} set={data.day} callBack={fnDay} />
         </div>
     );
