@@ -11,25 +11,25 @@ import styles from './index.module.scss';
 const App = (props) => {
     const [data, setData] = useState(
         {
-            hour: '00',
-            min: '00',
-            sec: '00',
+            year: '00',
+            month: '00',
+            day: '00',
         }
     )
-    const [hour, setHour] = useState([])
-    const [min, setMin] = useState([])
-    const [sec, setSec] = useState([])
+    const [year, setYear] = useState([])
+    const [month, setMonth] = useState([])
+    const [day, setDay] = useState([]);
 
-    const fnHour = (e) => {
-        setData(prevState => ({ ...prevState, 'hour': e }))
+    const fnYear = (e) => {
+        setData(prevState => ({ ...prevState, 'year': e }))
     }
 
-    const fnMin = (e) => {
-        setData(prevState => ({ ...prevState, 'min': e }))
+    const fnMonth = (e) => {
+        setData(prevState => ({ ...prevState, 'month': e }))
     }
 
-    const fnSec = (e) => {
-        setData(prevState => ({ ...prevState, 'sec': e }))
+    const fnDay = (e) => {
+        setData(prevState => ({ ...prevState, 'day': e }))
     }
 
     useEffect(() => {
@@ -38,22 +38,22 @@ const App = (props) => {
 
     useEffect(() => {
         const hour = [], min = [];
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 31; i++) {
             let num = i;
             num <= 23 && hour.push(numberPad(num, 2));
             min.push(numberPad(num, 2));
         }
-        setHour(hour)
-        setMin(min)
-        setSec(min)
+        setYear(hour)
+        setMonth(['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])
+        setDay(min)
     }, [])
 
     return (
         <div className={styles.date}>
             <span className={styles.title}>Time</span>
-            <Item data={hour} set={data.hour} callBack={fnHour} />
-            <Item data={min} set={data.min} callBack={fnMin} />
-            <Item data={sec} set={data.sec} callBack={fnSec} />
+            <Item data={year} set={data.year} callBack={fnYear} />
+            <Item data={month} set={data.month} callBack={fnMonth} />
+            <Item data={day} set={data.day} callBack={fnDay} />
         </div>
     );
 }
