@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
 import Item from './swipeItem';
+import Item2 from './swipeItem';
 import moment from 'moment';
 
 import styles from './index.module.scss';
@@ -59,7 +60,7 @@ const App = (props) => {
         <div className={styles.date}>
             <span className={styles.title}>Date</span>
             <Item data={year} set={data.year} callBack={fnYear} />
-            <Item data={year} set={data.year} callBack={fnYear} />
+            <Item2 data={month} set={data.month} callBack={fnMonth} />
             <Item data={day} set={data.day} callBack={fnDay} />
         </div>
     );
