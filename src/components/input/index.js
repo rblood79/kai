@@ -118,7 +118,7 @@ const App = (props) => {
         //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
         //const [date, setDate] = useEffect(null);
         const callBack = (d, t) => {
-            const temp = d.year + d.month + d.day + t.hour + t.min + t.sec;//moment(d.year + d.month + d.day + t.hour + t.min + t.sec, 'YYYYMMDDHHmmss');
+            const temp = d.year + d.month + d.day + t.hour + t.min + t.sec;
             props.callBack((prevState) => {
                 return { ...prevState, [props.column]: temp }
             })

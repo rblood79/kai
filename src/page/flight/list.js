@@ -131,7 +131,7 @@ const App = (props) => {
                         DURING THIS<br />
                         PERIOD
                     </div>
-                    <span className={styles.date}>{params.startDate} - {params.endDate}</span>
+                    <span className={styles.date}>{moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')} - {moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')}</span>
                 </header>
                 {
 
