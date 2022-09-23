@@ -1,6 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  margin-top: 16px;
   .label {
     color: #939393;
     font-size: 18px;
@@ -16,9 +17,10 @@
     border-bottom: 1px solid #efefef;
     display: flex;
     flex-direction: row;
+    padding-top: 16px;
     .title{
       width: 100px;
-      height: 48px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
