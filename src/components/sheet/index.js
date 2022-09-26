@@ -16,25 +16,33 @@ import styles from './index.module.scss';
 const App = (props) => {
     const child = Children.toArray(props.children);
     const childList = Children.toArray(child[0].props.children)
-    //console.log(childList.length)
 
+    const [view, setView] = useState(false)
 
     const [height, setHeight] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
-                Math.min(72 + (childList.length * 80) + (props.apply ? 80 : 0), window.innerHeight - 136)
+                Math.min(72 + (childList.length * 80) + (props.apply ? 80 : 0), window.innerHeight - 128)
     )
     //console.log(window.innerHeight, 'h: ', height)
     const [{ y }, api] = useSpring(() => ({ y: height }))
     const open = ({ canceled }) => {
-        //api.start({ y: 0, immediate: false, config: canceled ? config.default : config.stiff })
-        api.start({ y: 0, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart } })
+        setView(true)
+        api.start({
+            y: 0, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart },
+            onRest: () => {
+
+            }
+        })
     }
 
     const close = (velocity = 0) => {
         api.start({
             y: height, immediate: false, config: { ...config.stiff, velocity },
-            onRest: () => props.close(false),
+            onRest: () => {
+                props.close(false)
+                setView(false)
+            },
         })
     }
 
@@ -57,30 +65,33 @@ const App = (props) => {
 
     return (
         <>
-            <a.div className={styles.container}>
-                <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
-                <a.div className={styles.sheet} style={{
-                    y, display, height: `${height}px`
-                }}>
-                    <header className={styles.header}>
-                        <div className={styles.title}>{props.title}</div>
-                        <div className={styles.right}>
-                            <button className={styles.close} onClick={() => close()}>
-                                <CloseIcon width={24} height={24} fill={'#141414'} />
-                            </button>
+            {
+                view &&
+                <a.div className={styles.container}>
+                    <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
+                    <a.div className={styles.sheet} style={{
+                        y, display, height: `${height}px`
+                    }}>
+                        <header className={styles.header}>
+                            <div className={styles.title}>{props.title}</div>
+                            <div className={styles.right}>
+                                <button className={styles.close} onClick={() => close()}>
+                                    <CloseIcon width={24} height={24} fill={'#141414'} />
+                                </button>
+                            </div>
+                        </header>
+                        <div className={styles.body} >
+                            {props.children}
                         </div>
-                    </header>
-                    <div className={styles.body} >
-                        {props.children}
-                    </div>
-                    {
-                        props.apply && <footer className={styles.footer}>
-                            {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
-                            <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.apply()} />
-                        </footer>
-                    }
+                        {
+                            props.apply && <footer className={styles.footer}>
+                                {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
+                                <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.apply()} />
+                            </footer>
+                        }
+                    </a.div>
                 </a.div>
-            </a.div>
+            }
         </>
     )
 }
