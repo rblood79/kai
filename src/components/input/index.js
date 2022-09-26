@@ -136,12 +136,43 @@ const App = (props) => {
                         <i className="ri-time-line" />
                     </div>
                 </div>
-                <Sheet title={props.label} state={navState} close={setNavState}>
+                <Sheet title={props.label} state={navState} close={setNavState} apply={() => { callBack(date, time) }}>
                     {
                         <>
                             <Date callBack={setDate} data={props.value} state={navState} />
                             <Time callBack={setTime} data={props.value} state={navState} />
-                            <Button text={'Apply'} onClick={() => { callBack(date, time) }} />
+                        </>
+                    }
+                </Sheet>
+            </>
+        )
+    }
+
+    const dayItem = () => {
+
+    }
+
+    const timeItem = () => {
+
+        const callBack = (t) => {
+            const temp = t.hour + t.min + t.sec;
+            props.callBack((prevState) => {
+                return { ...prevState, [props.column]: temp }
+            })
+            toggleNav();
+        }
+        return (
+            <>
+                <div className={styles.inputGroup}>
+                    <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
+                        {moment(props.value, 'HHmmss').format('HH:mm:ss')}
+                        <i className="ri-time-line" />
+                    </div>
+                </div>
+                <Sheet title={props.label} state={navState} close={setNavState} apply={() => { callBack(time) }}>
+                    {
+                        <>
+                            <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
                         </>
                     }
                 </Sheet>
@@ -165,15 +196,17 @@ const App = (props) => {
                     <i className="ri-arrow-down-s-line" />
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState}>
-                    {
-                        props.data && props.data.map((item, index) => {
-                            return (
-                                <div className={classNames(styles.selectList, props.value === item.value && styles.active)} key={index} onClick={() => { callBack(item.value) }}>
-                                    {item.text}
-                                </div>
-                            )
-                        })
-                    }
+                    <ul className={styles.select}>
+                        {
+                            props.data && props.data.map((item, index) => {
+                                return (
+                                    <li className={classNames(styles.selectList, props.value === item.value && styles.active)} key={index} onClick={() => { callBack(item.value) }}>
+                                        {item.text}
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
                 </Sheet>
             </>
         )
@@ -194,7 +227,11 @@ const App = (props) => {
                     props.type === 'select' ?
                         selectItem() :
                         props.type === 'date' ?
-                            dateItem() : textItem()
+                            dateItem() :
+                            props.type === 'day' ?
+                                dayItem() :
+                                props.type === 'time' ?
+                                    timeItem() : textItem()
             }
         </div>
     );

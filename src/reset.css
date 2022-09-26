@@ -104,5 +104,5 @@ a, button {
 }
 /*box-sizing*/
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }

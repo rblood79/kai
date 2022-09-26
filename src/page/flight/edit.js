@@ -17,11 +17,11 @@ const App = (props) => {
     const [title, setTitle] = useState(null);
     const [dataG, setDataG] = useState(null);
 
-    const [data, setData] = useState(
+    const [params, setParams] = useState(
         {
             front: 'xxs',
-            takeoff: '17:00:00',
-            landing: '17:00:00',
+            takeoff: '170000',
+            landing: '180000',
             briefing: 'abcdEfg',
         }
     );
@@ -35,7 +35,7 @@ const App = (props) => {
     ]
 
     const toggleNav = () => {
-        console.log('save', data)
+        console.log('save', params)
     };
 
     useEffect(() => {
@@ -47,14 +47,7 @@ const App = (props) => {
         <>
             <Header title={title} depth={2} right={'save'} state={toggleNav} background={'#fff'} />
             <main className={styles.main}>
-                <header className={styles.header}>
-                    <div className={styles.title}>
-                        THESE ARE THE<br />
-                        DETAILS OF THE FIGHTER<br />
-                        YOU REQUESTED
-                    </div>
-                    <span className={styles.date}>LAST INFO OF 19 OCTOBER 2021</span>
-                </header>
+                
                 <Card
                     background={'#FFCA00'}
                     titleColor={'#fff'}
@@ -65,10 +58,10 @@ const App = (props) => {
                     data={dataG}
                 />
                 <Card icon={'ri-survey-line'} title={'Plan'}>
-                    <Input label={'Take-Off'} required={true} value={data.takeoff} />
-                    <Input label={'Landing'} required={true} value={data.landing} />
-                    <Input label={'Briefing'} disabled={true} value={data.briefing} />
-                    <Input label={'Front (Pilot)'} required={true} type={'select'} value={data.front} data={frontData} column={'front'} callBack={setData} />
+                    <Input label={'Take-Off'} type={'time'} value={params.takeoff} column={'takeoff'} callBack={setParams} />
+                    <Input label={'Landing'} type={'time'} value={params.landing} column={'landing'} callBack={setParams} />
+                    <Input label={'Briefing'} disabled={true} value={params.briefing} />
+                    <Input label={'Front (Pilot)'} required={true} type={'select'} value={params.front} data={frontData} column={'front'} callBack={setParams} />
                     <Input label={'Rear (Co Pilot)'} value={'Json Momoa'} />
                     <Input label={'RWY Controller'} value={'Javis'} />
                     <Input label={'FLT Controller'} value={'Siri'} />

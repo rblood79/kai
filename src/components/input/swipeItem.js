@@ -67,6 +67,4 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    disabled: false,
-    required: false,
 };
