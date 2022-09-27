@@ -136,11 +136,11 @@ const App = (props) => {
                         <i className="ri-time-line" />
                     </div>
                 </div>
-                <Sheet title={props.label} state={navState} close={setNavState} apply={() => { callBack(date, time) }}>
+                <Sheet title={props.label} state={navState} close={setNavState} type={'date'} apply={() => { callBack(date, time) }}>
                     {
                         <>
-                            <Date callBack={setDate} data={props.value} state={navState} />
-                            <Time callBack={setTime} data={props.value} state={navState} />
+                            <Date type={'date'} callBack={setDate} data={props.value} state={navState} />
+                            <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
                         </>
                     }
                 </Sheet>
@@ -169,7 +169,7 @@ const App = (props) => {
                         <i className="ri-time-line" />
                     </div>
                 </div>
-                <Sheet title={props.label} state={navState} close={setNavState} apply={() => { callBack(time) }}>
+                <Sheet title={props.label} state={navState} close={setNavState} type={'time'} apply={() => { callBack(time) }}>
                     {
                         <>
                             <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
@@ -195,12 +195,12 @@ const App = (props) => {
                     {selectItem && selectItem.text}
                     <i className="ri-arrow-down-s-line" />
                 </div>
-                <Sheet title={props.label} state={navState} close={setNavState}>
+                <Sheet title={props.label} state={navState} close={setNavState} type={'select'}>
                     <ul className={styles.select}>
                         {
                             props.data && props.data.map((item, index) => {
                                 return (
-                                    <li className={classNames(styles.selectList, props.value === item.value && styles.active)} key={index} onClick={() => { callBack(item.value) }}>
+                                    <li type={'list'} className={classNames(styles.selectList, props.value === item.value && styles.active)} key={index} onClick={() => { callBack(item.value) }}>
                                         {item.text}
                                     </li>
                                 )

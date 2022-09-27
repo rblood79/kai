@@ -1,14 +1,13 @@
 html {
   height: 100%;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   overscroll-behavior-x: none;
+  overscroll-behavior-y: contain;
   body {
     padding: 0;
     margin: 0;
     height: 100%;
-    /*font-family: 'Roboto', sans-serif;
-    font-family: 'Poppins', sans-serif;*/
-    font-family: 'HelveticaNeue Condensed Bold', sans-serif;
+    font-family: "HelveticaNeue Condensed Bold", sans-serif;
 
     font-size: 14px;
     font-weight: 400;
@@ -17,6 +16,7 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-x: none;
+    overscroll-behavior-y: contain;
     #root {
       height: 100%;
     }
