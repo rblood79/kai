@@ -26,7 +26,7 @@ const App = (props) => {
         childHeight += props.type === 'select' ? 56 : 81;
     })
 
-    console.log('childHeight:', childHeight)
+    //console.log('childHeight:', childHeight)
 
     const [view, setView] = useState(false)
 
