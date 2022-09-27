@@ -14,19 +14,16 @@ import styles from './index.module.scss';
 
 
 const App = (props) => {
-    //console.log('type', props.type)
     const child = Children.toArray(props.children);
     const childList = Children.toArray(child[0].props.children)
     const topHeight = 72;
     const bottomHeight = props.apply ? 64 : 20;
 
     let childHeight = props.type === 'select' ? 40 : 20;
-    
+
     childList.map(item => {
         childHeight += props.type === 'select' ? 56 : 81;
     })
-
-    //console.log('childHeight:', childHeight)
 
     const [view, setView] = useState(false)
 
@@ -35,8 +32,15 @@ const App = (props) => {
             props.height === 'body' ? window.innerHeight - 56 :
                 Math.min(topHeight + childHeight + bottomHeight, window.innerHeight - 128)
     )
-    //console.log(window.innerHeight, 'h: ', height)
+
     const [{ y }, api] = useSpring(() => ({ y: height }))
+    const display = y.to((py) => (py < height ? 'flex' : 'none'))
+
+    const bgStyle = {
+        display: y.to((py) => (py < height ? 'block' : 'none')),
+        opacity: y.to([0, height], [0.48, 0], 'clamp')
+    }
+
     const open = ({ canceled }) => {
         setView(true)
         api.start({
@@ -57,22 +61,9 @@ const App = (props) => {
         })
     }
 
-    const display = y.to((py) => (py < height ? 'flex' : 'none'))
-
-    const bgStyle = {
-        display: y.to((py) => (py < height ? 'block' : 'none')),
-        opacity: y.to([0, height], [0.6, 0], 'clamp')
-    }
-
     useEffect(() => {
         props.state ? open('') : close();
     }, [props.state])
-
-    /*useEffect(() => {
-        const child = Children.toArray(props.children);
-        const childList = Children.toArray(child[0].props.children)
-        console.log(childList[0])
-    }, [props.children])*/
 
     return (
         <>
@@ -110,5 +101,5 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-
+    type: 'text'
 };

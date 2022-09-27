@@ -1,8 +1,15 @@
 .container {
   z-index: 20;
-  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
   .bg {
-    background: #000;
+    background: rgba(0, 0, 0, 0.48);
     width: 100%;
     height: 100%;
     position: fixed;
@@ -14,26 +21,14 @@
   .sheet {
     z-index: 1;
     padding: 16px;
-    position: fixed;
     left: 0;
-    bottom: 0px;
-    height: 100%;
     width: 100%;
-    border-radius: 24px 24px 0px 0px;
+    border-radius: 24px;
     background: #fff;
     touch-action: none;
     box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.16);
     flex-direction: column;
-    will-change: transform;
-    &::after {
-      content: "";
-      background: #fff;
-      width: 100%;
-      height: 100px;
-      position: absolute;
-      left: 0;
-      bottom: -99px;
-    }
+    
     .header {
       position: relative;
       border-bottom: 1px solid #f4f4f4;
@@ -46,35 +41,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        &::before {
-          content: "";
-          position: absolute;
-          top: -4px;
-          height: 4px;
-          border-radius: 4px;
-          width: 56px;
-          background: #ccc;
-        }
       }
       .right {
         display: flex;
         align-items: center;
         justify-content: center;
-        .close {
-          width: 32px;
-          height: 32px;
-          background: #efefef;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 34px;
-        }
       }
     }
     .body {
-      //padding: 16px 0;
+      padding: 16px 0;
       height: 100%;
       overflow-y: auto;
+      font-size: 16px;
+      line-height: 21px;
     }
     .footer {
       //height: 80px;

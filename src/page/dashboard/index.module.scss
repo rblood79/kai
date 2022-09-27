@@ -22,7 +22,7 @@
       flex-direction: row;
       justify-content: space-around;
       position: relative;
-      box-shadow: inset 0px 0px 8px rgb(0,0,0,0.2);
+      box-shadow: inset 0px 0px 8px rgb(0, 0, 0, 0.2);
       &::before {
         z-index: 0;
         content: "";
@@ -51,10 +51,12 @@
         justify-content: center;
         background: transparent;
         border: none;
+        outline: none;
+        overflow: hidden;
       }
     }
   }
-  
+
   .section {
     scroll-snap-align: start;
     background-color: #fff;

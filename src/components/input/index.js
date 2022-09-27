@@ -20,12 +20,6 @@ const App = (props) => {
     const fnSelect = () => {
         console.log('fnSelect')
     }
-    const fnDate = () => {
-        console.log('fnDate')
-    }
-    const fnTime = () => {
-        console.log('fnTime')
-    }
 
     const textItem = () => {
         return (
@@ -54,65 +48,9 @@ const App = (props) => {
         )
     }
 
-    /*const dateItem = () => {
-        return (
-            <div className={styles.inputGroup}>
-                <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} >
-                    {typeof (props.value) === 'object' && props.value.length > 1 ? props.value[0] : props.value}
-                    <button className={styles.button} onClick={() => fnDate()}>
-                        <i className="ri-calendar-2-line" />
-                    </button>
-                </div>
-                {typeof (props.value) === 'object' && props.value.length > 1 && (
-                    <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} >
-                        {props.value[1]}
-                        <button className={styles.button} onClick={() => fnDate()}>
-                            <i className="ri-calendar-2-line" />
-                        </button>
-                    </div>
-                )}
-            </div>
-        )
-    }
-
-    const timeItem = () => {
-        const callBack = (v) => {
-            props.callBack((prevState) => {
-                return { ...prevState, [props.column]: v }
-            })
-            toggleNav();
-        }
-        return (
-            <>
-                <div className={styles.inputGroup}>
-                    <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {typeof (props.value) === 'object' && props.value.length > 1 ? props.value[0] : props.value}
-                        <i className="ri-time-line" />
-                    </div>
-                    {typeof (props.value) === 'object' && props.value.length > 1 && (
-                        <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} >
-                            {props.value[1]}
-                            <button className={styles.button} onClick={toggleNav}>
-                                <i className="ri-time-line" />
-                            </button>
-                        </div>
-                    )}
-                </div>
-                <Sheet title={props.label} state={navState} close={setNavState}>
-                    {
-                        <div>TIME</div>
-                    }
-                </Sheet>
-            </>
-        )
-    }*/
-
+    
     const [date, setDate] = useState(props.value);
     const [time, setTime] = useState(props.value);
-
-    /*useEffect(()=>{
-        console.log('aa')
-    },[date])*/
 
     const dateItem = () => {
         //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))

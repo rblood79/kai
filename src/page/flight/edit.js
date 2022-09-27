@@ -8,10 +8,12 @@ import { useParams, useLocation } from 'react-router-dom';
 
 import styles from './detail.module.scss';
 
-import { Header, Input, Card, ItemList } from '../../components';
+import { Header, Input, Card, ItemList, Modal } from '../../components';
 
 const App = (props) => {
-    //const [state, seState] = useState(false);
+    const [navState, setNavState] = useState(false);
+    const toggleNav = () => setNavState(!navState);
+
     const location = useLocation();
     const { id } = useParams();
     const [title, setTitle] = useState(null);
@@ -34,9 +36,20 @@ const App = (props) => {
         { id: '4', value: 'sfes', text: 'Bob Wilson' },
     ]
 
-    const toggleNav = () => {
+    /*const toggleNav = () => {
         console.log('save', params)
-    };
+    };*/
+
+    //bottom sheet cancle
+    const cancle = () => {
+        toggleNav();
+    }
+
+    //bottom sheet apply
+    const apply = () => {
+        console.log('save', params)
+        toggleNav();
+    }
 
     useEffect(() => {
         setDataG(location.state.dataG)
@@ -47,7 +60,6 @@ const App = (props) => {
         <>
             <Header title={title} depth={2} right={'save'} state={toggleNav} background={'#fff'} />
             <main className={styles.main}>
-                
                 <Card
                     background={'#FFCA00'}
                     titleColor={'#fff'}
@@ -70,6 +82,10 @@ const App = (props) => {
                     <Input label={'Tail No'} value={'27-001'} />
                 </Card>
             </main>
+
+            <Modal title={'Save data'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply}>
+            Are you sure you want to confirm "Documents"? All contents will be perminately destroyed.
+            </Modal>
         </>
     );
 }

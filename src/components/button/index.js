@@ -12,5 +12,5 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    background: 'transparent',
+    background: '#e5e7eb',
 };
