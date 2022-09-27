@@ -29,7 +29,10 @@
     justify-content: center;
     height: 100%;
     .title {
-      color: #000;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      color: #141414;
       font-size: 18px;
       letter-spacing: 1px;
       &.active {
@@ -67,7 +70,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  
   /*.header {
     filter: invert(1);
     .location {
