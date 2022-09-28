@@ -4,13 +4,14 @@
 */
 
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 import styles from './detail.module.scss';
 
 import { Header, Input, Card, ItemList, Modal } from '../../components';
 
 const App = (props) => {
+    const navigate = useNavigate();
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
@@ -47,8 +48,9 @@ const App = (props) => {
 
     //bottom sheet apply
     const apply = () => {
-        console.log('save', params)
-        toggleNav();
+        //console.log('save', params)
+        navigate('/flight/' + id);
+        //toggleNav();
     }
 
     useEffect(() => {
@@ -84,7 +86,7 @@ const App = (props) => {
             </main>
 
             <Modal title={'Save data'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply}>
-            Are you sure you want to confirm "Documents"? All contents will be perminately destroyed.
+                Are you sure you want to confirm "Documents"? All contents will be perminately destroyed.
             </Modal>
         </>
     );

@@ -3,17 +3,20 @@
 import { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
+import moment from 'moment';
+
 import Item from './swipeItem';
 
 import styles from './index.module.scss';
 
 
 const App = (props) => {
+    //console.log(props.data, props.format)
     const [data, setData] = useState(
         {
-            hour: '00',
-            min: '00',
-            sec: '00',
+            hour: moment(props.data, props.format).format('HH'),
+            min: moment(props.data, props.format).format('mm'),
+            sec: moment(props.data, props.format).format('ss'),
         }
     )
     const [hour, setHour] = useState([])
@@ -34,6 +37,7 @@ const App = (props) => {
 
     useEffect(() => {
         props.callBack(data)
+        //console.log(data)
     }, [data])
 
     useEffect(() => {
@@ -46,6 +50,7 @@ const App = (props) => {
         setHour(hour)
         setMin(min)
         setSec(min)
+        //console.log(props)
     }, [])
 
     return (

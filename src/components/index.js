@@ -1,5 +1,5 @@
 
-import Api from './Api';
+import Api from './api';
 import Header from './header';
 import Input from './input';
 import Button from './button';

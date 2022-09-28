@@ -53,8 +53,8 @@ const App = (props) => {
     const [time, setTime] = useState(props.value);
 
     const dateItem = () => {
-        //console.log(props.value, moment(props.value).format('DD MMM YYYY, h:mm:ss'))
-        //const [date, setDate] = useEffect(null);
+        const defFormat = 'YYYYMMDDHHmmss';
+
         const callBack = (d, t) => {
             const temp = d.year + d.month + d.day + t.hour + t.min + t.sec;
             props.callBack((prevState) => {
@@ -66,19 +66,19 @@ const App = (props) => {
             <>
                 <div className={styles.inputGroup}>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')}
+                        {moment(props.value, defFormat).format('YYYY/MM/DD')}
                         <i className="ri-calendar-2-line" />
                     </div>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value, 'YYYYMMDDHHmmss').format('HH:mm:ss')}
+                        {moment(props.value, defFormat).format('HH:mm:ss')}
                         <i className="ri-time-line" />
                     </div>
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState} type={'date'} apply={() => { callBack(date, time) }}>
                     {
                         <>
-                            <Date type={'date'} callBack={setDate} data={props.value} state={navState} />
-                            <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
+                            <Date type={'date'} format={defFormat} callBack={setDate} data={props.value} state={navState} />
+                            <Time type={'time'} format={defFormat} callBack={setTime} data={props.value} state={navState} />
                         </>
                     }
                 </Sheet>
@@ -92,6 +92,8 @@ const App = (props) => {
 
     const timeItem = () => {
 
+        const defFormat = 'HHmmss';
+
         const callBack = (t) => {
             const temp = t.hour + t.min + t.sec;
             props.callBack((prevState) => {
@@ -99,18 +101,19 @@ const App = (props) => {
             })
             toggleNav();
         }
+
         return (
             <>
                 <div className={styles.inputGroup}>
                     <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                        {moment(props.value, 'HHmmss').format('HH:mm:ss')}
+                        {moment(props.value, defFormat).format('HH:mm:ss')}
                         <i className="ri-time-line" />
                     </div>
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState} type={'time'} apply={() => { callBack(time) }}>
                     {
                         <>
-                            <Time type={'time'} callBack={setTime} data={props.value} state={navState} />
+                            <Time type={'time'} format={defFormat} callBack={setTime} data={props.value} state={navState} />
                         </>
                     }
                 </Sheet>

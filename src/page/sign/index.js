@@ -29,7 +29,7 @@ const App = () => {
                         },
                     })
                 }} />
-                <Button text={'Need help?'} color={'#939393'} onClick={() => { console.log('help') }} />
+                <Button text={'Need help?'} background={'transparent'} color={'#939393'} onClick={() => { console.log('help') }} />
             </div>
         </main>
     );

@@ -11,9 +11,9 @@ import styles from './index.module.scss';
 const App = (props) => {
     const [data, setData] = useState(
         {
-            year: '2000',
-            month: '01',
-            day: '01',
+            year: moment(props.data, props.format).format('YYYY'),
+            month: moment(props.data, props.format).format('MM'),
+            day: moment(props.data, props.format).format('DD'),
         }
     )
     const [year, setYear] = useState([])

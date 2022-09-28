@@ -28,3 +28,10 @@ html {
 ::-webkit-scrollbar {
   display: none;
 }
+
+:root {
+  --colorPrimary: #f8f8f8;
+  --colorSecondary: #0c90e7;
+  --colorSuccess: #23d160;
+  --colorError: #f14668;
+}

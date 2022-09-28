@@ -12,7 +12,7 @@ import { Header, Card, ItemList } from '../../components';
 
 const App = () => {
     //const [state, seState] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const toggleNav = () => {
         navigate('edit', { state: { dataG: dataG, dataP: dataP, dataA: dataA } });
     };

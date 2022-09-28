@@ -8,23 +8,19 @@ import { ReactComponent as FilterIcon } from '../../images/filter.svg';
 
 import Nav from '../nav';
 
+//import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 
 import gloval from '../../components/index.module.scss';
 import styles from './index.module.scss';
 import classNames from 'classnames';
-import { useEffect } from 'react';
 //const cx = classNames.bind(styles);
 
 const App = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-
-    useEffect(() => {
-        //console.log('header')
-    }, [])
-
+    
     return (
         <header className={classNames(styles.header)} style={{ 'background': props.background }}>
 

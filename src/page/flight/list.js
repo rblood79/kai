@@ -3,7 +3,7 @@
 
 */
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import moment from 'moment';
 
@@ -18,7 +18,6 @@ import styles from './list.module.scss';
 
 const App = (props) => {
     
-
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
@@ -60,7 +59,7 @@ const App = (props) => {
     ]
 
     //list component
-    
+
     const onLoad = async () => {
         setTemp(JSON.parse(JSON.stringify(params)))
         try {
@@ -133,21 +132,18 @@ const App = (props) => {
                     </div>
                     <span className={styles.date}>{moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')} - {moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')}</span>
                 </header>
-                {
-
-                    <div className={styles.list}>
-                        {data ? listItem : <div>no data</div>}
-                    </div>
-                }
+                <div>{
+                    data ? listItem : <div>no data</div>
+                }</div>
             </main>
 
             <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} >
 
                 <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} callBack={setParams} />
 
-                <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} callBack={setParams}/>
+                <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} callBack={setParams} />
 
-                <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'}callBack={setParams} />
+                <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} callBack={setParams} />
 
                 <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} callBack={setParams} />
 
