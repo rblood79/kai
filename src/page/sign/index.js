@@ -22,14 +22,14 @@ const App = () => {
                     <Input placeholder={'ID'} />
                     <Input placeholder={'PASSWORD'} />
                 </div>
-                <Button text={'Sign In'} background={'#0C90E7'} color={'#fff'} onClick={() => {
+                <Button text={'Sign In'} background={'var(--colorSecondary)'} color={'var(--colorPrimary)'} onClick={() => {
                     navigate('/dashboard', {
                         state: {
                             data: null,
                         },
                     })
                 }} />
-                <Button text={'Need help?'} background={'transparent'} color={'#939393'} onClick={() => { console.log('help') }} />
+                <Button text={'Need help?'} background={'transparent'} color={'var(--colorMid)'} onClick={() => { console.log('help') }} />
             </div>
         </main>
     );

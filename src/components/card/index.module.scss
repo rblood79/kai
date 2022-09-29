@@ -1,7 +1,7 @@
 .container {
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background-color: #fff;
-  border-radius: 16px;
+  background-color: var(--colorCard);
+  border-radius: var(--borderRadius);
   padding: 8px 16px 16px 16px;
   box-shadow: 2px 4px 8px #efefef;
   .head {
@@ -11,18 +11,18 @@
     align-items: center;
     justify-content: space-between;
     .title {
-      font-size: 24px;
+      font-size: var(--titleSize);
     }
     .text {
-      font-size: 16px;
+      font-size: var(--fontSize);
     }
     .button {
-      background: #0C90E7;
-      color: #fff;
+      background: var(--colorSecondary);
+      color: var(--colorPrimary);
       height: 28px;
       padding: 0 16px;
-      border-radius: 16px;
-      font-size: 16px;
+      border-radius: var(--borderRadius);
+      font-size: var(--fontSize);
     }
   }
   .header {

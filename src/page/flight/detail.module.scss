@@ -10,7 +10,7 @@
     flex-direction: column;
     margin-bottom: 48px;
     .title {
-      font-size: 24px;
+      font-size: var(--titleSize);
       line-height: 32px;
       word-break: keep-all;
       background: linear-gradient(#2980B9, #6DD5FA);
@@ -18,7 +18,7 @@
       -webkit-text-fill-color: transparent;
     }
     .date {
-      color: #939393;
+      color: var(--colorMid);
     }
   }
   

@@ -32,7 +32,7 @@
       height: 100%;
       display: flex;
       align-items: center;
-      color: #141414;
+      color: var(--colorCardActive);
       font-size: 18px;
       letter-spacing: 1px;
       &.active {
@@ -50,7 +50,7 @@
       content: "";
       position: absolute;
       background-color: #f00;
-      border-radius: 8px;
+      border-radius: calc(var(--borderRadius) * 0.5);
       width: 8px;
       height: 8px;
       right: 4px;
@@ -61,7 +61,7 @@
     z-index: 2;
     grid-column: 5 / 6;
     .text {
-      font-size: 16px;
+      font-size: var(--fontSize);
     }
   }
   /*button {

@@ -60,11 +60,11 @@ const App = (props) => {
 
     return (
         <>
-            <Header title={title} depth={2} right={'save'} state={toggleNav} background={'#fff'} />
+            <Header title={title} depth={2} right={'save'} state={toggleNav} background={'var(--colorCard)'} />
             <main className={styles.main}>
                 <Card
-                    background={'#FFCA00'}
-                    titleColor={'#fff'}
+                    background={'var(--colorEditable)'}
+                    titleColor={'var(--colorCard)'}
                     title={'Geneal'}
                     rightText={'Not Editabled'}
                     icon={'ri-survey-line'}

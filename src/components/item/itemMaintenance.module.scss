@@ -2,11 +2,11 @@
   margin-top: 8px;
   background-color: #f4f4f4;
   border: 1px solid rgba(0,0,0,0.056);
-  border-radius: 8px;
+  border-radius: calc(var(--borderRadius) * 0.5);
   padding: 16px;
   position: relative;
   .baseIcon {
-    background-color: #fff;
+    background-color: var(--colorCard);
     border: 1px solid rgba(0,0,0,0.056);
     color: #0c90e7;
     width: 36px;
@@ -40,8 +40,8 @@
         margin-top: 36px;
       }
       .title {
-        color: #141414;
-        font-size: 16px;
+        color: var(--colorCardActive);
+        font-size: var(--fontSize);
         display: flex;
         align-items: center;
         height: 56px;
@@ -50,8 +50,8 @@
     .bar {
       height: 16px;
       display: flex;
-      background-color: #fff;
-      border-radius: 16px;
+      background-color: var(--colorCard);
+      border-radius: var(--borderRadius);
       border: 4px solid #efefef;
       margin: 8px 0 24px 0;
       position: relative;
@@ -60,14 +60,14 @@
         background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
         width: 0%;
         height: 100%;
-        border-radius: 8px;
+        border-radius: calc(var(--borderRadius) * 0.5);
       }
       .text {
         display: flex;
         position: absolute;
         right: -4px;
         top: 16px;
-        font-size: 16px;
+        font-size: var(--fontSize);
       }
     }
     .item {
@@ -79,22 +79,22 @@
       justify-content: space-between;
       
       .title {
-        font-size: 16px;
+        font-size: var(--fontSize);
         color: #b4b4b4;
         padding: 0;
         display: flex;
         align-items: center;
       }
       .text {
-        font-size: 16px;
-        color: #141414;
+        font-size: var(--fontSize);
+        color: var(--colorCardActive);
       }
       .textGroup {
         display: flex;
         flex-direction: column;
         .text {
           padding: 4px 0;
-          font-size: 16px;
+          font-size: var(--fontSize);
         }
       }
       

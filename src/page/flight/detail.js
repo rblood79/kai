@@ -151,7 +151,7 @@ const App = () => {
 
     return (
         <>
-            <Header title={title} depth={2} right={'edit'} state={toggleNav} background={'#fff'} />
+            <Header title={title} depth={2} right={'edit'} state={toggleNav} background={'var(--colorCard)'} />
             <main className={styles.main}>
                 <header className={styles.header}>
                     <div className={styles.title}>
@@ -162,8 +162,8 @@ const App = () => {
                     <span className={styles.date}>LAST INFO OF 19 OCTOBER 2021</span>
                 </header>
                 <Card
-                    background={'#0C90E7'}
-                    titleColor={'#fff'}
+                    background={'var(--colorSecondary)'}
+                    titleColor={'var(--colorCard)'}
                     title={'Geneal'}
                     rightText={'Not Editabled'}
                     icon={'ri-survey-line'}

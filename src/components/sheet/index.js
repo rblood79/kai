@@ -78,7 +78,7 @@ const App = (props) => {
                             <div className={styles.title}>{props.title}</div>
                             <div className={styles.right}>
                                 <button className={styles.close} onClick={() => close()}>
-                                    <CloseIcon width={24} height={24} fill={'#141414'} />
+                                    <CloseIcon width={24} height={24} fill={'var(--colorCardActive)'} />
                                 </button>
                             </div>
                         </header>
@@ -88,7 +88,7 @@ const App = (props) => {
                         {
                             props.apply && <footer className={styles.footer}>
                                 {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
-                                <Button text={'Apply'} background={'#0C90E7'} color={'#fff'} onClick={() => props.apply()} />
+                                <Button text={'Apply'} background={'var(--colorSecondary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>
                         }
                     </a.div>

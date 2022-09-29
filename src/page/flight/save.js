@@ -19,7 +19,7 @@ const App = () => {
     }, [])
     return (
         <>
-            <Header title={title} depth={2} right={'save'} navState={toggleNav} background={'#fff'} />
+            <Header title={title} depth={2} right={'save'} navState={toggleNav} background={'var(--colorCard)'} />
             <main className={styles.main}>
                 {title}--save
             </main>

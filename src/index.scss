@@ -1,6 +1,6 @@
 html {
   height: 100%;
-  background-color: #f8f8f8;
+  background-color: var(--colorPrimary);
   overscroll-behavior-x: none;
   overscroll-behavior-y: contain;
   touch-action: none;
@@ -23,15 +23,4 @@ html {
       height: 100%;
     }
   }
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-:root {
-  --colorPrimary: #f8f8f8;
-  --colorSecondary: #0c90e7;
-  --colorSuccess: #23d160;
-  --colorError: #f14668;
 }

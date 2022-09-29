@@ -122,7 +122,7 @@ const App = (props) => {
 
     return (
         <>
-            <Header title={'Flight List'} depth={1} right={'filter'} state={toggleNav} background={'#fff'} />
+            <Header title={'Flight List'} depth={1} right={'filter'} state={toggleNav} background={'var(--colorCard)'} />
             <main className={styles.main}>
                 <header className={styles.header}>
                     <div className={styles.title}>

@@ -1,12 +1,12 @@
 .container {
   margin-top: 8px;
-  background-color: #f4f4f4;
+  background-color: var(--colorPrimary);
   border: 1px solid rgba(0,0,0,0.056);
-  border-radius: 8px;
+  border-radius: calc(var(--borderRadius) * 0.5);
   padding: 16px;
   position: relative;
   .baseIcon {
-    background-color: #fff;
+    background-color: var(--colorCard);
     border: 1px solid rgba(0,0,0,0.056);
     color: #0c90e7;
     width: 36px;

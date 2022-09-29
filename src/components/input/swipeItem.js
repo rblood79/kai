@@ -26,12 +26,13 @@ const App = (props) => {
         });
 
         const findIndex = props.data.indexOf(props.set)
+        viewport.current.scrollTo(0, 40 * findIndex)
         
-        list && list.map((item, index) => {
-            const timer = setTimeout(() => index === findIndex && item.scrollIntoView({block: "start"}), 480);
+        list && list.map(item => {
+            //const timer = setTimeout(() => index === findIndex && item.scrollIntoView({ behavior: "auto", block: "start" }), 480);
+            //clearTimeout(timer);
             observer.observe(item);
             return () => {
-                clearTimeout(timer);
                 observer.disconnect(item); // *** Use the same element
             }
         })

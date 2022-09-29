@@ -42,8 +42,8 @@ const App = (props) => {
                 </div>
             </div>
             <div className={styles.footer}>
-                <Item title={'Aircraft Status'} text={data.status} textColor={'#fff'} height={26} />
-                <Item title={'Maintenance date'} text={data.maintenance} textColor={'#fff'} height={26} />
+                <Item title={'Aircraft Status'} text={data.status} textColor={'var(--colorCard)'} height={26} />
+                <Item title={'Maintenance date'} text={data.maintenance} textColor={'var(--colorCard)'} height={26} />
             </div>
         </section>
     )

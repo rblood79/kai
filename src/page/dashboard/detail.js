@@ -38,7 +38,7 @@ const App = () => {
         <>
             {
                 data && <>
-                    <Header title={data.title} background={'#f8f8f8'} depth={1} />
+                    <Header title={data.title} background={'var(--colorPrimary)'} depth={1} />
                     <main className={styles.main}>
                         <ItemOverview
                             data={data}

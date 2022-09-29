@@ -97,7 +97,7 @@ p {
 }
 
 i {
-  font-size: 24px;
+  font-size: var(--titleSize);
 }
 
 a, button {
@@ -114,7 +114,30 @@ input, select, textarea, button, a, label {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+input {
+  caret-color: var(--colorSecondary)
+}
+
 /*box-sizing*/
 * {
   box-sizing: border-box !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --colorPrimary: #f8f8f8;
+  --colorSecondary: #0c90e7;
+  --colorSuccess: #23d160;
+  --colorEditable: #ffca00;
+  --colorError: #f14668;
+  --colorMid: #939393;
+  --colorCard: #fff;
+  --colorCardActive: #141414;
+
+  --borderRadius: 16px;
+  --fontSize: 16px;
+  --titleSize: 24px;
 }

@@ -27,7 +27,7 @@
         z-index: 0;
         content: "";
         position: absolute;
-        background-color: #141414;
+        background-color: var(--colorCardActive);
         border-radius: 32px;
         width: calc(50% - 4px);
         height: 32px;
@@ -43,7 +43,7 @@
       }
       button {
         z-index: 1;
-        color: #939393;
+        color: var(--colorMid);
         height: 40px;
         flex: 1;
         display: flex;
@@ -59,11 +59,11 @@
 
   .section {
     scroll-snap-align: start;
-    background-color: #fff;
+    background: var(--colorCard);
     border: 1px solid rgba(0, 0, 0, 0.08);
     margin: 16px;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: var(--borderRadius);
     display: flex;
     flex-direction: column;
 

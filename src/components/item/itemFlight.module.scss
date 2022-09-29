@@ -2,11 +2,11 @@
   margin-top: 8px;
   background-color: #f4f4f4;
   border: 1px solid rgba(0,0,0,0.056);
-  border-radius: 8px;
+  border-radius: calc(var(--borderRadius) * 0.5);
   padding: 16px;
   position: relative;
   .baseIcon {
-    background-color: #fff;
+    background-color: var(--colorCard);
     border: 1px solid rgba(0,0,0,0.056);
     color: #0c90e7;
     width: 36px;
@@ -46,8 +46,8 @@
       justify-content: space-between;
       &.col {
         .title {
-          color: #141414;
-          font-size: 16px;
+          color: var(--colorCardActive);
+          font-size: var(--fontSize);
           margin-bottom: 16px;
         }
       }
@@ -65,7 +65,7 @@
           align-items: flex-end;
           .text {
             color: #e78a0c;
-            font-size: 16px;
+            font-size: var(--fontSize);
           }
         }
       }
@@ -76,7 +76,7 @@
           align-items: flex-end;
           .text {
             color: #0c90e7;
-            font-size: 16px;
+            font-size: var(--fontSize);
           }
         }
       }

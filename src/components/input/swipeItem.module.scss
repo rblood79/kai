@@ -24,14 +24,13 @@
     overflow-x: hidden;
     overflow-y: scroll;
     .item {
-      background: #fff;
       height: 40px;
       min-height: 40px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: var(--fontSize);
 
       scroll-snap-align: start;
 
