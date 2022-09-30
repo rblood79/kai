@@ -19,7 +19,7 @@
     bottom: 0px;
     height: 100%;
     width: 100%;
-    border-radius: 24px 24px 0px 0px;
+    border-radius: var(--borderRadius-150) var(--borderRadius-150) 0px 0px;
     background: var(--colorCard);
     touch-action: none;
     box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.16);
@@ -72,9 +72,15 @@
       }
     }
     .body {
-      //padding: 16px 0;
+      padding: 20px 0;
       height: 100%;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      /*border: 1px solid #f00;
+      & > div {
+        border: 1px solid #f00;
+      }*/
     }
     .footer {
       //height: 80px;

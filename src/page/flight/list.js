@@ -17,7 +17,7 @@ import styles from './list.module.scss';
 
 
 const App = (props) => {
-    
+
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
@@ -137,7 +137,7 @@ const App = (props) => {
                 }</div>
             </main>
 
-            <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} >
+            <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} gap={48}>
 
                 <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} callBack={setParams} />
 

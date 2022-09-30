@@ -91,8 +91,8 @@ const App = () => {
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={styles.main}>
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorCard)'} text={data[i].intro} />
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'var(--colorCard)'}
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data[i].intro} />
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'var(--colorBase)'}
                         text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
                     />
                     <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
@@ -105,11 +105,11 @@ const App = () => {
                     </div>
                 </div>
                 <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    <Item height={24} title={'Aircraft Status'} textColor={'var(--colorCard)'} text={data[i].status} />
-                    <Item height={24} title={'Maintenance Date'} textColor={'var(--colorCard)'} text={data[i].date} />
+                    <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data[i].status} />
+                    <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data[i].date} />
                 </animated.div>
                 <button className={styles.button} onClick={() => navigate(data[i].id)}>
-                    <UpIcon width={32} height={32} fill={'#2699fb'} />
+                    <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
             </animated.div>
         )
@@ -121,9 +121,9 @@ const App = () => {
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={classNames(styles.main, styles.over)}>
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'#0C90E7'} text={data.length + ' Air Fighter in this Unit'} />
+                    <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
                     <div className={styles.graph}>
-                        <Chart />
+                        <Chart percent={75.59}/>
                     </div>
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
@@ -131,11 +131,11 @@ const App = () => {
                     </div>
                 </div>
                 <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    <Item height={24} title={'Last Flight No'} textColor={'var(--colorCard)'} text={data[i].flight} />
-                    <Item height={24} title={'Last Defect'} textColor={'var(--colorCard)'} text={data[i].defect} />
+                    <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[i].flight} />
+                    <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[i].defect} />
                 </animated.div>
                 <button className={styles.button} onClick={() => navigate(data[i].id)}>
-                    <UpIcon width={32} height={32} fill={'#2699fb'} />
+                    <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
             </animated.div>
         )

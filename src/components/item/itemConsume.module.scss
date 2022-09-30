@@ -2,7 +2,7 @@
   background-color: #f00;
   border-radius: var(--borderRadius);
   padding: 8px 16px 16px 16px;
-  box-shadow: 2px 4px 8px #efefef;
+  box-shadow: var(--boxShadow);
   .header {
     min-height: 48px;
     height: 56px;
@@ -33,10 +33,10 @@
       align-items: center;
       justify-content: space-between;
       .title {
-        color: #b4b4b4;
+        color: var(--colorLabel);
       }
       .text {
-        color: #606060;
+        color: var(--colorText);
       }
     }
   }
@@ -44,7 +44,7 @@
     margin-top: 8px;
     background-color: #f4f4f4;
     border: 1px solid rgba(0,0,0,0.056);
-    border-radius: calc(var(--borderRadius) * 0.5);
+    border-radius: var(--borderRadius-50);
     padding: 16px;
     position: relative;
     .baseIcon {
@@ -82,8 +82,8 @@
           margin-top: 36px;
         }
         .title {
-          color: var(--colorCardActive);
-          font-size: var(--fontSize);
+          color: var(--colorSecondary);
+          font-size: var(--textSize);
           display: flex;
           align-items: center;
           height: 56px;
@@ -101,14 +101,14 @@
           height: 100%;
           background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
           width: 0%;
-          border-radius: calc(var(--borderRadius) * 0.5);
+          border-radius: var(--borderRadius-50);
         }
         .text {
           display: flex;
           position: absolute;
           right: -4px;
           top: 16px;
-          font-size: var(--fontSize);
+          font-size: var(--textSize);
         }
       }
       .item {
@@ -121,13 +121,13 @@
         
         .title {
           font-size: 14px;
-          color: #b4b4b4;
+          color: var(--colorLabel);
           padding: 0;
           display: flex;
           align-items: center;
         }
         .text {
-          color: var(--colorCardActive);
+          color: var(--colorSecondary);
         }
         .textGroup {
           display: flex;

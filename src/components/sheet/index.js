@@ -78,17 +78,17 @@ const App = (props) => {
                             <div className={styles.title}>{props.title}</div>
                             <div className={styles.right}>
                                 <button className={styles.close} onClick={() => close()}>
-                                    <CloseIcon width={24} height={24} fill={'var(--colorCardActive)'} />
+                                    <CloseIcon width={24} height={24} fill={'var(--colorSecondary)'} />
                                 </button>
                             </div>
                         </header>
-                        <div className={styles.body} >
+                        <div className={styles.body} style={{gap: props.gap}}>
                             {props.children}
                         </div>
                         {
                             props.apply && <footer className={styles.footer}>
                                 {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
-                                <Button text={'Apply'} background={'var(--colorSecondary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
+                                <Button text={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>
                         }
                     </a.div>
@@ -101,5 +101,6 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    type: 'text'
+    type: 'text',
+    gap: '20px',
 };

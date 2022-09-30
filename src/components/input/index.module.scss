@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
+  //margin-top: 16px;
   .label {
     color: var(--colorMid);
     font-size: 18px;
@@ -9,15 +9,13 @@
   }
   .inputGroup {
     display: flex;
-    .input + .input {
-      margin-left: 8px;
-    }
+    gap: 16px;
   }
   .picker {
     border-bottom: 1px solid #efefef;
     display: flex;
     flex-direction: row;
-    padding-top: 20px;
+    //padding-top: 20px;
     justify-content: space-between;
     .title {
       width: 100px;
@@ -25,7 +23,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--fontSize);
+      font-size: var(--textSize);
       color: var(--colorMid);
     }
     & + button {
@@ -35,18 +33,17 @@
   .select {
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
   }
   .input {
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: calc(var(--borderRadius) * 0.5);
+    border-radius: var(--borderRadius-50);
     width: 100%;
     height: 48px;
     font-family: inherit;
-    font-size: var(--fontSize);
+    font-size: var(--textSize);
     padding: 0 16px;
-    background-color: var(--colorPrimary);
+    background-color: var(--colorBase);
 
     display: flex;
     align-items: center;
@@ -65,7 +62,7 @@
       background-color: #fdebdf;
     }
     &::placeholder {
-      color: #b4b4b4;
+      color: var(--colorLabel);
     }
     &:focus {
       border-color: #828282;
@@ -86,14 +83,9 @@
     }
   }
 
-  & + .form {
+  /*& + .form {
     margin-top: 48px;
-  }
-
-  .list {
-    border: 1px solid #f00;
-    display: none;
-  }
+  }*/
 
   .selectList {
     display: flex;
@@ -101,9 +93,10 @@
     align-items: center;
     justify-content: space-between;
     height: 56px;
-    color: #b4b4b4;
+    color: var(--colorLabel);
+    font-size: var(--textSize);
     &.active {
-      color: var(--colorCardActive);
+      color: var(--colorSecondary);
       background: url("../../images/check.svg");
       background-repeat: no-repeat;
       background-position: calc(100% - 4px) center;

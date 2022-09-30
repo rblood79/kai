@@ -13,7 +13,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    color: var(--colorCardActive);
+    color: var(--colorSecondary);
     z-index: 0;
     text-align: center;
   }
@@ -106,8 +106,8 @@
           justify-content: space-between;
           align-items: flex-end;
           .title {
-            color: #b4b4b4;
-            font-size: var(--fontSize);
+            color: var(--colorLabel);
+            font-size: var(--textSize);
           }
           .text {
             font-size: 34px;
@@ -131,9 +131,8 @@
       .over {
         grid-template-rows: 36px 40px auto 80px ;
         .graph {
-          background: linear-gradient(0deg, #fff 0%, #efefef 100%);
+          //background: linear-gradient(0deg, #fff 0%, #efefef 100%);
           border-radius: var(--borderRadius);
-          padding: 16px;
         }
         .rate {
           flex-direction: column;
@@ -141,8 +140,8 @@
           align-items: center;
           gap: 8px;
           .title {
-            color: #b4b4b4;
-            font-size: var(--fontSize);
+            color: var(--colorLabel);
+            font-size: var(--textSize);
           }
           .text {
             font-size: 34px;
@@ -156,7 +155,7 @@
         padding: 32px 16px 16px 16px;
         width: 100%;
         height: 96px;
-        background: var(--colorCardActive);
+        background: var(--colorSecondary);
         color: var(--colorCard);
         border-radius: 0 0 16px 16px;
         box-shadow: inset 0 24px 8px #000;
@@ -194,7 +193,7 @@
       border-radius: var(--borderRadius);
       aspect-ratio: 1;
       .title {
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
         padding: 8px 0;
         color: var(--colorCard);
       }

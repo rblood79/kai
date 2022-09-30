@@ -162,7 +162,7 @@ const App = () => {
                     <span className={styles.date}>LAST INFO OF 19 OCTOBER 2021</span>
                 </header>
                 <Card
-                    background={'var(--colorSecondary)'}
+                    background={'var(--colorPrimary)'}
                     titleColor={'var(--colorCard)'}
                     title={'Geneal'}
                     rightText={'Not Editabled'}

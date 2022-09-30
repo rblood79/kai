@@ -107,7 +107,11 @@ a, button {
   -moz-appearance: none;
   appearance: none;
   user-select: none;
+}
 
+button svg{
+  width: auto;
+  height: auto;
 }
 
 input, select, textarea, button, a, label {
@@ -115,9 +119,13 @@ input, select, textarea, button, a, label {
 }
 
 input {
-  caret-color: var(--colorSecondary)
+  caret-color: var(--colorPrimary)
 }
 
+svg {
+  width: 100%;
+  height: 100%;
+}
 /*box-sizing*/
 * {
   box-sizing: border-box !important;
@@ -128,16 +136,25 @@ input {
 }
 
 :root {
-  --colorPrimary: #f8f8f8;
-  --colorSecondary: #0c90e7;
+  --colorBase: #f8f8f8;
+  --colorPrimary: #0c90e7;
+  --colorSecondary: #141414;
   --colorSuccess: #23d160;
   --colorEditable: #ffca00;
   --colorError: #f14668;
   --colorMid: #939393;
+
   --colorCard: #fff;
-  --colorCardActive: #141414;
+  --colorTitle: #141414;
+  --colorLabel: #b4b4b4;
+  --colorText: #606060;
 
   --borderRadius: 16px;
-  --fontSize: 16px;
+  --borderRadius-50: calc(var(--borderRadius) * 0.5);
+  --borderRadius-150: calc(var(--borderRadius) * 1.5);
+
   --titleSize: 24px;
+  --textSize: 16px;
+
+  --boxShadow: 0px 8px 16px #efefef;
 }

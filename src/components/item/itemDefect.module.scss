@@ -2,7 +2,7 @@
   margin-top: 8px;
   background-color: #f4f4f4;
   border: 1px solid rgba(0,0,0,0.056);
-  border-radius: calc(var(--borderRadius) * 0.5);
+  border-radius: var(--borderRadius-50);
   padding: 16px;
   position: relative;
   .baseIcon {
@@ -40,8 +40,8 @@
         margin-top: 36px;
       }
       .title {
-        color: var(--colorCardActive);
-        font-size: var(--fontSize);
+        color: var(--colorSecondary);
+        font-size: var(--textSize);
         display: flex;
         align-items: center;
         height: 56px;

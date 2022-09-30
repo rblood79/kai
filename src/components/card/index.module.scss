@@ -3,7 +3,7 @@
   background-color: var(--colorCard);
   border-radius: var(--borderRadius);
   padding: 8px 16px 16px 16px;
-  box-shadow: 2px 4px 8px #efefef;
+  box-shadow: var(--boxShadow);
   .head {
     height: 56px;
     display: flex;
@@ -11,18 +11,22 @@
     align-items: center;
     justify-content: space-between;
     .title {
+      color: var(--colorTitle);
       font-size: var(--titleSize);
+      display: flex;
+      height: 100%;
+      align-items: center;
     }
     .text {
-      font-size: var(--fontSize);
+      font-size: var(--textSize);
     }
     .button {
-      background: var(--colorSecondary);
-      color: var(--colorPrimary);
+      background: var(--colorPrimary);
+      color: var(--colorBase);
       height: 28px;
       padding: 0 16px;
       border-radius: var(--borderRadius);
-      font-size: var(--fontSize);
+      font-size: var(--textSize);
     }
   }
   .header {
@@ -31,7 +35,10 @@
   }
   .children {
     border-top: 1px solid #ebebeb;
-    padding: 16px 0 0 0;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
   }
   
 }

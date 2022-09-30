@@ -31,10 +31,10 @@
         display: flex;
         align-items: center;
         letter-spacing: 0.08em;
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
         line-height: 20px;
         padding-top: 2px;
-        color: #b4b4b4;
+        color: var(--colorLabel);
         background: linear-gradient(90deg, #194bb5, #009de4, #5ac8fa);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -53,7 +53,7 @@
     .subTitle {
       transform: skew(-20deg);
       letter-spacing: 0.46em;
-      color: #b4b4b4;
+      color: var(--colorLabel);
       background: linear-gradient(135deg, #ccc, #141414);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -70,12 +70,12 @@
           &:focus {
             z-index: 1;
           }
-          border-radius: calc(var(--borderRadius) * 0.5) calc(var(--borderRadius) * 0.5) 0 0;
+          border-radius: var(--borderRadius-50) var(--borderRadius-50) 0 0;
         }
         & + div {
           margin-top: -1px;
           input {
-            border-radius: 0 0 calc(var(--borderRadius) * 0.5) calc(var(--borderRadius) * 0.5);
+            border-radius: 0 0 var(--borderRadius-50) var(--borderRadius-50);
           }
         }
       }

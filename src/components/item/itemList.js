@@ -33,7 +33,7 @@ export default App;
 App.defaultProps = {
     height: 40,
     title: 'title',
-    titleColor: 'var(--colorCardActive)',
+    titleColor: 'var(--colorSecondary)',
     background: 'var(--colorCard)',
     icon: null,
 };

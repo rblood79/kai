@@ -22,7 +22,7 @@ const App = () => {
                     <Input placeholder={'ID'} />
                     <Input placeholder={'PASSWORD'} />
                 </div>
-                <Button text={'Sign In'} background={'var(--colorSecondary)'} color={'var(--colorPrimary)'} onClick={() => {
+                <Button text={'Sign In'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} onClick={() => {
                     navigate('/dashboard', {
                         state: {
                             data: null,

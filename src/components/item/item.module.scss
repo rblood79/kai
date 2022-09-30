@@ -4,9 +4,11 @@
   justify-content: space-between;
   gap: 8px;
   .title {
-    font-size: var(--fontSize);
+    font-size: var(--textSize);
+    color: var(--colorLabel);
   }
   .text {
-    font-size: var(--fontSize);
+    font-size: var(--textSize);
+    color: var(--colorText);
   }
 }

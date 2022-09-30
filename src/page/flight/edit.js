@@ -71,7 +71,7 @@ const App = (props) => {
                     body={ItemList}
                     data={dataG}
                 />
-                <Card icon={'ri-survey-line'} title={'Plan'}>
+                <Card icon={'ri-survey-line'} title={'Plan'} gap={48}>
                     <Input label={'Take-Off'} type={'time'} value={params.takeoff} column={'takeoff'} callBack={setParams} />
                     <Input label={'Landing'} type={'time'} value={params.landing} column={'landing'} callBack={setParams} />
                     <Input label={'Briefing'} disabled={true} value={params.briefing} />

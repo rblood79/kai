@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   .header {
-    background-color: var(--colorSecondary);
+    background-color: var(--colorPrimary);
     height: 136px;
     border-radius: var(--borderRadius);
     padding: 16px;
@@ -41,12 +41,12 @@
       }
       .title {
         padding: 8px 0;
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
       }
       .text {
         padding: 8px 0;
         color: var(--colorCard);
-        font-size: var(--fontSize);
+        font-size: var(--textSize);
       }
     }
   }
@@ -94,7 +94,7 @@
           height: 100%;
           background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
           width: 0%;
-          border-radius: calc(var(--borderRadius) * 0.5);
+          border-radius: var(--borderRadius-50);
         }
       }
     }
