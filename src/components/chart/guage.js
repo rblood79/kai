@@ -135,14 +135,25 @@ const App = (props) => {
             };
         });
 
+
+
         chart.append('g')
             .attr("transform", "rotate(-90) scale(1,1)")
             .attr('filter', 'drop-shadow(4px 4px 8px #141414)')
             .selectAll('path').data(data).enter().append('path').attr("d", arc)
             .attr("fill", (d) => d.fill)
 
+        /*const arc2 = d3.arc()
+            .outerRadius(radius - inner - 16)
+            .innerRadius(0)
+            .startAngle(-pi / 2)
+            .endAngle( (pi / 2))
+        chart
+            .append('path')
+            .style('fill', '#f00')
+            .attr('d', arc2);*/
 
-        const needle = new Needle((height * 0.45) - barWidth, 6);
+        const needle = new Needle((width * 0.5) - barWidth, 6);
 
         needle.drawOn(chart, 0);
         needle.animateOn(chart, percent);
