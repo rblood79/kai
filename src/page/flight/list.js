@@ -20,12 +20,121 @@ const App = (props) => {
 
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
-
+    //list data
+    const [data, setData] = useState(
+        [
+            {
+              "id": "1",
+              "title": "AAAAA-002",
+              "header": [
+                {
+                  "title": "Tail No",
+                  "text": "20-001"
+                },
+                {
+                  "title": "Flight Date",
+                  "text": "20220901",
+                  "type": "date"
+                }
+              ],
+              "body": [
+                {
+                  "title": "Plan",
+                  "to": "11:30:40",
+                  "ld": "11:30:00"
+                },
+                {
+                  "title": "Actual",
+                  "to": "12:40:00",
+                  "ld": "12:30:00"
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "title": "BBBBB",
+              "header": [
+                {
+                  "title": "Tail No",
+                  "text": "20-001"
+                },
+                {
+                  "title": "Flight Date",
+                  "text": "20220821",
+                  "type": "date"
+                }
+              ],
+              "body": [
+                {
+                  "title": "Plan",
+                  "to": "11:30:40",
+                  "ld": "11:30:00"
+                },
+                {
+                  "title": "Actual",
+                  "to": "12:40:00",
+                  "ld": "12:30:00"
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "title": "cCCCC",
+              "header": [
+                {
+                  "title": "Tail No",
+                  "text": "20-001"
+                },
+                {
+                  "title": "Flight Date",
+                  "text": "20220830",
+                  "type": "date"
+                }
+              ],
+              "body": [
+                {
+                  "title": "Plan",
+                  "to": "11:30:40",
+                  "ld": "11:30:00"
+                },
+                {
+                  "title": "Actual",
+                  "to": "12:40:00",
+                  "ld": "12:30:00"
+                }
+              ]
+            },
+            {
+              "id": "4",
+              "title": "DDwse",
+              "header": [
+                {
+                  "title": "Tail No",
+                  "text": "20-022"
+                },
+                {
+                  "title": "Flight Date",
+                  "text": "20210920",
+                  "type": "date"
+                }
+              ],
+              "body": [
+                {
+                  "title": "Plan",
+                  "to": "11:30:40",
+                  "ld": "11:30:00"
+                },
+                {
+                  "title": "Actual",
+                  "to": "12:40:00",
+                  "ld": "12:30:00"
+                }
+              ]
+            }
+          ]
+    );
     //filter empty data
     const [temp, setTemp] = useState(null)
-
-    //list data
-    const [data, setData] = useState(null);
 
     //filter default data
     const [params, setParams] = useState(
@@ -132,7 +241,7 @@ const App = (props) => {
                     </div>
                     <span className={styles.date}>{moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')} - {moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')}</span>
                 </header>
-                <div>{
+                <div className={styles.body}>{
                     data ? listItem : <div>no data</div>
                 }</div>
             </main>

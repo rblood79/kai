@@ -24,7 +24,7 @@
     left: 0;
     width: 100%;
     border-radius: 24px;
-    background: var(--colorCard);
+    background: var(--colorSecondary);
     touch-action: none;
     box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.16);
     flex-direction: column;
@@ -41,6 +41,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--colorBase);
       }
       .right {
         display: flex;
@@ -54,6 +55,7 @@
       overflow-y: auto;
       font-size: var(--textSize);
       line-height: 21px;
+      color: var(--colorBase);
     }
     .footer {
       //height: 80px;

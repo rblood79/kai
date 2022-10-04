@@ -31,7 +31,38 @@ const App = () => {
     const index = useRef(0)
     const width = window.innerWidth - 96;
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([
+        {
+            "id": "total",
+            "title": "Average rate",
+            "base": "11 base camp",
+            "rate": "79.01",
+            "flight": "220218-658KFX",
+            "defect": "Turbine defect"
+        },
+        {
+            "id": "1",
+            "title": "KF-21-001",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "82.6",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+
+
+        },
+        {
+            "id": "2",
+            "title": "KF-21-002",
+            "intro": "23 July 2021",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "18.02",
+            "status": "At Maintenance",
+            "date": "24 June 2021"
+        },
+    ])
 
     const onLoad = async () => {
         try {
@@ -79,12 +110,12 @@ const App = () => {
             })
         }
     }, {
-        drag: { 
+        drag: {
             axis: 'lock'
         }
     });
 
-    
+
     const listItem = (x, y, display, scale, ty, i) => {
         const color = percentColor(data[i].rate);
         return (
@@ -123,7 +154,7 @@ const App = () => {
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
                     <div className={styles.graph}>
-                        <Chart percent={75.59}/>
+                        <Chart percent={75.59} />
                     </div>
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>

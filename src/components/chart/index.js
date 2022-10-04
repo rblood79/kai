@@ -8,6 +8,7 @@ import * as d3 from 'd3';
 
 
 const App = (props) => {
+
     const svgRef = useRef(null);
 
     const percToDeg = (perc) => {
@@ -62,7 +63,7 @@ const App = (props) => {
             self = this;
             return el
                 .transition()
-                .delay(1000)
+                .delay(600)
                 //.ease('elastic')
                 .duration(2000)
                 .selectAll('.needle')
@@ -98,48 +99,44 @@ const App = (props) => {
         const height = svgRef.current.clientHeight;
         const percent = props.percent / 100;
         const barWidth = props.barWidth;
-        const numSections = props.colors.length;
-        const sectionPerc = 1 / numSections / 2;
-        const padRad = 0 / (numSections - 1);
         const chartInset = 16;
-        let totalPercent = 0.75;
-        let i = null;
-        const radius = Math.min(width, height) / 2;
+        const radius = width / 2;//Math.min(width, height) / 2;
+        const pi = Math.PI;
 
         svg.selectAll('g').remove();
-        const chart = svg.append('g').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height + 0) / 2) + ")")
+        const chart = svg.append('g').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
 
-
-        const arc = d3.arc()
+        const arcBase = d3.arc()
             .outerRadius(radius)
             .innerRadius(radius - chartInset - barWidth - 16)
-            .startAngle(4.71238898038469)
-            .endAngle(7.853981633974483);
+            .startAngle(-pi / 2)
+            .endAngle(pi / 2)
         chart
             .append('path')
             .style('fill', '#383838')
-            .attr('d', arc);
+            .attr('d', arcBase);
 
-        for (let sectionIndx = i = 1, ref = numSections; 1 <= ref ? i <= ref : i >= ref; sectionIndx = 1 <= ref ? ++i : --i) {
+        const range = 180;
+        const colorScale = d3.scaleSequential(d3.interpolateHslLong("red", "blue")).domain([0, range]);
+        //console.log(colorScale)
+        const arc = d3.arc()
+            .innerRadius(radius - chartInset - barWidth)
+            .outerRadius(radius - chartInset)
+            .startAngle(function (d) { return d.startAngle; })
+            .endAngle(function (d) { return d.endAngle; });
+        
+        const data = d3.range(range-1).map(function (d, i) {
+            //i *= steps;
+            return {
+                startAngle: i * (pi / range),
+                endAngle: (i + 2) * (pi / range),
+                fill: colorScale(d)
+            };
+        });
 
-            const arcStartRad = percToRad(totalPercent);
-            const arcEndRad = arcStartRad + percToRad(sectionPerc);
-            totalPercent += sectionPerc;
-            const startPadRad = sectionIndx === 0 ? 0 : padRad / 2;
-            const endPadRad = sectionIndx === numSections ? 0 : padRad / 2;
-            //console.log(arcStartRad + startPadRad, arcEndRad - endPadRad)
-            const arc = d3
-                .arc()
-                .outerRadius(radius - chartInset)
-                .innerRadius(radius - chartInset - barWidth)
-                .startAngle(arcStartRad + startPadRad)
-                .endAngle(arcEndRad - endPadRad);
-            chart
-                .append('path')
-                .style('fill', props.colors[sectionIndx - 1])
-                .attr('d', arc);
-        }
-
+        chart.append('g').attr("transform", "rotate(-90) scale(1,1)")
+            .selectAll('path').data(data).enter().append('path').attr("d", arc)
+            .attr("fill", (d) => d.fill)
 
 
         const needle = new Needle((height * 0.45) - barWidth, 6);
@@ -161,6 +158,6 @@ App.defaultProps = {
     percent: 50,
     barWidth: 28,
     numSections: 2,
-    colors: ['#E78A0C', '#f00', '#0f0'],
+    colors: ['#f00', '#0f0'],
     needleColor: '#fff'
 };
