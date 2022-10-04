@@ -120,7 +120,7 @@ const App = () => {
         const color = percentColor(data[i].rate);
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                <div className={styles.main}>
+                <div className={styles.main} >
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data[i].intro} />
                     <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'var(--colorBase)'}
@@ -154,7 +154,7 @@ const App = () => {
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
                     <div className={styles.graph}>
-                        <Chart percent={75.59} />
+                        <Chart type={'guage'} percent={75.59} />
                     </div>
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
