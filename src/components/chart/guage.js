@@ -8,7 +8,9 @@ import * as d3 from 'd3';
 
 
 const App = (props) => {
-
+    const delay = 300;
+    const duration = 2000;
+    const easing = d3.easeCubicInOut;
     const svgRef = useRef(null);
 
     const percToDeg = (perc) => {
@@ -63,9 +65,9 @@ const App = (props) => {
             self = this;
             return el
                 .transition()
-                .delay(600)
-                //.ease('elastic')
-                .duration(2000)
+                .delay(delay)
+                .duration(duration)
+                .ease(easing)
                 .selectAll('.needle')
                 .tween('progress', function () {
                     return function (percentOfPercent) {
@@ -102,6 +104,10 @@ const App = (props) => {
         const inner = 16;
         const radius = width / 2; //Math.min(width, height) / 2;
         const pi = Math.PI;
+        const piePercent = pi * percent;
+        const range = 180;
+        const colorScale = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, range]);
+        const perToColor = colorScale((180 / 100) * props.percent);
 
         svg.selectAll('g').remove();
         const chart = svg.append('g').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
@@ -116,10 +122,8 @@ const App = (props) => {
             .style('fill', '#383838')
             .attr('d', arcBase);
 
-        const range = 180;
-        const colorScale = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, range]);
 
-        //console.log(colorScale)
+
         const arc = d3.arc()
             .innerRadius(radius - inner - barWidth)
             .outerRadius(radius - inner)
@@ -127,38 +131,54 @@ const App = (props) => {
             .endAngle(function (d) { return d.endAngle; });
 
         const data = d3.range(range - 1).map(function (d, i) {
-            //i *= steps;
             return {
-                startAngle: i * (pi / range),
-                endAngle: (i + 2) * (pi / range),
+                startAngle: (-pi / 2) + (i * (pi / range)),
+                endAngle: (-pi / 2) + ((i + 2) * (pi / range)),
                 fill: colorScale(d)
             };
         });
 
-
-
         chart.append('g')
-            .attr("transform", "rotate(-90) scale(1,1)")
             .attr('filter', 'drop-shadow(4px 4px 8px #141414)')
             .selectAll('path').data(data).enter().append('path').attr("d", arc)
             .attr("fill", (d) => d.fill)
 
-        /*const arc2 = d3.arc()
+
+        const arcTween = (newAngle) => {
+            return (d) => {
+                var interpolate = d3.interpolate(d.endAngle, newAngle);
+                return (t) => {
+                    d.endAngle = interpolate(t);
+                    return arcValue(d);
+                };
+            };
+        }
+
+        const arcValue = d3.arc()
             .outerRadius(radius - inner - 16)
             .innerRadius(0)
             .startAngle(-pi / 2)
-            .endAngle( (pi / 2))
-        chart
-            .append('path')
-            .style('fill', '#f00')
-            .attr('d', arc2);*/
+
+        const foreground = chart.append("path")
+            .datum({
+                endAngle: (-pi / 2),
+            })
+            .style("fill", "#FF5A03")
+            .attr("d", arcValue);
+
+        props.active && foreground.transition()
+            .delay(delay)
+            .duration(duration)
+            .ease(easing)
+            .attrTween("d", arcTween((-pi / 2) + piePercent))
+            .style("fill", perToColor);
 
         const needle = new Needle((width * 0.5) - barWidth, 6);
 
         needle.drawOn(chart, 0);
-        needle.animateOn(chart, percent);
+        props.active && needle.animateOn(chart, percent);
 
-    }, [svgRef.current]);
+    }, [svgRef.current, props.active]);
 
     return (
         <svg ref={svgRef} />

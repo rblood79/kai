@@ -8,7 +8,7 @@ import { ReactComponent as UpIcon } from '../../images/up.svg';
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSprings, animated, easings, config, useSpringRef } from '@react-spring/web';
+import { useSpring, useSprings, animated, easings, config, useSpringRef } from '@react-spring/web';
 
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ const App = () => {
             "id": "total",
             "title": "Average rate",
             "base": "11 base camp",
-            "rate": "79.01",
+            "rate": "84.04",
             "flight": "220218-658KFX",
             "defect": "Turbine defect"
         },
@@ -116,8 +116,12 @@ const App = () => {
     });
 
 
-    const listItem = (x, y, display, scale, ty, i) => {
+
+    const ListItem = (x, y, display, scale, ty, i) => {
         const color = percentColor(data[i].rate);
+        const active = currentIndex === i ? true : false;
+        const props = useSpring({ to: { val: active ? Number(data[i].rate) : 0, width: active ? data[i].rate + '%' : '0%' }, from: { val: 0, width: '0%', background: gradient(data[i].rate, -90) }, config: { duration: 600 } })
+        //const props2 = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 } });
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={styles.main} >
@@ -129,10 +133,12 @@ const App = () => {
                     <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
-                        <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
+                        <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
+                            {props.val.to(val => val.toFixed(2) + '%')}
+                        </animated.span>
                     </div>
                     <div className={styles.bar}>
-                        <span className={styles.value} style={{ width: data[i].rate + '%', background: gradient(data[i].rate, 90) }}></span>
+                        <animated.span className={styles.value} style={props}></animated.span>
                     </div>
                 </div>
                 <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
@@ -146,19 +152,22 @@ const App = () => {
         )
     };
 
-    const mainItem = (x, y, display, scale, ty, i) => {
-
+    const MainItem = (x, y, display, scale, ty, i) => {
+        const active = currentIndex === i ? true : false;
+        const props = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 }, config: { duration: 1800 } })
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={classNames(styles.main, styles.over)}>
                     <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
                     <div className={styles.graph}>
-                        <Chart type={'guage'} percent={79} />
+                        <Chart type={'guage'} percent={data[i].rate} active={active} />
                     </div>
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
-                        <span className={styles.text} style={{ color: percentColor(data[i].rate) }}>{data[i].rate + '%'}</span>
+                        <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
+                            {props.val.to(val => val.toFixed(2) + '%')}
+                        </animated.span>
                     </div>
                 </div>
                 <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
@@ -185,7 +194,7 @@ const App = () => {
                             <div className={styles.listContents}>
                                 {
                                     props.map(({ x, y, display, scale, ty }, i) => (
-                                        i !== 0 ? listItem(x, y, display, scale, ty, i) : mainItem(x, y, display, scale, ty, i)
+                                        i !== 0 ? ListItem(x, y, display, scale, ty, i) : MainItem(x, y, display, scale, ty, i)
                                     ))
                                 }
                             </div>

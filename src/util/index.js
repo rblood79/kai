@@ -1,18 +1,16 @@
-const rangeColor = (percent, start, end) => {
-    let a = percent / 100,
-        b = (end - start) * a,
-        c = b + start;
-    return 'hsl(' + c + ', 86%, 48%)';
-}
 
-const percentColor = (percent) => {
+import * as d3 from 'd3';
+
+/*const percentColor = (percent) => {
     const hue = ((percent * 0.01) * 204).toString(10);
     return 'hsl(' + hue + ', 86%, 48%)';
-}
+}*/
+
+const percentColor = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, 100]);
+const percentColor2 = d3.scaleSequential(d3.interpolateCubehelixLong("#FF5A03", "#0F4DD8")).domain([0, 100]);
 
 const gradient = (percent, deg) => {
-    const hue = ((percent * 0.01) * 204).toString(10);
-    return 'linear-gradient(' + deg + 'deg, hsl(' + hue + ' 86% 48%) 0%, hsl(' + hue + ', 86%, 24%) 100%)';
+    return 'linear-gradient(' + deg + 'deg, '+percentColor2(percent)+' 0%, ' + percentColor(percent) + ' 100%)';
 }
 
 const numberPad = (n, width) => {
@@ -20,4 +18,4 @@ const numberPad = (n, width) => {
     return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
 
-export { rangeColor, percentColor, gradient, numberPad };
+export { percentColor, percentColor2, gradient, numberPad };
