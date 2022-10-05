@@ -22,7 +22,9 @@ import Defect from './page/defect';
 
 
 const App = () => {
-  
+  //const standalone = 'standalone' in window.navigator && window.navigator.standalone;
+  //console.log(standalone)
+
   const location = useLocation();
   const transitions = useTransition(location, {
     from: { transform: 'translate3d(100%,0,0)' },
@@ -39,7 +41,7 @@ const App = () => {
     <div className="App">
       <div className='container'>
         {transitions((styles, item) => (
-          <a.div style={styles}>
+          <a.div className='contents' style={styles}>
             <Routes location={item}>
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Sign />} />
@@ -63,7 +65,7 @@ const App = () => {
             </Routes>
           </a.div>
         ))}
-
+        
       </div>
     </div>
   );

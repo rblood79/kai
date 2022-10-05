@@ -1,6 +1,7 @@
 
 import Api from './api';
 import Header from './header';
+import Bottom from './bottom';
 import Input from './input';
 import Button from './button';
 import Modal from './modal';
@@ -17,4 +18,4 @@ import ItemConsume from './item/itemConsume';
 import ItemOverview from './item/itemOverview';
 
 
-export { Api, Input, Button, Modal, Card, Sheet, Chart, Header, Item, ItemList, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }
+export { Api, Input, Button, Modal, Card, Sheet, Chart, Header, Bottom, Item, ItemList, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }

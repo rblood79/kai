@@ -57,7 +57,11 @@
     }
   }
 
-  .section {
+  .contents {
+    height: 100%;
+  }
+
+  /*.section {
     scroll-snap-align: start;
     background: var(--colorCard);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -82,5 +86,16 @@
       min-height: 400px;
       padding: 16px;
     }
+  }*/
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  .nav {
+    border: 1px solid #f00;
+    height: 56px;
+    margin-bottom: 24px;
   }
 }

@@ -6,7 +6,7 @@
     height: inherit;
     display: grid;
     //grid-auto-rows: 56px auto;
-    & > div {
+    .contents {
       overflow: hidden;
       background: var(--colorBase);
       position: fixed;
@@ -19,6 +19,7 @@
         overflow-y: auto;
       }
     }
+    
   }
 }
 
