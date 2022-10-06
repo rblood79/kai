@@ -61,26 +61,24 @@ const App = (props) => {
         )
     }
 
-    const style = useSpring({
-        reverse: navState ? false : true,
-        from: { transform: "translateY(0px)" },
-        to: { transform: "translateY(-56px)" },
-        leave: { transform: "translateY(0px)" },
-        config: { duration: 600, easing: easings.easeInOutExpo }
-    })
+    const navStyle = useSpring(
+        { 
+            transform: navState ? "translateY(-56px)" : "translateY(0px)",
+            config: { duration: 600, easing: easings.easeInOutExpo },
+        }
+    )
 
-    const point = useSpring({
-        reverse: navState ? false : true,
-        from: { transform: "translateY(0px)" },
-        to: { transform: "translateY(10px)" },
-        leave: { transform: "translateY(0px)" },
-        config: { duration: 600, easing: easings.easeInOutExpo }
-    })
+    const navPoint = useSpring(
+        { 
+            transform: navState ? "translateY(10px)" : "translateY(0px)",
+            config: { duration: 600, easing: easings.easeInOutExpo },
+        }
+    )
 
     return (
         <div className={styles.container}>
             <div className={styles.contents}>
-                <animated.nav className={styles.nav} style={style}>
+                <animated.nav className={styles.nav} style={navStyle}>
                     {
                         data && data.map((d, i) => (
                             item(d.link, d.icon, d.text)
@@ -89,7 +87,7 @@ const App = (props) => {
                 </animated.nav>
                 <button className={styles.switch} onClick={() => toggleNav()}>
                     <div className={styles.box}>
-                        <animated.span className={styles.point} style={point} />
+                        <animated.span className={styles.point} style={navPoint} />
                     </div>
                 </button>
             </div>
