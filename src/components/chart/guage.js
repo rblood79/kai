@@ -8,8 +8,8 @@ import * as d3 from 'd3';
 
 
 const App = (props) => {
-    const delay = 0;
-    const duration = 600;
+    const delay = 100;
+    const duration = 1600;
     const easing = d3.easeExp;
     const svgRef = useRef(null);
 
@@ -95,8 +95,10 @@ const App = (props) => {
         return Needle;
     })();
 
+
     useEffect(() => {
         const svg = d3.select(svgRef.current);
+        svg.select('g').remove();
         const width = svgRef.current.clientWidth;
         const height = svgRef.current.clientHeight;
         const percent = props.percent / 100;
@@ -108,21 +110,18 @@ const App = (props) => {
         const range = 180;
         const colorScale = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, range]);
         const perToColor = colorScale((180 / 100) * props.percent);
-
-        svg.selectAll('g').remove();
-        const chart = svg.append('g').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
+        const chart = svg.append('g').attr('class', 'chart').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
 
         const arcBase = d3.arc()
             .outerRadius(radius)
             .innerRadius(radius - inner - barWidth - 16)
             .startAngle(-pi / 2)
             .endAngle(pi / 2)
+
         chart
             .append('path')
             .style('fill', '#383838')
             .attr('d', arcBase);
-
-
 
         const arc = d3.arc()
             .innerRadius(radius - inner - barWidth)
@@ -161,7 +160,7 @@ const App = (props) => {
 
         const foreground = chart.append("path")
             .datum({
-                endAngle: (-pi / 2),
+                endAngle: -pi / 2,
             })
             .style("fill", "#FF5A03")
             .attr("d", arcValue);
@@ -178,7 +177,7 @@ const App = (props) => {
         needle.drawOn(chart, 0);
         props.active && needle.animateOn(chart, percent);
 
-    }, [svgRef.current, props.active]);
+    }, [props.active]);
 
     return (
         <svg ref={svgRef} />

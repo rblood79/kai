@@ -77,9 +77,6 @@ const App = (props) => {
         config: { duration: 600, easing: easings.easeInOutExpo }
     })
 
-    useEffect(() => {
-        console.log(navState)
-    }, [navState])
     return (
         <div className={styles.container}>
             <div className={styles.contents}>
@@ -92,7 +89,7 @@ const App = (props) => {
                 </animated.nav>
                 <button className={styles.switch} onClick={() => toggleNav()}>
                     <div className={styles.box}>
-                        <animated.span className={styles.point} style={point}/>
+                        <animated.span className={styles.point} style={point} />
                     </div>
                 </button>
             </div>

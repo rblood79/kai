@@ -4,6 +4,7 @@ import { Input, Button } from '../../components';
 
 const App = () => {
     const navigate = useNavigate();
+    const standalone = 'standalone' in window.navigator && window.navigator.standalone;
     return (
         <main className={styles.container}>
             <div className={styles.header}>
@@ -17,7 +18,7 @@ const App = () => {
                 <span className={styles.subTitle}>Next-Generation Fighter</span>
             </div>
 
-            <div className={styles.main}>
+            <div className={styles.main} style={{paddingBottom: standalone ? '27px' : '0px'}}>
                 <div className={styles.inputGroup}>
                     <Input placeholder={'ID'} />
                     <Input placeholder={'PASSWORD'} />

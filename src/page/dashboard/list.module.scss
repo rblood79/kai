@@ -58,7 +58,7 @@
       &:last-child {
         margin-right: 48px;
       }
-      
+
       .main {
         z-index: 1;
         background: linear-gradient(180deg, #141414 0%, #282828 100%);
@@ -105,6 +105,17 @@
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
+          position: relative;
+          &::before {
+            content: "00.00%";
+            font-size: 34px;
+            line-height: 36px;
+            font-family: "Digital Numbers Regular";
+            position: absolute;
+            right: 0px;
+            color: var(--colorTitle);
+            z-index: 0;
+          }
           .title {
             color: var(--colorLabel);
             font-size: var(--textSize);
@@ -113,6 +124,7 @@
             font-size: 34px;
             line-height: 36px;
             font-family: "Digital Numbers Regular";
+            z-index: 1;
           }
         }
         .bar {
@@ -125,12 +137,12 @@
             height: 100%;
             border-radius: var(--borderRadius);
             background: #f00;
-            will-change: width, background;
+            will-change: width;
           }
         }
       }
       .over {
-        grid-template-rows: 36px 40px auto 80px ;
+        grid-template-rows: 36px 40px auto 80px;
         .graph {
           //background: linear-gradient(0deg, #fff 0%, #efefef 100%);
           border-radius: var(--borderRadius);
@@ -140,6 +152,13 @@
           justify-content: flex-start;
           align-items: center;
           gap: 8px;
+          position: relative;
+          &::before {
+            content: "00,00%";
+            top: 24px;
+            width: 100%;
+            text-align: center;
+          }
           .title {
             color: var(--colorLabel);
             font-size: var(--textSize);
@@ -148,6 +167,7 @@
             font-size: 34px;
             line-height: 36px;
             font-family: "Digital Numbers Regular";
+            z-index: 1;
           }
         }
       }
@@ -175,9 +195,8 @@
         justify-content: center;
         position: absolute;
         bottom: 72px;
-        left: calc(50% - 24px);
+        left: calc(50% - 20px);
       }
-      
     }
   }
 

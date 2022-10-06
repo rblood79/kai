@@ -7,11 +7,11 @@
     grid-template-columns: repeat(5, 1fr);
     align-items: baseline;
     overflow: hidden;
+    border-top: 1px solid #efefef;
     .nav {
       will-change: transform;
       transform: translateY(0);
       grid-column: 1 / 5;
-      border-top: 1px solid #efefef;
       height: 56px;
 
       display: grid;
@@ -42,7 +42,7 @@
       color: var(--colorPrimary);
       .box {
         border: 2px solid var(--colorText);
-        width: 21px;
+        width: 18px;
         height: 24px;
         border-radius: 2px;
         overflow: hidden;

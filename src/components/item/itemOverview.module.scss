@@ -59,6 +59,7 @@
     justify-content: center;
     .aircraft {
       width: min(294px, calc(100% - 32px));
+      min-height: 114px;
       filter: drop-shadow(0px 0px 64px #007fff);
     }
     .rate {
@@ -68,6 +69,17 @@
         display: flex;
         justify-content: space-between;
         padding: 8px 0;
+        position: relative;
+        &::before {
+          content: "00.00%";
+          font-size: 34px;
+          line-height: 36px;
+          font-family: "Digital Numbers Regular";
+          position: absolute;
+          right: 0px;
+          color: var(--colorTitle);
+          z-index: 0;
+        }
         .title {
           color: var(--colorMid);
           display: flex;
@@ -79,9 +91,10 @@
           font-family: "Digital Numbers Regular";
           font-size: 34px;
           line-height: 36px;
-          &::after {
+          z-index: 1;
+          /*&::after {
             content: "%";
-          }
+          }*/
         }
       }
       .bar {
@@ -95,6 +108,7 @@
           background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
           width: 0%;
           border-radius: var(--borderRadius-50);
+          will-change: width;
         }
       }
     }
@@ -103,4 +117,3 @@
     padding: 16px;
   }
 }
-

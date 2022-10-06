@@ -46,7 +46,7 @@ const App = () => {
             "intro": "18 June 2020",
             "oh": "2,125",
             "fh": "235",
-            "rate": "82.6",
+            "rate": "82.60",
             "status": "At Maintenance",
             "date": "11 June 2021",
 
@@ -134,7 +134,7 @@ const App = () => {
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
                         <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
-                            {val.to(val => val.toFixed(2) + '%')}
+                            {val.to(val => val.toFixed(2).padStart(5,'0') + '%')}
                         </animated.span>
                     </div>
                     <div className={styles.bar}>
@@ -154,7 +154,7 @@ const App = () => {
 
     const MainItem = (x, y, display, scale, ty, i) => {
         const active = currentIndex === i && display !== 'none' ? true : false;
-        const { val } = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 }, config: { duration: 600, easing: easings.easeInOutExpo, } })
+        const { val } = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 }, config: { duration: 1600, easing: easings.easeInOutExpo, } })
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={classNames(styles.main, styles.over)}>
@@ -166,7 +166,7 @@ const App = () => {
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
                         <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
-                            {val.to(val => val.toFixed(2) + '%')}
+                            {val.to(val => val.toFixed(2).padStart(5,'0') + '%')}
                         </animated.span>
                     </div>
                 </div>
