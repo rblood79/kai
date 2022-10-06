@@ -8,7 +8,7 @@ import { ReactComponent as UpIcon } from '../../images/up.svg';
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSpring, useSprings, animated, easings, config, useSpringRef } from '@react-spring/web';
+import { useSpring, useSprings, animated, easings} from '@react-spring/web';
 
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
@@ -119,8 +119,8 @@ const App = () => {
 
     const ListItem = (x, y, display, scale, ty, i) => {
         const color = percentColor(data[i].rate);
-        const active = currentIndex === i ? true : false;
-        const props = useSpring({ to: { val: active ? Number(data[i].rate) : 0, width: active ? data[i].rate + '%' : '0%' }, from: { val: 0, width: '0%', background: gradient(data[i].rate, -90) }, config: { duration: 600 } })
+        const active = currentIndex === i && display !== 'none' ? true : false;
+        const { val, width } = useSpring({ to: { val: active ? Number(data[i].rate) : 0, width: active ? data[i].rate + '%' : '0%' }, from: { val: 0, width: '0%' }, config: { duration: 600, easing: easings.easeInOutExpo } })
         //const props2 = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 } });
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
@@ -134,11 +134,11 @@ const App = () => {
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
                         <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
-                            {props.val.to(val => val.toFixed(2) + '%')}
+                            {val.to(val => val.toFixed(2) + '%')}
                         </animated.span>
                     </div>
                     <div className={styles.bar}>
-                        <animated.span className={styles.value} style={props}></animated.span>
+                        <animated.span className={styles.value} style={{ width, background: gradient(data[i].rate, -90) }}></animated.span>
                     </div>
                 </div>
                 <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
@@ -153,8 +153,8 @@ const App = () => {
     };
 
     const MainItem = (x, y, display, scale, ty, i) => {
-        const active = currentIndex === i ? true : false;
-        const props = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 }, config: { duration: 1800 } })
+        const active = currentIndex === i && display !== 'none' ? true : false;
+        const { val } = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 }, config: { duration: 600, easing: easings.easeInOutExpo, } })
         return (
             <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
                 <div className={classNames(styles.main, styles.over)}>
@@ -166,7 +166,7 @@ const App = () => {
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
                         <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
-                            {props.val.to(val => val.toFixed(2) + '%')}
+                            {val.to(val => val.toFixed(2) + '%')}
                         </animated.span>
                     </div>
                 </div>
@@ -198,7 +198,7 @@ const App = () => {
                                     ))
                                 }
                             </div>
-                            <div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>
+                            {/*<div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>*/}
                         </>
                         :
                         <div className={styles.gridContents}>

@@ -51,7 +51,7 @@ const App = (props) => {
                     <button className={classNames(gloval.button, styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
                     <button className={classNames(gloval.button, styles.menu)} onClick={() => props.toggleNav()}>
                         {
-                            props.state ? <CloseIcon width={24} height={24} fill={'var(--colorBase)'} /> : <MenuIcon width={24} height={24} fill={'var(--colorSecondary)'} />
+                            props.state ? <CloseIcon width={24} height={24} fill={'var(--colorBase)'} /> : <MenuIcon width={24} height={24} fill={'var(--colorText)'} />
                         }
                     </button>
                     <Nav state={props.state} />
@@ -63,7 +63,7 @@ const App = (props) => {
                 <button className={classNames(gloval.button, styles.menu)} onClick={props.state}>
                     {
                         props.right === 'filter' ?
-                            <FilterIcon width={24} height={24} fill={'var(--colorSecondary)'} /> :
+                            <FilterIcon width={24} height={24} fill={'var(--colorText)'} /> :
                             props.right === 'edit' ? <span className={styles.text}>edit</span> :
                                 props.right === 'save' ? <span className={styles.text}>save</span> : null
                     }

@@ -1,10 +1,14 @@
 
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { useSpring, animated, easings, config } from '@react-spring/web';
 
 import styles from './index.module.scss';
 
 const App = (props) => {
+    const [navState, setNavState] = useState(false);
+    const toggleNav = () => setNavState(!navState);
+
     const data = [
         {
             link: '/flight',
@@ -19,7 +23,7 @@ const App = (props) => {
         {
             link: '/maintenance',
             icon: 'ri-user-settings-line',
-            text: 'Maintenance',
+            text: 'Mnt',
         },
         {
             link: '/extenal',
@@ -27,9 +31,24 @@ const App = (props) => {
             text: 'Extenal',
         },
         {
+            link: '/order',
+            icon: 'ri-survey-line',
+            text: 'Order',
+        },
+        {
             link: '/schedule',
             icon: 'ri-calendar-todo-line',
             text: 'Schedule',
+        },
+        {
+            link: '/tci',
+            icon: 'ri-time-line',
+            text: 'TCI',
+        },
+        {
+            link: '/loc',
+            icon: 'ri-map-pin-2-line',
+            text: 'A/C Loc',
         },
     ]
 
@@ -41,15 +60,42 @@ const App = (props) => {
             </Link>
         )
     }
+
+    const style = useSpring({
+        reverse: navState ? false : true,
+        from: { transform: "translateY(0px)" },
+        to: { transform: "translateY(-56px)" },
+        leave: { transform: "translateY(0px)" },
+        config: { duration: 600, easing: easings.easeInOutExpo }
+    })
+
+    const point = useSpring({
+        reverse: navState ? false : true,
+        from: { transform: "translateY(0px)" },
+        to: { transform: "translateY(10px)" },
+        leave: { transform: "translateY(0px)" },
+        config: { duration: 600, easing: easings.easeInOutExpo }
+    })
+
+    useEffect(() => {
+        console.log(navState)
+    }, [navState])
     return (
         <div className={styles.container}>
-            <nav className={styles.nav}>
-                {
-                    data && data.map((d, i) => (
-                        item(d.link, d.icon, d.text)
-                    ))
-                }
-            </nav>
+            <div className={styles.contents}>
+                <animated.nav className={styles.nav} style={style}>
+                    {
+                        data && data.map((d, i) => (
+                            item(d.link, d.icon, d.text)
+                        ))
+                    }
+                </animated.nav>
+                <button className={styles.switch} onClick={() => toggleNav()}>
+                    <div className={styles.box}>
+                        <animated.span className={styles.point} style={point}/>
+                    </div>
+                </button>
+            </div>
         </div>
     );
 }

@@ -125,6 +125,7 @@
             height: 100%;
             border-radius: var(--borderRadius);
             background: #f00;
+            will-change: width, background;
           }
         }
       }

@@ -18,7 +18,7 @@ const App = () => {
     return (
         <>
             <Header title={'KF-21 LIS'} depth={0} state={navState} toggleNav={toggleNav} />
-            <main className={styles.main} style={{}}>
+            <main className={styles.main} style={{overflow:'hidden'}}>
                 <div className={styles.tabController}>
                     <div className={classNames(styles.type, type === 'list' && styles.active)}>
                         <button className={classNames(type === 'list' && styles.active)} onClick={() => { setType('list') }}>LIST</button>

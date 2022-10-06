@@ -8,9 +8,9 @@ import * as d3 from 'd3';
 
 
 const App = (props) => {
-    const delay = 300;
-    const duration = 2000;
-    const easing = d3.easeCubicInOut;
+    const delay = 0;
+    const duration = 600;
+    const easing = d3.easeExp;
     const svgRef = useRef(null);
 
     const percToDeg = (perc) => {
