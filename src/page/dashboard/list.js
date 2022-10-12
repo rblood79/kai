@@ -8,7 +8,7 @@ import { ReactComponent as UpIcon } from '../../images/up.svg';
 import { useEffect, useState, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSpring, useSprings, animated, easings} from '@react-spring/web';
+import { useSpring, useSprings, animated, easings } from '@react-spring/web';
 
 import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
@@ -78,7 +78,7 @@ const App = () => {
         }
     };
 
-    const [props, api] = useSprings(data.length, i => ({
+    const [props, api, set, stop] = useSprings(data.length, i => ({
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,
@@ -115,71 +115,87 @@ const App = () => {
         }
     });
 
+    const ListItem = (props) => {
+        const index = props.index;
+        const color = percentColor(data[index].rate);
+        const active = currentIndex === index && props.display !== 'none' ? true : false;
 
+        const { val, width } = useSpring({
+            to: { val: active ? Number(data[index].rate) : 0, width: active ? Number(data[index].rate) + '%' : '0%' },
+            from: { val: 0, width: '0%' },
+            config: { duration: 600, easing: easings.easeInOutExpo }
+        })
 
-    const ListItem = (x, y, display, scale, ty, i) => {
-        const color = percentColor(data[i].rate);
-        const active = currentIndex === i && display !== 'none' ? true : false;
-        const { val, width } = useSpring({ to: { val: active ? Number(data[i].rate) : 0, width: active ? data[i].rate + '%' : '0%' }, from: { val: 0, width: '0%' }, config: { duration: 600, easing: easings.easeInOutExpo } })
-        //const props2 = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 } });
+        //console.log(active)
+
         return (
-            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
+            <animated.div className={classNames(styles.item)} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
                 <div className={styles.main} >
-                    <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data[i].intro} />
+                    <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
+                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data[index].intro} />
                     <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'var(--colorBase)'}
-                        text={'OH:' + data[i].oh + ' / FH:' + data[i].fh}
+                        text={'OH:' + data[index].oh + ' / FH:' + data[index].fh}
                     />
                     <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
-                        <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
-                            {val.to(val => val.toFixed(2).padStart(5,'0') + '%')}
+                        <animated.span className={styles.text} style={{ color: percentColor(data[index].rate) }}>
+                            {val.to(val => val.toFixed(2).padStart(5, '0') + '%')}
                         </animated.span>
                     </div>
                     <div className={styles.bar}>
-                        <animated.span className={styles.value} style={{ width, background: gradient(data[i].rate, -90) }}></animated.span>
+                        <animated.span className={styles.value} style={{ width, background: gradient(data[index].rate, -90) }}></animated.span>
                     </div>
                 </div>
-                <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data[i].status} />
-                    <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data[i].date} />
+                <animated.div className={styles.bottom} style={{ transform: props.ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
+                    <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data[index].status} />
+                    <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data[index].date} />
                 </animated.div>
-                <button className={styles.button} onClick={() => navigate(data[i].id)}>
-                    <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
-                </button>
-            </animated.div>
-        )
-    };
-
-    const MainItem = (x, y, display, scale, ty, i) => {
-        const active = currentIndex === i && display !== 'none' ? true : false;
-        const { val } = useSpring({ to: { val: active ? Number(data[i].rate) : 0 }, from: { val: 0 }, config: { duration: 1600, easing: easings.easeInOutExpo, } })
-        return (
-            <animated.div className={classNames(styles.item)} {...bind()} key={i} style={{ display, x, scale }}>
-                <div className={classNames(styles.main, styles.over)}>
-                    <div className={styles.title}><h3 className={styles.text}>{data[i].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={data[i].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
-                    <div className={styles.graph}>
-                        <Chart type={'guage'} percent={data[i].rate} active={active} />
-                    </div>
-                    <div className={styles.rate}>
-                        <span className={styles.title}>Behavior Rate</span>
-                        <animated.span className={styles.text} style={{ color: percentColor(data[i].rate) }}>
-                            {val.to(val => val.toFixed(2).padStart(5,'0') + '%')}
-                        </animated.span>
-                    </div>
-                </div>
-                <animated.div className={styles.bottom} style={{ transform: ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[i].flight} />
-                    <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[i].defect} />
-                </animated.div>
-                <button className={styles.button} onClick={() => navigate(data[i].id)}>
+                <button className={styles.button} onClick={() => navigate(data[index].id)}>
                     <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
             </animated.div>
         )
     }
+
+    const MainItem = (props) => {
+        const index = props.index;
+        const active = currentIndex === index && props.display !== 'none' ? true : false;
+        const { val } = useSpring({
+            from: { val: 0 },
+            to: async (next, cancel) => {
+                await next({ val: active ? Number(data[index].rate) : 0 })
+            },
+            config: { duration: 1600, easing: easings.easeInOutExpo, }
+        })
+
+        return (
+            <animated.div className={classNames(styles.item)} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
+                <div className={classNames(styles.main, styles.over)}>
+                    <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
+                    <Item height={24} direction={'column'} align={'flex-start'} title={data[index].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
+                    <div className={styles.graph}>
+                        <Chart type={'guage'} percent={data[index].rate} active={active} />
+                    </div>
+                    <div className={styles.rate}>
+                        <span className={styles.title}>Behavior Rate</span>
+                        <animated.span className={styles.text} style={{ color: percentColor(data[index].rate) }}>
+                            {val.to(val => val.toFixed(2).padStart(5, '0') + '%')}
+                        </animated.span>
+                    </div>
+                </div>
+                <animated.div className={styles.bottom} style={{ transform: props.ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
+                    <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[index].flight} />
+                    <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[index].defect} />
+                </animated.div>
+                <button className={styles.button} onClick={() => navigate(data[index].id)}>
+                    <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
+                </button>
+            </animated.div>
+        )
+    }
+    useEffect(() => {
+    }, [props])
 
     useEffect(() => {
         onLoad();
@@ -189,16 +205,15 @@ const App = () => {
 
             {
                 data.length > 0 ?
-                    type === 'list' ?
+                    type === 'LIST' ?
                         <>
                             <div className={styles.listContents}>
                                 {
-                                    props.map(({ x, y, display, scale, ty }, i) => (
-                                        i !== 0 ? ListItem(x, y, display, scale, ty, i) : MainItem(x, y, display, scale, ty, i)
+                                    props.length > 0 && props.map(({ x, y, display, scale, ty }, i) => (
+                                        i !== 0 ? <ListItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} /> : <MainItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} />
                                     ))
                                 }
                             </div>
-                            {/*<div className={styles.slideCount}>Active Slide: {currentIndex + 1 + ' / ' + data.length}</div>*/}
                         </>
                         :
                         <div className={styles.gridContents}>

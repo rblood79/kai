@@ -1,32 +1,34 @@
 
 import { useEffect, useState } from 'react';
-import { useSpring, animated, easings, config } from '@react-spring/web';
+import { useSpring, animated, easings } from '@react-spring/web';
 
 import styles from './index.module.scss';
 
 const App = (props) => {
-    useEffect(() => {
 
-    }, []);
-    
+
     const bgWidth = 100 / props.label.length;
-    const [index, setIndex] = useState(0)
+    const [active, setActive] = useState(0)
+
     const { transform } = useSpring(
         {
-            transform: "translateX(" + (index * 100) + "%)",
-            config: { duration: 600, easing: easings.easeInOutExpo },
+            transform: "translateX(" + (active * 100) + "%)",
+            config: { duration: 480, easing: easings.easeInOutExpo },
         }
     )
 
     const Item = props.label.map((item, index) => {
         return (
-            <button className={styles.item} key={index}
+            <animated.button className={styles.item} key={index}
                 onClick={() => {
-                    setIndex(index);
+                    setActive(index);
                     props.onChange(item);
-                }}>{item}</button>
+                }}>{item}</animated.button>
         )
     });
+
+    useEffect(() => {
+    }, []);
 
     return (
         <div className={styles.container}>

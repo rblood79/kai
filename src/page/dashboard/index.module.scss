@@ -10,83 +10,13 @@
   grid-template-rows: 56px auto;*/
   overflow-x: hidden;
   overflow-y: scroll;
-  .tabController {
+  .controller {
     padding: 0px 48px 8px 48px;
-    height: 48px;
     scroll-snap-align: start;
-    .type {
-      background-color: #f4f4f4;
-      height: 100%;
-      border-radius: 24px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      position: relative;
-      box-shadow: inset 0px 0px 8px rgb(0, 0, 0, 0.2);
-      &::before {
-        z-index: 0;
-        content: "";
-        position: absolute;
-        background-color: var(--colorSecondary);
-        border-radius: 32px;
-        width: calc(50% - 4px);
-        height: 32px;
-        top: 4px;
-        left: 0;
-        transition: all 0.24s ease-in-out;
-        transform: translateX(calc(100% + 4px));
-      }
-      &.active {
-        &::before {
-          transform: translateX(4px);
-        }
-      }
-      button {
-        z-index: 1;
-        color: var(--colorMid);
-        height: 40px;
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        outline: none;
-        overflow: hidden;
-      }
-    }
   }
-
   .contents {
     height: 100%;
   }
-
-  /*.section {
-    scroll-snap-align: start;
-    background: var(--colorCard);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    margin: 16px;
-    overflow: hidden;
-    border-radius: var(--borderRadius);
-    display: flex;
-    flex-direction: column;
-
-    .header {
-      padding: 16px;
-      .title {
-        display: flex;
-        align-items: center;
-        height: 40px;
-      }
-    }
-    &.card {
-      background-color: #f00;
-    }
-    .body {
-      min-height: 400px;
-      padding: 16px;
-    }
-  }*/
 }
 
 .footer {
