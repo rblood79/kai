@@ -5,16 +5,10 @@
 
 import { Outlet } from 'react-router-dom';
 
-const App = () => {
-
+const App = (props) => {
     return (
         <Outlet />
     );
 }
 
 export default App;
-
-/*<Routes>
-            <Route path="/" element={<List />} />
-            <Route path=":id" element={<Detail />} />
-        </Routes>*/
