@@ -11,6 +11,7 @@ import Sheet from './sheet';
 import Chart from './chart';
 import Item from './item/item';
 import ItemList from './item/itemList';
+import ItemCollapse from './item/itemCollapse';
 
 import ItemFlight from './item/itemFlight';
 import ItemDefect from './item/itemDefect';
@@ -19,4 +20,4 @@ import ItemConsume from './item/itemConsume';
 import ItemOverview from './item/itemOverview';
 
 
-export { Api, Input, Button, Tab, Modal, Card, Sheet, Chart, Header, Bottom, Item, ItemList, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }
+export { Api, Input, Button, Tab, Modal, Card, Sheet, Chart, Header, Bottom, Item, ItemList, ItemCollapse, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }

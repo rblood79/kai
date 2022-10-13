@@ -11,11 +11,11 @@ const App = () => {
     const standalone = 'standalone' in window.navigator && window.navigator.standalone;
 
     const [type, setType] = useState('LIST');
-    const [navState, setNavState] = useState(false);
-    const toggleNav = () => setNavState(!navState);
+    const [state, setState] = useState(false);
+    const toggleNav = () => setState(!state);
     return (
         <>
-            <Header title={'KF-21 LIS'} depth={0} state={navState} toggleNav={toggleNav} />
+            <Header title={'KF-21 LIS'} depth={0} state={state} toggleNav={toggleNav} />
             <main className={styles.main} style={{ overflow: 'hidden' }}>
 
                 <div className={styles.controller}>

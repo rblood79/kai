@@ -1,6 +1,8 @@
 .main {
   padding: 0px 16px 48px 16px;
-  section + section {
-    margin-top: 48px;
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
   }
 }

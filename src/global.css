@@ -24,7 +24,7 @@ a, button {
   appearance: none;
 }
 
-button svg{
+button svg {
   width: auto;
   height: auto;
 }
@@ -41,6 +41,7 @@ svg {
   width: 100%;
   height: 100%;
 }
+
 /*box-sizing*/
 * {
   box-sizing: border-box !important;
@@ -58,6 +59,7 @@ svg {
   --colorEditable: #ffca00;
   --colorError: #f14668;
   --colorMid: #939393;
+  --colorLight: #efefef;
   --colorDark: #343434;
 
   --colorCard: #fff;

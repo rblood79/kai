@@ -1,7 +1,7 @@
 .container {
   height: 40px;
   padding: 4px;
-  border-radius: 8px;
+  border-radius: 20px;
   background: var(--colorSecondary);
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.16);
   .contents {
@@ -9,7 +9,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25%, auto));
     padding: 0;
-    border-radius: 8px;
     position: relative;
     .bg {
       background: var(--colorBase);
@@ -17,7 +16,7 @@
       position: absolute;
       height: 100%;
       z-index: 0;
-      border-radius: 6px;
+      border-radius: 20px;
       will-change: transform;
     }
     .item {

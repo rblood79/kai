@@ -157,45 +157,47 @@ const App = () => {
                 data && <>
                     <Header title={data.title} background={'var(--colorBase)'} depth={1} />
                     <main className={styles.main}>
-                        <ItemOverview
-                            data={data}
-                        />
-                        <Card
-                            rightText={'more'}
-                            rightType={'button'}
-                            rightLink={'/flight'}
-                            title={'Flight No'}
-                            header={Item}
-                            body={ItemFlight}
-                            data={data.dataF}
-                        />
-                        <Card
-                            rightText={'more'}
-                            rightType={'button'}
-                            rightLink={'/defect'}
-                            title={'Defect'}
-                            header={Item}
-                            body={ItemDefect}
-                            data={data.dataD}
-                        />
-                        <Card
-                            rightText={'more'}
-                            rightType={'button'}
-                            rightLink={'/maintenance'}
-                            title={'Maintenance'}
-                            header={Item}
-                            body={ItemMaintenance}
-                            data={data.dataM}
-                        />
-                        <Card
-                            rightText={'more'}
-                            rightType={'button'}
-                            rightLink={'/consume'}
-                            title={'Consume'}
-                            header={Item}
-                            body={ItemConsume}
-                            data={data.dataC}
-                        />
+                        <div className={styles.body}>
+                            <ItemOverview
+                                data={data}
+                            />
+                            <Card
+                                rightText={'more'}
+                                rightType={'button'}
+                                rightLink={'/flight'}
+                                title={'Flight No'}
+                                header={Item}
+                                body={ItemFlight}
+                                data={data.dataF}
+                            />
+                            <Card
+                                rightText={'more'}
+                                rightType={'button'}
+                                rightLink={'/defect'}
+                                title={'Defect'}
+                                header={Item}
+                                body={ItemDefect}
+                                data={data.dataD}
+                            />
+                            <Card
+                                rightText={'more'}
+                                rightType={'button'}
+                                rightLink={'/maintenance'}
+                                title={'Maintenance'}
+                                header={Item}
+                                body={ItemMaintenance}
+                                data={data.dataM}
+                            />
+                            <Card
+                                rightText={'more'}
+                                rightType={'button'}
+                                rightLink={'/consume'}
+                                title={'Consume'}
+                                header={Item}
+                                body={ItemConsume}
+                                data={data.dataC}
+                            />
+                        </div>
                     </main>
                 </>
             }
