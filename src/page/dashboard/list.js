@@ -129,7 +129,7 @@ const App = () => {
         //console.log(active)
 
         return (
-            <animated.div className={classNames(styles.item)} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
+            <animated.div className={styles.item} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
                 <div className={styles.main} >
                     <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data[index].intro} />
@@ -170,7 +170,7 @@ const App = () => {
         })
 
         return (
-            <animated.div className={classNames(styles.item)} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
+            <animated.div className={styles.item} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
                 <div className={classNames(styles.main, styles.over)}>
                     <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={data[index].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
@@ -194,36 +194,34 @@ const App = () => {
             </animated.div>
         )
     }
-    useEffect(() => {
-    }, [props])
 
     useEffect(() => {
         onLoad();
     }, [])
     return (
-        <section className={classNames(styles.container)}>
+        <section className={styles.container}>
 
             {
                 data.length > 0 ?
                     type === 'LIST' ?
-                        <>
-                            <div className={styles.listContents}>
-                                {
-                                    props.length > 0 && props.map(({ x, y, display, scale, ty }, i) => (
-                                        i !== 0 ? <ListItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} /> : <MainItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} />
-                                    ))
-                                }
-                            </div>
-                        </>
+                        <div className={styles.listContents}>
+                            {
+                                props.length > 0 && props.map(({ x, y, display, scale, ty }, i) => (
+                                    i !== 0 ? <ListItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} /> : <MainItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} />
+                                ))
+                            }
+                        </div>
                         :
                         <div className={styles.gridContents}>
-                            {props.map(({ x, y }, i) => (
-                                <animated.div className={classNames(styles.item)} key={i}>
-                                    <h3 className={styles.title}>{data[i].title}</h3>
-                                    <div className={styles.rate}>{data[i].rate}</div>
-                                    <Link to={data[i].id}>Detail</Link>
-                                </animated.div>
-                            ))}
+                            {
+                                props.map(({ x, y }, i) => (
+                                    <animated.div className={styles.item} key={i}>
+                                        <h3 className={styles.title}>{data[i].title}</h3>
+                                        <div className={styles.rate}>{data[i].rate}</div>
+                                        <Link to={data[i].id}>Detail</Link>
+                                    </animated.div>
+                                ))
+                            }
                         </div> :
                     <div>not Found Data</div>
             }

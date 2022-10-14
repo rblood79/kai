@@ -3,7 +3,7 @@
 
 
 */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { gradient } from '../../util'
 
@@ -47,7 +47,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     icon: 'ri-user-settings-line'

@@ -6,10 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Api, Header, Card, Item, ItemOverview, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume } from '../../components';
-
-import styles from './detail.module.scss';
-//import classNames from 'classnames';
+import { Api, Layout, Top, Card, Item, ItemOverview, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume } from '../../components';
 
 const App = () => {
     const { id } = useParams();
@@ -155,50 +152,48 @@ const App = () => {
         <>
             {
                 data && <>
-                    <Header title={data.title} background={'var(--colorBase)'} depth={1} />
-                    <main className={styles.main}>
-                        <div className={styles.body}>
-                            <ItemOverview
-                                data={data}
-                            />
-                            <Card
-                                rightText={'more'}
-                                rightType={'button'}
-                                rightLink={'/flight'}
-                                title={'Flight No'}
-                                header={Item}
-                                body={ItemFlight}
-                                data={data.dataF}
-                            />
-                            <Card
-                                rightText={'more'}
-                                rightType={'button'}
-                                rightLink={'/defect'}
-                                title={'Defect'}
-                                header={Item}
-                                body={ItemDefect}
-                                data={data.dataD}
-                            />
-                            <Card
-                                rightText={'more'}
-                                rightType={'button'}
-                                rightLink={'/maintenance'}
-                                title={'Maintenance'}
-                                header={Item}
-                                body={ItemMaintenance}
-                                data={data.dataM}
-                            />
-                            <Card
-                                rightText={'more'}
-                                rightType={'button'}
-                                rightLink={'/consume'}
-                                title={'Consume'}
-                                header={Item}
-                                body={ItemConsume}
-                                data={data.dataC}
-                            />
-                        </div>
-                    </main>
+                    <Top title={data.title} background={'var(--colorBase)'} depth={1} />
+                    <Layout padding={'0px 16px 48px 16px'}>
+                        <ItemOverview
+                            data={data}
+                        />
+                        <Card
+                            rightText={'more'}
+                            rightType={'button'}
+                            rightLink={'/flight'}
+                            title={'Flight No'}
+                            header={Item}
+                            body={ItemFlight}
+                            data={data.dataF}
+                        />
+                        <Card
+                            rightText={'more'}
+                            rightType={'button'}
+                            rightLink={'/defect'}
+                            title={'Defect'}
+                            header={Item}
+                            body={ItemDefect}
+                            data={data.dataD}
+                        />
+                        <Card
+                            rightText={'more'}
+                            rightType={'button'}
+                            rightLink={'/maintenance'}
+                            title={'Maintenance'}
+                            header={Item}
+                            body={ItemMaintenance}
+                            data={data.dataM}
+                        />
+                        <Card
+                            rightText={'more'}
+                            rightType={'button'}
+                            rightLink={'/consume'}
+                            title={'Consume'}
+                            header={Item}
+                            body={ItemConsume}
+                            data={data.dataC}
+                        />
+                    </Layout>
                 </>
             }
 

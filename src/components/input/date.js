@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
 import moment from 'moment';
@@ -49,16 +49,6 @@ const App = (props) => {
         setDay(getDay)
     }, [data.year, data.month])
 
-    /*useEffect(() => {
-        async function fetchAndSetUser() {
-            const data = await getDay();
-            setDay(data);
-        }
-        fetchAndSetUser();
-
-    }, [data.year, data.month]);*/
-
-
     useEffect(() => {
         const now = moment('2010'), temp = [];
         while (now.isSameOrBefore(moment())) {
@@ -81,7 +71,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 

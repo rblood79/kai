@@ -1,6 +1,6 @@
 
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 
 import styles from './swipeItem.module.scss';
@@ -59,7 +59,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 };

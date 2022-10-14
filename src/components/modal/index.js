@@ -5,7 +5,7 @@
 */
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
-import { useEffect, useState, Children } from 'react';
+import React, { useEffect, useState, Children } from 'react';
 //import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, easings, config } from '@react-spring/web';
 
@@ -18,7 +18,7 @@ const App = (props) => {
     const [view, setView] = useState(false)
     const [o, api] = useSpring(() => ({ opacity: 1 }))
 
-    const open = ({ canceled }) => {
+    const open = () => {
         setView(true)
         api.start({ opacity: 1, config: { duration: 480, easing: easings.easeInOutQuart }, })
     }
@@ -63,7 +63,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 

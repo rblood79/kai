@@ -1,15 +1,14 @@
 
-
+import React from 'react';
 import styles from './index.module.scss';
-import classNames from 'classnames';
 
 const App = (props) => {
     return (
-        <button className={classNames(styles.button)} style={{ background: props.background, color: props.color }} onClick={props.onClick}>{props.text}</button>
+        <button className={styles.button} style={{ background: props.background, color: props.color }} onClick={props.onClick}>{props.text}</button>
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     background: '#e5e7eb',

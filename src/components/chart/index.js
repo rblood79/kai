@@ -1,4 +1,4 @@
-
+import React from 'react';
 import Guage from './guage';
 import Pie from './pie';
 import Bar from './bar';
@@ -17,7 +17,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 };

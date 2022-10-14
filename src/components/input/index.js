@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../button';
 import _ from 'lodash';
 import moment from 'moment';
@@ -178,7 +178,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     disabled: false,

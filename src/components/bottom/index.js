@@ -1,7 +1,7 @@
 
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { useSpring, animated, easings, config } from '@react-spring/web';
+import { useSpring, animated, easings } from '@react-spring/web';
 
 import styles from './index.module.scss';
 
@@ -62,14 +62,14 @@ const App = (props) => {
     }
 
     const navStyle = useSpring(
-        { 
+        {
             transform: navState ? "translateY(-56px)" : "translateY(0px)",
             config: { duration: 600, easing: easings.easeInOutExpo },
         }
     )
 
     const navPoint = useSpring(
-        { 
+        {
             transform: navState ? "translateY(10px)" : "translateY(0px)",
             config: { duration: 600, easing: easings.easeInOutExpo },
         }
@@ -95,7 +95,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     background: '#e5e7eb',

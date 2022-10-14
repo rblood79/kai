@@ -1,15 +1,13 @@
 
-import Header from '../../components/header';
+import { Layout, Top } from '../../components';
 
 const App = (props) => {
     return (
         <>
-            <Header title={'Defect'} depth={1} />
-            <main>
-                <div>
-                    Defect
-                </div>
-            </main>
+            <Top title={'Defect'} depth={1} />
+            <Layout>
+                Defect
+            </Layout>
         </>
     );
 }
@@ -17,5 +15,5 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-    
+
 };

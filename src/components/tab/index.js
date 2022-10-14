@@ -1,12 +1,10 @@
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 
 import styles from './index.module.scss';
 
 const App = (props) => {
-
-
     const bgWidth = 100 / props.label.length;
     const [active, setActive] = useState(0)
 
@@ -31,7 +29,7 @@ const App = (props) => {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{ margin: props.margin }}>
             <div className={styles.contents}>
                 <animated.span className={styles.bg} style={{ width: bgWidth + '%', transform }} />
                 {Item}
@@ -40,8 +38,8 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
-    background: '#e5e7eb',
+    margin: '0px',
 };

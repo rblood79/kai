@@ -2,14 +2,12 @@
 
 
 */
+
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 import styles from './index.module.scss';
-import classNames from 'classnames';
-import { useEffect, useState } from 'react';
-
-
 
 const App = (props) => {
     //const location = useLocation();
@@ -29,7 +27,7 @@ const App = (props) => {
     }, [props.data]);
 
     return (
-        <section className={classNames(styles.container)} style={{ background: props.background }}>
+        <section className={styles.container} style={{ background: props.background }}>
             <div className={styles.head}>
                 <span className={styles.title} style={{ color: props.titleColor }}>{props.title}</span>
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
@@ -58,7 +56,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     title: 'Title',

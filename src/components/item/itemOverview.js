@@ -3,8 +3,7 @@
 
 
 */
-import { useEffect, useState } from 'react';
-import { useSpring, useSprings, animated, easings } from '@react-spring/web';
+import React, { useEffect, useState } from 'react';
 import { percentColor, gradient } from '../../util';
 
 import Item from './item';
@@ -52,7 +51,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 

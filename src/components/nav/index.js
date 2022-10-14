@@ -1,6 +1,6 @@
 
 
-
+import React from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 import { Link } from "react-router-dom";
 
@@ -105,7 +105,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 

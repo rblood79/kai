@@ -3,7 +3,7 @@
 
 
 */
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './item.module.scss';
 
@@ -20,7 +20,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     height: 40,

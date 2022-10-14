@@ -1,6 +1,6 @@
 
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { numberPad } from '../../util';
 
 import moment from 'moment';
@@ -63,7 +63,7 @@ const App = (props) => {
     );
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
 

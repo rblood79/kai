@@ -5,7 +5,7 @@
 */
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
-import { useEffect, useState, Children } from 'react';
+import React, { useEffect, useState, Children } from 'react';
 //import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, easings, config } from '@react-spring/web';
 
@@ -82,11 +82,12 @@ const App = (props) => {
                                 </button>
                             </div>
                         </header>
-                        <div className={styles.body} style={{gap: props.gap}}>
+                        <div className={styles.body} style={{ gap: props.gap }}>
                             {props.children}
                         </div>
                         {
-                            props.apply && <footer className={styles.footer}>
+                            props.apply &&
+                            <footer className={styles.footer}>
                                 {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
                                 <Button text={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>
@@ -98,7 +99,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     type: 'text',

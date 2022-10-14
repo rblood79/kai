@@ -3,7 +3,7 @@
 
 
 */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 import styles from './itemCollapse.module.scss';
@@ -11,7 +11,7 @@ import styles from './itemCollapse.module.scss';
 const App = (props) => {
     const [state, setState] = useState(false);
     useEffect(() => {
-        //console.log(state)
+        
     }, [])
 
     return (
@@ -29,7 +29,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     title: 'TITLE',

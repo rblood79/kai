@@ -1,15 +1,13 @@
 
-import Header from '../../components/header';
+import { Layout, Top } from '../../components';
 
 const App = (props) => {
     return (
         <>
-            <Header title={'Maintenance Order Flight'} depth={1} />
-            <main>
-                <div>
+            <Top title={'Maintenance Order Flight'} depth={1} />
+            <Layout>
                 order
-                </div>
-            </main>
+            </Layout>
         </>
     );
 }

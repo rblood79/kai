@@ -1,19 +1,18 @@
-import {Link} from 'react-router-dom';
-import gloval from '../../components/index.module.scss';
+import { Link } from 'react-router-dom';
 import styles from './index.module.scss';
 
-import {Input, Button} from '../../components';
+import { Layout } from '../../components';
 
 const App = () => {
     return (
-        <main className={styles.main}>
+        <Layout>
             404 Page Not Found
-        </main>
+        </Layout>
     );
 }
 
 export default App;
 
 App.defaultProps = {
-    
+
 };

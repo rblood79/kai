@@ -7,7 +7,7 @@ import aircraftFront from '../../images/aircraftFront@3x.png';
 import aircraftSide from '../../images/aircraftLeft@3x.png';
 import aircraftTop from '../../images/aircraftTop@3x.png';
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 
 import styles from './itemDefect.module.scss';
@@ -39,7 +39,7 @@ const App = (props) => {
     )
 }
 
-export default App;
+export default React.memo(App);
 
 App.defaultProps = {
     icon: 'ri-tools-fill'

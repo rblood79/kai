@@ -6,13 +6,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import styles from './detail.module.scss';
-
-import { Header, Card, ItemList } from '../../components';
+import { Layout, Header, Top, Card, ItemList } from '../../components';
 
 const App = () => {
     //const [state, seState] = useState(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const toggleNav = () => {
         navigate('edit', { state: { dataG: dataG, dataP: dataP, dataA: dataA } });
     };
@@ -151,16 +149,13 @@ const App = () => {
 
     return (
         <>
-            <Header title={title} depth={2} right={'edit'} state={toggleNav} background={'var(--colorCard)'} />
-            <main className={styles.main}>
-                <header className={styles.header}>
-                    <div className={styles.title}>
-                        THESE ARE THE<br />
-                        DETAILS OF THE FIGHTER<br />
-                        YOU REQUESTED
-                    </div>
-                    <span className={styles.date}>LAST INFO OF 19 OCTOBER 2021</span>
-                </header>
+            <Top title={title} depth={2} right={'edit'} state={toggleNav} background={'var(--colorCard)'} />
+            <Layout>
+                <Header title={'THESE ARE THE DETAILS OF THE FIGHTER YOU REQUESTED'}
+                    comment={
+                        'LAST INFO OF 19 OCTOBER 2021'
+                    }
+                />
                 <Card
                     background={'var(--colorPrimary)'}
                     titleColor={'var(--colorCard)'}
@@ -182,7 +177,7 @@ const App = () => {
                     body={ItemList}
                     data={dataA}
                 />
-            </main>
+            </Layout>
         </>
     );
 }

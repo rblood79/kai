@@ -3,18 +3,12 @@
 
 */
 import React from 'react'
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import moment from 'moment';
+import { Api, Layout, Header, Top, Input, Card, Sheet, Item, ItemFlight } from '../../components';
 
-//import { useGesture, useDrag } from '@use-gesture/react'
-//import { a, useSpring, useSprings, animated, config } from '@react-spring/web';
-
-import { Api, Header, Input, Card, Sheet, Item, ItemFlight } from '../../components';
-
-import styles from './list.module.scss';
 //import classNames from 'classnames';
-
 
 const App = (props) => {
 
@@ -196,19 +190,6 @@ const App = (props) => {
     toggleNav();
   }
 
-  //bottom sheet range change
-  /*useEffect(() => {
-      const num = filter.range && filter.range.replace(/[^0-9]/g, '');
-      const format = filter.range && filter.range.replace(/[^A-Z]/g, '');
-
-      setParams((prevState) => ({
-          ...prevState,
-          startDate: moment(filter.endDate).add(-num, format)
-      }
-      ));
-  }, [filter.range, filter.endDate])*/
-
-
   // 초기 설정
   useEffect(() => {
     onLoad();
@@ -231,33 +212,24 @@ const App = (props) => {
 
   return (
     <>
-      <Header title={'Flight List'} depth={1} right={'filter'} state={toggleNav} background={'var(--colorCard)'} />
-      <main className={styles.main}>
-        <header className={styles.header}>
-          <div className={styles.title}>
-            {data && data.length} FIGHTERS WERE QUERIED<br />
-            DURING THIS<br />
-            PERIOD
-          </div>
-          <span className={styles.date}>{moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')} - {moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')}</span>
-        </header>
-        <div className={styles.body}>
-          {
-            data ? listItem : <div>no data</div>
+      <Top title={'Flight List'} depth={1} right={'filter'} state={toggleNav} background={'var(--colorCard)'} />
+      <Layout>
+        <Header title={'FIGHTERS WERE QUERIED DURING THIS PERIOD'}
+          comment={
+            moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD') + ' - ' + moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')
           }
-        </div>
-      </main>
+        />
+        {
+          data ? listItem : <div>no data</div>
+        }
+      </Layout>
 
       <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} gap={48}>
 
         <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} callBack={setParams} />
-
         <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} callBack={setParams} />
-
         <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} callBack={setParams} />
-
         <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} callBack={setParams} />
-
         <Input label={'SQ'} value={params.sq} column={'sq'} callBack={setParams} />
 
       </Sheet>

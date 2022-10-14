@@ -6,9 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
-import styles from './detail.module.scss';
-
-import { Header, Input, Card, ItemList, Modal } from '../../components';
+import { Layout, Top, Input, Card, ItemList, Modal } from '../../components';
 
 const App = (props) => {
     const navigate = useNavigate();
@@ -60,8 +58,8 @@ const App = (props) => {
 
     return (
         <>
-            <Header title={title} depth={2} right={'save'} state={toggleNav} background={'var(--colorCard)'} />
-            <main className={styles.main}>
+            <Top title={title} depth={2} right={'save'} state={toggleNav} background={'var(--colorCard)'} />
+            <Layout>
                 <Card
                     background={'var(--colorEditable)'}
                     titleColor={'var(--colorCard)'}
@@ -83,7 +81,7 @@ const App = (props) => {
                     <Input label={'L/D AB'} value={'18th Flight Wing'} />
                     <Input label={'Tail No'} value={'27-001'} />
                 </Card>
-            </main>
+            </Layout>
 
             <Modal title={'Save data'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply}>
                 Are you sure you want to confirm "Documents"? All contents will be perminately destroyed.

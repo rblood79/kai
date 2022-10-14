@@ -1,10 +1,9 @@
 
-import { useEffect, useState } from 'react';
-import { Api, Header, Tab, ItemCollapse } from '../../components';
+import { useState, useEffect, useMemo } from 'react';
+import { Api, Top, Tab, Layout, ItemCollapse } from '../../components';
 import styles from './index.module.scss';
 const App = (props) => {
     const [tab, setTab] = useState('All');
-    const [filterData, setFilterData] = useState([]);
     const [data, setData] = useState(
         [
             {
@@ -38,26 +37,46 @@ const App = (props) => {
         ]
     )
 
-    
+    const filterData = useMemo(() => {
+        return tab !== 'All' ? data.filter(item => tab === item.type) : data;
+    }, [tab, data]);
+
+    const [params, setParams] = useState(
+        {
+            range: '1M',
+            sq: '4Q',
+        }
+    );
+
+    const onLoad = async () => {
+        try {
+            const response = await Api({
+                url: 'notify',
+                method: 'get',
+                params: params,
+            });
+            setData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
-        const result = tab !== 'All' ? data.filter(item => tab === item.type) : data;
-        setFilterData(result);
-    }, [data, tab]);
+        onLoad();
+    }, [])
 
     return (
         <>
-            <Header title={'Notifycation'} depth={1} />
-            <main className={styles.main}>
+            <Top title={'Notifycation'} depth={1} />
+            <Layout>
                 <Tab label={["All", "Notice", "User"]} onChange={setTab} />
-                <div className={styles.body}>
-                    {
-                        filterData ?
-                            filterData.map((item, index) =>
-                                <ItemCollapse {...item} key={index} />
-                            ) : <div>no Data</div>
-                    }
-                </div>
-            </main>
+                {
+                    data ?
+                        filterData.map((item, index) =>
+                            <ItemCollapse {...item} key={index} />
+                        ) : <div>no Data</div>
+                }
+            </Layout>
         </>
     );
 }

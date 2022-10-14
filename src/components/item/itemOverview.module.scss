@@ -14,6 +14,11 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+
+    /*position: sticky;
+    top: 0;
+    z-index: 2;*/
+
     &::before {
       content: "";
       width: calc(100% - 32px);
