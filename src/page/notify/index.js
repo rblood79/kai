@@ -1,8 +1,8 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { Api, Top, Tab, Layout, ItemCollapse } from '../../components';
-import styles from './index.module.scss';
 const App = (props) => {
+    const [scrollTop, setScrollTop] = useState(true);
     const [tab, setTab] = useState('All');
     const [data, setData] = useState(
         [
@@ -67,8 +67,8 @@ const App = (props) => {
 
     return (
         <>
-            <Top title={'Notifycation'} depth={1} />
-            <Layout>
+            <Top title={'Notifycation'} depth={1} background={'var(--colorCard)'} scrollTop={scrollTop}/>
+            <Layout scrollTop={setScrollTop}>
                 <Tab label={["All", "Notice", "User"]} onChange={setTab} />
                 {
                     data ?

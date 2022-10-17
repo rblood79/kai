@@ -12,7 +12,7 @@ const App = (props) => {
     const navigate = useNavigate();
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
-
+    const [scrollTop, setScrollTop] = useState(true);
     const location = useLocation();
     const { id } = useParams();
     const [title, setTitle] = useState(null);
@@ -46,20 +46,18 @@ const App = (props) => {
 
     //bottom sheet apply
     const apply = () => {
-        //console.log('save', params)
         navigate('/flight/' + id);
-        //toggleNav();
     }
 
     useEffect(() => {
         setDataG(location.state.dataG)
         setTitle('KF21-' + id)
-    }, [])
+    }, [id])
 
     return (
         <>
-            <Top title={title} depth={2} right={'save'} state={toggleNav} background={'var(--colorCard)'} />
-            <Layout>
+            <Top title={title} depth={2} right={'save'} state={toggleNav} background={'var(--colorCard)'} scrollTop={scrollTop} />
+            <Layout scrollTop={setScrollTop}>
                 <Card
                     background={'var(--colorEditable)'}
                     titleColor={'var(--colorCard)'}

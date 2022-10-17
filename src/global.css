@@ -20,7 +20,7 @@ a, button {
   outline: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
-  -webkit-user-select: none;
+  user-select: none;
   appearance: none;
 }
 
@@ -74,5 +74,5 @@ svg {
   --titleSize: 24px;
   --textSize: 16px;
 
-  --boxShadow: 0px 8px 16px #efefef;
+  --boxShadow: 0px 4px 8px rgba(0,0,0,0.048);
 }

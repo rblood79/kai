@@ -23,7 +23,7 @@ const App = (props) => {
     useEffect(() => {
     }, [])
     return (
-        <header className={classNames(styles.header)} style={{ 'background': props.background }}>
+        <header className={classNames(styles.header, !props.scrollTop && styles.active)} style={{ 'background': props.scrollTop ? 'transparent' : props.background }}>
 
             {
                 props.depth > 0 &&
@@ -70,7 +70,6 @@ const App = (props) => {
                     }
                 </button>
             }
-
         </header>
     );
 }
@@ -79,5 +78,6 @@ const App = (props) => {
 export default React.memo(App);
 
 App.defaultProps = {
-
+    scrollTop: true,
+    background: 'transparent',
 };

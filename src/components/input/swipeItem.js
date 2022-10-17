@@ -1,14 +1,12 @@
 
 
-import React, { useEffect, useRef, useState } from 'react';
-import _ from 'lodash';
+import React, { useEffect, useRef } from 'react';
 
 import styles from './swipeItem.module.scss';
 
 const App = (props) => {
     const viewport = useRef(null);
     useEffect(() => {
-
         const list = Array.from(viewport.current.children);
         const callback = (entries) => {
             entries.forEach((entry, index) => {

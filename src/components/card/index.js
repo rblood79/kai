@@ -31,19 +31,25 @@ const App = (props) => {
             <div className={styles.head}>
                 <span className={styles.title} style={{ color: props.titleColor }}>{props.title}</span>
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
-                {props.rightType === 'button' && props.rightText && <button className={styles.button} onClick={() => { navigate(props.rightLink) }}>{props.rightText}</button>}
+                {props.rightType === 'button' && props.rightText && <button className={styles.button}
+                    onClick={() => {
+                        navigate(props.rightLink)
+                        //console.log(props.rightLink)
+                    }}>
+                    {props.rightText}
+                </button>}
             </div>
             {data &&
                 <>
                     {
-                        data.header &&
+                        data.header && props.header &&
                         <div className={styles.header}>
                             {headerItems()}
                         </div>
                     }
 
                     {
-                        data.body &&
+                        data.body && props.body &&
                         <props.body data={data.body} icon={props.icon} />
                     }
                 </>

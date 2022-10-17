@@ -1,19 +1,14 @@
+/*
 
-import { Layout, Top } from '../../components';
+
+*/
+
+import { Outlet } from 'react-router-dom';
 
 const App = (props) => {
     return (
-        <>
-            <Top title={'Extenal Change'} depth={1} />
-            <Layout>
-                extenal
-            </Layout>
-        </>
+        <Outlet />
     );
 }
 
 export default App;
-
-App.defaultProps = {
-
-};

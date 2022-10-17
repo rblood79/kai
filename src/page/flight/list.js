@@ -3,7 +3,7 @@
 
 */
 import React from 'react'
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import moment from 'moment';
 import { Api, Layout, Header, Top, Input, Card, Sheet, Item, ItemFlight } from '../../components';
@@ -14,6 +14,7 @@ const App = (props) => {
 
   const [navState, setNavState] = useState(false);
   const toggleNav = () => setNavState(!navState);
+  const [scrollTop, setScrollTop] = useState(true); 
   //list data
   const [data, setData] = useState(
     [
@@ -212,8 +213,8 @@ const App = (props) => {
 
   return (
     <>
-      <Top title={'Flight List'} depth={1} right={'filter'} state={toggleNav} background={'var(--colorCard)'} />
-      <Layout>
+      <Top title={'Flight List'} depth={1} right={'filter'} state={toggleNav} background={'var(--colorCard)'} scrollTop={scrollTop} />
+      <Layout scrollTop={setScrollTop}>
         <Header title={'FIGHTERS WERE QUERIED DURING THIS PERIOD'}
           comment={
             moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD') + ' - ' + moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')

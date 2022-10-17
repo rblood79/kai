@@ -1,19 +1,14 @@
+/*
 
-import { Layout, Top } from '../../components';
+
+*/
+
+import { Outlet } from 'react-router-dom';
 
 const App = (props) => {
     return (
-        <>
-            <Top title={'Maintenance'} depth={1} />
-            <Layout>
-                Maintenance
-            </Layout>
-        </>
+        <Outlet />
     );
 }
 
 export default App;
-
-App.defaultProps = {
-
-};

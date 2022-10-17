@@ -3,11 +3,19 @@
   min-height: 56px;
   padding: 0 8px 0 4px;
   z-index: 10;
-  position: sticky;
+  //position: sticky;
   top: 0;
   display: grid;
   grid-template-columns: 48px 48px auto 48px 48px;
   grid-template-columns: 36px 36px auto 36px 36px;
+  transition: box-shadow 0.16s ease-in-out;
+  will-change: box-shadow;
+  //border-radius: 0 0 var(--borderRadius-150) var(--borderRadius-150);
+  //backdrop-filter: saturate(180%) blur(20px);
+  &.active {
+    box-shadow: var(--boxShadow);
+    //border-bottom: 1px solid #ccc;
+  }
   button {
     display: flex;
     align-items: center;

@@ -18,24 +18,34 @@ import FlightDetail from './page/flight/detail';
 import FlightEdit from './page/flight/edit';
 //defect
 import Defect from './page/defect';
+import DefectList from './page/defect/list';
+import DefectDetail from './page/defect/detail';
+
 
 //maintenance
 import Maintenance from './page/maintenance';
+import MaintenanceList from './page/maintenance/list';
 
 //extenal
 import Extenal from './page/extenal';
+import ExtenalList from './page/extenal/list';
 
 //order
 import Order from './page/order';
+import OrderList from './page/order/list';
 
 //schedule
 import Schedule from './page/schedule';
+import ScheduleList from './page/schedule/list';
 
 //tci
 import Tci from './page/tci';
+import TciList from './page/tci/list';
 
 //loc
 import Loc from './page/loc';
+import LocList from './page/loc/list';
+
 
 //import { useEffect, useState, useMemo } from 'react';
 
@@ -76,30 +86,38 @@ const App = () => {
               </Route>
 
               <Route path="defect" element={<Defect />}>
+                <Route path="" element={<DefectList />} />
+                <Route path=":id" element={<DefectDetail />} />
               </Route>
 
               <Route path="maintenance" element={<Maintenance />}>
+                <Route path="" element={<MaintenanceList />} />
               </Route>
 
               <Route path="extenal" element={<Extenal />}>
+                <Route path="" element={<ExtenalList />} />
               </Route>
 
               <Route path="order" element={<Order />}>
+                <Route path="" element={<OrderList />} />
               </Route>
 
               <Route path="schedule" element={<Schedule />}>
+                <Route path="" element={<ScheduleList />} />
               </Route>
 
               <Route path="tci" element={<Tci />}>
+                <Route path="" element={<TciList />} />
               </Route>
 
               <Route path="loc" element={<Loc />}>
+                <Route path="" element={<LocList />} />
               </Route>
 
             </Routes>
           </a.div>
         ))}
-        
+
       </div>
     </div>
   );

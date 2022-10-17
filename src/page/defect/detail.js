@@ -6,13 +6,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { Layout, Header, Top, Card, ItemList } from '../../components';
+import { Layout, Header, Top, Card, ItemList, ItemDefect } from '../../components';
 
 const App = () => {
     //const [state, seState] = useState(false);
     const navigate = useNavigate();
     const toggleNav = () => {
-        navigate('edit', { state: { dataG: dataG, dataP: dataP, dataA: dataA } });
+        navigate('edit', { state: { dataG: dataG, dataP: dataP } });
     };
     const [scrollTop, setScrollTop] = useState(true);
 
@@ -99,52 +99,8 @@ const App = () => {
         }
     );
 
-    const [dataA] = useState(
-        {
-            id: id,
-            body: [
-                {
-                    title: 'Take-Off',
-                    text: '17:00:00',
-                },
-                {
-                    title: 'Landing',
-                    text: '18:00:00',
-                },
-                {
-                    title: 'Breifing',
-                    text: 'Basic Fighter Maneuver',
-                },
-                {
-                    title: 'Front(Pilot)',
-                    text: 'Thomas Cruise',
-                },
-                {
-                    title: 'Rear(Co Pilot)',
-                    text: 'Jack D',
-                },
-                {
-                    title: 'RWY Controller',
-                    text: 'Javis',
-                },
-                {
-                    title: 'T/O AB',
-                    text: '-',
-                },
-                {
-                    title: 'L/D AB',
-                    text: '-',
-                },
-                {
-                    title: 'Tail No',
-                    text: 'xxxx-05AV-5668',
-                }
-            ]
-        }
-    );
-
     useEffect(() => {
-        setTitle('KF21-' + id)
+        setTitle('KF21-' + id + ' Defect info')
     }, [id])
 
     return (
@@ -159,23 +115,17 @@ const App = () => {
                 <Card
                     background={'var(--colorPrimary)'}
                     titleColor={'var(--colorCard)'}
-                    title={'Geneal'}
-                    rightText={'Not Editabled'}
+                    title={'State'}
+                    //rightText={'Not Editabled'}
                     icon={'ri-survey-line'}
-                    body={ItemList}
+                    body={ItemDefect}
                     data={dataG}
                 />
                 <Card
                     icon={'ri-pencil-ruler-2-line'}
-                    title={'Plan'}
+                    title={'Info'}
                     body={ItemList}
                     data={dataP}
-                />
-                <Card
-                    icon={'ri-play-fill'}
-                    title={'Acture'}
-                    body={ItemList}
-                    data={dataA}
                 />
             </Layout>
         </>

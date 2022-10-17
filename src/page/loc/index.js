@@ -1,19 +1,14 @@
+/*
 
-import { Layout, Top } from '../../components';
+
+*/
+
+import { Outlet } from 'react-router-dom';
 
 const App = (props) => {
     return (
-        <>
-            <Top title={'A/C Loc & Status'} depth={1} />
-            <Layout>
-                A/C Loc & Status
-            </Layout>
-        </>
+        <Outlet />
     );
 }
 
 export default App;
-
-App.defaultProps = {
-
-};

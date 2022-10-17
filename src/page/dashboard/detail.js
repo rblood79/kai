@@ -10,7 +10,7 @@ import { Api, Layout, Top, Card, Item, ItemOverview, ItemFlight, ItemDefect, Ite
 
 const App = () => {
     const { id } = useParams();
-
+    const [scrollTop, setScrollTop] = useState(true);
     const [data, setData] = useState(
         {
             "id": "1",
@@ -152,8 +152,8 @@ const App = () => {
         <>
             {
                 data && <>
-                    <Top title={data.title} background={'var(--colorBase)'} depth={1} />
-                    <Layout padding={'0px 16px 48px 16px'}>
+                    <Top title={data.title} background={'var(--colorCard)'} depth={1} scrollTop={scrollTop} />
+                    <Layout scrollTop={setScrollTop}>
                         <ItemOverview
                             data={data}
                         />

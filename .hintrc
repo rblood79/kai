@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "touch-action: none",
+          "aspect-ratio",
+          "position: sticky",
+          "overscroll-behavior-x",
+          "overscroll-behavior-y",
+          "-webkit-tap-highlight-color",
+          "user-select"
+        ]
+      }
+    ],
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "meta[name=theme-color]"
+        ]
+      }
+    ]
+  }
+}
