@@ -26,8 +26,6 @@ App.defaultProps = {
     height: 40,
     title: 'title',
     text: 'text',
-    //titleColor: 'var(--colorLabel)',
-    //textColor: 'var(--colorText)',
     align: 'center',
     direction: 'row',
 };
