@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Api, Layout, Top, Header, Card, Item } from '../../components';
+import { Api, Layout, Top, Header, Card, ItemList } from '../../components';
 
 const App = (props) => {
     const [scrollTop, setScrollTop] = useState(true);
@@ -173,8 +173,8 @@ const App = (props) => {
                 rightType={'button'}
                 rightLink={item.id}
                 title={item.title}
-                header={Item}
             >
+                <ItemList data={item.header} box={false} />
             </Card>
         )
     });

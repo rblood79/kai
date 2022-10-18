@@ -16,7 +16,6 @@ const App = (props) => {
     const location = useLocation();
     const { id } = useParams();
     const [title, setTitle] = useState(null);
-    const [dataG, setDataG] = useState(null);
 
     const [params, setParams] = useState(
         {
@@ -35,6 +34,42 @@ const App = (props) => {
         { id: '4', value: 'sfes', text: 'Bob Wilson' },
     ]
 
+    const [dataG] = useState(
+        {
+            id: id,
+            body: [
+                {
+                    title: 'Aircraft',
+                    text: '220218-KFX-002',
+                },
+                {
+                    title: 'Tail No',
+                    text: '27-003',
+                },
+                {
+                    title: 'Mission',
+                    text: 'Basic Fighter Maneuver',
+                },
+                {
+                    title: 'Date',
+                    text: '16 May 2021',
+                },
+                {
+                    title: 'Call-Sign',
+                    text: 'Black Dog',
+                },
+                {
+                    title: 'Flight Config',
+                    text: 'SL01',
+                },
+                {
+                    title: 'Area',
+                    text: 'Instrument Navigation',
+                }
+            ]
+        }
+    );
+
     /*const toggleNav = () => {
         console.log('save', params)
     };*/
@@ -50,7 +85,7 @@ const App = (props) => {
     }
 
     useEffect(() => {
-        setDataG(location.state.dataG)
+        //setDataG(location.state.dataG)
         setTitle('KF21-' + id)
     }, [id])
 
@@ -63,11 +98,11 @@ const App = (props) => {
                     titleColor={'var(--colorCard)'}
                     title={'Geneal'}
                     rightText={'Not Editabled'}
-                    icon={'ri-survey-line'}
-                    body={ItemList}
-                    data={dataG}
-                />
-                <Card icon={'ri-survey-line'} title={'Plan'} gap={48}>
+                    line={false}
+                >
+                    <ItemList data={dataG.body} icon={'ri-survey-line'} />
+                </Card>
+                <Card icon={'ri-survey-line'} title={'Plan'} gap={48} padding={'24px 0 0 0'}>
                     <Input label={'Take-Off'} type={'time'} value={params.takeoff} column={'takeoff'} callBack={setParams} />
                     <Input label={'Landing'} type={'time'} value={params.landing} column={'landing'} callBack={setParams} />
                     <Input label={'Briefing'} disabled={true} value={params.briefing} />

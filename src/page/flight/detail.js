@@ -161,22 +161,22 @@ const App = () => {
                     titleColor={'var(--colorCard)'}
                     title={'Geneal'}
                     rightText={'Not Editabled'}
-                    icon={'ri-survey-line'}
-                    body={ItemList}
-                    data={dataG}
-                />
+                    line={false}
+                >
+                    <ItemList data={dataG.body} icon={'ri-survey-line'} />
+                </Card>
                 <Card
-                    icon={'ri-pencil-ruler-2-line'}
                     title={'Plan'}
-                    body={ItemList}
-                    data={dataP}
-                />
+                    line={false}
+                >
+                    <ItemList data={dataP.body} icon={'ri-pencil-ruler-2-line'} />
+                </Card>
                 <Card
-                    icon={'ri-play-fill'}
                     title={'Acture'}
-                    body={ItemList}
-                    data={dataA}
-                />
+                    line={false}
+                >
+                    <ItemList data={dataA.body} icon={'ri-play-fill'} />
+                </Card>
             </Layout>
         </>
     );

@@ -116,17 +116,17 @@ const App = () => {
                     background={'var(--colorPrimary)'}
                     titleColor={'var(--colorCard)'}
                     title={'State'}
-                    //rightText={'Not Editabled'}
-                    icon={'ri-survey-line'}
-                    body={ItemDefect}
-                    data={dataG}
-                />
+                    rightText={'Not Editabled'}
+                    line={false}
+                >
+                    <ItemDefect data={dataG} />
+                </Card>
                 <Card
-                    icon={'ri-pencil-ruler-2-line'}
                     title={'Info'}
-                    body={ItemList}
-                    data={dataP}
-                />
+                    line={false}
+                >
+                    <ItemList data={dataP.body} />
+                </Card>
             </Layout>
         </>
     );

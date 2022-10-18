@@ -1,13 +1,11 @@
-import { Link } from 'react-router-dom';
-import styles from './index.module.scss';
 
-import { Layout } from '../../components';
+import styles from './index.module.scss';
 
 const App = () => {
     return (
-        <Layout>
-            404 Page Not Found
-        </Layout>
+        <div className={styles.container}>
+            No page found.
+        </div>
     );
 }
 

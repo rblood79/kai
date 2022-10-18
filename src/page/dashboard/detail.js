@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Api, Layout, Top, Card, Item, ItemOverview, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume } from '../../components';
+import { Api, Layout, Top, Card, ItemList, ItemOverview, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume } from '../../components';
 
 const App = () => {
     const { id } = useParams();
@@ -162,37 +162,41 @@ const App = () => {
                             rightType={'button'}
                             rightLink={'/flight'}
                             title={'Flight No'}
-                            header={Item}
-                            body={ItemFlight}
-                            data={data.dataF}
-                        />
+                            gap={8}
+                        >
+                            <ItemList data={data.dataF.header} box={false}/>
+                            <ItemFlight data={data.dataF.body} />
+                        </Card>
                         <Card
                             rightText={'more'}
                             rightType={'button'}
                             rightLink={'/defect'}
                             title={'Defect'}
-                            header={Item}
-                            body={ItemDefect}
-                            data={data.dataD}
-                        />
+                            gap={8}
+                        >
+                            <ItemList data={data.dataD.header} box={false}/>
+                            <ItemDefect data={data.dataD.body} />
+                        </Card>
                         <Card
                             rightText={'more'}
                             rightType={'button'}
                             rightLink={'/maintenance'}
                             title={'Maintenance'}
-                            header={Item}
-                            body={ItemMaintenance}
-                            data={data.dataM}
-                        />
+                            gap={8}
+                        >
+                            <ItemList data={data.dataM.header} box={false}/>
+                            <ItemMaintenance data={data.dataM.body} />
+                        </Card>
                         <Card
                             rightText={'more'}
                             rightType={'button'}
                             rightLink={'/consume'}
                             title={'Consume'}
-                            header={Item}
-                            body={ItemConsume}
-                            data={data.dataC}
-                        />
+                            gap={8}
+                        >
+                            <ItemList data={data.dataC.header} box={false}/>
+                            <ItemConsume data={data.dataC.body} />
+                        </Card>
                     </Layout>
                 </>
             }

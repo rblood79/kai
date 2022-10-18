@@ -6,7 +6,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 import moment from 'moment';
-import { Api, Layout, Header, Top, Input, Card, Sheet, Item, ItemFlight } from '../../components';
+import { Api, Layout, Header, Top, Input, Card, Sheet, Item, ItemList, ItemFlight } from '../../components';
 
 //import classNames from 'classnames';
 
@@ -14,7 +14,7 @@ const App = (props) => {
 
   const [navState, setNavState] = useState(false);
   const toggleNav = () => setNavState(!navState);
-  const [scrollTop, setScrollTop] = useState(true); 
+  const [scrollTop, setScrollTop] = useState(true);
   //list data
   const [data, setData] = useState(
     [
@@ -204,10 +204,11 @@ const App = (props) => {
         rightType={'button'}
         rightLink={item.id}
         title={item.title}
-        header={Item}
-        body={ItemFlight}
-        data={item}
-      />
+        gap={8}
+      >
+        <ItemList data={item.header} box={false}/>
+        <ItemFlight data={item.body} />
+      </Card>
     )
   });
 

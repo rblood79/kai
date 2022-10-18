@@ -5,26 +5,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
 
 import styles from './index.module.scss';
 
 const App = (props) => {
     //const location = useLocation();
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
-
-    const headerItems = () => data.header.map((item, index) => {
-        return (
-            <props.header key={index} title={item.title} text={item.type !== 'date' ? item.text : moment(item.text).format('DD MMM YYYY')} />
-        )
-    });
 
     useEffect(() => {
-        if (props.data !== 'undefined' && props.data !== null) {
-            setData(props.data)
-        }
-    }, [props.data]);
+        
+    }, []);
 
     return (
         <section className={styles.container} style={{ background: props.background }}>
@@ -39,24 +29,9 @@ const App = (props) => {
                     {props.rightText}
                 </button>}
             </div>
-            {data &&
-                <>
-                    {
-                        data.header && props.header &&
-                        <div className={styles.header}>
-                            {headerItems()}
-                        </div>
-                    }
-
-                    {
-                        data.body && props.body &&
-                        <props.body data={data.body} icon={props.icon} />
-                    }
-                </>
-            }
             {
                 props.children &&
-                <div className={styles.children}>{props.children}</div>
+                <div className={props.line ? styles.childrenLine : styles.children} style={{ gap: props.gap, padding: props.padding }}>{props.children}</div>
             }
         </section>
     );
@@ -69,4 +44,6 @@ App.defaultProps = {
     rightType: 'text',
     rightText: null,
     rightLink: null,
+    gap: 48,
+    line: true,
 };

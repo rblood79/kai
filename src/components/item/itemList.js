@@ -16,13 +16,14 @@ const App = (props) => {
         )
     });
     useEffect(() => {
+        
     }, [])
 
     return (
-        <div className={styles.container}>
+        <div className={props.box ? styles.container : styles.containerEmpty}>
             {props.icon && <span className={styles.baseIcon}><i className={props.icon}></i></span>}
             <div className={styles.list}>
-                {listItems}
+                {props.data && listItems}
             </div>
         </div>
     )
@@ -36,4 +37,5 @@ App.defaultProps = {
     titleColor: 'var(--colorSecondary)',
     background: 'var(--colorCard)',
     icon: null,
+    box: true,
 };

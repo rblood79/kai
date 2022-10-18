@@ -34,11 +34,15 @@
     padding: 8px 0 0 0;
   }
   .children {
-    border-top: 1px solid #ebebeb;
-    padding-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+  }
+
+  .childrenLine {
+    border-top: 1px solid #ebebeb;
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
   }
   
 }
