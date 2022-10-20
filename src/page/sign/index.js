@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+//import { useEffect, useLayoutEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './index.module.scss';
 import { Input, Button } from '../../components';
 
 const App = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const standalone = 'standalone' in window.navigator && window.navigator.standalone;
+
     return (
         <main className={styles.container}>
             <div className={styles.header}>
@@ -18,7 +21,7 @@ const App = () => {
                 <span className={styles.subTitle}>Next-Generation Fighter</span>
             </div>
 
-            <div className={styles.main} style={{paddingBottom: standalone ? '27px' : '0px'}}>
+            <div className={styles.main} style={{ paddingBottom: standalone ? '27px' : '0px' }}>
                 <div className={styles.inputGroup}>
                     <Input placeholder={'ID'} />
                     <Input placeholder={'PASSWORD'} />
@@ -27,6 +30,7 @@ const App = () => {
                     navigate('/dashboard', {
                         state: {
                             data: null,
+                            key: location.key
                         },
                     })
                 }} />

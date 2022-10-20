@@ -164,7 +164,7 @@ const App = () => {
                             title={'Flight No'}
                             gap={8}
                         >
-                            <ItemList  box={false}/>
+                            <ItemList data={data.dataF.header} box={false}/>
                             <ItemFlight data={data.dataF.body} />
                         </Card>
                         <Card

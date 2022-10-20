@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
-import { useTransition, a, easings } from 'react-spring';
-import { useLocation, Routes, Route } from "react-router-dom";
+import { useEffect, useLayoutEffect, useContext } from 'react';
+import { useTransition, animated, easings } from 'react-spring';
+import { useLocation, Routes, Route, UNSAFE_RouteContext } from "react-router-dom";
 
 
 import './App.scss';
@@ -52,6 +53,7 @@ import LocList from './page/loc/list';
 
 const App = () => {
   const location = useLocation();
+
   const transitions = useTransition(location, {
     from: { transform: 'translate3d(100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
@@ -60,14 +62,26 @@ const App = () => {
       duration: 480,
       easing: easings.easeInOutQuart,
     },
-    //onRest: () => {},
+    onRest: () => {
+      //console.log('lo', location.pathname)
+    },
   })
+
+  useEffect(() => {
+    //console.log('useEffect', location)
+    console.log(location.state ? location.state.key : 'null', ' > ', location.key)
+  }, [location])
+
+  useLayoutEffect(() => {
+    //console.log('useLayoutEffect', location)
+  }, [location])
+
 
   return (
     <div className="App">
       <div className='container'>
         {transitions((styles, item) => (
-          <a.div className='contents' style={styles}>
+          <animated.div className='contents' style={styles}>
             <Routes location={item}>
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Sign />} />
@@ -115,7 +129,7 @@ const App = () => {
               </Route>
 
             </Routes>
-          </a.div>
+          </animated.div>
         ))}
 
       </div>
