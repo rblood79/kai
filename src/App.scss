@@ -16,20 +16,20 @@
       flex-direction: column;
       will-change: transform, opacity;
 
+      //align-items: center;
+      //justify-content: center;
+
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         bottom: 0;
         height: 48px;
         width: 100%;
-        background: linear-gradient(
-          to bottom, transparent, white
-        );
+        background: linear-gradient(to bottom, transparent, white);
         pointer-events: none;
       }
     }
-    
   }
 }
 

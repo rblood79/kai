@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
-import { useEffect, useLayoutEffect, useContext } from 'react';
+//import { useEffect, useLayoutEffect } from 'react';
 import { useTransition, animated, easings } from 'react-spring';
-import { useLocation, Routes, Route, UNSAFE_RouteContext } from "react-router-dom";
+import { useLocation, Routes, Route } from "react-router-dom";
 
 
 import './App.scss';
@@ -67,14 +67,9 @@ const App = () => {
     },
   })
 
-  useEffect(() => {
-    //console.log('useEffect', location)
+  /*useEffect(() => {
     console.log(location.state ? location.state.key : 'null', ' > ', location.key)
-  }, [location])
-
-  useLayoutEffect(() => {
-    //console.log('useLayoutEffect', location)
-  }, [location])
+  }, [location])*/
 
 
   return (

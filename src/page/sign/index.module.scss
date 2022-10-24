@@ -5,12 +5,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  background-image: url("../../images/main2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   .header {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    //padding-bottom: 16px;
+
     .titleGroup {
       display: flex;
       flex-direction: row;
