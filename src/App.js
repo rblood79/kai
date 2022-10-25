@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 //import { useEffect, useLayoutEffect } from 'react';
 import { useTransition, animated, easings } from 'react-spring';
-import { useLocation, Routes, Route } from "react-router-dom";
+import { useLocation, useNavigate, Routes, Route } from "react-router-dom";
 
 
 import './App.scss';
@@ -48,7 +48,7 @@ import Loc from './page/loc';
 import LocList from './page/loc/list';
 
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 
 const App = () => {
@@ -71,6 +71,7 @@ const App = () => {
   useEffect(() => {
     console.log(location)
   }, [location])
+
   // swipe cancle
   useEffect(() => {
     viewport.current.addEventListener('touchstart', (e) => {

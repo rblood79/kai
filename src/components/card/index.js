@@ -4,12 +4,12 @@
 */
 
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './index.module.scss';
 
 const App = (props) => {
-    const location = useLocation();
+    //const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const App = (props) => {
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
                 {props.rightType === 'button' && props.rightText && <button className={styles.button}
                     onClick={() => {
-                        navigate(props.rightLink, { state: { key: location.key } })
+                        navigate(props.rightLink, { state: { data: null, } })
                         //console.log(props.rightLink)
                     }}>
                     {props.rightText}

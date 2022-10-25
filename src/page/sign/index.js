@@ -1,10 +1,10 @@
 //import { useEffect, useLayoutEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { Input, Button } from '../../components';
 
 const App = () => {
-    const location = useLocation();
+    //const location = useLocation();
     const navigate = useNavigate();
     const standalone = 'standalone' in window.navigator && window.navigator.standalone;
 
@@ -30,7 +30,6 @@ const App = () => {
                     navigate('/dashboard', {
                         state: {
                             data: null,
-                            key: location.key
                         },
                         //replace: true,
                     })

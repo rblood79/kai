@@ -10,7 +10,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useGesture } from '@use-gesture/react'
 import { useSpring, useSprings, animated, easings } from '@react-spring/web';
 
-import { useOutletContext, useNavigate, useLocation, Link } from 'react-router-dom';
+import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
 import { percentColor, gradient } from '../../util';
 
@@ -25,7 +25,7 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    const location = useLocation();
+    //const location = useLocation();
     const navigate = useNavigate();
     const { type } = useOutletContext();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -154,7 +154,7 @@ const App = () => {
                 </animated.div>
                 <button className={styles.button} onClick={() =>
                     //navigate(data[index].id,)
-                    navigate(data[index].id, { state: { key: location.key } })
+                    navigate(data[index].id, { state: { data: null, } })
                 }>
                     <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
@@ -192,7 +192,7 @@ const App = () => {
                     <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[index].flight} />
                     <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[index].defect} />
                 </animated.div>
-                <button className={styles.button} onClick={() => navigate(data[index].id, { state: { key: location.key } })}>
+                <button className={styles.button} onClick={() => navigate(data[index].id, { state: { data: null, } })}>
                     <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
             </animated.div>

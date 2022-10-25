@@ -30,8 +30,7 @@ const App = (props) => {
                 <button className={styles.back}
                     onClick={(e) => {
                         navigate(-1)
-                    }
-                    }><i className="ri-arrow-left-line"></i>
+                    }}><i className="ri-arrow-left-line"></i>
                 </button>
             }
 

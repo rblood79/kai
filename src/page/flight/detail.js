@@ -12,7 +12,7 @@ const App = () => {
     //const [state, seState] = useState(false);
     const navigate = useNavigate();
     const toggleNav = () => {
-        navigate('edit', { state: { dataG: dataG, dataP: dataP, dataA: dataA } });
+        navigate('edit', { state: { data: null, dataG: dataG, dataP: dataP, dataA: dataA } });
     };
     const [scrollTop, setScrollTop] = useState(true);
 
