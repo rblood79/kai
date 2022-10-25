@@ -32,6 +32,7 @@ const App = () => {
                             data: null,
                             key: location.key
                         },
+                        //replace: true,
                     })
                 }} />
                 <Button text={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={() => { console.log('help') }} />

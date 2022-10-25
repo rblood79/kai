@@ -48,10 +48,11 @@ import Loc from './page/loc';
 import LocList from './page/loc/list';
 
 
-//import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 
 const App = () => {
+  const viewport = useRef(null);
   const location = useLocation();
 
   const transitions = useTransition(location, {
@@ -66,14 +67,20 @@ const App = () => {
       //console.log('lo', location.pathname)
     },
   })
-
-  /*useEffect(() => {
-    console.log(location.state ? location.state.key : 'null', ' > ', location.key)
-  }, [location])*/
-
+  // location change
+  useEffect(() => {
+    console.log(location)
+  }, [location])
+  // swipe cancle
+  useEffect(() => {
+    viewport.current.addEventListener('touchstart', (e) => {
+      if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return;
+      e.preventDefault();
+    })
+  }, [viewport])
 
   return (
-    <div className="App">
+    <div className="App" ref={viewport}>
       <div className='container'>
         {transitions((styles, item) => (
           <animated.div className='contents' style={styles}>
