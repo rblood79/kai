@@ -62,22 +62,23 @@ const App = () => {
       easing: easings.easeInOutQuart,
     },
     onRest: () => {
-      //console.log('lo', location.pathname)
+      // direction
+      setDirection(window.history.state.idx)
     },
   })
 
-  // direction
+
   useEffect(() => {
-    setDirection(window.history.state.idx)
-  }, [location])
+
+  }, [])
 
   // swipe cancle
-  /*useEffect(() => {
+  useEffect(() => {
     viewport.current.addEventListener('touchstart', (e) => {
-      if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return;
+      if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
       e.preventDefault();
     })
-  }, [viewport])*/
+  }, [viewport])
 
   return (
     <div className="App" ref={viewport}>
