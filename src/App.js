@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
-//import { useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTransition, animated, easings } from 'react-spring';
-import { useLocation, useNavigate, Routes, Route } from "react-router-dom";
+import { useLocation, Routes, Route } from "react-router-dom";
 
 
 import './App.scss';
@@ -48,17 +48,15 @@ import Loc from './page/loc';
 import LocList from './page/loc/list';
 
 
-import { useEffect, useRef } from 'react';
-
-
 const App = () => {
   const viewport = useRef(null);
   const location = useLocation();
+  const [direction, setDirection] = useState(0);
 
   const transitions = useTransition(location, {
-    from: { transform: 'translate3d(100%,0,0)' },
+    from: { transform: direction < window.history.state.idx ? 'translate3d(100%,0,0)' : 'translate3d(-100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
-    leave: { transform: 'translate3d(-50%,0,0)' },
+    leave: { transform: direction < window.history.state.idx ? 'translate3d(-50%,0,0)' : 'translate3d(50%,0,0)' },
     config: {
       duration: 480,
       easing: easings.easeInOutQuart,
@@ -67,18 +65,19 @@ const App = () => {
       //console.log('lo', location.pathname)
     },
   })
-  // location change
+
+  // direction
   useEffect(() => {
-    console.log(location)
+    setDirection(window.history.state.idx)
   }, [location])
 
   // swipe cancle
-  useEffect(() => {
+  /*useEffect(() => {
     viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return;
       e.preventDefault();
     })
-  }, [viewport])
+  }, [viewport])*/
 
   return (
     <div className="App" ref={viewport}>

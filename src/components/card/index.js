@@ -3,7 +3,7 @@
 
 */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './index.module.scss';
@@ -13,7 +13,7 @@ const App = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        
+
     }, []);
 
     return (
@@ -23,8 +23,7 @@ const App = (props) => {
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
                 {props.rightType === 'button' && props.rightText && <button className={styles.button}
                     onClick={() => {
-                        navigate(props.rightLink, { state: { data: null, } })
-                        //console.log(props.rightLink)
+                        navigate(props.rightLink, { state: { data: null } })
                     }}>
                     {props.rightText}
                 </button>}
