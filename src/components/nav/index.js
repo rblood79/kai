@@ -1,9 +1,9 @@
 
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
-import { Link } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
+import context from '../../context';
 import styles from './index.module.scss';
 
 const myCallback = (animatedValue) => {
@@ -11,6 +11,9 @@ const myCallback = (animatedValue) => {
 };
 
 const App = (props) => {
+    const navigate = useNavigate();
+    const state = useContext(context);
+    const { user, setUser } = state;
     const data = [
         {
             link: '/flight',
@@ -53,7 +56,7 @@ const App = (props) => {
             text: 'A/C Loc & Status',
         },
         {
-            link: '/',
+            link: '/signout',
             icon: 'ri-logout-box-r-line',
             text: 'Sign Out',
         },
@@ -71,10 +74,14 @@ const App = (props) => {
 
     const item = (link, icon, text) => {
         return (
-            <Link className={styles.item} to={link} key={link}>
+            <button className={styles.item} key={link} onClick={() => {
+                link !== '/signout' ?
+                    navigate(link, { state: { data: null } }) :
+                    setUser({})
+            }}>
                 <i className={icon} />
                 <span>{text}</span>
-            </Link>
+            </button>
         )
     }
 
@@ -90,7 +97,7 @@ const App = (props) => {
                         <i className="ri-user-line"></i>
                     </div>
                     <div className={styles.name}>
-                        LEVEL 1, Bryan Fury
+                        {user.name}
                     </div>
                 </div>
                 <div className={styles.list}>

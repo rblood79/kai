@@ -4,7 +4,19 @@ import styles from './index.module.scss';
 
 const App = (props) => {
     return (
-        <button className={styles.button} style={{ background: props.background, color: props.color }} onClick={props.onClick}>{props.text}</button>
+        <button
+            className={styles.button}
+            style={{
+                width: props.width,
+                height: props.height,
+                fontSize: props.fontSize,
+                background: props.background,
+                color: props.color,
+                borderRadius: props.radius
+            }}
+            onClick={props.onClick}>
+            {props.text}
+        </button>
     );
 }
 

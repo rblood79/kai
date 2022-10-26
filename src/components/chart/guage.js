@@ -165,16 +165,16 @@ const App = (props) => {
             .style("fill", "#FF5A03")
             .attr("d", arcValue);
 
+        const needle = new Needle((width * 0.5) - barWidth, 6);
+        needle.drawOn(chart, 0);
+
         props.active && foreground.transition()
             .delay(delay)
             .duration(duration)
             .ease(easing)
             .attrTween("d", arcTween((-pi / 2) + piePercent))
             .style("fill", perToColor);
-
-        const needle = new Needle((width * 0.5) - barWidth, 6);
-
-        needle.drawOn(chart, 0);
+            
         props.active && needle.animateOn(chart, percent);
 
     }, [props.active]);

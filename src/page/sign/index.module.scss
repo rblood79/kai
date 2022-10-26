@@ -10,6 +10,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  /*border: 16px solid var(--colorBase);
+  border-radius: 48px;*/
+
   .header {
     flex: 1;
     display: flex;
@@ -88,5 +92,8 @@
         }
       }
     }
+    /*&::after {
+      content: 'copyright 2022';
+    }*/
   }
 }

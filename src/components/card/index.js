@@ -5,7 +5,7 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Button from '../button';
 import styles from './index.module.scss';
 
 const App = (props) => {
@@ -21,12 +21,20 @@ const App = (props) => {
             <div className={styles.head}>
                 <span className={styles.title} style={{ color: props.titleColor }}>{props.title}</span>
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
-                {props.rightType === 'button' && props.rightText && <button className={styles.button}
-                    onClick={() => {
-                        navigate(props.rightLink, { state: { data: null } })
-                    }}>
-                    {props.rightText}
-                </button>}
+                {props.rightType === 'button' && props.rightText &&
+                    <Button
+                        text={props.rightText}
+                        background={'var(--colorPrimary)'}
+                        color={'var(--colorCard)'}
+                        fontSize={'16px'}
+                        width={'auto'}
+                        height={'28px'}
+                        radius={'48px'}
+                        onClick={() => {
+                            navigate(props.rightLink, { state: { data: null } })
+                        }}
+                    />}
+
             </div>
             {
                 props.children &&

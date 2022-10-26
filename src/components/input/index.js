@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import Button from '../button';
+//import Button from '../button';
 import _ from 'lodash';
 import moment from 'moment';
 
@@ -25,6 +25,22 @@ const App = (props) => {
         return (
             <input className={classNames(styles.input, props.required && styles.required, props.disabled && styles.disabled)}
                 type="text"
+                disabled={props.disabled}
+                placeholder={props.placeholder}
+                value={props.value}
+                onChange={(e) => {
+                    props.callBack((prevState) => {
+                        return { ...prevState, [props.column]: e.target.value }
+                    })
+                }}
+            />
+        )
+    }
+
+    const passItem = () => {
+        return (
+            <input className={classNames(styles.input, props.required && styles.required, props.disabled && styles.disabled)}
+                type="password"
                 disabled={props.disabled}
                 placeholder={props.placeholder}
                 value={props.value}
@@ -172,7 +188,9 @@ const App = (props) => {
                             props.type === 'day' ?
                                 dayItem() :
                                 props.type === 'time' ?
-                                    timeItem() : textItem()
+                                    timeItem() :
+                                    props.type === 'password' ?
+                                        passItem() : textItem()
             }
         </div>
     );
