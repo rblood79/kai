@@ -134,6 +134,7 @@ const App = (props) => {
   //filter default data
   const [params, setParams] = useState(
     {
+      radioTest: '1M',
       range: '1M',
       endDate: moment().format('YYYYMMDDHHmmss'),
       startDate: moment().add(-1, 'M').format('YYYYMMDDHHmmss'),
@@ -206,7 +207,7 @@ const App = (props) => {
         title={item.title}
         gap={8}
       >
-        <ItemList data={item.header} box={false}/>
+        <ItemList data={item.header} box={false} />
         <ItemFlight data={item.body} />
       </Card>
     )
@@ -227,12 +228,12 @@ const App = (props) => {
       </Layout>
 
       <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} gap={48}>
-
-        <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} callBack={setParams} />
-        <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} callBack={setParams} />
-        <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} callBack={setParams} />
-        <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} callBack={setParams} />
-        <Input label={'SQ'} value={params.sq} column={'sq'} callBack={setParams} />
+        <Input label={'Chois radio item'} type={'radio'} value={params.radioTest} data={rangeData} column={'radioTest'} onChange={setParams} />
+        <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
+        <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} onChange={setParams} />
+        <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} onChange={setParams} />
+        <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} onChange={setParams} />
+        <Input label={'SQ'} value={params.sq} column={'sq'} onChange={setParams} />
 
       </Sheet>
     </>

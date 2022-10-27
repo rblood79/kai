@@ -102,4 +102,17 @@
       background-position: calc(100% - 4px) center;
     }
   }
+
+  .radio {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--borderRadius-50);
+    width: 100%;
+    font-family: inherit;
+    font-size: var(--textSize);
+    padding: 16px;
+    background-color: var(--colorBase);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
 }

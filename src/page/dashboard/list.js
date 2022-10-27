@@ -153,8 +153,7 @@ const App = () => {
                     <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data[index].date} />
                 </animated.div>
                 <button className={styles.button} onClick={() =>
-                    //navigate(data[index].id,)
-                    navigate(data[index].id, { state: { data: null } })
+                    navigate(data[index].id)
                 }>
                     <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
@@ -192,7 +191,7 @@ const App = () => {
                     <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[index].flight} />
                     <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[index].defect} />
                 </animated.div>
-                <button className={styles.button} onClick={() => navigate(data[index].id, { state: { data: null } })}>
+                <button className={styles.button} onClick={() => navigate(data[index].id)}>
                     <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
                 </button>
             </animated.div>

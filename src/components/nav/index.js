@@ -2,18 +2,13 @@
 
 import React, { useContext } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import context from '../../context';
 import styles from './index.module.scss';
-
-const myCallback = (animatedValue) => {
-    //console.log("animation frame, animatedValue: ", animatedValue);
-};
 
 const App = (props) => {
     const navigate = useNavigate();
     const state = useContext(context);
-    const { user, setUser } = state;
     const data = [
         {
             link: '/flight',
@@ -56,16 +51,15 @@ const App = (props) => {
             text: 'A/C Loc & Status',
         },
         {
-            link: '/signout',
+            link: '/sign',
             icon: 'ri-logout-box-r-line',
             text: 'Sign Out',
         },
     ]
 
-    const { opacity, xyz } = useSpring({
+    const { xyz } = useSpring({
         opacity: props.state ? 1 : 0,
         xyz: props.state ? [0, 0, 0] : [window.innerWidth, 0, 0],
-        onFrame: myCallback,
         config: {
             duration: 480,
             easing: easings.easeInOutQuart,
@@ -75,9 +69,8 @@ const App = (props) => {
     const item = (link, icon, text) => {
         return (
             <button className={styles.item} key={link} onClick={() => {
-                link !== '/signout' ?
-                    navigate(link, { state: { data: null } }) :
-                    setUser({})
+                link !== '/sign' ?
+                    navigate(link) : state.setUser(null)
             }}>
                 <i className={icon} />
                 <span>{text}</span>
@@ -87,7 +80,6 @@ const App = (props) => {
 
     return (
         <animated.nav className={styles.container} style={{
-            //opacity,
             transform: xyz.to((x, y, z) => `translate3d(${x}px, ${y}px, ${z}px)`),
         }}
         >
@@ -97,7 +89,7 @@ const App = (props) => {
                         <i className="ri-user-line"></i>
                     </div>
                     <div className={styles.name}>
-                        {user.name}
+                        {state.user && state.user.name}
                     </div>
                 </div>
                 <div className={styles.list}>

@@ -5,12 +5,13 @@ const UserContext = React.createContext();
 class UserProvider extends Component {
     // Context state
     state = {
+        //user: null
         user: {
-            /*id: 'tester',
+            id: 'tester',
             name: 'bryan',
             level: '45Level',
-            group: 'admin',*/
-        },
+            group: 'admin',
+        }
     };
     // Method to update state
     setUser = user => {

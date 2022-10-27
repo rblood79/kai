@@ -23,7 +23,7 @@
     color: var(--colorText);
   }
   .back {
-    z-index: 0;
+    z-index: 10;
     grid-column: 1 / 2;
   }
   .home {

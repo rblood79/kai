@@ -9,7 +9,6 @@ import Button from '../button';
 import styles from './index.module.scss';
 
 const App = (props) => {
-    //const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const App = (props) => {
                         height={'28px'}
                         radius={'48px'}
                         onClick={() => {
-                            navigate(props.rightLink, { state: { data: null } })
+                            navigate(props.rightLink)
                         }}
                     />}
 

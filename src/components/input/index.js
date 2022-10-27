@@ -25,11 +25,12 @@ const App = (props) => {
         return (
             <input className={classNames(styles.input, props.required && styles.required, props.disabled && styles.disabled)}
                 type="text"
+                autoComplete={props.autoComplete}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={(e) => {
-                    props.callBack((prevState) => {
+                    props.onChange((prevState) => {
                         return { ...prevState, [props.column]: e.target.value }
                     })
                 }}
@@ -41,11 +42,12 @@ const App = (props) => {
         return (
             <input className={classNames(styles.input, props.required && styles.required, props.disabled && styles.disabled)}
                 type="password"
+                autoComplete={props.autoComplete}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={(e) => {
-                    props.callBack((prevState) => {
+                    props.onChange((prevState) => {
                         return { ...prevState, [props.column]: e.target.value }
                     })
                 }}
@@ -64,7 +66,7 @@ const App = (props) => {
         )
     }
 
-    
+
     const [date, setDate] = useState(props.value);
     const [time, setTime] = useState(props.value);
 
@@ -73,7 +75,7 @@ const App = (props) => {
 
         const callBack = (d, t) => {
             const temp = d.year + d.month + d.day + t.hour + t.min + t.sec;
-            props.callBack((prevState) => {
+            props.onChange((prevState) => {
                 return { ...prevState, [props.column]: temp }
             })
             toggleNav();
@@ -112,7 +114,7 @@ const App = (props) => {
 
         const callBack = (t) => {
             const temp = t.hour + t.min + t.sec;
-            props.callBack((prevState) => {
+            props.onChange((prevState) => {
                 return { ...prevState, [props.column]: temp }
             })
             toggleNav();
@@ -141,7 +143,7 @@ const App = (props) => {
 
         const selectItem = _.find(props.data, { 'value': props.value })
         const callBack = (v) => {
-            props.callBack((prevState) => {
+            props.onChange((prevState) => {
                 return { ...prevState, [props.column]: v }
             })
             toggleNav();
@@ -169,6 +171,48 @@ const App = (props) => {
         )
     }
 
+    const checkItem = () => {
+
+        return (
+            <input type="checkbox"
+                checked={props.value}
+                onChange={(e) => {
+                    props.onChange((prevState) => {
+                        return { ...prevState, [props.column]: e.target.checked }
+                    })
+                }}
+            />
+        )
+    }
+
+    const radioItem = () => {
+        const callBack = (v) => {
+            props.onChange((prevState) => {
+                return { ...prevState, [props.column]: v }
+            })
+        }
+
+        return (
+            <div className={styles.radio}>
+                {
+                    props.data && props.data.map((item, index) => {
+                        return (
+                            <div key={index} className={styles.item}>
+                                <input type='radio' name={props.label} id={item.value} value={item.value}
+                                    checked={item.value === props.value}
+                                    onChange={(e) => {
+                                        callBack(e.target.value)
+                                    }}
+                                />
+                                <label htmlFor={item.value}>{item.text}</label>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        )
+    }
+
     useEffect(() => {
 
     }, [])
@@ -179,18 +223,22 @@ const App = (props) => {
                 props.label && <label className={styles.label}>{props.label}</label>
             }
             {
-                props.type === 'find' ?
-                    findItem() :
-                    props.type === 'select' ?
-                        selectItem() :
-                        props.type === 'date' ?
-                            dateItem() :
-                            props.type === 'day' ?
-                                dayItem() :
-                                props.type === 'time' ?
-                                    timeItem() :
-                                    props.type === 'password' ?
-                                        passItem() : textItem()
+                props.type === 'check' ?
+                    checkItem() :
+                    props.type === 'radio' ?
+                        radioItem() :
+                        props.type === 'find' ?
+                            findItem() :
+                            props.type === 'select' ?
+                                selectItem() :
+                                props.type === 'date' ?
+                                    dateItem() :
+                                    props.type === 'day' ?
+                                        dayItem() :
+                                        props.type === 'time' ?
+                                            timeItem() :
+                                            props.type === 'password' ?
+                                                passItem() : textItem()
             }
         </div>
     );
@@ -201,4 +249,5 @@ export default React.memo(App);
 App.defaultProps = {
     disabled: false,
     required: false,
+    autoComplete: "off",
 };

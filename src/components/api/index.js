@@ -1,8 +1,9 @@
 import axios from 'axios';
+
 /*
-    axios 인스턴스를 생성합니다.
-    생성할때 사용하는 옵션들 (baseURL, timeout, headers 등)은 다음 URL에서 확인할 수 있습니다.
-    https://github.com/axios/axios 의 Request Config 확인
+* @date         : 2022-11-01
+* @description  : https://github.com/axios/axios 의 Request Config 확인
+* @parameter    : none
 */
 axios.defaults.paramsSerializer = function (paramObj) {
   const params = new URLSearchParams();
@@ -27,10 +28,11 @@ const instance = axios.create({
     'Access-Control-Allow-Origin': '*',
   },
 });
+
 /*
-    요청 인터셉터를 작성.
-    -요청 바로 직전 - 인자값: axios config
-    -요청 에러 - 인자값: error
+* @date         : 2022-11-01
+* @description  : 요청 인터셉터를 작성
+* @parameter    : error
 */
 instance.interceptors.request.use(
   function (config) {
@@ -45,10 +47,13 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
 /*
-    응답 인터셉터를 작성.
-    -응답 정성 - 인자값: http response
-    -응답 에러 - 인자값: http error
+* @date         : 2022-11-01
+* @description  : 응답 인터셉터를 작성
+                  응답 정성 - 인자값: http response
+                  응답 에러 - 인자값: http error
+* @parameter    : error
 */
 instance.interceptors.response.use(
   function (response) {
@@ -71,5 +76,4 @@ instance.interceptors.response.use(
   },
 );
 
-// 생성한 인스턴스를 익스포트 합니다.
 export default instance;

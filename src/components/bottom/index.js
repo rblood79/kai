@@ -1,3 +1,8 @@
+/*
+* @date         : 2022-11-01
+* @description  : app mode(바탕화면 바로가기)일때 bottom navigation
+* @parameter    : none
+*/
 
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
@@ -52,6 +57,11 @@ const App = (props) => {
         },
     ]
 
+/*
+* @date         : 2022-11-01
+* @description  : bottom button item
+* @parameter    : link, icon, text
+*/
     const item = (link, icon, text) => {
         return (
             <Link className={styles.item} to={link} key={link}>
@@ -64,14 +74,14 @@ const App = (props) => {
     const navStyle = useSpring(
         {
             transform: navState ? "translateY(-56px)" : "translateY(0px)",
-            config: { duration: 600, easing: easings.easeInOutExpo },
+            config: { duration: 480, easing: easings.easeInOutExpo },
         }
     )
 
     const navPoint = useSpring(
         {
             transform: navState ? "translateY(10px)" : "translateY(0px)",
-            config: { duration: 600, easing: easings.easeInOutExpo },
+            config: { duration: 480, easing: easings.easeInOutExpo },
         }
     )
 

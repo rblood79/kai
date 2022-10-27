@@ -14,6 +14,7 @@ const App = (props) => {
                 color: props.color,
                 borderRadius: props.radius
             }}
+            type={props.type}
             onClick={props.onClick}>
             {props.text}
         </button>

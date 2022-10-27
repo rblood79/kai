@@ -4,7 +4,7 @@
 */
 
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { Layout, Top, Input, Card, ItemList, Modal } from '../../components';
 
@@ -13,7 +13,6 @@ const App = (props) => {
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
     const [scrollTop, setScrollTop] = useState(true);
-    const location = useLocation();
     const { id } = useParams();
     const [title, setTitle] = useState(null);
 
@@ -103,10 +102,10 @@ const App = (props) => {
                     <ItemList data={dataG.body} icon={'ri-survey-line'} />
                 </Card>
                 <Card icon={'ri-survey-line'} title={'Plan'} gap={48} padding={'24px 0 0 0'}>
-                    <Input label={'Take-Off'} type={'time'} value={params.takeoff} column={'takeoff'} callBack={setParams} />
-                    <Input label={'Landing'} type={'time'} value={params.landing} column={'landing'} callBack={setParams} />
+                    <Input label={'Take-Off'} type={'time'} value={params.takeoff} column={'takeoff'} onChange={setParams} />
+                    <Input label={'Landing'} type={'time'} value={params.landing} column={'landing'} onChange={setParams} />
                     <Input label={'Briefing'} disabled={true} value={params.briefing} />
-                    <Input label={'Front (Pilot)'} required={true} type={'select'} value={params.front} data={frontData} column={'front'} callBack={setParams} />
+                    <Input label={'Front (Pilot)'} required={true} type={'select'} value={params.front} data={frontData} column={'front'} onChange={setParams} />
                     <Input label={'Rear (Co Pilot)'} value={'Json Momoa'} />
                     <Input label={'RWY Controller'} value={'Javis'} />
                     <Input label={'FLT Controller'} value={'Siri'} />
