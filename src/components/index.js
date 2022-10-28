@@ -1,5 +1,6 @@
 
 import Api from './api';
+import { Encrypt, Decrypt } from './crypto';
 import Bottom from './bottom';
 import Button from './button';
 import Card from './card';
@@ -22,4 +23,4 @@ import ItemConsume from './item/itemConsume';
 import ItemOverview from './item/itemOverview';
 
 
-export { Api, Input, Button, Tab, Modal, Card, Header, Sheet, Chart, Top, Bottom, Item, Layout, ItemList, ItemCollapse, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }
+export { Encrypt, Decrypt, Api, Input, Button, Tab, Modal, Card, Header, Sheet, Chart, Top, Bottom, Item, Layout, ItemList, ItemCollapse, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }

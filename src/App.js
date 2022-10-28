@@ -7,7 +7,7 @@
 import './App.scss';
 import classNames from 'classnames';
 //context
-import context from './context';
+import {userContext} from './context';
 
 //default library
 import { useState, useEffect, useRef, useContext } from 'react';
@@ -64,9 +64,9 @@ import Loc from './page/loc';
 import LocList from './page/loc/list';
 
 const App = () => {
-  const state = useContext(context);
-  const authenticated = state.user != null;
-
+  const {user} = useContext(userContext);  
+  const authenticated = user != null;
+  
   /*
   * @description  : route transition
   * @parameter    : none
@@ -74,7 +74,7 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [direction, setDirection] = useState(0);
-
+  
   const transitions = useTransition(location, {
     from: { transform: direction < window.history.state.idx ? 'translate3d(100%,0,0)' : 'translate3d(-100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
@@ -102,12 +102,12 @@ const App = () => {
   * @parameter    : none
   */
   const viewport = useRef(null);
-  useEffect(() => {
+  /*useEffect(() => {
     viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
       e.preventDefault();
     }, { passive: false })
-  }, [viewport])
+  }, [viewport])*/
 
   /*
   * @description  : App routes

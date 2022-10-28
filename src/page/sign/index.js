@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
+import { Api, Input, Button, Encrypt, Decrypt } from '../../components';
+import { userContext } from '../../context';
 import styles from './index.module.scss';
-import { Api, Input, Button } from '../../components';
-import context from '../../context';
 
 const App = () => {
     const standalone = 'standalone' in window.navigator && window.navigator.standalone;
-    const state = useContext(context);
+    const { setUser } = useContext(userContext);
 
     const [params, setParams] = useState(
         {
@@ -15,30 +15,31 @@ const App = () => {
     )
     const USER_REGEX = /^\[A-z\][A-z0-9-_]{3,23}$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
     const signIn = async (e) => {
         e.preventDefault();
         //console.log(params)
         try {
             const response = await Api({
+                //crpyto: true,
                 url: 'sign',
                 method: 'get',
                 params: params,
             });
-            state.setUser(response.data)
+            setUser(Decrypt(response.data))
         } catch (error) {
-            state.setUser(
-                {
-                    id: 'tester',
-                    name: 'Bryan Fury',
-                    level: '45Level',
-                    group: 'admin',
-                }
-            )
+            const fakeData = Encrypt({
+                id: 'administrator',
+                name: 'Bryan Fury',
+                level: '45Level',
+                group: 'admin',
+            });
+            setUser(Decrypt(fakeData))
         }
     };
 
     const help = () => {
-        console.log('help')
+        //const decrypted = Decrypt(encrypted);
     }
 
     return (

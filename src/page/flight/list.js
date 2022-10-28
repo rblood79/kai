@@ -6,7 +6,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 import moment from 'moment';
-import { Api, Layout, Header, Top, Input, Card, Sheet, ItemList, ItemFlight } from '../../components';
+import { Api, Layout, Header, Top, Input, Card, Sheet, ItemList, ItemFlight, Encrypt } from '../../components';
 
 //import classNames from 'classnames';
 

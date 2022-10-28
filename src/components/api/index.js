@@ -1,16 +1,19 @@
-import axios from 'axios';
 
+import { Encrypt } from '../crypto';
+import axios from 'axios';
 /*
 * @date         : 2022-11-01
 * @description  : https://github.com/axios/axios 의 Request Config 확인
 * @parameter    : none
 */
+
 axios.defaults.paramsSerializer = function (paramObj) {
   const params = new URLSearchParams();
   for (const key in paramObj) {
-    params.append(key, encodeURIComponent(paramObj[key]));
+    //const param = !crypto ? paramObj[key] : Encrypt(paramObj[key]);
+    const param = Encrypt(paramObj[key]);
+    params.append(key, encodeURIComponent(param));
   }
-
   return params.toString();
 };
 
@@ -36,6 +39,9 @@ const instance = axios.create({
 */
 instance.interceptors.request.use(
   function (config) {
+    /*if (config.crpyto) {
+      crypto = true;
+    }*/
     // 요청 바로 직전
     // axios 설정값에 대해 작성합니다.
     //config.headers["Content-Type"] = "application/json; charset=utf-8";

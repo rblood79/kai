@@ -1,40 +1,30 @@
-import React, { Component } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import { Encrypt, Decrypt } from '../components';
+export const userContext = createContext({
+    user: null,
+    setUser: (user) => { },
+})
 
-const UserContext = React.createContext();
-
-class UserProvider extends Component {
-    // Context state
-    state = {
-        //user: null
-        user: {
-            id: 'tester',
-            name: 'bryan',
-            level: '45Level',
-            group: 'admin',
-        }
-    };
-    // Method to update state
-    setUser = user => {
-        this.setState(prevState => ({ user }));
-    };
-    //
-    render() {
-        const { children } = this.props;
-        const { user } = this.state;
-        const { setUser } = this;
-
-        return (
-            <UserContext.Provider
-                value={{
-                    user,
-                    setUser,
-                }}>
-                {children}
-            </UserContext.Provider>
-        );
+const App = ({ children }) => {
+    const storage = sessionStorage; //localStorage;
+    const [user, addUser] = useState(storage.getItem('user') ? Decrypt(storage.getItem('user')) : null);
+    const setUser = (user) => {
+        addUser(prevState => (user))
     }
+    //
+    useEffect(() => {
+        user ? storage.setItem('user', Encrypt(user)) : storage.removeItem('user')
+    }, [storage, user])
+    //
+    return (
+        <userContext.Provider
+            value={{
+                user,
+                setUser,
+            }}>
+            {children}
+        </userContext.Provider>
+    )
 }
 
-export default UserContext;
-
-export { UserProvider };
+export default App;

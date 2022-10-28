@@ -1,5 +1,5 @@
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as d3 from 'd3';
 
 /*const percentColor = (percent) => {

@@ -3,12 +3,13 @@
 import React, { useContext } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 import { useNavigate } from "react-router-dom";
-import context from '../../context';
+import { userContext } from '../../context';
 import styles from './index.module.scss';
 
 const App = (props) => {
     const navigate = useNavigate();
-    const state = useContext(context);
+    //const state = useContext(context);
+    const { user, setUser } = useContext(userContext);
     const data = [
         {
             link: '/flight',
@@ -70,7 +71,7 @@ const App = (props) => {
         return (
             <button className={styles.item} key={link} onClick={() => {
                 link !== '/sign' ?
-                    navigate(link) : state.setUser(null)
+                    navigate(link) : setUser(null)
             }}>
                 <i className={icon} />
                 <span>{text}</span>
@@ -89,7 +90,12 @@ const App = (props) => {
                         <i className="ri-user-line"></i>
                     </div>
                     <div className={styles.name}>
-                        {state.user && state.user.name}
+                        {
+                            user &&
+                            <>
+                                <span>{user.name}</span>
+                            </>
+                        }
                     </div>
                 </div>
                 <div className={styles.list}>

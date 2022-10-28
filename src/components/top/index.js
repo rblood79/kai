@@ -25,7 +25,10 @@ const App = (props) => {
             {
                 props.depth > 0 &&
                 <button className={styles.back}
-                    onClick={() => { navigate(-1) }}><i className="ri-arrow-left-line"></i>
+                    onClick={() => {
+                        //console.log(window.history)
+                        navigate(-1)
+                    }}><i className="ri-arrow-left-line"></i>
                 </button>
             }
 
