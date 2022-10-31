@@ -18,7 +18,7 @@ const App = (props) => {
     return (
         <section className={styles.container} style={{ background: props.background }}>
             <div className={styles.head}>
-                <span className={styles.title} style={{ color: props.titleColor }}>{props.title}</span>
+                <span className={styles.title} style={{ color: props.titleColor }}>{props.title && props.title}</span>
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
                 {props.rightType === 'button' && props.rightText &&
                     <Button

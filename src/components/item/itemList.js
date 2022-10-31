@@ -10,7 +10,7 @@ import Item from './item';
 import styles from './itemList.module.scss';
 
 const App = (props) => {
-    
+
     const List = useCallback(
         () => props.data && props.data.map((item, index) => {
             return (<Item title={item.title} text={item.text} key={index} />)
@@ -23,12 +23,19 @@ const App = (props) => {
     }, [])
 
     return (
-        <div className={props.box ? styles.container : styles.containerEmpty}>
-            {props.icon && <span className={styles.baseIcon}><i className={props.icon}></i></span>}
-            <div className={styles.list}>
-                {<List />}
-            </div>
-        </div>
+        <>
+            {
+                props.data &&
+                <div className={props.box ? styles.container : styles.containerEmpty}>
+                    {props.icon && <span className={styles.baseIcon}><i className={props.icon}></i></span>}
+                    <div className={styles.list}>
+                        {<List />}
+                    </div>
+                </div>
+
+            }
+        </>
+
     )
 }
 

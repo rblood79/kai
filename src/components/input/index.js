@@ -172,16 +172,41 @@ const App = (props) => {
     }
 
     const checkItem = () => {
+        //console.log(props.value, typeof(props.value))
+        const tempArray = !props.value ? [] : props.value;
+        
+        const callBack = (v, c) => {
+            if(c){
+                tempArray.push(v)
+            }else{
+                const idx = tempArray.indexOf(v)
+                tempArray.splice(idx, 1)
+            }
 
+            props.onChange((prevState) => {
+                console.log(tempArray)
+                return { ...prevState, [props.column]: tempArray}
+            })
+        }
         return (
-            <input type="checkbox"
-                checked={props.value}
-                onChange={(e) => {
-                    props.onChange((prevState) => {
-                        return { ...prevState, [props.column]: e.target.checked }
+            <div className={styles.radio} style={{ gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)' }}>
+                {
+                    props.data && props.data.map((item, index) => {
+                        return (
+                            <div key={index} className={styles.item}>
+                                <input type='checkbox' name={props.label} id={props.label + item.value} value={item.value}
+                                    
+                                    //checked={props.value && props.value.indexOf(item.value) > -1}
+                                    onChange={(e) => {
+                                        callBack(e.target.value, e.target.checked)
+                                    }}
+                                />
+                                <label htmlFor={props.label + item.value}>{item.text}</label>
+                            </div>
+                        )
                     })
-                }}
-            />
+                }
+            </div>
         )
     }
 
@@ -193,18 +218,18 @@ const App = (props) => {
         }
 
         return (
-            <div className={styles.radio}>
+            <div className={styles.radio} style={{ gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)' }}>
                 {
                     props.data && props.data.map((item, index) => {
                         return (
                             <div key={index} className={styles.item}>
-                                <input type='radio' name={props.label} id={item.value} value={item.value}
+                                <input type='radio' name={props.label} id={props.label + item.value} value={item.value}
                                     checked={item.value === props.value}
                                     onChange={(e) => {
                                         callBack(e.target.value)
                                     }}
                                 />
-                                <label htmlFor={item.value}>{item.text}</label>
+                                <label htmlFor={props.label + item.value}>{item.text}</label>
                             </div>
                         )
                     })
@@ -223,7 +248,7 @@ const App = (props) => {
                 props.label && <label className={styles.label}>{props.label}</label>
             }
             {
-                props.type === 'check' ?
+                props.type === 'checkbox' ?
                     checkItem() :
                     props.type === 'radio' ?
                         radioItem() :
@@ -250,4 +275,5 @@ App.defaultProps = {
     disabled: false,
     required: false,
     autoComplete: "off",
+    columns: 2,
 };

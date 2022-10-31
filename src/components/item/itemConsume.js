@@ -12,7 +12,7 @@ import styles from './itemMaintenance.module.scss';
 const App = (props) => {
     const [data, setData] = useState([]);
 
-    const listItem = data.map((item, index) => {
+    const listItem = data && data.map((item, index) => {
         return (
             <div className={styles.itemGroup} key={index}>
                 <span className={styles.title}>{item.title}</span>
@@ -37,13 +37,19 @@ const App = (props) => {
     }, [])
 
     return (
-        <div className={styles.container}>
-            <span className={styles.baseIcon}><i className={props.icon}></i></span>
-            <div className={styles.list}>{
-                listItem
+        <>
+            {
+                data &&
+                <div className={styles.container}>
+                    <span className={styles.baseIcon}><i className={props.icon}></i></span>
+                    <div className={styles.list}>{
+                        listItem
+                    }
+                    </div>
+                </div>
             }
-            </div>
-        </div>
+        </>
+
     )
 }
 

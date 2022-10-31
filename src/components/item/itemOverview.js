@@ -14,8 +14,8 @@ import styles from './itemOverview.module.scss';
 const App = (props) => {
     const [data, setData] = useState([])
     useEffect(() => {
-        setData(props.data)
-    }, [])
+        props.data && setData(props.data)
+    }, [props.data])
 
     return (
         <section className={styles.overview}>

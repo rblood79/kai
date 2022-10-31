@@ -10,9 +10,9 @@ import styles from './itemFlight.module.scss';
 import classNames from 'classnames';
 
 const App = (props) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
 
-    const listItem = data.map((item, index) => {
+    const listItem = data && data.map((item, index) => {
         return (
             <div className={classNames(styles.item, styles.col, index === 0 ? styles.left : styles.right)} key={index}>
                 <span className={styles.title}>{item.title}</span>
@@ -25,15 +25,21 @@ const App = (props) => {
     });
 
     useEffect(() => {
-        setData(props.data)
-    }, [])
+        props.data && setData(props.data)
+    }, [props.data])
     return (
-        <div className={styles.container}>
-            <span className={styles.baseIcon}><i className={props.icon}></i></span>
-            <div className={classNames(styles.list, styles.row)}>
-                {listItem}
-            </div>
-        </div>
+        <>
+            {
+                data &&
+                <div className={styles.container}>
+                    <span className={styles.baseIcon}><i className={props.icon}></i></span>
+                    <div className={classNames(styles.list, styles.row)}>
+                        {listItem}
+                    </div>
+                </div>
+            }
+        </>
+
     )
 }
 

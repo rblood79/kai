@@ -6,7 +6,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 import moment from 'moment';
-import { Api, Layout, Header, Top, Input, Card, Sheet, ItemList, ItemFlight, Encrypt } from '../../components';
+import { Api, Layout, Header, Top, Input, Card, Sheet, ItemList, ItemFlight, Decrypt } from '../../components';
 
 //import classNames from 'classnames';
 
@@ -134,7 +134,7 @@ const App = (props) => {
   //filter default data
   const [params, setParams] = useState(
     {
-      radioTest: '1M',
+      checkTest: null,
       range: '1M',
       endDate: moment().format('YYYYMMDDHHmmss'),
       startDate: moment().add(-1, 'M').format('YYYYMMDDHHmmss'),
@@ -145,22 +145,22 @@ const App = (props) => {
 
   //range list
   const rangeData = [
-    { id: '0', value: '1D', text: '1 Day' },
-    { id: '1', value: '1W', text: '1 Week' },
-    { id: '2', value: '1M', text: '1 Month' },
-    { id: '3', value: '3M', text: '3 Month' },
-    { id: '4', value: '6M', text: '6 Month' },
-    { id: '5', value: '1Y', text: '1 Year' },
+    { value: '1D', text: '1 Day' },
+    { value: '1W', text: '1 Week' },
+    { value: '1M', text: '1 Month' },
+    { value: '3M', text: '3 Month' },
+    { value: '6M', text: '6 Month' },
+    { value: '1Y', text: '1 Year' },
   ]
 
   //base column list
   const baseData = [
-    { id: '0', value: 'all', text: 'All' },
-    { id: '1', value: 'seoul', text: 'Seoul' },
-    { id: '2', value: 'busan', text: 'Busan' },
-    { id: '3', value: 'daegu', text: 'Daegu' },
-    { id: '4', value: 'jeju', text: 'Jeju' },
-    { id: '5', value: 'incheon', text: 'Incheon' },
+    { value: 'all', text: 'All' },
+    { value: 'seoul', text: 'Seoul' },
+    { value: 'busan', text: 'Busan' },
+    { value: 'daegu', text: 'Daegu' },
+    { value: 'jeju', text: 'Jeju' },
+    { value: 'incheon', text: 'Incheon' },
   ]
 
   //list component
@@ -174,7 +174,7 @@ const App = (props) => {
         method: 'get',
         params: params,
       });
-      setData(response.data);
+      setData(Decrypt(response.data));
     } catch (error) {
       console.log(error);
     }
@@ -197,7 +197,7 @@ const App = (props) => {
     onLoad();
   }, [])
 
-  const listItem = data && data.map((item, index) => {
+  const ListItem = data && data.map((item, index) => {
     return (
       <Card
         key={index}
@@ -223,18 +223,18 @@ const App = (props) => {
           }
         />
         {
-          data ? listItem : <div>no data</div>
+          ListItem
         }
       </Layout>
 
       <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} gap={48}>
-        <Input label={'Chois radio item'} type={'radio'} value={params.radioTest} data={rangeData} column={'radioTest'} onChange={setParams} />
+        <Input label={'Checkbox'} type={'checkbox'} value={params.checkTest} data={rangeData} column={'checkTest'} onChange={setParams} />
+        <Input label={'Radio item'} type={'radio'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
         <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
         <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} onChange={setParams} />
         <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} onChange={setParams} />
         <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} onChange={setParams} />
         <Input label={'SQ'} value={params.sq} column={'sq'} onChange={setParams} />
-
       </Sheet>
     </>
   );
