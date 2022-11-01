@@ -78,7 +78,7 @@ const App = () => {
         }
     };
 
-    const [props, api, set, stop] = useSprings(data.length, i => ({
+    const [props, api] = useSprings(data.length, i => ({
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,

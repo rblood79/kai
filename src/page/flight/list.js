@@ -1,3 +1,4 @@
+
 /*
 
 
@@ -11,7 +12,6 @@ import { Api, Layout, Header, Top, Input, Card, Sheet, ItemList, ItemFlight, Dec
 //import classNames from 'classnames';
 
 const App = (props) => {
-
   const [navState, setNavState] = useState(false);
   const toggleNav = () => setNavState(!navState);
   const [scrollTop, setScrollTop] = useState(true);
@@ -227,7 +227,7 @@ const App = (props) => {
         }
       </Layout>
 
-      <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} gap={48}>
+      <Sheet title={'Conditional Search'} height={'body'}  gap={48} state={navState} close={setNavState} cancel={cancle} apply={apply}>
         <Input label={'Checkbox'} type={'checkbox'} value={params.checkTest} data={rangeData} column={'checkTest'} columns={3} onChange={setParams} />
         <Input label={'Radio item'} type={'radio'} value={params.range} data={rangeData} column={'range'} columns={2} onChange={setParams} />
         <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
