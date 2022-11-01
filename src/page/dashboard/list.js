@@ -3,7 +3,6 @@
 
 */
 import aircraftSide from '../../images/aircraftLeft@2x.png';
-import { ReactComponent as UpIcon } from '../../images/up.svg';
 
 import { useEffect, useState, useRef } from 'react';
 
@@ -14,7 +13,7 @@ import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 
 import { percentColor, gradient } from '../../util';
 
-import { Api, Item, Chart } from '../../components';
+import { Api, Item, Chart, Button } from '../../components';
 import styles from './list.module.scss';
 import classNames from 'classnames';
 
@@ -152,11 +151,11 @@ const App = () => {
                     <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data[index].status} />
                     <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data[index].date} />
                 </animated.div>
-                <button className={styles.button} onClick={() =>
-                    navigate(data[index].id)
-                }>
-                    <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
-                </button>
+                <div className={styles.button} >
+                    <Button width={38} height={38} radius={38} padding={0} background={'#fff'} color={'var(--colorPrimary)'} onClick={() => navigate(data[index].id)}>
+                        <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
+                    </Button>
+                </div>
             </animated.div>
         )
     }
@@ -191,9 +190,12 @@ const App = () => {
                     <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[index].flight} />
                     <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[index].defect} />
                 </animated.div>
-                <button className={styles.button} onClick={() => navigate(data[index].id)}>
-                    <UpIcon width={32} height={32} fill={'var(--colorPrimary)'} />
-                </button>
+                <div className={styles.button} >
+                    <Button width={38} height={38} radius={38} padding={0} background={'#fff'} color={'var(--colorPrimary)'} onClick={() => navigate(data[index].id)}>
+                        <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
+                    </Button>
+                </div>
+
             </animated.div>
         )
     }

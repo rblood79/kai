@@ -185,17 +185,16 @@
       }
       .button {
         z-index: 2;
-        border: 4px solid #141414;
-        background: var(--colorCard);
-        width: 40px;
-        height: 40px;
-        border-radius: 40px;
+        background: var(--colorSecondary);
+        width: 48px;
+        height: 48px;
+        border-radius: 48px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: absolute;
         bottom: 72px;
-        left: calc(50% - 20px);
+        left: calc(50% - 24px);
       }
     }
   }

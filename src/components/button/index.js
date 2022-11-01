@@ -12,11 +12,14 @@ const App = (props) => {
                 fontSize: props.fontSize,
                 background: props.background,
                 color: props.color,
-                borderRadius: props.radius
+                borderRadius: props.radius,
+                padding: props.padding,
+                border: props.border,
             }}
             type={props.type}
             onClick={props.onClick}>
             {props.text}
+            {props.children}
         </button>
     );
 }

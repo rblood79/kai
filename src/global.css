@@ -45,6 +45,7 @@ svg {
 /*box-sizing*/
 * {
   box-sizing: border-box !important;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {

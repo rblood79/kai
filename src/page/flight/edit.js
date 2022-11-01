@@ -22,15 +22,29 @@ const App = (props) => {
             takeoff: '170000',
             landing: '180000',
             briefing: 'abcdEfg',
+            rear: 'Mike',
+            rwy: 'Javis',
+            flt: 'Siri',
+            to:'18 wing',
+            ld:'19 wing',
+            tail: '001',
         }
     );
 
     const frontData = [
-        { id: '0', value: 'xxs', text: 'Jason Martin' },
-        { id: '1', value: 'asd', text: 'Bryan Fury' },
-        { id: '2', value: 'qwsd', text: 'Jin Kasama' },
-        { id: '3', value: 'gefe', text: 'Lili' },
-        { id: '4', value: 'sfes', text: 'Bob Wilson' },
+        { value: 'xxs', text: 'Jason Martin' },
+        { value: 'asd', text: 'Bryan Fury' },
+        { value: 'qwsd', text: 'Jin Kasama' },
+        { value: 'gefe', text: 'Lili' },
+        { value: 'sfes', text: 'Bob Wilson' },
+    ]
+
+    const tailData = [
+        { value: '001', text: '27-001' },
+        { value: '002', text: '27-002' },
+        { value: '003', text: '27-003' },
+        { value: '004', text: '27-004' },
+        { value: '005', text: '27-005' },
     ]
 
     const [dataG] = useState(
@@ -79,7 +93,8 @@ const App = (props) => {
     }
 
     //bottom sheet apply
-    const apply = () => {
+    const save = () => {
+        console.log(params)
         navigate('/flight/' + id);
     }
 
@@ -106,16 +121,16 @@ const App = (props) => {
                     <Input label={'Landing'} type={'time'} value={params.landing} column={'landing'} onChange={setParams} />
                     <Input label={'Briefing'} disabled={true} value={params.briefing} />
                     <Input label={'Front (Pilot)'} required={true} type={'select'} value={params.front} data={frontData} column={'front'} onChange={setParams} />
-                    <Input label={'Rear (Co Pilot)'} value={'Json Momoa'} />
-                    <Input label={'RWY Controller'} value={'Javis'} />
-                    <Input label={'FLT Controller'} value={'Siri'} />
-                    <Input label={'T/O AB'} value={'18th Flight Wing'} />
-                    <Input label={'L/D AB'} value={'18th Flight Wing'} />
-                    <Input label={'Tail No'} value={'27-001'} />
+                    <Input label={'Rear (Co Pilot)'} value={params.rear} column={'rear'} onChange={setParams} />
+                    <Input label={'RWY Controller'} value={params.rwy} column={'rwy'} onChange={setParams} />
+                    <Input label={'FLT Controller'} value={params.flt} column={'flt'} onChange={setParams}/>
+                    <Input label={'T/O AB'} value={params.to} column={'to'} onChange={setParams}/>
+                    <Input label={'L/D AB'} value={params.ld} column={'ld'} onChange={setParams} />
+                    <Input label={'Tail No'} type={'select'} value={params.tail} data={tailData} column={'tail'} onChange={setParams}/>
                 </Card>
             </Layout>
 
-            <Modal title={'Save data'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply}>
+            <Modal title={'Save data'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={save}>
                 Are you sure you want to confirm "Documents"? All contents will be perminately destroyed.
             </Modal>
         </>

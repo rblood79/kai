@@ -14,23 +14,24 @@ import styles from './index.module.scss';
 
 
 const App = (props) => {
-    const child = Children.toArray(props.children);
+    const standalone = 'standalone' in window.navigator && window.navigator.standalone;
+    /*const child = Children.toArray(props.children);
     const childList = Children.toArray(child[0].props.children)
+    
     const topHeight = 72;
     const bottomHeight = props.apply ? 64 : 20;
-
     let childHeight = props.type === 'select' ? 40 : 20;
 
     childList.map(item => {
         childHeight += props.type === 'select' ? 56 : 81;
-    })
+    })*/
 
     const [view, setView] = useState(false)
 
     const [height, setHeight] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
-                Math.min(topHeight + childHeight + bottomHeight, window.innerHeight - 128)
+                window.innerHeight - 128
     )
 
     const [{ y }, api] = useSpring(() => ({ y: height }))
@@ -72,7 +73,7 @@ const App = (props) => {
                 <a.div className={styles.container}>
                     <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
                     <a.div className={styles.sheet} style={{
-                        y, display, height: `${height}px`
+                        y, display, height: !props.height ? 'auto' : `${height}px`
                     }}>
                         <header className={styles.header}>
                             <div className={styles.title}>{props.title}</div>
@@ -87,7 +88,7 @@ const App = (props) => {
                         </div>
                         {
                             props.apply &&
-                            <footer className={styles.footer}>
+                            <footer className={styles.footer} style={{ paddingBottom: standalone ? '34px' : '0px' }}>
                                 {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
                                 <Button text={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>

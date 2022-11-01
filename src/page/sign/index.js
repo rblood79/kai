@@ -18,7 +18,6 @@ const App = () => {
 
     const signIn = async (e) => {
         e.preventDefault();
-        //console.log(params)
         try {
             const response = await Api({
                 //crpyto: true,
@@ -43,8 +42,7 @@ const App = () => {
     }
 
     return (
-        <main className={styles.container}>
-
+        <main className={styles.container} style={{ paddingBottom: standalone && '34px'}} >
             <div className={styles.header}>
                 <div className={styles.titleGroup}>
                     <span className={styles.title}>KF-21</span>
@@ -56,7 +54,7 @@ const App = () => {
                 <span className={styles.subTitle}>Next-Generation Fighter</span>
             </div>
 
-            <form className={styles.main} style={{ paddingBottom: standalone ? '27px' : '0px' }} onSubmit={signIn}>
+            <form className={styles.main} onSubmit={signIn}>
                 <div className={styles.inputGroup}>
                     <Input placeholder={'ID'} value={params.id} column={'id'} onChange={setParams} />
                     <Input placeholder={'PASSWORD'} value={params.pw} column={'pw'} onChange={setParams} type={'password'} />

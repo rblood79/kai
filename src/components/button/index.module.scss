@@ -11,13 +11,15 @@
   text-decoration: none;
   font-size: 18px;
   padding-bottom: 2px;
-  //transition: all 0.16s ease-in-out;
+  transition: transform 0.24s ease-in-out;
   &:hover {
     //background-color: #f00;
+    
   }
 
   &:active {
     //transform: scale(1.06);
+    transform: scale(0.92);
   }
 
   &:focus {

@@ -228,8 +228,8 @@ const App = (props) => {
       </Layout>
 
       <Sheet title={'Conditional Search'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={apply} gap={48}>
-        <Input label={'Checkbox'} type={'checkbox'} value={params.checkTest} data={rangeData} column={'checkTest'} onChange={setParams} />
-        <Input label={'Radio item'} type={'radio'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
+        <Input label={'Checkbox'} type={'checkbox'} value={params.checkTest} data={rangeData} column={'checkTest'} columns={3} onChange={setParams} />
+        <Input label={'Radio item'} type={'radio'} value={params.range} data={rangeData} column={'range'} columns={2} onChange={setParams} />
         <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
         <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} onChange={setParams} />
         <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} onChange={setParams} />

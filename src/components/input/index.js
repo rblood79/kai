@@ -1,16 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
-//import Button from '../button';
 import _ from 'lodash';
 import moment from 'moment';
 
 import Sheet from '../sheet';
+import Date from './date';
+import Time from './time';
+import { getType } from '../../util';
 
 import classNames from 'classnames';
 import styles from './index.module.scss';
 
-import Date from './date';
-import Time from './time';
+
 
 const App = (props) => {
 
@@ -21,16 +22,21 @@ const App = (props) => {
         console.log('fnSelect')
     }
 
+    //const [text, setText] = useState(props.value ? props.value : '')
+
     const textItem = () => {
+
         return (
             <input className={classNames(styles.input, props.required && styles.required, props.disabled && styles.disabled)}
                 type="text"
                 autoComplete={props.autoComplete}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
-                value={props.value}
+                value={props.value ? props.value : ''}
+                //defaultValue={props.value ? props.value : ''}
                 onChange={(e) => {
-                    props.onChange((prevState) => {
+                    //setText(e.target.value);
+                    props.onChange && props.onChange((prevState) => {
                         return { ...prevState, [props.column]: e.target.value }
                     })
                 }}
@@ -45,9 +51,9 @@ const App = (props) => {
                 autoComplete={props.autoComplete}
                 disabled={props.disabled}
                 placeholder={props.placeholder}
-                value={props.value}
+                //value={props.onChange && props.value}
                 onChange={(e) => {
-                    props.onChange((prevState) => {
+                    props.onChange && props.onChange((prevState) => {
                         return { ...prevState, [props.column]: e.target.value }
                     })
                 }}
@@ -129,11 +135,7 @@ const App = (props) => {
                     </div>
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState} type={'time'} apply={() => { callBack(time) }}>
-                    {
-                        <>
-                            <Time type={'time'} format={defFormat} callBack={setTime} data={props.value} state={navState} />
-                        </>
-                    }
+                    <Time type={'time'} format={defFormat} callBack={setTime} data={props.value} state={navState} />
                 </Sheet>
             </>
         )
@@ -172,31 +174,30 @@ const App = (props) => {
     }
 
     const checkItem = () => {
-        //console.log(props.value, typeof(props.value))
-        const tempArray = !props.value ? [] : props.value;
-        
+
+        const valueType = getType(props.value)
+        const tempArray = valueType !== 'Array' ? [] : props.value;
+
         const callBack = (v, c) => {
-            if(c){
+            if (c) {
                 tempArray.push(v)
-            }else{
+            } else {
                 const idx = tempArray.indexOf(v)
                 tempArray.splice(idx, 1)
             }
 
             props.onChange((prevState) => {
-                console.log(tempArray)
-                return { ...prevState, [props.column]: tempArray}
+                return { ...prevState, [props.column]: tempArray }
             })
         }
         return (
-            <div className={styles.radio} style={{ gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)' }}>
+            <div className={styles.checkbox} style={{ gap: props.gap, gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)' }}>
                 {
                     props.data && props.data.map((item, index) => {
                         return (
                             <div key={index} className={styles.item}>
-                                <input type='checkbox' name={props.label} id={props.label + item.value} value={item.value}
-                                    
-                                    //checked={props.value && props.value.indexOf(item.value) > -1}
+                                <input type='checkbox' id={props.label + item.value} value={item.value}
+                                    checked={valueType === 'Array' && props.value.indexOf(item.value) > -1}
                                     onChange={(e) => {
                                         callBack(e.target.value, e.target.checked)
                                     }}
@@ -218,7 +219,7 @@ const App = (props) => {
         }
 
         return (
-            <div className={styles.radio} style={{ gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)' }}>
+            <div className={styles.radio} style={{ gap: props.gap, gridTemplateColumns: 'repeat(' + props.columns + ', 1fr)' }}>
                 {
                     props.data && props.data.map((item, index) => {
                         return (
@@ -275,5 +276,6 @@ App.defaultProps = {
     disabled: false,
     required: false,
     autoComplete: "off",
-    columns: 2,
+    columns: 1,
+    gap: 16,
 };

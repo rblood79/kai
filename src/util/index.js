@@ -19,6 +19,10 @@ const numberPad = (n, width) => {
     return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
 
+const getType = (target) => {
+    return Object.prototype.toString.call(target).slice(8, -1);
+}
+
 const useNav = () => {
     const navigate = useNavigate();
     return (url, state) => navigate(url, { state });
@@ -34,4 +38,4 @@ const useNavBack = () => {
     return () => navigate(-1);
 }
 
-export { percentColor, percentColor2, gradient, numberPad, useNav, useNavReplace, useNavBack };
+export { percentColor, percentColor2, gradient, numberPad, getType, useNav, useNavReplace, useNavBack };
