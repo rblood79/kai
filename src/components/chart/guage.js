@@ -3,7 +3,7 @@
 
 */
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect,} from 'react';
 import * as d3 from 'd3';
 
 
@@ -101,7 +101,7 @@ const App = (props) => {
         svg.select('g').remove();
         const width = svgRef.current.clientWidth;
         const height = svgRef.current.clientHeight;
-        const percent = props.percent / 100;
+        const percent = props.data / 100;
         const barWidth = props.barWidth;
         const inner = 16;
         const radius = width / 2; //Math.min(width, height) / 2;
@@ -109,7 +109,7 @@ const App = (props) => {
         const piePercent = pi * percent;
         const range = 180;
         const colorScale = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, range]);
-        const perToColor = colorScale((180 / 100) * props.percent);
+        const perToColor = colorScale((180 / 100) * props.data);
         const chart = svg.append('g').attr('class', 'chart').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
 
         const arcBase = d3.arc()

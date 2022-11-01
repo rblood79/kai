@@ -176,9 +176,7 @@ const App = () => {
                 <div className={classNames(styles.main, styles.over)}>
                     <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
                     <Item height={24} direction={'column'} align={'flex-start'} title={data[index].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
-                    <div className={styles.graph}>
-                        <Chart type={'guage'} percent={data[index].rate} active={active} />
-                    </div>
+                    <Chart type={'guage'} data={data[index].rate} active={active} />
                     <div className={styles.rate}>
                         <span className={styles.title}>Behavior Rate</span>
                         <animated.span className={styles.text} style={{ color: percentColor(data[index].rate) }}>

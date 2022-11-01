@@ -27,6 +27,7 @@ import Notifycation from './page/notify';
 import Dashboard from './page/dashboard';
 import DashboardList from './page/dashboard/list';
 import DashboardDetail from './page/dashboard/detail';
+import DashboardTotal from './page/dashboard/total';
 
 //flight
 import Flight from './page/flight';
@@ -127,6 +128,7 @@ const App = () => {
                     <Route path="" element={<DashboardList />} />
                   </Route>
                   <Route path=":id" element={<DashboardDetail />} />
+                  <Route path="/total" element={<DashboardTotal />} />
 
                   <Route path="*" element={<NotFound />} />
                   <Route path="notify" element={<Notifycation />} />
