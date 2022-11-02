@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       will-change: transform, opacity;
-      
+
       &::after {
         content: "";
         position: absolute;
@@ -38,8 +38,51 @@
   }
 }
 
-/*@media (prefers-color-scheme: dark) {
+@media (orientation: portrait) {
+  /* Portrait CSS */
+}
+
+@media (orientation: landscape) {
+  /* Landscape CSS */
   .App {
-    filter: invert(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &::before {
+      content: "\F15A";
+      font-family: remixicon;
+      font-size: 48px;
+      height: 56px;
+      width: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-90deg);
+      color: var(--colorLabel);
+    }
+    &::after {
+      content: "Landscape mode is not supported";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      font-family: "HelveticaNeue Condensed Bold", sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      /*text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--colorLabel);*/
+      background: linear-gradient(90deg, #141414, var(--colorPrimary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
-}*/
+  .container {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Dark CSS */
+}

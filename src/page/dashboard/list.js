@@ -2,20 +2,16 @@
 
 
 */
-import aircraftSide from '../../images/aircraftLeft@2x.png';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 
 import { useGesture } from '@use-gesture/react'
-import { useSpring, useSprings, animated, easings } from '@react-spring/web';
+import { useSprings } from '@react-spring/web';
 
-import { useOutletContext, useNavigate, Link } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 
-import { percentColor, gradient } from '../../util';
-
-import { Api, Item, Chart, Button } from '../../components';
+import { Api, ItemDashboard } from '../../components';
 import styles from './list.module.scss';
-import classNames from 'classnames';
 
 const clamp = (value, lower, upper) => {
     if (value < lower) return lower;
@@ -24,7 +20,6 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    //const location = useLocation();
     const navigate = useNavigate();
     const { type } = useOutletContext();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,6 +31,7 @@ const App = () => {
             "id": "total",
             "title": "Average rate",
             "base": "11 base camp",
+            "unit": "12",
             "rate": "84.04",
             "flight": "220218-658KFX",
             "defect": "Turbine defect"
@@ -61,6 +57,16 @@ const App = () => {
             "rate": "18.02",
             "status": "At Maintenance",
             "date": "24 June 2021"
+        },
+        {
+            "id": "3",
+            "title": "KF-21-003",
+            "intro": "18 October 2020",
+            "oh": "4,825",
+            "fh": "2695",
+            "rate": "88.02",
+            "status": "At Maintenance",
+            "date": "17 June 2021"
         },
     ])
 
@@ -115,88 +121,9 @@ const App = () => {
         }
     });
 
-    const ListItem = (props) => {
-        const index = props.index;
-        const color = percentColor(data[index].rate);
-        const active = currentIndex === index && props.display !== 'none' ? true : false;
-
-        const { val, width } = useSpring({
-            to: { val: active ? Number(data[index].rate) : 0, width: active ? Number(data[index].rate) + '%' : '0%' },
-            from: { val: 0, width: '0%' },
-            config: { duration: 600, easing: easings.easeInOutExpo }
-        })
-
-        //console.log(active)
-
-        return (
-            <animated.div className={styles.item} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
-                <div className={styles.main} >
-                    <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data[index].intro} />
-                    <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'var(--colorBase)'}
-                        text={'OH:' + data[index].oh + ' / FH:' + data[index].fh}
-                    />
-                    <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
-                    <div className={styles.rate}>
-                        <span className={styles.title}>Behavior Rate</span>
-                        <animated.span className={styles.text} style={{ color: percentColor(data[index].rate) }}>
-                            {val.to(val => val.toFixed(2).padStart(5, '0') + '%')}
-                        </animated.span>
-                    </div>
-                    <div className={styles.bar}>
-                        <animated.span className={styles.value} style={{ width, background: gradient(data[index].rate, -90) }}></animated.span>
-                    </div>
-                </div>
-                <animated.div className={styles.bottom} style={{ transform: props.ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data[index].status} />
-                    <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data[index].date} />
-                </animated.div>
-                <div className={styles.button} >
-                    <Button width={38} height={38} radius={38} padding={0} background={'#fff'} color={'var(--colorPrimary)'} onClick={() => navigate(data[index].id)}>
-                        <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
-                    </Button>
-                </div>
-            </animated.div>
-        )
-    }
-
-    const MainItem = (props) => {
-        const index = props.index;
-        const active = currentIndex === index && props.display !== 'none' ? true : false;
-        const { val } = useSpring({
-            from: { val: 0 },
-            to: async (next, cancel) => {
-                await next({ val: active ? Number(data[index].rate) : 0 })
-            },
-            config: { duration: 1600, easing: easings.easeInOutExpo, }
-        })
-
-        return (
-            <animated.div className={styles.item} {...bind()} style={{ display: props.display, x: props.x, scale: props.scale }}>
-                <div className={classNames(styles.main, styles.over)}>
-                    <div className={styles.title}><h3 className={styles.text}>{data[index].title}</h3><span className={styles.line} /></div>
-                    <Item height={24} direction={'column'} align={'flex-start'} title={data[index].base} textColor={'var(--colorPrimary)'} text={data.length + ' Air Fighter in this Unit'} />
-                    <Chart type={'guage'} data={data[index].rate} active={active} />
-                    <div className={styles.rate}>
-                        <span className={styles.title}>Behavior Rate</span>
-                        <animated.span className={styles.text} style={{ color: percentColor(data[index].rate) }}>
-                            {val.to(val => val.toFixed(2).padStart(5, '0') + '%')}
-                        </animated.span>
-                    </div>
-                </div>
-                <animated.div className={styles.bottom} style={{ transform: props.ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
-                    <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data[index].flight} />
-                    <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data[index].defect} />
-                </animated.div>
-                <div className={styles.button} >
-                    <Button width={38} height={38} radius={38} padding={0} background={'#fff'} color={'var(--colorPrimary)'} onClick={() => navigate(data[index].id)}>
-                        <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
-                    </Button>
-                </div>
-
-            </animated.div>
-        )
-    }
+    const filterData = useMemo(() => {
+        return type !== 'LIST' ? data.filter(item => item.id !== 'total') : data;
+    }, [type, data]);
 
     useEffect(() => {
         onLoad();
@@ -209,21 +136,33 @@ const App = () => {
                     type === 'LIST' ?
                         <div className={styles.listContents}>
                             {
-                                props.length > 0 && props.map(({ x, y, display, scale, ty }, i) => (
-                                    i !== 0 ? <ListItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} /> : <MainItem key={i} x={x} scale={scale} display={display} ty={ty} index={i} />
+                                props.length > 0 && props.map((prop, i) => (
+                                    <ItemDashboard {...prop} bind={bind} data={data[i]} index={i} currentIndex={currentIndex} key={i} />
                                 ))
                             }
                         </div>
                         :
                         <div className={styles.gridContents}>
                             {
-                                props.map(({ x, y }, i) => (
+                                /*props.map(({ x, y }, i) => (
                                     <animated.div className={styles.item} key={i}>
-                                        <h3 className={styles.title}>{data[i].title}</h3>
-                                        <div className={styles.rate}>{data[i].rate}</div>
-                                        <Link to={data[i].id}>Detail</Link>
+                                        <button onClick={() => { navigate(data[i].id) }}>
+                                            <h3 className={styles.title}>{data[i].title}</h3>
+                                            <div className={styles.rate}>{data[i].rate}</div>
+                                        </button>
                                     </animated.div>
-                                ))
+                                ))*/
+
+                                filterData.map((item, index) => {
+                                    return (
+                                        <div className={styles.item} key={index}>
+                                            <button onClick={() => { navigate(item.id) }}>
+                                                <h3 className={styles.title}>{item.title}</h3>
+                                                <div className={styles.rate}>{item.rate}</div>
+                                            </button>
+                                        </div>
+                                    )
+                                })
                             }
                         </div> :
                     <div>not Found Data</div>

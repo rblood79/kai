@@ -17,6 +17,7 @@ import Item from './item/item';
 import ItemList from './item/itemList';
 import ItemCollapse from './item/itemCollapse';
 
+import ItemDashboard from './item/itemDashboard';
 import ItemFlight from './item/itemFlight';
 import ItemDefect from './item/itemDefect';
 import ItemMaintenance from './item/itemMaintenance';
@@ -24,4 +25,8 @@ import ItemConsume from './item/itemConsume';
 import ItemOverview from './item/itemOverview';
 
 
-export { Encrypt, Decrypt, Api, Input, Button, Tab, Modal, Card, Header, Sheet, Chart, Top, Bottom, Item, Layout, ItemList, ItemCollapse, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview }
+export {
+    Encrypt, Decrypt,
+    Api, Input, Button, Tab, Modal, Card, Header, Sheet, Chart, Top, Bottom, Item, Layout,
+    ItemList, ItemCollapse, ItemDashboard, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview
+}

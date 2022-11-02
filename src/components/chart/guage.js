@@ -3,13 +3,13 @@
 
 */
 
-import React, { useRef, useEffect,} from 'react';
+import React, { useRef, useEffect, } from 'react';
 import * as d3 from 'd3';
 
 
 const App = (props) => {
     const delay = 100;
-    const duration = 1600;
+    const duration = 1440;
     const easing = d3.easeExp;
     const svgRef = useRef(null);
 
@@ -112,11 +112,18 @@ const App = (props) => {
         const perToColor = colorScale((180 / 100) * props.data);
         const chart = svg.append('g').attr('class', 'chart').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
 
+        const arcMin = -pi / 2;
+        const arcMax = pi / 2;
+        const labelPad = 10;
+        const dataDomain = [0, 50, 100];
+        const arcScale = d3.scaleLinear().domain(dataDomain).range([arcMin, 0, arcMax]);
+
+
         const arcBase = d3.arc()
             .outerRadius(radius)
             .innerRadius(radius - inner - barWidth - 16)
-            .startAngle(-pi / 2)
-            .endAngle(pi / 2)
+            .startAngle(arcMin)
+            .endAngle(arcMax)
 
         chart
             .append('path')
@@ -131,8 +138,8 @@ const App = (props) => {
 
         const data = d3.range(range - 1).map(function (d, i) {
             return {
-                startAngle: (-pi / 2) + (i * (pi / range)),
-                endAngle: (-pi / 2) + ((i + 2) * (pi / range)),
+                startAngle: arcMin + (i * (pi / range)),
+                endAngle: arcMin + ((i + 2) * (pi / range)),
                 fill: colorScale(d)
             };
         });
@@ -153,6 +160,44 @@ const App = (props) => {
             };
         }
 
+
+        /*chart.selectAll('.line').data(arcScale.ticks(4).map(function (d) {
+            return { score: d };
+        })).enter()
+            .append("path")
+            .attr("class", "lines")
+            .style("stroke-width", 2)
+            .style("stroke", "#282828");
+
+        const markerLine = d3.lineRadial()
+            .angle(function (d) {
+                return arcScale(d);
+            })
+            .radius(function (d, i) {
+                return inner + ((i % 2) * ((radius - inner)));
+            });
+
+        chart.selectAll(".lines")
+            .attr("d", function (d) { return markerLine([d.score, d.score]); })*/
+
+        chart.selectAll(".ticks").data(arcScale.ticks(1))
+            .enter().append("text")
+            .attr("class", "ticks")
+            .style("fill", "#b4b4b4")
+            .style("font-size", "12px")
+            .style("text-anchor", "middle")
+            .text(function (d) { return d; });
+
+        chart.selectAll(".ticks")
+            .attr("x", function (d) {
+                var xVal = Math.cos(arcScale(d) + arcMin) * (radius - 6);
+                return d === 0 ? xVal - 3 : d === 100 ? xVal - 3 : xVal;
+            })
+            .attr("y", function (d) {
+                var yVal = Math.sin(arcScale(d) + arcMin) * (radius - 12);
+                return yVal < -1 ? yVal : + 12;
+            })
+
         const arcValue = d3.arc()
             .outerRadius(radius - inner - 16)
             .innerRadius(0)
@@ -167,15 +212,16 @@ const App = (props) => {
 
         const needle = new Needle((width * 0.5) - barWidth, 6);
         needle.drawOn(chart, 0);
+        needle.animateOn(chart, props.active ? percent : 0);
 
-        props.active && foreground.transition()
-            .delay(delay)
-            .duration(duration)
+        foreground.transition()
+            .delay(props.active ? delay : 0)
+            .duration(props.active ? duration : 0)
             .ease(easing)
-            .attrTween("d", arcTween((-pi / 2) + piePercent))
+            .attrTween("d", arcTween(arcMin + (props.active ? piePercent : 0)))
             .style("fill", perToColor);
-            
-        props.active && needle.animateOn(chart, percent);
+
+        //props.active && needle.animateOn(chart, percent);
 
     }, [props.active]);
 

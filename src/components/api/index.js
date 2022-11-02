@@ -19,7 +19,7 @@ axios.defaults.paramsSerializer = function (paramObj) {
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001',
-  timeout: 1000,
+  timeout: 3000,
   crossDomain: true,
   changeOrigin: true,
   withCredentials: true,
