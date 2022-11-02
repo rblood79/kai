@@ -5,16 +5,16 @@
 */
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
-import React, { useEffect, useState, Children } from 'react';
+import React, { useEffect, useState } from 'react';
 //import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, easings, config } from '@react-spring/web';
-
+//util
+import { bottomStatusHeight } from '../../util';
 import { Button } from '../../components';
 import styles from './index.module.scss';
 
 
 const App = (props) => {
-    const standalone = 'standalone' in window.navigator && window.navigator.standalone;
     /*const child = Children.toArray(props.children);
     const childList = Children.toArray(child[0].props.children)
     
@@ -28,7 +28,7 @@ const App = (props) => {
 
     const [view, setView] = useState(false)
 
-    const [height, setHeight] = useState(
+    const [height] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
                 window.innerHeight - 128
@@ -88,7 +88,7 @@ const App = (props) => {
                         </div>
                         {
                             props.apply &&
-                            <footer className={styles.footer} style={{ paddingBottom: standalone ? '34px' : '0px' }}>
+                            <footer className={styles.footer} style={{ paddingBottom: bottomStatusHeight }}>
                                 {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
                                 <Button text={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>

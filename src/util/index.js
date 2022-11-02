@@ -1,4 +1,5 @@
 
+import { isMobile, isIOS } from 'react-device-detect';
 import { useNavigate } from "react-router-dom";
 import * as d3 from 'd3';
 
@@ -6,6 +7,8 @@ import * as d3 from 'd3';
     const hue = ((percent * 0.01) * 204).toString(10);
     return 'hsl(' + hue + ', 86%, 48%)';
 }*/
+
+const standalone = 'standalone' in window.navigator && window.navigator.standalone;
 
 const percentColor = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, 100]);
 const percentColor2 = d3.scaleSequential(d3.interpolateCubehelixLong("#FF5A03", "#0F4DD8")).domain([0, 100]);
@@ -18,6 +21,9 @@ const numberPad = (n, width) => {
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
+
+const bottomStatusHeight = standalone && isIOS ? 24 : 0; //34
+
 
 const getType = (target) => {
     return Object.prototype.toString.call(target).slice(8, -1);
@@ -38,4 +44,4 @@ const useNavBack = () => {
     return () => navigate(-1);
 }
 
-export { percentColor, percentColor2, gradient, numberPad, getType, useNav, useNavReplace, useNavBack };
+export { percentColor, percentColor2, gradient, numberPad, isMobile, standalone, bottomStatusHeight, getType, useNav, useNavReplace, useNavBack };

@@ -5,9 +5,9 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, Top, Bottom, Tab } from '../../components';
+import { standalone } from '../../util';
 
 const App = () => {
-    const standalone = 'standalone' in window.navigator && window.navigator.standalone;
 
     const [type, setType] = useState('LIST');
     const [state, setState] = useState(false);

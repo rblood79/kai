@@ -103,12 +103,12 @@ const App = () => {
   * @parameter    : none
   */
   const viewport = useRef(null);
-  useEffect(() => {
+  /*useEffect(() => {
     viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
       e.preventDefault();
     }, { passive: false })
-  }, [viewport])
+  }, [viewport])*/
 
   /*
   * @description  : App routes

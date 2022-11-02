@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import { Api, Input, Button, Encrypt, Decrypt } from '../../components';
+import { bottomStatusHeight } from '../../util';
 import { userContext } from '../../context';
 import styles from './index.module.scss';
 
 const App = () => {
-    const standalone = 'standalone' in window.navigator && window.navigator.standalone;
     const { setUser } = useContext(userContext);
 
     const [params, setParams] = useState(
@@ -42,7 +42,7 @@ const App = () => {
     }
 
     return (
-        <main className={styles.container} style={{ paddingBottom: standalone && '34px'}} >
+        <main className={styles.container} style={{ paddingBottom: Math.max(bottomStatusHeight, 16) }} >
             <div className={styles.header}>
                 <div className={styles.titleGroup}>
                     <span className={styles.title}>KF-21</span>
