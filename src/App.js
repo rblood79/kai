@@ -75,9 +75,9 @@ const App = () => {
   * @description  : route transition
   * @parameter    : none
   */
-  const [duration, setDuration] = useState(480)
   const location = useLocation();
   const navigate = useNavigate();
+  const [duration, setDuration] = useState(480)
   const [direction, setDirection] = useState(0);
 
   const transitions = useTransition(location, {
@@ -88,10 +88,10 @@ const App = () => {
       duration: authenticated ? duration : 0,
       easing: easings.easeInOutQuart,
     },
-    onStart: () => console.log('the spring has started'),
+    //onStart: () => console.log('the spring has started'),
     onRest: () => {
       setDirection(window.history.state.idx);
-      setDuration(480)
+      //setDuration(0)
     },
   })
 
@@ -112,8 +112,8 @@ const App = () => {
   useEffect(() => {
     isMobile && viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
-      //e.preventDefault();
-      setDuration(0)
+      e.preventDefault();
+      //setDuration(0)
     }, { passive: false })
   }, [viewport])
 

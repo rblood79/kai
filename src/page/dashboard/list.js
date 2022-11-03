@@ -11,7 +11,9 @@ import { useSprings } from '@react-spring/web';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 
 import { Api, ItemDashboard } from '../../components';
+
 import styles from './list.module.scss';
+import classNames from 'classnames';
 
 const clamp = (value, lower, upper) => {
     if (value < lower) return lower;
@@ -45,8 +47,6 @@ const App = () => {
             "rate": "82.60",
             "status": "At Maintenance",
             "date": "11 June 2021",
-
-
         },
         {
             "id": "2",
@@ -68,6 +68,166 @@ const App = () => {
             "status": "At Maintenance",
             "date": "17 June 2021"
         },
+        {
+            "id": "4",
+            "title": "KF-21-011",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "62.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "5",
+            "title": "KF-21-001",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "82.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "6",
+            "title": "KF-21-002",
+            "intro": "23 July 2021",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "18.02",
+            "status": "At Maintenance",
+            "date": "24 June 2021"
+        },
+        {
+            "id": "7",
+            "title": "KF-21-003",
+            "intro": "18 October 2020",
+            "oh": "4,825",
+            "fh": "2695",
+            "rate": "88.02",
+            "status": "At Maintenance",
+            "date": "17 June 2021"
+        },
+        {
+            "id": "8",
+            "title": "KF-21-011",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "62.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "9",
+            "title": "KF-21-001",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "82.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "12",
+            "title": "KF-21-002",
+            "intro": "23 July 2021",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "18.02",
+            "status": "At Maintenance",
+            "date": "24 June 2021"
+        },
+        {
+            "id": "13",
+            "title": "KF-21-003",
+            "intro": "18 October 2020",
+            "oh": "4,825",
+            "fh": "2695",
+            "rate": "88.02",
+            "status": "At Maintenance",
+            "date": "17 June 2021"
+        },
+        {
+            "id": "14",
+            "title": "KF-21-011",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "62.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "11",
+            "title": "KF-21-001",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "82.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "22",
+            "title": "KF-21-002",
+            "intro": "23 July 2021",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "18.02",
+            "status": "At Maintenance",
+            "date": "24 June 2021"
+        },
+        {
+            "id": "253",
+            "title": "KF-21-003",
+            "intro": "18 October 2020",
+            "oh": "4,825",
+            "fh": "2695",
+            "rate": "88.02",
+            "status": "At Maintenance",
+            "date": "17 June 2021"
+        },
+        {
+            "id": "224",
+            "title": "KF-21-011",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "62.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        },
+        {
+            "id": "122",
+            "title": "KF-21-002",
+            "intro": "23 July 2021",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "18.02",
+            "status": "At Maintenance",
+            "date": "24 June 2021"
+        },
+        {
+            "id": "123",
+            "title": "KF-21-003",
+            "intro": "18 October 2020",
+            "oh": "4,825",
+            "fh": "2695",
+            "rate": "88.02",
+            "status": "At Maintenance",
+            "date": "17 June 2021"
+        },
+        {
+            "id": "124",
+            "title": "KF-21-011",
+            "intro": "18 June 2020",
+            "oh": "2,125",
+            "fh": "235",
+            "rate": "62.60",
+            "status": "At Maintenance",
+            "date": "11 June 2021",
+        }
     ])
 
     const onLoad = async () => {
@@ -89,7 +249,7 @@ const App = () => {
         y: 0,
         scale: i === 0 ? 1 : 0.8,
         ty: i === 0 ? -16 : -96,
-        //display: 'flex',
+        display: 'grid',
     }))
 
     const bind = useGesture({
@@ -105,6 +265,7 @@ const App = () => {
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
                 const ty = i === index.current ? -16 : -96
+                //const display = i === index.current ? 'grid' : 'none'
                 //setCurrentIndex(index.current)
                 return {
                     x, y, scale, display: 'grid', ty,
@@ -130,35 +291,14 @@ const App = () => {
         onLoad();
     }, [])
     return (
-        <section className={styles.container}>
-
-            {
-                data.length > 0 ?
-                    type === 'LIST' ?
-                        <div className={styles.listContents}>
-                            {
-                                props.length > 0 && props.map((prop, i) => (
-                                    <ItemDashboard {...prop} bind={bind} data={data[i]} index={i} currentIndex={currentIndex} key={i} />
-                                ))
-                            }
-                        </div>
-                        :
-                        <div className={styles.gridContents}>
-                            {
-                                filterData.map((item, index) => {
-                                    return (
-                                        <div className={styles.item} key={index}>
-                                            <button onClick={() => { navigate(item.id) }}>
-                                                <h3 className={styles.title}>{item.title}</h3>
-                                                <div className={styles.rate}>{item.rate}</div>
-                                            </button>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div> :
-                    <div>not Found Data</div>
-            }
+        <section className={classNames(styles.container, type === 'LIST' ? styles.list : styles.grid)}>
+            <div className={styles.contents}>
+                {
+                    props.map((prop, index) => (
+                        <ItemDashboard {...prop} bind={bind} type={type} data={data[index]} index={index} currentIndex={currentIndex} key={index} />
+                    ))
+                }
+            </div>
         </section>
 
     )

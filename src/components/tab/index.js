@@ -17,11 +17,11 @@ const App = (props) => {
 
     const Item = props.label.map((item, index) => {
         return (
-            <animated.button className={styles.item} key={index}
+            <button className={styles.item} key={index}
                 onClick={() => {
                     setActive(index);
                     props.onChange(item);
-                }}>{item}</animated.button>
+                }}>{item}</button>
         )
     });
 
@@ -31,7 +31,7 @@ const App = (props) => {
     return (
         <div className={styles.container} style={{ margin: props.margin }}>
             <div className={styles.contents}>
-                <animated.span className={styles.bg} style={{ width: bgWidth + '%', transform }} />
+                <animated.span className={styles.bg} style={{ width: bgWidth + '%', transform}} />
                 {Item}
             </div>
         </div>

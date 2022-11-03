@@ -2,7 +2,7 @@
 
 
 */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, Top, Bottom, Tab } from '../../components';
 import { standalone } from '../../util';
@@ -24,8 +24,8 @@ const App = () => {
     );
 }
 
-export default App;
+//export default App;
+export default React.memo(App);
 
 App.defaultProps = {
-
 };
