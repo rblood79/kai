@@ -5,7 +5,7 @@
 */
 import aircraftSide from '../../images/aircraftLeft@2x.png';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 import { useNavigate } from 'react-router-dom';
 import { Item, Chart, Button } from '../../components';
@@ -15,23 +15,34 @@ import styles from './itemDashboard.module.scss';
 import classNames from 'classnames';
 
 const App = (props) => {
-    const [data] = useState(props.data);
     const navigate = useNavigate();
+    const [data] = useState(props.data);
+    const [active, setActive] = useState(false);
     const index = props.index;
-    const currentIndex = props.currentIndex;
     const color = percentColor(data.rate);
-    const active = currentIndex === index && props.display !== 'none' ? true : false;
+    /*const { val, width } = useSpring({
+        from: { val: 0, width: '0%' },
+
+        to: { val: active ? Number(data.rate) : 0, width: active ? Number(data.rate) + '%' : '0%' },
+        config: { duration: index === 0 ? 1440 : 480, easing: easings.easeInOutExpo },
+        delay: 120,
+    })*/
 
     const { val, width } = useSpring({
-        to: { val: active ? Number(data.rate) : 0, width: active ? Number(data.rate) + '%' : '0%' },
         from: { val: 0, width: '0%' },
+        to: async (next, cancel) => {
+            await next({
+                val: active ? Number(data.rate) : 0,
+                width: active ? Number(data.rate) + '%' : '0%'
+            })
+        },
         config: { duration: index === 0 ? 1440 : 480, easing: easings.easeInOutExpo },
-        delay: 120, 
+        delay: 220,
     })
 
-    useEffect(() => {
-
-    }, [])
+    useMemo(() => {
+        index === props.currentIndex && props.display !== 'none' ? setActive(true) : setActive(false)
+    }, [index, props.currentIndex, props.display])
 
     return (
         <animated.div {...props.bind()} className={styles.item} style={{ display: props.display, x: props.x, scale: props.scale }}>
@@ -49,6 +60,7 @@ const App = (props) => {
                                 </animated.span>
                             </div>
                         </div>
+
                         <animated.div className={styles.bottom} style={{ transform: props.ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
                             <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data.flight} />
                             <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data.defect} />
@@ -72,6 +84,7 @@ const App = (props) => {
                                 <animated.span className={styles.value} style={{ width, background: gradient(data.rate, -90) }}></animated.span>
                             </div>
                         </div>
+
                         <animated.div className={styles.bottom} style={{ transform: props.ty.to((ty) => `translate3d(0, ${ty}px, 0)`) }}>
                             <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data.status} />
                             <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data.date} />

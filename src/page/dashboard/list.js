@@ -97,6 +97,7 @@ const App = () => {
             if (active && Math.abs(mx) > width / 2) {
                 index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, data.length - 1)
                 cancel()
+                setCurrentIndex(index.current)
             }
             api.start(i => {
                 if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
@@ -104,7 +105,7 @@ const App = () => {
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
                 const ty = i === index.current ? -16 : -96
-                setCurrentIndex(index.current)
+                //setCurrentIndex(index.current)
                 return {
                     x, y, scale, display: 'grid', ty,
                     config: {
@@ -144,15 +145,6 @@ const App = () => {
                         :
                         <div className={styles.gridContents}>
                             {
-                                /*props.map(({ x, y }, i) => (
-                                    <animated.div className={styles.item} key={i}>
-                                        <button onClick={() => { navigate(data[i].id) }}>
-                                            <h3 className={styles.title}>{data[i].title}</h3>
-                                            <div className={styles.rate}>{data[i].rate}</div>
-                                        </button>
-                                    </animated.div>
-                                ))*/
-
                                 filterData.map((item, index) => {
                                     return (
                                         <div className={styles.item} key={index}>

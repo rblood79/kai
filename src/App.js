@@ -75,6 +75,7 @@ const App = () => {
   * @description  : route transition
   * @parameter    : none
   */
+  const [duration, setDuration] = useState(480)
   const location = useLocation();
   const navigate = useNavigate();
   const [direction, setDirection] = useState(0);
@@ -84,11 +85,13 @@ const App = () => {
     enter: { transform: 'translate3d(0%,0,0)' },
     leave: { transform: direction < window.history.state.idx ? 'translate3d(-50%,0,0)' : 'translate3d(50%,0,0)' },
     config: {
-      duration: authenticated ? 480 : 0,
+      duration: authenticated ? duration : 0,
       easing: easings.easeInOutQuart,
     },
+    onStart: () => console.log('the spring has started'),
     onRest: () => {
       setDirection(window.history.state.idx);
+      setDuration(480)
     },
   })
 
@@ -109,7 +112,8 @@ const App = () => {
   useEffect(() => {
     isMobile && viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
-      e.preventDefault();
+      //e.preventDefault();
+      setDuration(0)
     }, { passive: false })
   }, [viewport])
 

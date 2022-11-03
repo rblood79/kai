@@ -6,6 +6,7 @@ html {
   overscroll-behavior-y: contain;
   touch-action: none;
   body {
+    background-color: var(--colorBase);
     padding: 0;
     margin: 0;
     height: 100%;
