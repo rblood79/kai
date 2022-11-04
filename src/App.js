@@ -100,7 +100,7 @@ const App = () => {
   * @parameter    : none
   */
   useEffect(() => {
-    !authenticated && navigate('/')
+    !authenticated ? navigate('/sign') : navigate('/')
   }, [authenticated])
 
 
@@ -128,17 +128,59 @@ const App = () => {
           <animated.div className={classNames('contents', location.pathname !== '/' && 'sub')} style={styles}>
             <Routes location={item}>
               <Route path="*" element={<NotFound />} />
-              {!authenticated ?
-                <Route path="/" element={<Sign />} /> :
+              <Route path="/sign" element={<Sign />} />
+
+              <Route path="/" element={<Dashboard />} >
+                <Route path="" element={<DashboardList />} />
+              </Route>
+              <Route path=":id" element={<DashboardDetail />} />
+              <Route path="/total" element={<DashboardTotal />} />
+
+              <Route path="flight" element={<Flight />}>
+                <Route path="" element={<FlightList />} />
+                <Route path=":id" element={<FlightDetail />} />
+                <Route path=":id/edit" element={<FlightEdit />} />
+              </Route>
+
+              <Route path="defect" element={<Defect />}>
+                <Route path="" element={<DefectList />} />
+                <Route path=":id" element={<DefectDetail />} />
+              </Route>
+
+              <Route path="maintenance" element={<Maintenance />}>
+                <Route path="" element={<MaintenanceList />} />
+              </Route>
+
+              <Route path="extenal" element={<Extenal />}>
+                <Route path="" element={<ExtenalList />} />
+              </Route>
+
+              <Route path="order" element={<Order />}>
+                <Route path="" element={<OrderList />} />
+              </Route>
+
+              <Route path="schedule" element={<Schedule />}>
+                <Route path="" element={<ScheduleList />} />
+              </Route>
+
+              <Route path="tci" element={<Tci />}>
+                <Route path="" element={<TciList />} />
+              </Route>
+
+              <Route path="loc" element={<Loc />}>
+                <Route path="" element={<LocList />} />
+              </Route>
+
+              <Route path="notify" element={<Notifycation />} />
+              {/*!authenticated ?
+                <Route path="/sign" element={<Sign />} /> :
                 <>
+                  
                   <Route path="/" element={<Dashboard />} >
                     <Route path="" element={<DashboardList />} />
                   </Route>
                   <Route path=":id" element={<DashboardDetail />} />
                   <Route path="/total" element={<DashboardTotal />} />
-
-                  <Route path="*" element={<NotFound />} />
-                  <Route path="notify" element={<Notifycation />} />
 
                   <Route path="flight" element={<Flight />}>
                     <Route path="" element={<FlightList />} />
@@ -174,8 +216,10 @@ const App = () => {
                   <Route path="loc" element={<Loc />}>
                     <Route path="" element={<LocList />} />
                   </Route>
+                  
+                  <Route path="notify" element={<Notifycation />} />
                 </>
-              }
+        */}
 
             </Routes>
           </animated.div>

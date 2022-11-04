@@ -3,9 +3,8 @@
 
 
 */
-import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
-import React, { useEffect, useState, Children } from 'react';
+import React, { useEffect, useState } from 'react';
 //import { useGesture, useDrag } from '@use-gesture/react'
 import { a, useSpring, easings, config } from '@react-spring/web';
 

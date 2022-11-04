@@ -244,7 +244,7 @@ const App = () => {
         }
     };
 
-    const [props, api] = useSprings(data.length, i => ({
+    const [springs, api] = useSprings(data.length, i => ({
         x: (i * width) + 48,
         y: 0,
         scale: i === 0 ? 1 : 0.8,
@@ -294,7 +294,7 @@ const App = () => {
         <section className={classNames(styles.container, type === 'LIST' ? styles.list : styles.grid)}>
             <div className={styles.contents}>
                 {
-                    props.map((prop, index) => (
+                    springs.map((prop, index) => (
                         <ItemDashboard {...prop} bind={bind} type={type} data={data[index]} index={index} currentIndex={currentIndex} key={index} />
                     ))
                 }

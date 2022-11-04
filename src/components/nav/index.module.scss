@@ -27,7 +27,7 @@
       justify-content: center;
       margin-bottom: 16px;
       .avatar {
-        border: 4px solid var(--colorCard);
+        border: 4px solid var(--colorLabel);
         width: 98px;
         height: 98px;
         border-radius: 98px;
@@ -39,7 +39,7 @@
         }
       }
       .name {
-        color: var(--colorCard);
+        color: var(--colorLabel);
         padding: 8px 0;
       }
     }
@@ -50,6 +50,7 @@
       align-items: stretch;
       padding: 0px;
       width: 100%;
+      max-width: 360px;
       .item {
         border: 1px solid var(--colorSecondary);
         aspect-ratio: 1;

@@ -20,33 +20,26 @@ const App = (props) => {
     const [active, setActive] = useState(false);
     const index = props.index;
     const color = percentColor(data.rate);
-    /*const { val, width } = useSpring({
-        from: { val: 0, width: '0%' },
-
-        to: { val: active ? Number(data.rate) : 0, width: active ? Number(data.rate) + '%' : '0%' },
-        config: { duration: index === 0 ? 1440 : 480, easing: easings.easeInOutExpo },
-        delay: 120,
-    })*/
 
     const { val, width } = useSpring({
+        from: { val: 0, width: '0%' },
         to: async (next, cancel) => {
             await next({
                 val: active ? Number(data.rate) : 0,
                 width: active ? Number(data.rate) + '%' : '0%'
             })
         },
-        from: { val: 0, width: '0%' },
         config: { duration: index === 0 ? 1440 : 480, easing: easings.easeInOutExpo },
-        delay: 220,
+        delay: 240,
     })
 
     useMemo(() => {
         index === props.currentIndex && props.display !== 'none' ? setActive(true) : setActive(false)
     }, [index, props.currentIndex, props.display])
 
-    /*useEffect(() => {
-        props.type === 'GRID' ? setActive(true) : setActive(false)
-    }, [props.type])*/
+    useEffect(() => {
+
+    }, [])
 
     return (
         <>
@@ -57,14 +50,19 @@ const App = (props) => {
                             index === 0 ?
                                 <>
                                     <div className={classNames(styles.main, styles.total)}>
-                                        <div className={styles.title}><h3 className={styles.text}>{data.title}</h3><span className={styles.line} /></div>
+                                        <div className={styles.title}>
+                                            <h3 className={styles.text}>
+                                                {data.title}
+                                            </h3>
+                                            <span className={styles.line} />
+                                        </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} title={data.base} textColor={'var(--colorPrimary)'} text={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.rate} active={active} />
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
                                                 {
-                                                    val.to(val => val.toFixed(2).padStart(5, '0') + '%')
+                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>
@@ -85,7 +83,7 @@ const App = (props) => {
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
-                                                {val.to(val => val.toFixed(2).padStart(5, '0') + '%')}
+                                                {val.to(num => num.toFixed(2).padStart(5, '0') + '%')}
                                             </animated.span>
                                         </div>
                                         <div className={styles.bar}>
@@ -103,8 +101,8 @@ const App = (props) => {
                                 <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
                             </Button>
                         </div>
-                    </animated.div> :
-
+                    </animated.div>
+                    :
                     <animated.div className={styles.itemGrid}>
                         <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                             <div className={styles.main}>
