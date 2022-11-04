@@ -44,9 +44,9 @@ const App = (props) => {
         index === props.currentIndex && props.display !== 'none' ? setActive(true) : setActive(false)
     }, [index, props.currentIndex, props.display])
 
-    useEffect(() => {
-        //console.log(index, props.display.animation.to) 
-    }, [])
+    /*useEffect(() => {
+        props.type === 'GRID' ? setActive(true) : setActive(false)
+    }, [props.type])*/
 
     return (
         <>
@@ -63,7 +63,9 @@ const App = (props) => {
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
-                                                {val.to(val => val.toFixed(2).padStart(5, '0') + '%')}
+                                                {
+                                                    val.to(val => val.toFixed(2).padStart(5, '0') + '%')
+                                                }
                                             </animated.span>
                                         </div>
                                     </div>
@@ -106,13 +108,16 @@ const App = (props) => {
                     <animated.div className={styles.itemGrid}>
                         <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                             <div className={styles.main}>
-                                <h3 className={styles.title}>{data.title}</h3>
-                                <div className={styles.rate} style={{ color: percentColor(data.rate) }}>
-                                    {data.rate}%
+                                <div className={styles.title}><h3 className={styles.text}>{data.title}</h3></div>
+                                <div className={styles.rate}>
+                                    <span className={styles.title}>Behavior Rate</span>
+                                    <span className={styles.text} style={{ color: percentColor(data.rate) }}>
+                                        {data.rate + '%'}
+                                    </span>
                                 </div>
                             </div>
                             <div className={styles.bottom}>
-                                status
+                                {data.status}
                             </div>
                         </button>
                     </animated.div>

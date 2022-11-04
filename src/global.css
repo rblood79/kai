@@ -72,8 +72,11 @@ svg {
   --borderRadius-50: calc(var(--borderRadius) * 0.5);
   --borderRadius-150: calc(var(--borderRadius) * 1.5);
 
+  --padding: 16px;
+
   --titleSize: 24px;
   --textSize: 16px;
+  --smallSize: 12px;
 
   --boxShadow: 0px 4px 8px rgba(0,0,0,0.048);
 }

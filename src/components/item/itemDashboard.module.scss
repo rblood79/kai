@@ -40,7 +40,7 @@
     background: linear-gradient(180deg, #141414 0%, #282828 100%);
 
     border-radius: var(--borderRadius);
-    padding: 16px;
+    padding: var(--padding);
 
     display: grid;
     grid-gap: 16px;
@@ -177,27 +177,61 @@
   background-color: var(--colorSecondary);
   border-radius: var(--borderRadius);
   overflow: hidden;
-  aspect-ratio: 1;
+
   .itemButton {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 36px;
     .main {
-      background: #f00;
+      background: linear-gradient(180deg, #141414 0%, #282828 100%);
+      border-radius: var(--borderRadius);
+      padding: var(--padding);
+      aspect-ratio: 1.25;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       .title {
-        font-size: var(--textSize);
-        padding: 4px 0;
-        color: var(--colorCard);
+        .text {
+          font-size: var(--textSize);
+          padding: 4px 0;
+          color: var(--colorCard);
+        }
       }
       .rate {
-        font-size: var(--titleSize);
-        line-height: 36px;
-        font-family: "Digital Numbers Regular";
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        &::before {
+          content: "00.00%";
+          font-size: var(--titleSize);
+          line-height: var(--titleSize);
+          font-family: "Digital Numbers Regular";
+          position: absolute;
+          left: -2px;
+          bottom: 0;
+          color: var(--colorTitle);
+          z-index: 0;
+        }
+        .title {
+          padding: 4px 0;
+          color: #707070;
+        }
+        .text {
+          font-size: var(--titleSize);
+          line-height: var(--titleSize);
+          font-family: "Digital Numbers Regular";
+          margin-left: -2px;
+          z-index: 1;
+        }
       }
     }
-    .bottom{
-      color: #0c90e7;
+    .bottom {
+      display: flex;
+      align-items: center;
+      padding: 0px 16px;
+      color: var(--colorLabel);
+      font-size: var(--smallSize);
     }
   }
 }
