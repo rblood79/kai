@@ -13,9 +13,9 @@
       content: "KF-21 BORAMAE LOGISTICS INFORMATION SYSTEM";
       display: flex;
       position: absolute;
-      height: 100%;
+      height: calc(100% - 16px);
       width: 24px;
-      top: -16px;
+      top: 0px;
       left: -34px;
       font-size: 14px;
 
@@ -175,15 +175,29 @@
 
 .itemGrid {
   background-color: var(--colorSecondary);
-  padding: 16px;
   border-radius: var(--borderRadius);
+  overflow: hidden;
   aspect-ratio: 1;
-  .title {
-    font-size: var(--textSize);
-    padding: 8px 0;
-    color: var(--colorCard);
-  }
-  .rate {
-    color: #5ecce7;
+  .itemButton {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 36px;
+    .main {
+      background: #f00;
+      .title {
+        font-size: var(--textSize);
+        padding: 4px 0;
+        color: var(--colorCard);
+      }
+      .rate {
+        font-size: var(--titleSize);
+        line-height: 36px;
+        font-family: "Digital Numbers Regular";
+      }
+    }
+    .bottom{
+      color: #0c90e7;
+    }
   }
 }

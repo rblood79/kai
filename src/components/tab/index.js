@@ -29,10 +29,12 @@ const App = (props) => {
     }, []);
 
     return (
-        <div className={styles.container} style={{ margin: props.margin }}>
+        <div className={styles.container} style={{ padding: props.padding }}>
             <div className={styles.contents}>
-                <animated.span className={styles.bg} style={{ width: bgWidth + '%', transform}} />
-                {Item}
+                <div className={styles.list}>
+                    <animated.span className={styles.bg} style={{ width: bgWidth + '%', transform }} />
+                    {Item}
+                </div>
             </div>
         </div>
     );

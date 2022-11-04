@@ -1,7 +1,6 @@
 .container {
   scroll-snap-align: start;
   width: 100%;
-  //height: calc(100% - 88px);
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -17,15 +16,32 @@
   &.grid {
     height: 100%;
     .contents {
-      height: 100%;
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      align-items: stretch;
-      padding: 0 16px 16px 16px;
+      padding: 0 48px 16px 48px;
       width: 100%;
+      &::before {
+        content: "KF-21 BORAMAE LOGISTICS INFORMATION SYSTEM";
+        display: flex;
+        position: fixed;
+        height: calc(100% - 140px);
+        width: 24px;
+        top: 104px;
+        left: 14px;
+        font-size: 14px;
+  
+        justify-content: center;
+        align-items: center;
+        writing-mode: vertical-rl;
+  
+        color: #707070;
+        background: linear-gradient(#141414, #0c90e7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
   }
 }

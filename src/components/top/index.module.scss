@@ -44,7 +44,9 @@
       color: var(--colorTitle);
       font-size: 18px;
       letter-spacing: 1px;
+      padding: 0 4px;
       &.active {
+        font-style: italic;
         background: linear-gradient(90deg, #141414, #194bb5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

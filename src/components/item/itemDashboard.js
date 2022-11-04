@@ -31,10 +31,6 @@ const App = (props) => {
     const { val, width } = useSpring({
         to: async (next, cancel) => {
             await next({
-                val: 0,
-                width: '0%'
-            })
-            await next({
                 val: active ? Number(data.rate) : 0,
                 width: active ? Number(data.rate) + '%' : '0%'
             })
@@ -106,11 +102,18 @@ const App = (props) => {
                             </Button>
                         </div>
                     </animated.div> :
-                    
+
                     <animated.div className={styles.itemGrid}>
-                        <button onClick={() => { navigate(data.id) }}>
-                            <h3 className={styles.title}>{data.title}</h3>
-                            <div className={styles.rate}>{data.rate}</div>
+                        <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
+                            <div className={styles.main}>
+                                <h3 className={styles.title}>{data.title}</h3>
+                                <div className={styles.rate} style={{ color: percentColor(data.rate) }}>
+                                    {data.rate}%
+                                </div>
+                            </div>
+                            <div className={styles.bottom}>
+                                status
+                            </div>
                         </button>
                     </animated.div>
             }

@@ -16,7 +16,7 @@ const App = () => {
         <>
             <Top title={'KF-21 LIS'} depth={0} state={state} toggleNav={toggleNav} />
             <Layout height={'100%'} padding={'0px'} gap={'8px'} >
-                <Tab label={["LIST", "GRID"]} margin={'0px 48px'} onChange={setType} />
+                <Tab label={["LIST", "GRID"]} padding={'0px 48px'} onChange={setType} />
                 <Outlet context={{ type }} />
             </Layout>
             {standalone && <Bottom />}
