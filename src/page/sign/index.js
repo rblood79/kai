@@ -1,10 +1,13 @@
 import { useContext, useState } from 'react';
+import { userContext } from '../../context';
+import { useNavigate } from "react-router-dom";
 import { Api, Input, Button, Encrypt, Decrypt } from '../../components';
 import { bottomStatusHeight } from '../../util';
-import { userContext } from '../../context';
+
 import styles from './index.module.scss';
 
 const App = () => {
+    const navigate = useNavigate();
     const { setUser } = useContext(userContext);
 
     const [params, setParams] = useState(
@@ -26,6 +29,7 @@ const App = () => {
                 params: params,
             });
             setUser(Decrypt(response.data))
+            navigate('/dashboard')
         } catch (error) {
             const fakeData = Encrypt({
                 id: 'administrator',
@@ -34,6 +38,7 @@ const App = () => {
                 group: 'admin',
             });
             setUser(Decrypt(fakeData))
+            navigate('/dashboard')
         }
     };
 

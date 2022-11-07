@@ -70,8 +70,9 @@ const App = (props) => {
     const item = (link, icon, text) => {
         return (
             <button className={styles.item} key={link} onClick={() => {
-                link !== '/sign' ?
-                    navigate(link) : setUser(null)
+                /*link === '/sign' && setUser(null)
+                navigate(link)*/
+                link !== '/sign' ? navigate(link) : setUser(null)
             }}>
                 <i className={icon} />
                 <span>{text}</span>

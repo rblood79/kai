@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { userContext } from './context';
 
 //util
-import { isMobile } from './util';
+import { isIOS } from './util';
 
 //default library
 import { useState, useEffect, useRef, useContext } from 'react';
@@ -19,6 +19,9 @@ import { useLocation, Routes, Route, useNavigate } from "react-router-dom";
 
 //404
 import NotFound from './page/404';
+
+//Landing
+import Landing from './page/landing';
 
 //sign
 import Sign from './page/sign';
@@ -68,6 +71,7 @@ import Loc from './page/loc';
 import LocList from './page/loc/list';
 
 const App = () => {
+  const viewport = useRef(null);
   const { user } = useContext(userContext);
   const authenticated = user != null;
 
@@ -88,10 +92,12 @@ const App = () => {
       duration: authenticated ? duration : 0,
       easing: easings.easeInOutQuart,
     },
-    //onStart: () => console.log('the spring has started'),
+    onStart: () => {
+      //setDuration(0)
+    },
     onRest: () => {
       setDirection(window.history.state.idx);
-      //setDuration(0)
+      //setDuration(480)
     },
   })
 
@@ -99,23 +105,22 @@ const App = () => {
   * @description  : default useEffect
   * @parameter    : none
   */
+
   useEffect(() => {
-    !authenticated ? navigate('/sign') : navigate('/')
-  }, [authenticated])
-
-
+    authenticated && location.pathname === '/sign' && navigate('/', { replace: true })
+  }, [location])
   /*
   * @description  : web brouser left right swipe cancle
   * @parameter    : none
   */
-  const viewport = useRef(null);
+ 
   useEffect(() => {
-    isMobile && viewport.current.addEventListener('touchstart', (e) => {
+    isIOS && viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
       e.preventDefault();
       //setDuration(0)
     }, { passive: false })
-  }, [viewport])
+  }, [])
 
   /*
   * @description  : App routes
@@ -128,59 +133,15 @@ const App = () => {
           <animated.div className={classNames('contents', location.pathname !== '/' && 'sub')} style={styles}>
             <Routes location={item}>
               <Route path="*" element={<NotFound />} />
-              <Route path="/sign" element={<Sign />} />
-
-              <Route path="/" element={<Dashboard />} >
-                <Route path="" element={<DashboardList />} />
-              </Route>
-              <Route path=":id" element={<DashboardDetail />} />
-              <Route path="/total" element={<DashboardTotal />} />
-
-              <Route path="flight" element={<Flight />}>
-                <Route path="" element={<FlightList />} />
-                <Route path=":id" element={<FlightDetail />} />
-                <Route path=":id/edit" element={<FlightEdit />} />
-              </Route>
-
-              <Route path="defect" element={<Defect />}>
-                <Route path="" element={<DefectList />} />
-                <Route path=":id" element={<DefectDetail />} />
-              </Route>
-
-              <Route path="maintenance" element={<Maintenance />}>
-                <Route path="" element={<MaintenanceList />} />
-              </Route>
-
-              <Route path="extenal" element={<Extenal />}>
-                <Route path="" element={<ExtenalList />} />
-              </Route>
-
-              <Route path="order" element={<Order />}>
-                <Route path="" element={<OrderList />} />
-              </Route>
-
-              <Route path="schedule" element={<Schedule />}>
-                <Route path="" element={<ScheduleList />} />
-              </Route>
-
-              <Route path="tci" element={<Tci />}>
-                <Route path="" element={<TciList />} />
-              </Route>
-
-              <Route path="loc" element={<Loc />}>
-                <Route path="" element={<LocList />} />
-              </Route>
-
-              <Route path="notify" element={<Notifycation />} />
-              {/*!authenticated ?
+              <Route path='/' element={<Landing />} />
+              {!authenticated ?
                 <Route path="/sign" element={<Sign />} /> :
                 <>
-                  
-                  <Route path="/" element={<Dashboard />} >
+                  <Route path="/dashboard" element={<Dashboard replace />} >
                     <Route path="" element={<DashboardList />} />
                   </Route>
-                  <Route path=":id" element={<DashboardDetail />} />
-                  <Route path="/total" element={<DashboardTotal />} />
+                  <Route path="dashboard/:id" element={<DashboardDetail />} />
+                  <Route path="dashboard/total" element={<DashboardTotal />} />
 
                   <Route path="flight" element={<Flight />}>
                     <Route path="" element={<FlightList />} />
@@ -216,11 +177,10 @@ const App = () => {
                   <Route path="loc" element={<Loc />}>
                     <Route path="" element={<LocList />} />
                   </Route>
-                  
+
                   <Route path="notify" element={<Notifycation />} />
                 </>
-        */}
-
+              }
             </Routes>
           </animated.div>
         ))}
