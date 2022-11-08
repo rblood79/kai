@@ -32,8 +32,10 @@ import Notifycation from './page/notify';
 //dashboard
 import Dashboard from './page/dashboard';
 import DashboardList from './page/dashboard/list';
+import DashboardItem from './page/dashboard/item';
 import DashboardDetail from './page/dashboard/detail';
 import DashboardTotal from './page/dashboard/total';
+
 
 //flight
 import Flight from './page/flight';
@@ -113,7 +115,7 @@ const App = () => {
   * @description  : web brouser left right swipe cancle
   * @parameter    : none
   */
- 
+
   useEffect(() => {
     isIOS && viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
@@ -135,10 +137,12 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
               <Route path='/' element={<Landing />} />
               {!authenticated ?
-                <Route path="/sign" element={<Sign />} /> :
+                <Route path="sign" element={<Sign />} /> :
                 <>
-                  <Route path="/dashboard" element={<Dashboard replace />} >
-                    <Route path="" element={<DashboardList />} />
+                  <Route path="dashboard" element={<Dashboard replace />} >
+                    <Route path="" element={<DashboardList />}>
+                      <Route path="" element={<DashboardItem />} />
+                    </Route>
                   </Route>
                   <Route path="dashboard/:id" element={<DashboardDetail />} />
                   <Route path="dashboard/total" element={<DashboardTotal />} />

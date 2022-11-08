@@ -69,6 +69,7 @@
     }
 
     img {
+      pointer-events: none;
       align-self: center;
       justify-self: center;
       width: min(294px, calc(100% - 0px));

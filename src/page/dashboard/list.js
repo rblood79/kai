@@ -8,9 +8,9 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import { useGesture } from '@use-gesture/react'
 import { useSprings } from '@react-spring/web';
 
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 
-import { Api, ItemDashboard } from '../../components';
+import { Api } from '../../components';
 
 import styles from './list.module.scss';
 import classNames from 'classnames';
@@ -22,7 +22,6 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    const navigate = useNavigate();
     const { type } = useOutletContext();
     const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
@@ -34,7 +33,7 @@ const App = () => {
             "title": "Average rate",
             "base": "11 base camp",
             "unit": "12",
-            "rate": "84.04",
+            "rate": "84.4",
             "flight": "220218-658KFX",
             "defect": "Turbine defect"
         },
@@ -294,9 +293,10 @@ const App = () => {
         <section className={classNames(styles.container, type === 'LIST' ? styles.list : styles.grid)}>
             <div className={styles.contents}>
                 {
-                    springs.map((prop, index) => (
-                        <ItemDashboard {...prop} bind={bind} type={type} data={data[index]} index={index} currentIndex={currentIndex} key={index} />
+                    springs.map((spring, index) => (
+                        <Outlet context={{ bind, spring, data: data[index], type, index, currentIndex }} key={index} />
                     ))
+
                 }
             </div>
         </section>
