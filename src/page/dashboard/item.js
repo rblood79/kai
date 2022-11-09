@@ -30,20 +30,16 @@ const App = (props) => {
         },
         config: { duration: index === 0 ? 1440 : 480, easing: easings.easeInOutExpo },
         delay: 240,
-        onStart: () => {
-            //console.log('start')
-        },
-        onRest: () => {
-            //console.log('end')
-        },
     })
 
-    useMemo(() => {
-        index === currentIndex && spring.display !== 'none' ? setActive(true) : setActive(false)
-    }, [index, currentIndex, spring.display])
+    /*useMemo(() => {
+        //index === currentIndex && spring.display !== 'none' ? setActive(true) : setActive(false)
+        type === 'LIST' && index === currentIndex ? setActive(true) : setActive(false)
+    }, [currentIndex, index, spring.display])*/
 
-    useEffect(() => {
-    }, [])
+    useMemo(() => {
+        type === 'LIST' && index === currentIndex ? setActive(true) : setActive(false)
+    }, [currentIndex, index, type])
 
     return (
         <>
@@ -120,11 +116,12 @@ const App = (props) => {
                                         <div className={styles.title}><h3 className={styles.text}>{data.title}</h3></div>
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
-                                            <span className={styles.text} style={{ color: percentColor(data.rate) }}>
+                                            <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
                                                 {
                                                     Number(data.rate).toFixed(2).padStart(5, '0') + '%'
+                                                    //val.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
-                                            </span>
+                                            </animated.span>
                                         </div>
                                     </div>
                                     <div className={styles.bottom}>
