@@ -20,16 +20,32 @@ const App = (props) => {
     const { data, type, bind, index, currentIndex, spring } = useOutletContext();
     const color = percentColor(data.rate);
 
-    const { val, width } = useSpring({
-        from: { val: 0, width: '0%' },
+    const { listNum, width } = useSpring({
+        from: { listNum: 0, width: '0%' },
         to: async (next, cancel) => {
             await next({
-                val: active ? Number(data.rate) : Number(0),
+                listNum: active ? Number(data.rate) : Number(0),
                 width: active ? Number(data.rate) + '%' : '0%'
             })
         },
-        config: { duration: index === 0 ? 1440 : 480, easing: easings.easeInOutExpo },
+        config: {
+            duration: index === 0 ? 1440 : 480,
+            easing: easings.easeInOutExpo
+        },
         delay: 240,
+    })
+
+    const { gridNum } = useSpring({
+        from: { gridNum: 0 },
+        to: async (next, cancel) => {
+            await next({
+                gridNum: type === 'GRID' ? Number(data.rate) : Number(0)
+            })
+        },
+        config: {
+            easing: easings.easeInOutExpo
+        },
+        delay: 0,
     })
 
     /*useMemo(() => {
@@ -62,8 +78,7 @@ const App = (props) => {
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
                                                 {
-                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
-                                                    //Number(data.rate).toFixed(2).padStart(5, '0') + '%'
+                                                    listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>
@@ -85,8 +100,7 @@ const App = (props) => {
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
                                                 {
-                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
-                                                    //Number(data.rate).toFixed(2).padStart(5, '0') + '%'
+                                                    listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>
@@ -118,8 +132,7 @@ const App = (props) => {
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
                                                 {
-                                                    Number(data.rate).toFixed(2).padStart(5, '0') + '%'
-                                                    //val.to(num => num.toFixed(2).padStart(5, '0') + '%')
+                                                    gridNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>

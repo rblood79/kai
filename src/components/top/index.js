@@ -8,7 +8,7 @@ import { ReactComponent as MenuIcon } from '../../images/menu.svg';
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 import { ReactComponent as FilterIcon } from '../../images/filter.svg';
 
-import Nav from '../nav';
+import Aside from '../aside';
 
 import styles from './index.module.scss';
 import classNames from 'classnames';
@@ -49,7 +49,7 @@ const App = (props) => {
                             props.state ? <CloseIcon width={24} height={24} fill={'var(--colorBase)'} /> : <MenuIcon width={24} height={24} fill={'var(--colorText)'} />
                         }
                     </button>
-                    <Nav state={props.state} />
+                    <Aside state={props.state} />
                 </>
             }
 
