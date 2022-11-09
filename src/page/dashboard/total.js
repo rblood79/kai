@@ -5,22 +5,29 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-import { Api, Layout, Top, Card, ItemList, Chart, ItemMaintenance } from '../../components';
+import moment from 'moment';
+import { Api, Layout, Top, Card, Sheet, Input, ItemList, Chart, ItemMaintenance } from '../../components';
 
 const App = () => {
     const { id } = useParams();
+    const [navState, setNavState] = useState(false);
+    const toggleNav = () => setNavState(!navState);
     const [scrollTop, setScrollTop] = useState(true);
+    //filter default data
+    const [params, setParams] = useState(
+        {
+            range: '1M',
+            endDate: moment().format('YYYYMMDDHHmmss'),
+            startDate: moment().add(-1, 'M').format('YYYYMMDDHHmmss'),
+        }
+    );
+    //filter empty data
+    const [temp, setTemp] = useState(null)
+
     const [data, setData] = useState(
         {
             "id": "1",
             "title": "KF-21-001",
-            "intro": "18 June 2020",
-            "oh": "2,125",
-            "fh": "235",
-            "rate": "82.6",
-            "status": "At Maintenance",
-            "date": "11 June 2021",
 
             "dataM": {
                 "id": "maintenance",
@@ -57,12 +64,33 @@ const App = () => {
             },
             "dataC":
                 [
-                    { aaa: 56, bbbb: 18, vvv: 48 },
-                    { aaa: 56, bbbb: 18, vvv: 48 },
-                    { aaa: 56, bbbb: 18, vvv: 48 },
+                    { title: "KFX-001", rate: 48 },
+                    { title: "KFX-002", rate: 56 },
+                    { title: "KFX-003", rate: 18 },
                 ]
         }
     );
+    //range list
+    const rangeData = [
+        { value: '1D', text: '1 Day' },
+        { value: '1W', text: '1 Week' },
+        { value: '1M', text: '1 Month' },
+        { value: '3M', text: '3 Month' },
+        { value: '6M', text: '6 Month' },
+        { value: '1Y', text: '1 Year' },
+    ]
+
+    //bottom sheet cancle
+    const cancle = () => {
+        setParams(JSON.parse(JSON.stringify(temp)))
+    }
+
+    //bottom sheet apply
+    const apply = () => {
+        console.log('filter', params)
+        onLoad();
+        toggleNav();
+    }
 
     const onLoad = async () => {
         try {
@@ -86,7 +114,7 @@ const App = () => {
         <>
             {
                 data && <>
-                    <Top title={data.title} background={'var(--colorCard)'} depth={1} scrollTop={scrollTop} />
+                    <Top title={data.title} background={'var(--colorCard)'} depth={1} right={'filter'} state={toggleNav} scrollTop={scrollTop} />
                     <Layout scrollTop={setScrollTop}>
 
                         <Card
@@ -97,9 +125,6 @@ const App = () => {
                         </Card>
 
                         <Card
-                            /*rightText={'more'}
-                            rightType={'button'}
-                            rightLink={'/maintenance'}*/
                             title={'Aircraft Rate'}
                             gap={8}
                         >
@@ -108,6 +133,11 @@ const App = () => {
                         </Card>
 
                     </Layout>
+                    <Sheet title={'Conditional Search'} height={'body'} gap={48} state={navState} close={setNavState} cancel={cancle} apply={apply}>
+                        <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
+                        <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} onChange={setParams} />
+                        <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} onChange={setParams} />
+                    </Sheet>
                 </>
             }
 

@@ -7,6 +7,13 @@ import styles from './index.module.scss';
 
 const App = (props) => {
     const target = useRef(null);
+    const body = useRef(null);
+
+    
+    /*useEffect(()=>{
+        console.log('main', target.current.clientHeight)
+        console.log('body', target.current.children[0].clientHeight)
+    }, [])*/
 
     const onScroll = useCallback((event) => {
         event.target.scrollTop < 56 ? props.scrollTop(true) : props.scrollTop(false)
@@ -22,7 +29,7 @@ const App = (props) => {
 
     return (
         <main className={styles.main} style={{ padding: props.padding }} ref={target}>
-            <div className={styles.body} style={{ height: props.height, gap: props.gap }}  >
+            <div className={styles.body} style={{ height: props.height, gap: props.gap }} ref={body} >
                 {props.children}
             </div>
         </main>

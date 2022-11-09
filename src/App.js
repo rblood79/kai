@@ -73,16 +73,16 @@ import Loc from './page/loc';
 import LocList from './page/loc/list';
 
 const App = () => {
-  const viewport = useRef(null);
   const { user } = useContext(userContext);
   const authenticated = user != null;
-
+  const viewport = useRef(null);
   /*
   * @description  : route transition
   * @parameter    : none
   */
   const location = useLocation();
   const navigate = useNavigate();
+  const [height, setHeight] = useState({ main: 0, body: 0 });
   const [duration, setDuration] = useState(480)
   const [direction, setDirection] = useState(0);
 
@@ -100,6 +100,13 @@ const App = () => {
     onRest: () => {
       setDirection(window.history.state.idx);
       //setDuration(480)
+      let timer = setTimeout(() => {
+        setHeight({
+          main: viewport.current.children[0].children[0].clientHeight,
+          body: viewport.current.children[0].children[0].lastChild.children[0].clientHeight
+        })
+      }, 0);
+      return () => { clearTimeout(timer) }
     },
   })
 
@@ -131,63 +138,68 @@ const App = () => {
   return (
     <div className="App" ref={viewport}>
       <div className='container'>
-        {transitions((styles, item) => (
-          <animated.div className={classNames('contents', location.pathname !== '/' && 'sub')} style={styles}>
-            <Routes location={item}>
-              <Route path="*" element={<NotFound />} />
-              <Route path='/' element={<Landing />} />
-              {!authenticated ?
-                <Route path="sign" element={<Sign />} /> :
-                <>
-                  <Route path="dashboard" element={<Dashboard replace />} >
-                    <Route path="" element={<DashboardList />}>
-                      <Route path="" element={<DashboardItem />} />
-                    </Route>
-                  </Route>
-                  <Route path="dashboard/:id" element={<DashboardDetail />} />
-                  <Route path="dashboard/total" element={<DashboardTotal />} />
+        {
+          transitions((styles, item) => {
+            return (
+              <animated.div className={classNames('contents', height.main < height.body && 'sub')} style={styles}>
+                <Routes location={item}>
+                  <Route path="*" element={<NotFound />} />
+                  <Route path='/' element={<Landing />} />
+                  {!authenticated ?
+                    <Route path="sign" element={<Sign />} /> :
+                    <>
+                      <Route path="dashboard" element={<Dashboard replace />} >
+                        <Route path="" element={<DashboardList />}>
+                          <Route path="" element={<DashboardItem />} />
+                        </Route>
+                      </Route>
+                      <Route path="dashboard/:id" element={<DashboardDetail />} />
+                      <Route path="dashboard/total" element={<DashboardTotal />} />
 
-                  <Route path="flight" element={<Flight />}>
-                    <Route path="" element={<FlightList />} />
-                    <Route path=":id" element={<FlightDetail />} />
-                    <Route path=":id/edit" element={<FlightEdit />} />
-                  </Route>
+                      <Route path="flight" element={<Flight />}>
+                        <Route path="" element={<FlightList />} />
+                        <Route path=":id" element={<FlightDetail />} />
+                        <Route path=":id/edit" element={<FlightEdit />} />
+                      </Route>
 
-                  <Route path="defect" element={<Defect />}>
-                    <Route path="" element={<DefectList />} />
-                    <Route path=":id" element={<DefectDetail />} />
-                  </Route>
+                      <Route path="defect" element={<Defect />}>
+                        <Route path="" element={<DefectList />} />
+                        <Route path=":id" element={<DefectDetail />} />
+                      </Route>
 
-                  <Route path="maintenance" element={<Maintenance />}>
-                    <Route path="" element={<MaintenanceList />} />
-                  </Route>
+                      <Route path="maintenance" element={<Maintenance />}>
+                        <Route path="" element={<MaintenanceList />} />
+                      </Route>
 
-                  <Route path="extenal" element={<Extenal />}>
-                    <Route path="" element={<ExtenalList />} />
-                  </Route>
+                      <Route path="extenal" element={<Extenal />}>
+                        <Route path="" element={<ExtenalList />} />
+                      </Route>
 
-                  <Route path="order" element={<Order />}>
-                    <Route path="" element={<OrderList />} />
-                  </Route>
+                      <Route path="order" element={<Order />}>
+                        <Route path="" element={<OrderList />} />
+                      </Route>
 
-                  <Route path="schedule" element={<Schedule />}>
-                    <Route path="" element={<ScheduleList />} />
-                  </Route>
+                      <Route path="schedule" element={<Schedule />}>
+                        <Route path="" element={<ScheduleList />} />
+                      </Route>
 
-                  <Route path="tci" element={<Tci />}>
-                    <Route path="" element={<TciList />} />
-                  </Route>
+                      <Route path="tci" element={<Tci />}>
+                        <Route path="" element={<TciList />} />
+                      </Route>
 
-                  <Route path="loc" element={<Loc />}>
-                    <Route path="" element={<LocList />} />
-                  </Route>
+                      <Route path="loc" element={<Loc />}>
+                        <Route path="" element={<LocList />} />
+                      </Route>
 
-                  <Route path="notify" element={<Notifycation />} />
-                </>
-              }
-            </Routes>
-          </animated.div>
-        ))}
+                      <Route path="notify" element={<Notifycation />} />
+                    </>
+                  }
+                </Routes>
+              </animated.div>
+            )
+          }
+          )
+        }
 
       </div>
     </div>
