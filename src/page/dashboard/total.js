@@ -64,8 +64,9 @@ const App = () => {
             },
             "dataC":
                 [
-                    { label: "Flight", value: 29 },
+                    { label: "Flight", value: 25 },
                     { label: "Maintenance", value: 6 },
+                    { label: "Repair", value: 4 },
                     { label: "Stand By", value: 5 },
                 ]
         }
@@ -119,10 +120,17 @@ const App = () => {
                     <Layout scrollTop={setScrollTop}>
 
                         <Card
-                            title={'Behavior Rate'}
+                            title={'Behavior PieChart'}
                             gap={8}
                         >
-                            <Chart height={400} type={'pie'} data={data.dataC} active={true} />
+                            <Chart height={380} type={'pie'} data={data.dataC} active={true} />
+                        </Card>
+
+                        <Card
+                            title={'Behavior BarChart'}
+                            gap={8}
+                        >
+                            <Chart height={240} type={'bar'} data={data.dataC} active={true} />
                         </Card>
 
                         <Card

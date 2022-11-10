@@ -6,10 +6,15 @@
 import React, { useRef, useEffect, } from 'react';
 import * as d3 from 'd3';
 
-const colors = d3.scaleOrdinal(d3.schemeCategory10);
-
 const App = (props) => {
   const svgRef = useRef(null);
+  const data = props.data;
+  /*const colors = d3
+    .scaleSequential()
+    .interpolator(d3.interpolateWarm)
+    .domain([0, props.data.length]);*/
+
+  const colors = d3.scaleOrdinal(d3.schemeCategory10);
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -34,7 +39,7 @@ const App = (props) => {
 
     const arc = chart
       .selectAll()
-      .data(pieGenerator(props.data))
+      .data(pieGenerator(data))
       .enter();
 
     arc
@@ -49,15 +54,15 @@ const App = (props) => {
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
       .text((d) => d.data.label + '-' + d.data.value)
-      .style('fill', '#fff')
       .style('font-family', "HelveticaNeue Condensed Bold, sans-serif")
+      .style('fill', '#fff')
       //.style('fill', (_, i) => colors(props.data.length - i))
       .attr('transform', (d) => {
         const [x, y] = arcGenerator.centroid(d);
         return `translate(${x}, ${y})`;
       });
 
-  }, [props.data]);
+  }, [colors, data, props.innerRadius, props.line, props.margin]);
 
   return (
     <svg ref={svgRef} />
