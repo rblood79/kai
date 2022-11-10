@@ -18,7 +18,7 @@ const App = (props) => {
             }}
             type={props.type}
             onClick={props.onClick}>
-            {props.text}
+            {props.label}
             {props.children}
         </button>
     );

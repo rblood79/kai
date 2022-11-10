@@ -15,7 +15,7 @@ const App = (props) => {
     const listItem = data && data.map((item, index) => {
         return (
             <div className={classNames(styles.item, styles.col, index === 0 ? styles.left : styles.right)} key={index}>
-                <span className={styles.title}>{item.title}</span>
+                <span className={styles.label}>{item.label}</span>
                 <div className={styles.textGroup}>
                     <span className={styles.text}>T/O: {item.to}</span>
                     <span className={styles.text}>L/D: {item.ld}</span>

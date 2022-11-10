@@ -13,7 +13,7 @@ const App = (props) => {
 
     const List = useCallback(
         () => props.data && props.data.map((item, index) => {
-            return (<Item title={item.title} text={item.text} key={index} />)
+            return (<Item label={item.label} value={item.value} key={index} />)
         }),
         [props.data],
     );
@@ -43,9 +43,6 @@ export default React.memo(App);
 
 App.defaultProps = {
     height: 40,
-    title: 'title',
-    titleColor: 'var(--colorSecondary)',
-    background: 'var(--colorCard)',
     icon: null,
     box: true,
 };

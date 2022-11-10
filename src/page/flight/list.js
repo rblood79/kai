@@ -23,23 +23,23 @@ const App = (props) => {
         "title": "AAAAA-002",
         "header": [
           {
-            "title": "Tail No",
-            "text": "20-001"
+            "label": "Tail No",
+            "value": "20-001"
           },
           {
-            "title": "Flight Date",
-            "text": "20220901",
+            "label": "Flight Date",
+            "value": "20220901",
             "type": "date"
           }
         ],
         "body": [
           {
-            "title": "Plan",
+            "label": "Plan",
             "to": "11:30:40",
             "ld": "11:30:00"
           },
           {
-            "title": "Actual",
+            "label": "Actual",
             "to": "12:40:00",
             "ld": "12:30:00"
           }
@@ -50,23 +50,23 @@ const App = (props) => {
         "title": "BBBBB",
         "header": [
           {
-            "title": "Tail No",
-            "text": "20-001"
+            "label": "Tail No",
+            "value": "20-001"
           },
           {
-            "title": "Flight Date",
-            "text": "20220821",
+            "label": "Flight Date",
+            "value": "20220821",
             "type": "date"
           }
         ],
         "body": [
           {
-            "title": "Plan",
+            "label": "Plan",
             "to": "11:30:40",
             "ld": "11:30:00"
           },
           {
-            "title": "Actual",
+            "label": "Actual",
             "to": "12:40:00",
             "ld": "12:30:00"
           }
@@ -77,23 +77,23 @@ const App = (props) => {
         "title": "cCCCC",
         "header": [
           {
-            "title": "Tail No",
-            "text": "20-001"
+            "label": "Tail No",
+            "value": "20-001"
           },
           {
-            "title": "Flight Date",
-            "text": "20220830",
+            "label": "Flight Date",
+            "value": "20220830",
             "type": "date"
           }
         ],
         "body": [
           {
-            "title": "Plan",
+            "label": "Plan",
             "to": "11:30:40",
             "ld": "11:30:00"
           },
           {
-            "title": "Actual",
+            "label": "Actual",
             "to": "12:40:00",
             "ld": "12:30:00"
           }
@@ -104,23 +104,23 @@ const App = (props) => {
         "title": "DDwse",
         "header": [
           {
-            "title": "Tail No",
-            "text": "20-022"
+            "label": "Tail No",
+            "value": "20-022"
           },
           {
-            "title": "Flight Date",
-            "text": "20210920",
+            "label": "Flight Date",
+            "value": "20210920",
             "type": "date"
           }
         ],
         "body": [
           {
-            "title": "Plan",
+            "label": "Plan",
             "to": "11:30:40",
             "ld": "11:30:00"
           },
           {
-            "title": "Actual",
+            "label": "Actual",
             "to": "12:40:00",
             "ld": "12:30:00"
           }
@@ -145,22 +145,22 @@ const App = (props) => {
 
   //range list
   const rangeData = [
-    { value: '1D', text: '1 Day' },
-    { value: '1W', text: '1 Week' },
-    { value: '1M', text: '1 Month' },
-    { value: '3M', text: '3 Month' },
-    { value: '6M', text: '6 Month' },
-    { value: '1Y', text: '1 Year' },
+    { value: '1D', label: '1 Day' },
+    { value: '1W', label: '1 Week' },
+    { value: '1M', label: '1 Month' },
+    { value: '3M', label: '3 Month' },
+    { value: '6M', label: '6 Month' },
+    { value: '1Y', label: '1 Year' },
   ]
 
   //base column list
   const baseData = [
-    { value: 'all', text: 'All' },
-    { value: 'seoul', text: 'Seoul' },
-    { value: 'busan', text: 'Busan' },
-    { value: 'daegu', text: 'Daegu' },
-    { value: 'jeju', text: 'Jeju' },
-    { value: 'incheon', text: 'Incheon' },
+    { value: 'all', label: 'All' },
+    { value: 'seoul', label: 'Seoul' },
+    { value: 'busan', label: 'Busan' },
+    { value: 'daegu', label: 'Daegu' },
+    { value: 'jeju', label: 'Jeju' },
+    { value: 'incheon', label: 'Incheon' },
   ]
 
   //list component
@@ -227,10 +227,10 @@ const App = (props) => {
         }
       </Layout>
 
-      <Sheet title={'Conditional Search'} height={'body'}  gap={48} state={navState} close={setNavState} cancel={cancle} apply={apply}>
+      <Sheet title={'Conditional Search'} height={'body'} gap={48} state={navState} close={setNavState} cancel={cancle} apply={apply}>
         <Input label={'Checkbox'} type={'checkbox'} value={params.checkTest} data={rangeData} column={'checkTest'} columns={3} onChange={setParams} />
         <Input label={'Radio item'} type={'radio'} value={params.range} data={rangeData} column={'range'} columns={2} onChange={setParams} />
-        <Input label={'Search Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
+        <Input label={'Select Range'} type={'select'} value={params.range} data={rangeData} column={'range'} onChange={setParams} />
         <Input label={'Start Date'} type={'date'} value={params.startDate} column={'startDate'} onChange={setParams} />
         <Input label={'End Date'} type={'date'} value={params.endDate} column={'endDate'} onChange={setParams} />
         <Input label={'Air Base'} type={'select'} required={true} value={params.base} data={baseData} column={'base'} onChange={setParams} />

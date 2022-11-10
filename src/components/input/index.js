@@ -153,7 +153,7 @@ const App = (props) => {
         return (
             <>
                 <div className={classNames(styles.input, styles.rightButton, props.required && styles.required, props.disabled && styles.disabled)} onClick={toggleNav}>
-                    {selectItem && selectItem.text}
+                    {selectItem && selectItem.label}
                     <i className="ri-arrow-down-s-line" />
                 </div>
                 <Sheet title={props.label} state={navState} close={setNavState} type={'select'}>
@@ -162,7 +162,7 @@ const App = (props) => {
                             props.data && props.data.map((item, index) => {
                                 return (
                                     <li type={'list'} className={classNames(styles.selectList, props.value === item.value && styles.active)} key={index} onClick={() => { callBack(item.value) }}>
-                                        {item.text}
+                                        {item.label}
                                     </li>
                                 )
                             })
@@ -202,7 +202,7 @@ const App = (props) => {
                                         callBack(e.target.value, e.target.checked)
                                     }}
                                 />
-                                <label htmlFor={props.label + item.value}>{item.text}</label>
+                                <label htmlFor={props.label + item.value}>{item.label}</label>
                             </div>
                         )
                     })
@@ -230,7 +230,7 @@ const App = (props) => {
                                         callBack(e.target.value)
                                     }}
                                 />
-                                <label htmlFor={props.label + item.value}>{item.text}</label>
+                                <label htmlFor={props.label + item.value}>{item.label}</label>
                             </div>
                         )
                     })

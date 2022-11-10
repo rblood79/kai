@@ -89,8 +89,8 @@ const App = (props) => {
                         {
                             props.apply &&
                             <footer className={styles.footer} style={{ paddingBottom: bottomStatusHeight }}>
-                                {props.cancel && <Button text={'Reset'} onClick={() => props.cancel()} />}
-                                <Button text={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
+                                {props.cancel && <Button label={'Reset'} onClick={() => props.cancel()} />}
+                                <Button label={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>
                         }
                     </a.div>

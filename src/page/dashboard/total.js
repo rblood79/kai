@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import { Api, Layout, Top, Card, Sheet, Input, ItemList, Chart, ItemMaintenance } from '../../components';
+import { Api, Layout, Top, Card, Sheet, Input, ItemList, Chart, ItemMaintenance, Decrypt } from '../../components';
 
 const App = () => {
     const { id } = useParams();
@@ -27,57 +27,57 @@ const App = () => {
     const [data, setData] = useState(
         {
             "id": "1",
-            "title": "KF-21-001",
+            "title": "Result",
 
             "dataM": {
                 "id": "maintenance",
                 "header": [
                     {
-                        "title": "Area Base",
-                        "text": "18th Flyight Wing"
+                        "label": "Area Base",
+                        "value": "18th Flyight Wing"
                     },
                     {
-                        "title": "Maintenance No",
-                        "text": "20-001"
+                        "label": "Maintenance No",
+                        "value": "20-001"
                     }
                 ],
                 "body": [
                     {
-                        "title": "KF-21-001",
+                        "label": "KF-21-001",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 18
+                        "value": 18
                     },
                     {
-                        "title": "KF-21-002",
+                        "label": "KF-21-002",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 89
+                        "value": 89
                     },
                     {
-                        "title": "KF-21-003",
+                        "label": "KF-21-003",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 66
+                        "value": 66
                     }
                 ]
             },
             "dataC":
                 [
-                    { title: "KFX-001", rate: 48 },
-                    { title: "KFX-002", rate: 56 },
-                    { title: "KFX-003", rate: 18 },
+                    { label: "Flight", value: 29 },
+                    { label: "Maintenance", value: 6 },
+                    { label: "Stand By", value: 5 },
                 ]
         }
     );
     //range list
     const rangeData = [
-        { value: '1D', text: '1 Day' },
-        { value: '1W', text: '1 Week' },
-        { value: '1M', text: '1 Month' },
-        { value: '3M', text: '3 Month' },
-        { value: '6M', text: '6 Month' },
-        { value: '1Y', text: '1 Year' },
+        { value: '1D', label: '1 Day' },
+        { value: '1W', label: '1 Week' },
+        { value: '1M', label: '1 Month' },
+        { value: '3M', label: '3 Month' },
+        { value: '6M', label: '6 Month' },
+        { value: '1Y', label: '1 Year' },
     ]
 
     //bottom sheet cancle
@@ -93,18 +93,19 @@ const App = () => {
     }
 
     const onLoad = async () => {
+        setTemp(JSON.parse(JSON.stringify(params)))
         try {
-            const response = await Api({
-                //baseURL: state.url,
-                url: 'dashboard/' + id,
-                method: 'get',
-                params: {},
-            });
-            setData(response.data);
+          const response = await Api({
+            //baseURL: state.url,
+            url: 'flight',
+            method: 'get',
+            params: params,
+          });
+          setData(Decrypt(response.data));
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-    };
+      };
 
     useEffect(() => {
         onLoad()

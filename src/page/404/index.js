@@ -21,8 +21,8 @@ const App = () => {
                     <span className={styles.comment}>Sorry... Page not found.</span>
                 </div>
                 <div className={styles.footer}>
-                    <Button text={'Back'} onClick={() => { navigate(-1) }} />
-                    <Button text={'Home'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => { navigate('/') }} />
+                    <Button label={'Back'} onClick={() => { navigate(-1) }} />
+                    <Button label={'Home'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => { navigate('/') }} />
                 </div>
             </div>
         </Layout>

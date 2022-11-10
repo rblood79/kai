@@ -22,7 +22,7 @@ const App = (props) => {
                 {props.rightType === 'text' && props.rightText && <span className={styles.text}>{props.rightText}</span>}
                 {props.rightType === 'button' && props.rightText &&
                     <Button
-                        text={props.rightText}
+                        label={props.rightText}
                         background={'var(--colorPrimary)'}
                         color={'var(--colorCard)'}
                         fontSize={'16px'}

@@ -26,22 +26,22 @@ const App = () => {
                 "id": "flight",
                 "header": [
                     {
-                        "title": "Tail No",
-                        "text": "20-001"
+                        "label": "Tail No",
+                        "value": "20-001"
                     },
                     {
-                        "title": "Flight Date",
-                        "text": "24 March 2021"
+                        "label": "Flight Date",
+                        "value": "24 March 2021"
                     }
                 ],
                 "body": [
                     {
-                        "title": "Plan",
+                        "label": "Plan",
                         "to": "11:30:40",
                         "ld": "11:30:00"
                     },
                     {
-                        "title": "Actual",
+                        "label": "Actual",
                         "to": "12:40:00",
                         "ld": "12:30:00"
                     }
@@ -51,16 +51,16 @@ const App = () => {
                 "id": "defect",
                 "header": [
                     {
-                        "title": "Cause",
-                        "text": "Turbine Lose"
+                        "label": "Cause",
+                        "value": "Turbine Lose"
                     },
                     {
-                        "title": "Defect No",
-                        "text": "20-001"
+                        "label": "Defect No",
+                        "value": "20-001"
                     },
                     {
-                        "title": "Defect Date",
-                        "text": "28 June 2021"
+                        "label": "Defect Date",
+                        "value": "28 June 2021"
                     }
                 ],
                 "body": []
@@ -69,36 +69,36 @@ const App = () => {
                 "id": "maintenance",
                 "header": [
                     {
-                        "title": "Cause",
-                        "text": "Turbine Defect"
+                        "label": "Cause",
+                        "value": "Turbine Defect"
                     },
                     {
-                        "title": "Maintenance No",
-                        "text": "20-001"
+                        "label": "Maintenance No",
+                        "value": "20-001"
                     },
                     {
-                        "title": "Maintenance Date",
-                        "text": "28 June 2021"
+                        "label": "Maintenance Date",
+                        "value": "28 June 2021"
                     }
                 ],
                 "body": [
                     {
-                        "title": "EVERY 60 DAYS(I)",
+                        "label": "EVERY 60 DAYS(I)",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 18
+                        "value": 18
                     },
                     {
-                        "title": "EVERY 18 MONTHS(I)",
+                        "label": "EVERY 18 MONTHS(I)",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 89
+                        "value": 89
                     },
                     {
-                        "title": "EVERY 36 MONTHS(I)",
+                        "label": "EVERY 36 MONTHS(I)",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 66
+                        "value": 66
                     }
                 ]
             },
@@ -106,24 +106,24 @@ const App = () => {
                 "id": "consume",
                 "header": [
                     {
-                        "title": "Content",
-                        "text": "Turbine Change & Maintenance"
+                        "label": "Content",
+                        "value": "Turbine Change & Maintenance"
                     },
                     {
-                        "title": "Consume No",
-                        "text": "20-001"
+                        "label": "Consume No",
+                        "value": "20-001"
                     },
                     {
-                        "title": "Consume Date",
-                        "text": "28 June 2021"
+                        "label": "Consume Date",
+                        "value": "28 June 2021"
                     }
                 ],
                 "body": [
                     {
-                        "title": "EVERY 60 DAYS(I)",
+                        "label": "EVERY 60 DAYS(I)",
                         "cycle": "18SVM",
                         "date": "24 MAY 2021",
-                        "text": 18
+                        "value": 18
                     }
                 ]
             }

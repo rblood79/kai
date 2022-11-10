@@ -39,7 +39,7 @@
       & + .itemGroup {
         margin-top: 36px;
       }
-      .title {
+      .label {
         color: var(--colorTitle);
         font-size: var(--textSize);
         display: flex;
@@ -78,7 +78,7 @@
       align-items: center;
       justify-content: space-between;
       
-      .title {
+      .label {
         font-size: var(--textSize);
         color: var(--colorLabel);
         padding: 0;

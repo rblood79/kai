@@ -15,18 +15,18 @@ const App = (props) => {
     const listItem = data && data.map((item, index) => {
         return (
             <div className={styles.itemGroup} key={index}>
-                <span className={styles.title}>{item.title}</span>
+                <span className={styles.label}>{item.label}</span>
                 <div className={styles.item}>
-                    <span className={styles.title}>Cycle</span>
+                    <span className={styles.label}>Cycle</span>
                     <span className={styles.text}>{item.cycle}</span>
                 </div>
                 <div className={styles.item}>
-                    <span className={styles.title}>Date</span>
+                    <span className={styles.label}>Date</span>
                     <span className={styles.text}>{item.date}</span>
                 </div>
                 <div className={styles.bar}>
-                    <span className={styles.value} style={{ width: item.text + '%', background: gradient(item.text, 90) }} />
-                    <span className={styles.text}>{item.text}%</span>
+                    <span className={styles.value} style={{ width: item.value + '%', background: gradient(item.value, 90) }} />
+                    <span className={styles.text}>{item.value}%</span>
                 </div>
             </div>
         )

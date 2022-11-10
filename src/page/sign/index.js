@@ -64,9 +64,9 @@ const App = () => {
                     <Input placeholder={'ID'} value={params.id} column={'id'} onChange={setParams} />
                     <Input placeholder={'PASSWORD'} value={params.pw} column={'pw'} onChange={setParams} type={'password'} />
                 </div>
-                <Button text={'Sign In'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
+                <Button label={'Sign In'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
             </form>
-            <Button text={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={help} />
+            <Button label={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={help} />
 
         </main>
     );

@@ -3,11 +3,6 @@ import { isMobile, isIOS, isAndroid } from 'react-device-detect';
 import { useNavigate } from "react-router-dom";
 import * as d3 from 'd3';
 
-/*const percentColor = (percent) => {
-    const hue = ((percent * 0.01) * 204).toString(10);
-    return 'hsl(' + hue + ', 86%, 48%)';
-}*/
-
 const standalone = 'standalone' in window.navigator && window.navigator.standalone;
 
 const percentColor = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, 100]);

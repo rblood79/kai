@@ -10,16 +10,16 @@ const App = (props) => {
             title: 'Tail part Repair',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Tail Repair"
+                    "label": "Cause",
+                    "value": "Tail Repair"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -29,16 +29,16 @@ const App = (props) => {
             title: 'Turbine Lose',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Turbine Lose"
+                    "label": "Cause",
+                    "value": "Turbine Lose"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -48,16 +48,16 @@ const App = (props) => {
             title: 'Air Cond Change',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Turbine Lose"
+                    "label": "Cause",
+                    "value": "Turbine Lose"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -67,16 +67,16 @@ const App = (props) => {
             title: 'Air Cond Change',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Turbine Lose"
+                    "label": "Cause",
+                    "value": "Turbine Lose"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -86,16 +86,16 @@ const App = (props) => {
             title: 'Tail part Repair',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Tail Repair"
+                    "label": "Cause",
+                    "value": "Tail Repair"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -105,16 +105,16 @@ const App = (props) => {
             title: 'Turbine Lose',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Turbine Lose"
+                    "label": "Cause",
+                    "value": "Turbine Lose"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -124,16 +124,16 @@ const App = (props) => {
             title: 'Air Cond Change',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Turbine Lose"
+                    "label": "Cause",
+                    "value": "Turbine Lose"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]
@@ -143,16 +143,16 @@ const App = (props) => {
             title: 'Air Cond Change',
             "header": [
                 {
-                    "title": "Cause",
-                    "text": "Turbine Lose"
+                    "label": "Cause",
+                    "value": "Turbine Lose"
                 },
                 {
-                    "title": "Defect No",
-                    "text": "20-005-2615",
+                    "label": "Defect No",
+                    "value": "20-005-2615",
                 },
                 {
-                    "title": "Defect Date",
-                    "text": "20211015",
+                    "label": "Defect Date",
+                    "value": "20211015",
                     "type": "date"
                 }
             ]

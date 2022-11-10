@@ -82,8 +82,8 @@ const App = () => {
   */
   const location = useLocation();
   const navigate = useNavigate();
-  const [height, setHeight] = useState({ main: 0, body: 0 });
-  const [duration, setDuration] = useState(480)
+  const [dimensions, setDimensions] = useState({ main: 0, body: 0 });
+  const [duration] = useState(480)
   const [direction, setDirection] = useState(0);
 
   const transitions = useTransition(location, {
@@ -101,11 +101,11 @@ const App = () => {
       setDirection(window.history.state.idx);
       //setDuration(480)
       let timer = setTimeout(() => {
-        setHeight({
+        setDimensions({
           main: viewport.current.children[0].children[0].clientHeight,
           body: viewport.current.children[0].children[0].lastChild.children[0].clientHeight
         })
-      }, 0);
+      }, 120);
       return () => { clearTimeout(timer) }
     },
   })
@@ -114,15 +114,14 @@ const App = () => {
   * @description  : default useEffect
   * @parameter    : none
   */
-
   useEffect(() => {
     authenticated && location.pathname === '/sign' && navigate('/', { replace: true })
-  }, [location])
+  }, [authenticated, location, navigate])
+
   /*
   * @description  : web brouser left right swipe cancle
   * @parameter    : none
   */
-
   useEffect(() => {
     isIOS && viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
@@ -141,7 +140,7 @@ const App = () => {
         {
           transitions((styles, item) => {
             return (
-              <animated.div className={classNames('contents', height.main < height.body && 'sub')} style={styles}>
+              <animated.div className={classNames('contents', dimensions.main < dimensions.body && 'sub')} style={styles}>
                 <Routes location={item}>
                   <Route path="*" element={<NotFound />} />
                   <Route path='/' element={<Landing />} />
@@ -197,10 +196,8 @@ const App = () => {
                 </Routes>
               </animated.div>
             )
-          }
-          )
+          })
         }
-
       </div>
     </div>
   );

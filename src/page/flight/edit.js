@@ -32,19 +32,19 @@ const App = (props) => {
     );
 
     const frontData = [
-        { value: 'xxs', text: 'Jason Martin' },
-        { value: 'asd', text: 'Bryan Fury' },
-        { value: 'qwsd', text: 'Jin Kasama' },
-        { value: 'gefe', text: 'Lili' },
-        { value: 'sfes', text: 'Bob Wilson' },
+        { value: 'xxs', label: 'Jason Martin' },
+        { value: 'asd', label: 'Bryan Fury' },
+        { value: 'qwsd', label: 'Jin Kasama' },
+        { value: 'gefe', label: 'Lili' },
+        { value: 'sfes', label: 'Bob Wilson' },
     ]
 
     const tailData = [
-        { value: '001', text: '27-001' },
-        { value: '002', text: '27-002' },
-        { value: '003', text: '27-003' },
-        { value: '004', text: '27-004' },
-        { value: '005', text: '27-005' },
+        { value: '001', label: '27-001' },
+        { value: '002', label: '27-002' },
+        { value: '003', label: '27-003' },
+        { value: '004', label: '27-004' },
+        { value: '005', label: '27-005' },
     ]
 
     const [dataG] = useState(
@@ -52,32 +52,32 @@ const App = (props) => {
             id: id,
             body: [
                 {
-                    title: 'Aircraft',
-                    text: '220218-KFX-002',
+                    label: 'Aircraft',
+                    value: '220218-KFX-002',
                 },
                 {
-                    title: 'Tail No',
-                    text: '27-003',
+                    label: 'Tail No',
+                    value: '27-003',
                 },
                 {
-                    title: 'Mission',
-                    text: 'Basic Fighter Maneuver',
+                    label: 'Mission',
+                    value: 'Basic Fighter Maneuver',
                 },
                 {
-                    title: 'Date',
-                    text: '16 May 2021',
+                    label: 'Date',
+                    value: '16 May 2021',
                 },
                 {
-                    title: 'Call-Sign',
-                    text: 'Black Dog',
+                    label: 'Call-Sign',
+                    value: 'Black Dog',
                 },
                 {
-                    title: 'Flight Config',
-                    text: 'SL01',
+                    label: 'Flight Config',
+                    value: 'SL01',
                 },
                 {
-                    title: 'Area',
-                    text: 'Instrument Navigation',
+                    label: 'Area',
+                    value: 'Instrument Navigation',
                 }
             ]
         }

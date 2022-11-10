@@ -5,7 +5,7 @@
 */
 import aircraftSide from '../../images/aircraftLeft@2x.png';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Item, Chart, Button } from '../../components';
@@ -18,14 +18,14 @@ const App = (props) => {
     const navigate = useNavigate();
     const [active, setActive] = useState(false);
     const { data, type, bind, index, currentIndex, spring } = useOutletContext();
-    const color = percentColor(data.rate);
+    const color = percentColor(data.value);
 
     const { listNum, width } = useSpring({
         from: { listNum: 0, width: '0%' },
         to: async (next, cancel) => {
             await next({
-                listNum: active ? Number(data.rate) : Number(0),
-                width: active ? Number(data.rate) + '%' : '0%'
+                listNum: active ? Number(data.value) : Number(0),
+                width: active ? Number(data.value) + '%' : '0%'
             })
         },
         config: {
@@ -39,7 +39,7 @@ const App = (props) => {
         from: { gridNum: 0 },
         to: async (next, cancel) => {
             await next({
-                gridNum: type === 'GRID' ? Number(data.rate) : Number(0)
+                gridNum: type === 'GRID' ? Number(data.value) : Number(0)
             })
         },
         config: {
@@ -68,15 +68,15 @@ const App = (props) => {
                                     <div className={classNames(styles.main, styles.total)}>
                                         <div className={styles.title}>
                                             <h3 className={styles.text}>
-                                                {data.title}
+                                                {data.label}
                                             </h3>
                                             <span className={styles.line} />
                                         </div>
-                                        <Item height={24} direction={'column'} align={'flex-start'} title={data.base} textColor={'var(--colorPrimary)'} text={data.unit + ' Air Fighter in this Unit'} />
-                                        <Chart type={'guage'} data={data.rate} active={active} />
+                                        <Item height={24} direction={'column'} align={'flex-start'} label={data.base} labelColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
+                                        <Chart type={'guage'} data={data.value} active={active} />
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
-                                            <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
+                                            <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
                                                 {
                                                     listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
@@ -84,33 +84,33 @@ const App = (props) => {
                                         </div>
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} title={'Last Flight No'} textColor={'var(--colorBase)'} text={data.flight} />
-                                        <Item height={24} title={'Last Defect'} textColor={'var(--colorBase)'} text={data.defect} />
+                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'}/>
+                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'}/>
                                     </animated.div>
                                 </> :
                                 <>
                                     <div className={styles.main} >
-                                        <div className={styles.title}><h3 className={styles.text}>{data.title}</h3><span className={styles.line} /></div>
-                                        <Item height={24} direction={'column'} align={'flex-start'} title={'First Intro'} textColor={'var(--colorBase)'} text={data.intro} />
-                                        <Item height={24} direction={'column'} align={'flex-start'} title={'Fuselage Time'} textColor={'var(--colorBase)'}
-                                            text={'OH:' + data.oh + ' / FH:' + data.fh}
+                                        <div className={styles.title}><h3 className={styles.text}>{data.label}</h3><span className={styles.line} /></div>
+                                        <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} labelColor={'var(--colorBase)'} value={data.intro} />
+                                        <Item height={24} direction={'column'} align={'flex-start'} label={'Fuselage Time'} labelColor={'var(--colorBase)'}
+                                            value={'OH:' + data.oh + ' / FH:' + data.fh}
                                         />
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
-                                            <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
+                                            <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
                                                 {
                                                     listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>
                                         <div className={styles.bar}>
-                                            <animated.span className={styles.value} style={{ width, background: gradient(data.rate, -90) }}></animated.span>
+                                            <animated.span className={styles.value} style={{ width, background: gradient(data.value, -90) }}></animated.span>
                                         </div>
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} title={'Aircraft Status'} textColor={'var(--colorBase)'} text={data.status} />
-                                        <Item height={24} title={'Maintenance Date'} textColor={'var(--colorBase)'} text={data.date} />
+                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'}/>
+                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'}/>
                                     </animated.div>
                                 </>
                         }
@@ -127,10 +127,10 @@ const App = (props) => {
                             <animated.div className={styles.itemGrid}>
                                 <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                                     <div className={styles.main}>
-                                        <div className={styles.title}><h3 className={styles.text}>{data.title}</h3></div>
+                                        <div className={styles.title}><h3 className={styles.text}>{data.label}</h3></div>
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
-                                            <animated.span className={styles.text} style={{ color: percentColor(data.rate) }}>
+                                            <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
                                                 {
                                                     gridNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }

@@ -51,8 +51,8 @@ const App = (props) => {
                         </div>
 
                         <footer className={styles.footer}>
-                            {props.cancel && <Button text={'Cancle'} onClick={() => props.cancel()} />}
-                            <Button text={'Confirm'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
+                            {props.cancel && <Button label={'Cancle'} onClick={() => props.cancel()} />}
+                            <Button label={'Confirm'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                         </footer>
 
                     </div>

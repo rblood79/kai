@@ -17,7 +17,7 @@ const App = (props) => {
     return (
         <div className={classNames(styles.item, state && styles.active)} onClick={() => setState(!state)}>
             <div className={styles.icon}><i className={props.type === 'Notice' ? 'ri-notification-line' : 'ri-mail-line'} /></div>
-            <div className={styles.title}>{props.title}</div>
+            <div className={styles.label}>{props.label}</div>
             <div className={styles.comment}>{props.comment}</div>
             <div className={styles.date}>
                 {
@@ -32,7 +32,7 @@ const App = (props) => {
 export default React.memo(App);
 
 App.defaultProps = {
-    title: 'TITLE',
+    label: 'TITLE',
     type: 'Notice',
     comment: 'Memo',
 };

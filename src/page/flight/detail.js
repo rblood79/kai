@@ -24,32 +24,32 @@ const App = () => {
             id: id,
             body: [
                 {
-                    title: 'Aircraft',
-                    text: '220218-KFX-002',
+                    label: 'Aircraft',
+                    value: '220218-KFX-002',
                 },
                 {
-                    title: 'Tail No',
-                    text: '27-003',
+                    label: 'Tail No',
+                    value: '27-003',
                 },
                 {
-                    title: 'Mission',
-                    text: 'Basic Fighter Maneuver',
+                    label: 'Mission',
+                    value: 'Basic Fighter Maneuver',
                 },
                 {
-                    title: 'Date',
-                    text: '16 May 2021',
+                    label: 'Date',
+                    value: '16 May 2021',
                 },
                 {
-                    title: 'Call-Sign',
-                    text: 'Black Dog',
+                    label: 'Call-Sign',
+                    value: 'Black Dog',
                 },
                 {
-                    title: 'Flight Config',
-                    text: 'SL01',
+                    label: 'Flight Config',
+                    value: 'SL01',
                 },
                 {
-                    title: 'Area',
-                    text: 'Instrument Navigation',
+                    label: 'Area',
+                    value: 'Instrument Navigation',
                 }
             ]
         }
@@ -60,40 +60,40 @@ const App = () => {
             id: id,
             body: [
                 {
-                    title: 'Take-Off',
-                    text: '16:00:00',
+                    label: 'Take-Off',
+                    value: '16:00:00',
                 },
                 {
-                    title: 'Landing',
-                    text: '17:00:00',
+                    label: 'Landing',
+                    value: '17:00:00',
                 },
                 {
-                    title: 'Breifing',
-                    text: 'Basic Fighter Maneuver',
+                    label: 'Breifing',
+                    value: 'Basic Fighter Maneuver',
                 },
                 {
-                    title: 'Front(Pilot)',
-                    text: 'Thomas Cruise',
+                    label: 'Front(Pilot)',
+                    value: 'Thomas Cruise',
                 },
                 {
-                    title: 'Rear(Co Pilot)',
-                    text: 'Jack D',
+                    label: 'Rear(Co Pilot)',
+                    value: 'Jack D',
                 },
                 {
-                    title: 'RWY Controller',
-                    text: 'Javis',
+                    label: 'RWY Controller',
+                    value: 'Javis',
                 },
                 {
-                    title: 'T/O AB',
-                    text: '-',
+                    label: 'T/O AB',
+                    value: '-',
                 },
                 {
-                    title: 'L/D AB',
-                    text: '-',
+                    label: 'L/D AB',
+                    value: '-',
                 },
                 {
-                    title: 'Tail No',
-                    text: 'xxxx-05AV-5668',
+                    label: 'Tail No',
+                    value: 'xxxx-05AV-5668',
                 }
             ]
         }
@@ -104,40 +104,40 @@ const App = () => {
             id: id,
             body: [
                 {
-                    title: 'Take-Off',
-                    text: '17:00:00',
+                    label: 'Take-Off',
+                    value: '17:00:00',
                 },
                 {
-                    title: 'Landing',
-                    text: '18:00:00',
+                    label: 'Landing',
+                    value: '18:00:00',
                 },
                 {
-                    title: 'Breifing',
-                    text: 'Basic Fighter Maneuver',
+                    label: 'Breifing',
+                    value: 'Basic Fighter Maneuver',
                 },
                 {
-                    title: 'Front(Pilot)',
-                    text: 'Thomas Cruise',
+                    label: 'Front(Pilot)',
+                    value: 'Thomas Cruise',
                 },
                 {
-                    title: 'Rear(Co Pilot)',
-                    text: 'Jack D',
+                    label: 'Rear(Co Pilot)',
+                    value: 'Jack D',
                 },
                 {
-                    title: 'RWY Controller',
-                    text: 'Javis',
+                    label: 'RWY Controller',
+                    value: 'Javis',
                 },
                 {
-                    title: 'T/O AB',
-                    text: '-',
+                    label: 'T/O AB',
+                    value: '-',
                 },
                 {
-                    title: 'L/D AB',
-                    text: '-',
+                    label: 'L/D AB',
+                    value: '-',
                 },
                 {
-                    title: 'Tail No',
-                    text: 'xxxx-05AV-5668',
+                    label: 'Tail No',
+                    value: 'xxxx-05AV-5668',
                 }
             ]
         }
@@ -160,7 +160,7 @@ const App = () => {
                     background={'var(--colorPrimary)'}
                     titleColor={'var(--colorCard)'}
                     title={'Geneal'}
-                    rightText={'Not Editabled'}
+                    rightvalue={'Not Editabled'}
                     line={false}
                 >
                     <ItemList data={dataG.body} icon={'ri-survey-line'} />
