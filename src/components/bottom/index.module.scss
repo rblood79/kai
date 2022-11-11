@@ -1,8 +1,9 @@
 .container {
   box-shadow: 0 -8px 8px rgba(0, 0, 0, 0.048);
+  //padding-bottom: 8px;
   .contents {
     height: 56px;
-    margin-bottom: 27px;
+    //margin-bottom: 27px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: baseline;

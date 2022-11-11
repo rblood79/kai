@@ -28,7 +28,24 @@ const App = () => {
         {
             "id": "1",
             "title": "Result",
-
+            "dataH": [
+                {
+                    "label": "Date Range",
+                    "value": moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY.MM.DD') +' - '+ moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY.MM.DD')
+                },
+                {
+                    "label": "Area Base",
+                    "value": "18th Flyight Wing"
+                }
+            ],
+            "dataC":
+                [
+                    { label: "Flight", value: 18 },
+                    { label: "Maintenance", value: 6 },
+                    { label: "Repair", value: 4 },
+                    { label: "Landing", value: 7 },
+                ],
+                
             "dataM": {
                 "id": "maintenance",
                 "header": [
@@ -36,10 +53,6 @@ const App = () => {
                         "label": "Area Base",
                         "value": "18th Flyight Wing"
                     },
-                    {
-                        "label": "Maintenance No",
-                        "value": "20-001"
-                    }
                 ],
                 "body": [
                     {
@@ -62,13 +75,6 @@ const App = () => {
                     }
                 ]
             },
-            "dataC":
-                [
-                    { label: "Flight", value: 25 },
-                    { label: "Maintenance", value: 6 },
-                    { label: "Repair", value: 4 },
-                    { label: "Stand By", value: 5 },
-                ]
         }
     );
     //range list
@@ -96,17 +102,17 @@ const App = () => {
     const onLoad = async () => {
         setTemp(JSON.parse(JSON.stringify(params)))
         try {
-          const response = await Api({
-            //baseURL: state.url,
-            url: 'flight',
-            method: 'get',
-            params: params,
-          });
-          setData(Decrypt(response.data));
+            const response = await Api({
+                //baseURL: state.url,
+                url: 'flight',
+                method: 'get',
+                params: params,
+            });
+            setData(Decrypt(response.data));
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
+    };
 
     useEffect(() => {
         onLoad()
@@ -120,14 +126,15 @@ const App = () => {
                     <Layout scrollTop={setScrollTop}>
 
                         <Card
-                            title={'Behavior PieChart'}
+                            title={'Behavior Chart'}
                             gap={8}
                         >
-                            <Chart height={380} type={'pie'} data={data.dataC} active={true} />
+                            <ItemList data={data.dataH} box={false} />
+                            <Chart height={240} type={'donut'} data={data.dataC} active={true} />
                         </Card>
 
                         <Card
-                            title={'Behavior BarChart'}
+                            title={'Behavior Chart'}
                             gap={8}
                         >
                             <Chart height={240} type={'bar'} data={data.dataC} active={true} />

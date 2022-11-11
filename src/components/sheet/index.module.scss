@@ -13,7 +13,6 @@
   }
   .sheet {
     z-index: 1;
-    //padding: 16px 16px 48px 16px;
     padding: 16px;
     position: fixed;
     left: 0;
@@ -87,10 +86,6 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      /*border: 1px solid #f00;
-      & > div {
-        border: 1px solid #f00;
-      }*/
     }
     .footer {
       display: flex;

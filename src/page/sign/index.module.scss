@@ -70,30 +70,31 @@
       -webkit-text-fill-color: transparent;
     }
   }
-
   .main {
-    .inputGroup {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 24px;
-      filter: opacity(0.9);
-      > div {
-        input {
-          &:focus {
-            z-index: 1;
-          }
-          border-radius: var(--borderRadius-50) var(--borderRadius-50) 0 0;
-        }
-        & + div {
-          margin-top: -1px;
+    .form {
+      .inputGroup {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 24px;
+        filter: opacity(0.9);
+        > div {
           input {
-            border-radius: 0 0 var(--borderRadius-50) var(--borderRadius-50);
+            &:focus {
+              z-index: 1;
+            }
+            border-radius: var(--borderRadius-50) var(--borderRadius-50) 0 0;
+          }
+          & + div {
+            margin-top: -1px;
+            input {
+              border-radius: 0 0 var(--borderRadius-50) var(--borderRadius-50);
+            }
           }
         }
       }
-    }
-    /*&::after {
+      /*&::after {
       content: 'copyright 2022';
     }*/
+    }
   }
 }

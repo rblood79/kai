@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useSpring, animated, easings } from '@react-spring/web';
+import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
 
@@ -87,7 +88,7 @@ const App = (props) => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.contents}>
+            <div className={styles.contents} style={{ marginBottom: bottomStatusHeight }}>
                 <animated.nav className={styles.nav} style={navStyle}>
                     {
                         data && data.map((d, i) => (

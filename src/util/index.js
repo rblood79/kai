@@ -17,7 +17,7 @@ const numberPad = (n, width) => {
     return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
 
-const bottomStatusHeight = standalone && isIOS ? 24 : 0; //34
+const bottomStatusHeight = standalone && isIOS ? 28 : 0; //34
 
 
 const getType = (target) => {
@@ -39,4 +39,7 @@ const useNavBack = () => {
     return () => navigate(-1);
 }
 
-export { percentColor, percentColor2, gradient, numberPad, isMobile, isIOS, isAndroid, standalone, bottomStatusHeight, getType, useNav, useNavReplace, useNavBack };
+const orientation = window.matchMedia('(orientation: portrait)').matches;
+
+
+export { orientation, percentColor, percentColor2, gradient, numberPad, isMobile, isIOS, isAndroid, standalone, bottomStatusHeight, getType, useNav, useNavReplace, useNavBack };

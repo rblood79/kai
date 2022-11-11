@@ -72,7 +72,7 @@ const App = (props) => {
                                             </h3>
                                             <span className={styles.line} />
                                         </div>
-                                        <Item height={24} direction={'column'} align={'flex-start'} label={data.base} labelColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
+                                        <Item height={24} direction={'column'} align={'flex-start'} label={data.base} valueColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.value} active={active} />
                                         <div className={styles.rate}>
                                             <span className={styles.title}>Behavior Rate</span>
@@ -91,8 +91,8 @@ const App = (props) => {
                                 <>
                                     <div className={styles.main} >
                                         <div className={styles.title}><h3 className={styles.text}>{data.label}</h3><span className={styles.line} /></div>
-                                        <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} labelColor={'var(--colorBase)'} value={data.intro} />
-                                        <Item height={24} direction={'column'} align={'flex-start'} label={'Fuselage Time'} labelColor={'var(--colorBase)'}
+                                        <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} valueColor={'var(--colorBase)'} value={data.intro} />
+                                        <Item height={24} direction={'column'} align={'flex-start'} label={'Fuselage Time'} valueColor={'var(--colorBase)'}
                                             value={'OH:' + data.oh + ' / FH:' + data.fh}
                                         />
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />

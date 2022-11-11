@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { userContext } from '../../context';
 import { useNavigate } from "react-router-dom";
-import { Api, Input, Button, Encrypt, Decrypt } from '../../components';
+import { Api, Layout, Input, Button, Encrypt, Decrypt } from '../../components';
 import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
@@ -47,28 +47,30 @@ const App = () => {
     }
 
     return (
-        <main className={styles.container} style={{ paddingBottom: Math.max(bottomStatusHeight, 16) }} >
-            <div className={styles.header}>
-                <div className={styles.titleGroup}>
-                    <span className={styles.title}>KF-21</span>
-                    <div className={styles.sub}>
-                        Logistics<br />
-                        Information System
+        <Layout height={'100%'} padding={'0px'}>
+            <div className={styles.container} >
+                <div className={styles.header}>
+                    <div className={styles.titleGroup}>
+                        <span className={styles.title}>KF-21</span>
+                        <div className={styles.sub}>
+                            Logistics<br />
+                            Information System
+                        </div>
                     </div>
+                    <span className={styles.subTitle}>Next-Generation Fighter</span>
                 </div>
-                <span className={styles.subTitle}>Next-Generation Fighter</span>
+                <div className={styles.main} style={{ paddingBottom: bottomStatusHeight }}>
+                    <form className={styles.form} onSubmit={signIn}>
+                        <div className={styles.inputGroup}>
+                            <Input placeholder={'ID'} value={params.id} column={'id'} onChange={setParams} />
+                            <Input placeholder={'PASSWORD'} value={params.pw} column={'pw'} onChange={setParams} type={'password'} />
+                        </div>
+                        <Button label={'Sign In'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
+                    </form>
+                    <Button label={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={help} />
+                </div>
             </div>
-
-            <form className={styles.main} onSubmit={signIn}>
-                <div className={styles.inputGroup}>
-                    <Input placeholder={'ID'} value={params.id} column={'id'} onChange={setParams} />
-                    <Input placeholder={'PASSWORD'} value={params.pw} column={'pw'} onChange={setParams} type={'password'} />
-                </div>
-                <Button label={'Sign In'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
-            </form>
-            <Button label={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={help} />
-
-        </main>
+        </Layout>
     );
 }
 

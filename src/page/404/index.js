@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useContext } from 'react';
 import { userContext, } from '../../context';
 import { Layout, Button } from '../../components';
+import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
 
@@ -20,7 +21,7 @@ const App = () => {
                     <span className={styles.title}>404</span>
                     <span className={styles.comment}>Sorry... Page not found.</span>
                 </div>
-                <div className={styles.footer}>
+                <div className={styles.footer} style={{ marginBottom: bottomStatusHeight }}>
                     <Button label={'Back'} onClick={() => { navigate(-1) }} />
                     <Button label={'Home'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => { navigate('/') }} />
                 </div>

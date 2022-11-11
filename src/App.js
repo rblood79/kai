@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { userContext } from './context';
 
 //util
-import { isIOS } from './util';
+import { isIOS, orientation } from './util';
 
 //default library
 import { useState, useEffect, useRef, useContext } from 'react';
@@ -110,6 +110,10 @@ const App = () => {
     },
   })
 
+  /*window.addEventListener('resize', function () {
+    console.log(orientation)
+  });
+  return () => { clearTimeout(window.removeEventListener('resize')) }*/
   /*
   * @description  : default useEffect
   * @parameter    : none

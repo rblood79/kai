@@ -1,3 +1,13 @@
 .container {
-    //display: flex;
+  //display: flex;
+}
+
+.chart {
+    border: 1px solid #f00;
+  .tick {
+    text {
+      fill: #f00;
+      font-size: 16px;
+    }
+  }
 }

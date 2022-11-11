@@ -27,7 +27,7 @@ const App = (props) => {
                         color={'var(--colorCard)'}
                         fontSize={'16px'}
                         width={'auto'}
-                        height={'28px'}
+                        height={'32px'}
                         radius={'48px'}
                         onClick={() => {
                             navigate(props.rightLink)
