@@ -1,18 +1,16 @@
 
-import { useState, useEffect } from 'react';
-import { Api, Layout, Top, Header, Card, ItemList } from '../../components';
+import { useState, useEffect, useMemo } from 'react';
+import { Api, Layout, Top, Tab, Header, Card, ItemList } from '../../components';
 
 const App = (props) => {
     const [scrollTop, setScrollTop] = useState(true);
+    const [tab, setTab] = useState('All');
     const [data, setData] = useState([
         {
             id: '0',
             title: 'Tail part Repair',
+            type: 'Maintenance',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Tail Repair"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -27,11 +25,8 @@ const App = (props) => {
         {
             id: '1',
             title: 'Turbine Lose',
+            type: 'Replacement',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Turbine Lose"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -46,11 +41,8 @@ const App = (props) => {
         {
             id: '2',
             title: 'Air Cond Change',
+            type: 'Maintenance',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Turbine Lose"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -65,11 +57,8 @@ const App = (props) => {
         {
             id: '3',
             title: 'Air Cond Change',
+            type: 'Replacement',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Turbine Lose"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -84,11 +73,8 @@ const App = (props) => {
         {
             id: '4',
             title: 'Tail part Repair',
+            type: 'Maintenance',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Tail Repair"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -103,11 +89,8 @@ const App = (props) => {
         {
             id: '5',
             title: 'Turbine Lose',
+            type: 'Replacement',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Turbine Lose"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -122,11 +105,8 @@ const App = (props) => {
         {
             id: '6',
             title: 'Air Cond Change',
+            type: 'Maintenance',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Turbine Lose"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -141,11 +121,8 @@ const App = (props) => {
         {
             id: '7',
             title: 'Air Cond Change',
+            type: 'Replacement',
             "header": [
-                {
-                    "label": "Cause",
-                    "value": "Turbine Lose"
-                },
                 {
                     "label": "Defect No",
                     "value": "20-005-2615",
@@ -158,29 +135,36 @@ const App = (props) => {
             ]
         }
     ]);
+
+    const filterData = useMemo(() => {
+        return tab !== 'All' ? data.filter(item => tab === item.type) : data;
+    }, [tab, data]);
+
     const [params, setParams] = useState(
         {
             param0: 'aaaa',
             param1: 'bbbb',
         }
     );
-    const listItem = data && data.map((item, index) => {
+    const listItem = filterData && filterData.map((item, index) => {
         return (
             <Card
                 key={index}
                 data={item}
                 rightText={'detail'}
                 rightType={'button'}
+                rightBackground={'var(--colorEditable)'}
                 rightLink={item.id}
                 title={item.title}
+                outline={false}
             >
                 <ItemList data={item.header} box={false} />
             </Card>
         )
     });
+
     const onLoad = async () => {
         try {
-            console.log('loading')
             const response = await Api({
                 //baseURL: state.url,
                 url: 'defect',
@@ -200,15 +184,18 @@ const App = (props) => {
     return (
         <>
             <Top title={'Defect'} depth={1} background={'var(--colorCard)'} scrollTop={scrollTop} />
-            <Layout scrollTop={setScrollTop}>
+            <Layout scrollTop={setScrollTop} gap={16}>
                 <Header title={'DEFECT FIGHTERS WERE QUERIED DURING THIS PERIOD'}
                     comment={
                         '2020-12-10'
                     }
                 />
-                {
-                    data ? listItem : <div>no data</div>
-                }
+                <Tab label={["All", "Maintenance", "Replacement"]} onChange={setTab} />
+                <Card>
+                    {
+                        data ? listItem : <div>no data</div>
+                    }
+                </Card>
             </Layout>
         </>
     );

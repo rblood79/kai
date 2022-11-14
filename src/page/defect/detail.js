@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { Layout, Header, Top, Card, ItemList, ItemDefect } from '../../components';
+import { Layout, Header, Top, Card, ItemList, ItemDefect, Chart } from '../../components';
 
 const App = () => {
     //const [state, seState] = useState(false);
@@ -60,44 +60,38 @@ const App = () => {
             id: id,
             body: [
                 {
-                    label: 'Take-Off',
-                    value: '16:00:00',
+                    label: 'State',
+                    value: 'Compleate',
                 },
                 {
-                    label: 'Landing',
-                    value: '17:00:00',
+                    label: 'Start',
+                    value: '2022.10.15 / 16:00:00',
                 },
                 {
-                    label: 'Breifing',
-                    value: 'Basic Fighter Maneuver',
+                    label: 'End',
+                    value: '2022.10.17 / 16:00:00',
                 },
                 {
-                    label: 'Front(Pilot)',
+                    label: 'mechanic',
+                    value: 'Jason Jr',
+                },
+                {
+                    label: 'engineer',
                     value: 'Thomas Cruise',
                 },
-                {
-                    label: 'Rear(Co Pilot)',
-                    value: 'Jack D',
-                },
-                {
-                    label: 'RWY Controller',
-                    value: 'Javis',
-                },
-                {
-                    label: 'T/O AB',
-                    value: '-',
-                },
-                {
-                    label: 'L/D AB',
-                    value: '-',
-                },
-                {
-                    label: 'Tail No',
-                    value: 'xxxx-05AV-5668',
-                }
+                
             ]
         }
     );
+
+    const dataC = [
+        { label: "Radar", value: 2 },
+        { label: "Engine", value: 4 },
+        { label: "Gear", value: 6 },
+        { label: "Wing", value: 18 },
+        { label: "Body", value: 3 },
+        { label: "Under", value: 4 },
+    ]
 
     useEffect(() => {
         setTitle('KF21-' + id + ' Defect info')
@@ -113,19 +107,28 @@ const App = () => {
                     }
                 />
                 <Card
-                    background={'var(--colorPrimary)'}
-                    titleColor={'var(--colorCard)'}
                     title={'State'}
                     rightText={'Not Editabled'}
                     line={false}
                 >
                     <ItemDefect data={dataG} />
                 </Card>
-                <Card
-                    title={'Info'}
-                    line={false}
-                >
-                    <ItemList data={dataP.body} />
+                <Card>
+                    <Card
+                        title={'Data Chart'}
+                        gap={8}
+                        outline={false}
+                    >
+                        <Chart height={200} type={'bar'} data={dataC} active={true} />
+                    </Card>
+
+                    <Card
+                        title={'Info'}
+                        line={false}
+                        outline={false}
+                    >
+                        <ItemList data={dataP.body} />
+                    </Card>
                 </Card>
             </Layout>
         </>

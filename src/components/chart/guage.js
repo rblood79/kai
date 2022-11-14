@@ -109,6 +109,9 @@ const App = (props) => {
         const piePercent = pi * percent;
         const range = 180;
         const colorScale = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, range]);
+        //const colorScale = d3.scaleSequential().interpolator(d3.interpolateSpectral).domain([0,range]);
+        //const colorScale = d3.scaleQuantize().domain([0, range]).range(['#e15759', '#76b7b2', '#4e79a7']);
+
         const perToColor = colorScale((180 / 100) * props.data);
         const chart = svg.append('g').attr('class', 'chart').attr('transform', "translate(" + ((width + 0) / 2) + ", " + ((height - 24) / 1) + ")")
 

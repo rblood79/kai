@@ -9,8 +9,6 @@ const App = (props) => {
     const target = useRef(null);
     const data = props.data;
     useEffect(() => {
-        console.log(props.data)
-        console.log(props.item.children)
     }, []);
 
     return (

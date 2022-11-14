@@ -4,6 +4,7 @@
 */
 import React, { useEffect, useCallback, useRef } from 'react';
 import styles from './index.module.scss';
+import classNames from 'classnames';
 
 const App = (props) => {
     const target = useRef(null);
@@ -22,7 +23,7 @@ const App = (props) => {
 
     return (
         <main className={styles.main} style={{ padding: props.padding }} ref={target}>
-            <div className={styles.body} style={{ height: props.height, gap: props.gap }} >
+            <div className={classNames(styles.body, props.gap === 0 && styles.flat)} style={{ height: props.height, gap: props.gap }} >
                 {props.children}
             </div>
         </main>

@@ -17,6 +17,9 @@ const App = (props) => {
 
   const colors = d3.scaleOrdinal(d3.schemeTableau10);
   const fontSize = 14;
+  const parseDate = d3.timeParse("%Y-%m-%d");
+
+
 
 
   const textSize = (svg, fsize, text) => {
@@ -27,9 +30,6 @@ const App = (props) => {
     return { width: size.width, height: size.height };
   }
 
-  
-
-  
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -43,8 +43,8 @@ const App = (props) => {
     const height = svgRef.current.clientHeight;
     const margin = {
       top: 16,
-      bottom: 24,
-      left: maxLabel + 10,
+      bottom: 36,
+      left: maxLabel,
       right: 0
     };
 
@@ -52,59 +52,51 @@ const App = (props) => {
     const chart = svg.append('g').attr('class', 'chart').attr('transform', `translate(${margin.left},${margin.top})`);
 
     const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom
+    const chartHeight = height - margin.top - margin.bottom;
 
-    const xScale = d3.scaleBand()
-      .domain(data.map(d => d.label))
-      .range([0, chartWidth]);
-    const yScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.value)])
-      .range([chartHeight, 0]);
+    const x = d3.scaleUtc()
+      .domain(d3.extent(data, d => parseDate(d.date)))
+      .range([margin.left, chartWidth]);
 
-    chart.selectAll(".bar")
-      .data(data)
-      .enter()
-      .append('rect')
-      .classed('bar', true)
-      .attr('x', d => xScale(d.label) + 4)
-      .attr('y', d => yScale(d.value))
-      .attr('height', d => (chartHeight - yScale(d.value)))
-      .attr('width', d => xScale.bandwidth() - 8)
-      .style('fill', (d, i) => colors(d.value));
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(data, d => d.value)]).nice()
+      .range([chartHeight, margin.top]);
 
-    chart.selectAll('.bar-label')
-      .data(data)
-      .enter()
-      .append('text')
-      .classed('bar-label', true)
-      .attr('x', d => xScale(d.label) + xScale.bandwidth() / 2)
-      .attr('dx', 0)
-      .attr('y', d => yScale(d.value))
-      .attr('dy', -6)
-      .attr('text-anchor', 'middle')
-      .style("fill", "var(--colorText)")
-      .text(d => d.value);
+    const d3Type = d3.line()
+      .defined(d => {
+        return !isNaN(d.value)
+      })
+      .x(d => {
+        return x(parseDate(d.date))
+      })
+      .y(d => y(d.value));
 
-    const xAxis = d3.axisBottom()
-      .scale(xScale);
+
+    const xAxis = g => g
+      .attr("transform", `translate(0,${chartHeight})`)
+      .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
+
+    chart.append('g').call(xAxis);
+
+    const yAxis = g => g
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y))
 
     chart.append('g')
-      .classed('x axis', true)
-      .attr('transform', `translate(0,${chartHeight})`)
-      .call(xAxis);
-
-    const yAxis = d3.axisLeft()
-      .ticks(5)
-      .scale(yScale);
-
-    chart.append('g')
-      .classed('y axis', true)
-      .attr('transform', 'translate(0,0)')
-      .call(yAxis);
+      .call(yAxis)
 
     chart.selectAll('.tick').select('text').style("fill", "var(--colorLabel)").style('font-size', 14).style('font-family', "HelveticaNeue Condensed Bold, sans-serif")
 
-  }, [colors, data]);
+    chart.append('path')
+      .datum(data)
+      .attr('fill', 'none')
+      .attr('stroke', 'steelblue')
+      .attr('stroke-width', props.line)
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-linecap', 'round')
+      .attr('d', d3Type);
+
+  }, [colors, data, parseDate, props.line, props.margin]);
 
   return (
     <svg ref={svgRef} />

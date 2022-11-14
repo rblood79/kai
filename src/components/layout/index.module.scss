@@ -6,7 +6,12 @@
   .body {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    &.flat {
+      header {
+        margin-bottom: 48px;
+      }
+    }
+    
   }
   .line {
     //background: linear-gradient(to bottom, #f00, transparent);

@@ -31,7 +31,7 @@ const App = () => {
             "dataH": [
                 {
                     "label": "Date Range",
-                    "value": moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY.MM.DD') +' - '+ moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY.MM.DD')
+                    "value": moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY.MM.DD') + ' - ' + moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY.MM.DD')
                 },
                 {
                     "label": "Area Base",
@@ -45,7 +45,52 @@ const App = () => {
                     { label: "Repair", value: 4 },
                     { label: "Landing", value: 7 },
                 ],
-                
+            "dataL":
+                [
+                    { date: "2022-10-14", value: 15 },
+                    { date: "2022-10-15", value: 20 },
+                    { date: "2022-10-16", value: 25 },
+                    { date: "2022-10-17", value: 30 },
+                    { date: "2022-10-18", value: 35 },
+                    { date: "2022-10-19", value: 40 },
+                    { date: "2022-10-20", value: 45 },
+                    { date: "2022-10-21", value: 48 },
+                    { date: "2022-10-22", value: 50 },
+                    { date: "2022-10-23", value: 54 },
+                    { date: "2022-10-24", value: 60 },
+                    { date: "2022-10-25", value: 65 },
+                    { date: "2022-10-26", value: 60 },
+                    { date: "2022-10-27", value: 62 },
+                    { date: "2022-10-28", value: 78 },
+                    { date: "2022-10-29", value: 80 },
+                    { date: "2022-10-30", value: 88 },
+                    { date: "2022-10-31", value: 60 },
+
+                    { date: "2022-11-1", value: 66 },
+                    { date: "2022-11-2", value: 20 },
+                    { date: "2022-11-3", value: 26 },
+                    { date: "2022-11-4", value: 28 },
+                    { date: "2022-11-5", value: 30 },
+                    { date: "2022-11-6", value: 35 },
+                    { date: "2022-11-7", value: 60 },
+                    { date: "2022-11-8", value: 65 },
+                    { date: "2022-11-9", value: 66 },
+                    { date: "2022-11-10", value: 70 },
+                    { date: "2022-11-11", value: 78 },
+                    { date: "2022-11-12", value: 80 },
+                    { date: "2022-11-13", value: 85 },
+                    { date: "2022-11-14", value: 90 },
+                ],
+            "dataD":
+                [
+                    { label: "A", value: 18 },
+                    { label: "B", value: 6 },
+                    { label: "C", value: 4 },
+                    { label: "D", value: 7 },
+                    { label: "E", value: 7 },
+                    { label: "F", value: 11 },
+                ],
+
             "dataM": {
                 "id": "maintenance",
                 "header": [
@@ -124,28 +169,41 @@ const App = () => {
                 data && <>
                     <Top title={data.title} background={'var(--colorCard)'} depth={1} right={'filter'} state={toggleNav} scrollTop={scrollTop} />
                     <Layout scrollTop={setScrollTop}>
+                        <Card >
+                            <Card
+                                title={'Behavior Distribution'}
+                                gap={8}
+                                outline={false}
+                            >
+                                <ItemList data={data.dataH} box={false} />
+                                <Chart height={200} type={'donut'} data={data.dataC} active={true} />
+                            </Card>
 
-                        <Card
-                            title={'Behavior Chart'}
-                            gap={8}
-                        >
-                            <ItemList data={data.dataH} box={false} />
-                            <Chart height={240} type={'donut'} data={data.dataC} active={true} />
+                            <Card
+                                title={'Period Behavior rate'}
+                                gap={8}
+                                outline={false}
+                            >
+                                <Chart height={200} type={'line'} data={data.dataL} line={2} active={true} />
+                                <ItemList data={data.dataH} box={false} />
+                            </Card>
                         </Card>
-
                         <Card
                             title={'Behavior Chart'}
                             gap={8}
                         >
-                            <Chart height={240} type={'bar'} data={data.dataC} active={true} />
+                            <Chart height={200} type={'bar'} data={data.dataD} active={true} />
+                            <ItemList data={data.dataH} box={false} />
                         </Card>
 
                         <Card
                             title={'Aircraft Rate'}
                             gap={8}
+                            line={false}
                         >
-                            <ItemList data={data.dataM.header} box={false} />
+
                             <ItemMaintenance data={data.dataM.body} />
+                            <ItemList data={data.dataM.header} box={false} />
                         </Card>
 
                     </Layout>

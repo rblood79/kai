@@ -4,12 +4,21 @@
   border-radius: var(--borderRadius);
   padding: 8px 16px 16px 16px;
   box-shadow: var(--boxShadow);
+  & .none {
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+  }
   .head {
     height: 56px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    //
+    &.line {
+      border-bottom: 1px solid var(--colorLight);
+    }
     .title {
       color: var(--colorTitle);
       font-size: var(--titleSize);
@@ -30,7 +39,7 @@
     }
   }
   .header {
-    border-top: 1px solid #ebebeb;
+    //border-bottom: 1px solid #ebebeb;
     padding: 8px 0 0 0;
   }
   .children {
@@ -39,7 +48,7 @@
   }
 
   .childrenLine {
-    border-top: 1px solid #ebebeb;
+    //border-top: 1px solid #ebebeb;
     padding-top: 8px;
     display: flex;
     flex-direction: column;

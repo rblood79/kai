@@ -206,6 +206,7 @@ const App = (props) => {
         rightLink={item.id}
         title={item.title}
         gap={8}
+        outline={false}
       >
         <ItemList data={item.header} box={false} />
         <ItemFlight data={item.body} />
@@ -222,9 +223,11 @@ const App = (props) => {
             moment(params.startDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD') + ' - ' + moment(params.endDate, 'YYYYMMDDHHmmss').format('YYYY/MM/DD')
           }
         />
-        {
-          ListItem
-        }
+        <Card>
+          {
+            ListItem
+          }
+        </Card>
       </Layout>
 
       <Sheet title={'Conditional Search'} height={'body'} gap={48} state={navState} close={setNavState} cancel={cancle} apply={apply}>

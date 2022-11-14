@@ -4,7 +4,7 @@
 */
 
 import React, { useRef, useEffect, } from 'react';
-import { percentColor, gradient } from '../../util';
+//import { percentColor, gradient } from '../../util';
 import * as d3 from 'd3';
 
 const App = (props) => {
@@ -16,7 +16,7 @@ const App = (props) => {
     .domain([0, props.data.length]);*/
 
   const colors = d3.scaleOrdinal(d3.schemeTableau10);
-
+  //const colors = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, 4]);
   
 
   const textSize = (svg, fsize, text) => {
@@ -37,7 +37,7 @@ const App = (props) => {
 
     const width = svgRef.current.clientWidth;
     const height = svgRef.current.clientHeight;
-    const margin = props.margin;
+    //const margin = props.margin;
     //const outerRadius = Math.min(width - margin, height - margin) / 2;
     //const innerRadius = props.innerRadius;
     const outerRadius = width / 4;
@@ -47,7 +47,7 @@ const App = (props) => {
       return d.value;
     });
 
-    const formatPercent = d3.format(".0%");
+    //const formatPercent = d3.format(".0%");
 
     const size = 4;
     const fontSize = 14;
@@ -115,17 +115,6 @@ const App = (props) => {
       .attr("cy", (d, i) => padding + (i * (textHeight + gap)) + (textHeight / 2 - size / 2) + (size / 2))
       .attr("r", size)
       .style("fill", (d, i) => colors(i));
-
-    // Boxes
-    /*legend.selectAll("boxes")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("x", padding + size)
-      .attr("y", (d, i) => padding + (i * (textHeight + gap)) + (textHeight / 2 - size / 2))
-      .attr("width", size)
-      .attr("height", size)
-      .style("fill", (d, i) => colors(i));*/
 
     legend.selectAll("labels")
       .data(data)

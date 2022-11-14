@@ -30,7 +30,7 @@ const App = (props) => {
 
     return (
         <div className={styles.container} style={{ padding: props.padding }}>
-            <div className={styles.contents}>
+            <div className={styles.contents} style={{ background: props.background }}>
                 <div className={styles.list}>
                     <animated.span className={styles.bg} style={{ width: bgWidth + '%', transform }} />
                     {Item}
@@ -44,4 +44,5 @@ export default React.memo(App);
 
 App.defaultProps = {
     margin: '0px',
+    background: 'var(--colorSecondary)',
 };
