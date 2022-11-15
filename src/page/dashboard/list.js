@@ -3,7 +3,7 @@
 
 */
 
-import { useEffect, useState, useMemo, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 
 import { useGesture } from '@use-gesture/react'
 import { useSprings } from '@react-spring/web';
@@ -11,6 +11,7 @@ import { useSprings } from '@react-spring/web';
 import { Outlet, useOutletContext } from 'react-router-dom';
 
 import { Api } from '../../components';
+import { userContext } from '../../context';
 
 import styles from './list.module.scss';
 import classNames from 'classnames';
@@ -22,11 +23,15 @@ const clamp = (value, lower, upper) => {
 }
 
 const App = () => {
-    const { type } = useOutletContext();
-    const [currentIndex, setCurrentIndex] = useState(0);
     const index = useRef(0)
     const width = window.innerWidth - 96;
-
+    const { user } = useContext(userContext);
+    const { type } = useOutletContext();
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [params] = useState({
+        id: user.id,
+        group: user.group,
+    })
     const [data, setData] = useState([
         {
             "id": "total",
@@ -233,11 +238,13 @@ const App = () => {
         try {
             const response = await Api({
                 //baseURL: state.url,
-                url: 'dashboard',
+                baseURL: 'https://jsonplaceholder.typicode.com/todos',
+                //url: 'dashboard',
                 method: 'get',
-                params: {},
+                //params: params,
             });
-            setData(response.data);
+            console.log(response.data)
+            //setData(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -264,8 +271,6 @@ const App = () => {
                 const y = active ? my : 0
                 const scale = i === index.current ? 1 : 0.8
                 const ty = i === index.current ? -16 : -96
-                //const display = i === index.current ? 'grid' : 'none'
-                //setCurrentIndex(index.current)
                 return {
                     x, y, scale, display: 'grid', ty,
                     config: {
@@ -282,13 +287,10 @@ const App = () => {
         }
     });
 
-    /*const filterData = useMemo(() => {
-        return type !== 'LIST' ? data.filter(item => item.id !== 'total') : data;
-    }, [type, data]);*/
-
     useEffect(() => {
         onLoad();
     }, [])
+
     return (
         <section className={classNames(styles.container, type === 'LIST' ? styles.list : styles.grid)}>
             <div className={styles.contents}>
