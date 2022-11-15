@@ -72,10 +72,12 @@
   }
   .main {
     .form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
       .inputGroup {
         display: flex;
         flex-direction: column;
-        margin-bottom: 24px;
         filter: opacity(0.9);
         > div {
           input {

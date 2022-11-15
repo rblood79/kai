@@ -16,7 +16,7 @@ const App = (props) => {
             }}
             type={props.type}
             onClick={props.onClick}>
-            <span className={styles.label} style={{color: props.color, fontSize: props.fontSize,}}>{props.label}</span>
+            <span className={styles.label} style={{ color: props.color, fontSize: props.fontSize, }}>{props.label}</span>
             {props.children}
         </button>
     );
@@ -25,5 +25,5 @@ const App = (props) => {
 export default React.memo(App);
 
 App.defaultProps = {
-    background: '#e5e7eb',
+    background: 'var(--colorBase)',
 };

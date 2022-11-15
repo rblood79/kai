@@ -36,6 +36,7 @@
   }
   .input {
     outline: none;
+    outline: 1px solid transparent;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--borderRadius-50);
     width: 100%;
@@ -52,6 +53,7 @@
     grid-template-columns: auto 36px;
 
     transition: all 0.32s ease-in-out;
+
     i {
       display: flex;
       align-items: center;
@@ -65,7 +67,7 @@
       color: var(--colorLabel);
     }
     &:focus {
-      border-color: #828282;
+      z-index: 1;
     }
     &:disabled,
     &.disabled {

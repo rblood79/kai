@@ -13,9 +13,6 @@
   font-size: 18px;
   transition: transform 0.24s ease-in-out;
   z-index: 1;
-  &:hover {
-    //background-color: #f00;
-  }
   .label {
     z-index: 1;
     margin-bottom: 2px;
@@ -25,7 +22,6 @@
     //transform: scale(0.92);
     &::before {
       content: "";
-      //border: 1px solid #f00;
       position: absolute;
       left: 0;
       top: 0;
@@ -35,9 +31,5 @@
       background: rgba(0, 0, 0, 0.16);
       z-index: 0;
     }
-  }
-
-  &:focus {
-    //background-color: #00f;
   }
 }

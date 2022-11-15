@@ -34,7 +34,7 @@ input, select, textarea, button, a, label {
 }
 
 input {
-  caret-color: var(--colorPrimary)
+  caret-color: var(--colorPrimary);
 }
 
 svg {
