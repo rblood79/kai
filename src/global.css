@@ -80,4 +80,5 @@ svg {
   --smallSize: 12px;
 
   --boxShadow: 0px 4px 8px rgba(0,0,0,0.048);
+  --boxShadowIn: inset 0px 0px 8px rgba(0,0,0,0.48);
 }

@@ -9,16 +9,14 @@ const App = (props) => {
             style={{
                 width: props.width,
                 height: props.height,
-                fontSize: props.fontSize,
                 background: props.background,
-                color: props.color,
                 borderRadius: props.radius,
                 padding: props.padding,
                 border: props.border,
             }}
             type={props.type}
             onClick={props.onClick}>
-            {props.label}
+            <span className={styles.label} style={{color: props.color, fontSize: props.fontSize,}}>{props.label}</span>
             {props.children}
         </button>
     );
