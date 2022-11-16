@@ -2,7 +2,7 @@
 
 
 */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as MenuIcon } from '../../images/menu.svg';
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
@@ -16,6 +16,8 @@ import classNames from 'classnames';
 const App = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
+
+    const [state, setState] = useState(false)
 
     useEffect(() => {
     }, [])
@@ -44,12 +46,12 @@ const App = (props) => {
                 props.depth === 0 &&
                 <>
                     <button className={classNames(styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
-                    <button className={classNames(styles.menu)} onClick={() => props.toggleNav()}>
+                    <button className={classNames(styles.menu)} onClick={() => setState(!state)}>
                         {
-                            props.state ? <CloseIcon width={24} height={24} fill={'var(--colorBase)'} /> : <MenuIcon width={24} height={24} fill={'var(--colorText)'} />
+                            state ? <CloseIcon width={24} height={24} fill={'var(--colorBase)'} /> : <MenuIcon width={24} height={24} fill={'var(--colorText)'} />
                         }
                     </button>
-                    <Aside state={props.state} />
+                    <Aside state={state} />
                 </>
             }
 

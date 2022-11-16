@@ -1,9 +1,8 @@
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+/*import React from 'react';
+import ReactDOM from 'react-dom/client';*/
 import axios from 'axios';
 import { Encrypt } from '../crypto';
-
 /*
 * @date         : 2022-11-01
 * @description  : https://github.com/axios/axios 의 Request Config 확인

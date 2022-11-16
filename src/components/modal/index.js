@@ -26,7 +26,7 @@ const App = (props) => {
         api.start({
             opacity: 0, config: { ...config.stiff, velocity },
             onRest: () => {
-                props.close(false)
+                //props.close(false)
                 setView(false)
             },
         })
@@ -34,7 +34,7 @@ const App = (props) => {
 
     useEffect(() => {
         props.state ? open('') : close();
-    }, [props.state])
+    }, [props.state, view])
 
     return (
         <>
@@ -51,7 +51,7 @@ const App = (props) => {
                         </div>
 
                         <footer className={styles.footer}>
-                            {props.cancel && <Button label={'Cancle'} onClick={() => props.cancel()} />}
+                            {props.cancel && <Button label={'Cancle'} background={'var(--colorBase)'} onClick={() => props.cancel()} />}
                             <Button label={'Confirm'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                         </footer>
 

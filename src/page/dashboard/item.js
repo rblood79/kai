@@ -5,7 +5,7 @@
 */
 import aircraftSide from '../../images/aircraftLeft@2x.png';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Item, Chart, Button } from '../../components';
@@ -14,18 +14,20 @@ import styles from './item.module.scss';
 
 import classNames from 'classnames';
 
-const App = (props) => {
+const App = () => {
     const navigate = useNavigate();
     const [active, setActive] = useState(false);
     const { data, type, bind, index, currentIndex, spring } = useOutletContext();
     const color = percentColor(data.value);
 
-    const { listNum, width } = useSpring({
-        from: { listNum: 0, width: '0%' },
+    const [num, setNum] = useState(0);
+
+    const { val, width } = useSpring({
+        from: { val: 0, width: '0%' },
         to: async (next, cancel) => {
             await next({
-                listNum: active ? Number(data.value) : Number(0),
-                width: active ? Number(data.value) + '%' : '0%'
+                val: Number(num),
+                width: Number(num) + '%'
             })
         },
         config: {
@@ -48,14 +50,13 @@ const App = (props) => {
         delay: 0,
     })
 
-    /*useMemo(() => {
-        //index === currentIndex && spring.display !== 'none' ? setActive(true) : setActive(false)
-        type === 'LIST' && index === currentIndex ? setActive(true) : setActive(false)
-    }, [currentIndex, index, spring.display])*/
-
     useMemo(() => {
         type === 'LIST' && index === currentIndex ? setActive(true) : setActive(false)
     }, [currentIndex, index, type])
+
+    useEffect(() => {
+        setNum(active ? data.value : 0)
+    }, [active, data.value])
 
     return (
         <>
@@ -78,14 +79,14 @@ const App = (props) => {
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
                                                 {
-                                                    listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
+                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'}/>
-                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'}/>
+                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
+                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'} />
                                     </animated.div>
                                 </> :
                                 <>
@@ -100,7 +101,7 @@ const App = (props) => {
                                             <span className={styles.title}>Behavior Rate</span>
                                             <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
                                                 {
-                                                    listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
+                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
                                                 }
                                             </animated.span>
                                         </div>
@@ -109,8 +110,8 @@ const App = (props) => {
                                         </div>
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'}/>
-                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'}/>
+                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />
+                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'} />
                                     </animated.div>
                                 </>
                         }

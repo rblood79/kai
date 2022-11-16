@@ -130,7 +130,7 @@ const App = (props) => {
                 </Card>
             </Layout>
 
-            <Modal title={'Save data'} height={'body'} state={navState} close={setNavState} cancel={cancle} apply={save}>
+            <Modal title={'Save data'} state={navState} cancel={cancle} apply={save}>
                 Are you sure you want to confirm "Documents"? All contents will be perminately destroyed.
             </Modal>
         </>

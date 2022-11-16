@@ -15,7 +15,7 @@ import { isIOS, orientation } from './util';
 //default library
 import { useState, useEffect, useRef, useContext } from 'react';
 import { useTransition, animated, easings } from 'react-spring';
-import { useLocation, Routes, Route, useNavigate } from "react-router-dom";
+import { useLocation, Routes, Route } from "react-router-dom";
 
 //404
 import NotFound from './page/404';
@@ -81,7 +81,7 @@ const App = () => {
   * @parameter    : none
   */
   const location = useLocation();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [dimensions, setDimensions] = useState({ main: 0, body: 0 });
   const [duration] = useState(480)
   const [direction, setDirection] = useState(0);
@@ -118,9 +118,9 @@ const App = () => {
   * @description  : default useEffect
   * @parameter    : none
   */
-  useEffect(() => {
-    authenticated && location.pathname === '/sign' && navigate('/', { replace: true })
-  }, [authenticated, location, navigate])
+  /*useEffect(() => {
+    authenticated && location.pathname === '/sign' && navigate('/dashboard', { replace: true })
+  }, [authenticated, location, navigate])*/
 
   /*
   * @description  : web brouser left right swipe cancle
@@ -130,7 +130,6 @@ const App = () => {
     isIOS && viewport.current.addEventListener('touchstart', (e) => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
       e.preventDefault();
-      //setDuration(0)
     }, { passive: false })
   }, [])
 
@@ -147,10 +146,10 @@ const App = () => {
               <animated.div className={classNames('contents', dimensions.main < dimensions.body && 'sub')} style={styles}>
                 <Routes location={item}>
                   <Route path="*" element={<NotFound />} />
-                  <Route path='/' element={<Landing />} />
                   {!authenticated ?
                     <Route path="sign" element={<Sign />} /> :
                     <>
+                      <Route path="sign" element={<Landing />} />
                       <Route path="dashboard" element={<Dashboard replace />} >
                         <Route path="" element={<DashboardList />}>
                           <Route path="" element={<DashboardItem />} />
