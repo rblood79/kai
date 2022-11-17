@@ -23,7 +23,10 @@ const App = () => {
                 </div>
                 <div className={styles.footer} style={{ marginBottom: bottomStatusHeight }}>
                     <Button label={'Back'} background={'var(--colorCard)'} onClick={() => { navigate(-1) }} />
-                    <Button label={'Home'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => { navigate('/') }} />
+                    <Button label={'Home'} background={'var(--colorPrimary)'} color={'var(--colorCard)'}
+                        onClick={() => {
+                            navigate(user ? '/dashboard' : '/sign')
+                        }} />
                 </div>
             </div>
         </Layout>
