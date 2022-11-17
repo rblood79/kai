@@ -131,6 +131,9 @@ const App = () => {
       if (e.pageX > 16 && e.pageX < window.innerWidth - 16) return;
       e.preventDefault();
     }, { passive: false })
+    return () => {
+      
+    };
   }, [])
 
   /*
