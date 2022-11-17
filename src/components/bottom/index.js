@@ -11,7 +11,7 @@ import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
 
-const App = (props) => {
+const App = () => {
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 

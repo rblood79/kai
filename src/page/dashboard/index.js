@@ -231,12 +231,15 @@ const App = () => {
             response.data && setData(response.data);
         } catch (error) {
             setData(fakeData);
-            console.log('error > ', error);
+            console.log(error);
         }
     };
 
     useEffect(() => {
         onLoad();
+        return () => {
+            //console.log('컴포넌트가 화면에서 사라짐');
+        };
     }, [])
     return (
         <>
@@ -250,7 +253,7 @@ const App = () => {
                     </>
                 }
             </Layout>
-            
+
             {standalone && <Bottom />}
         </>
     );

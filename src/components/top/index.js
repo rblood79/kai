@@ -45,7 +45,11 @@ const App = (props) => {
             {
                 props.depth === 0 &&
                 <>
-                    <button className={classNames(styles.notification, styles.active)} onClick={() => navigate('/notify')}><i className="ri-notification-line"></i></button>
+                    <button className={classNames(styles.notification, styles.active)}
+                        onClick={() => navigate('/notify')}
+                    >
+                        <i className="ri-notification-line"></i>
+                    </button>
                     <button className={classNames(styles.menu)} onClick={() => setState(!state)}>
                         {
                             state ? <CloseIcon width={24} height={24} fill={'var(--colorBase)'} /> : <MenuIcon width={24} height={24} fill={'var(--colorText)'} />

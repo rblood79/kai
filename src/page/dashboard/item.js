@@ -55,7 +55,7 @@ const App = () => {
     }, [currentIndex, index, type])
 
     useEffect(() => {
-        setNum(active ? data.value : 0)
+        setNum(active ? data.value : 0);
     }, [active, data.value])
 
     return (
