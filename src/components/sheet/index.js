@@ -15,19 +15,8 @@ import styles from './index.module.scss';
 
 
 const App = (props) => {
-    /*const child = Children.toArray(props.children);
-    const childList = Children.toArray(child[0].props.children)
-    
-    const topHeight = 72;
-    const bottomHeight = props.apply ? 64 : 20;
-    let childHeight = props.type === 'select' ? 40 : 20;
-
-    childList.map(item => {
-        childHeight += props.type === 'select' ? 56 : 81;
-    })*/
-
     const [view, setView] = useState(false)
-
+    
     const [height] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :

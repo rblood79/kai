@@ -17,7 +17,7 @@ const App = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const [state, setState] = useState(false)
+    const [state, setState] = useState(false);
 
     useEffect(() => {
     }, [])
