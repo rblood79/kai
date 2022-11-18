@@ -21,20 +21,27 @@ const App = () => {
     const color = percentColor(data.value);
 
     const [num, setNum] = useState(0);
-
-    const { val, width } = useSpring({
-        from: { val: 0, width: '0%' },
+    const [listTransition, setListTransition] = useState(false);
+    const [gridTransition, setGridTransition] = useState(false);
+    const { listNum, width } = useSpring({
+        from: { listNum: 0, width: '0%' },
         to: async (next, cancel) => {
             await next({
-                val: Number(num),
+                listNum: Number(num),
                 width: Number(num) + '%'
             })
         },
         config: {
-            duration: index === 0 ? 1440 : 480,
+            duration: 480,//index === 0 ? 1440 : 480,
             easing: easings.easeInOutExpo
         },
         delay: 240,
+        onStart: () => {
+            setListTransition(true)
+        },
+        onRest: () => {
+            setListTransition(false)
+        }
     })
 
     const { gridNum } = useSpring({
@@ -47,8 +54,29 @@ const App = () => {
         config: {
             easing: easings.easeInOutExpo
         },
-        delay: 0,
+        onStart: () => {
+            setGridTransition(true)
+        },
+        onRest: () => {
+            setGridTransition(false)
+        }
     })
+
+    const Rate = () => {
+        return (
+            <div className={styles.rate}>
+                <span className={styles.title}>Behavior Rate</span>
+                <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
+                    {
+                        type === 'LIST' ?
+                            listTransition ? listNum.to(num => num.toFixed(2).padStart(5, '0') + '%') : Number(num).toFixed(2).padStart(5, '0') + '%'
+                            :
+                            gridTransition ? gridNum.to(num => num.toFixed(2).padStart(5, '0') + '%') : Number(data.value).toFixed(2).padStart(5, '0') + '%'
+                    }
+                </animated.span>
+            </div>
+        )
+    }
 
     useMemo(() => {
         type === 'LIST' && index === currentIndex ? setActive(true) : setActive(false)
@@ -75,14 +103,7 @@ const App = () => {
                                         </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} label={data.base} valueColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.value} active={active} />
-                                        <div className={styles.rate}>
-                                            <span className={styles.title}>Behavior Rate</span>
-                                            <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
-                                                {
-                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
-                                                }
-                                            </animated.span>
-                                        </div>
+                                        <Rate />
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
@@ -97,14 +118,7 @@ const App = () => {
                                             value={'OH:' + data.oh + ' / FH:' + data.fh}
                                         />
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
-                                        <div className={styles.rate}>
-                                            <span className={styles.title}>Behavior Rate</span>
-                                            <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
-                                                {
-                                                    val.to(num => num.toFixed(2).padStart(5, '0') + '%')
-                                                }
-                                            </animated.span>
-                                        </div>
+                                        <Rate />
                                         <div className={styles.bar}>
                                             <animated.span className={styles.value} style={{ width, background: gradient(data.value, -90) }}></animated.span>
                                         </div>
@@ -129,14 +143,7 @@ const App = () => {
                                 <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                                     <div className={styles.main}>
                                         <div className={styles.title}><h3 className={styles.text}>{data.label}</h3></div>
-                                        <div className={styles.rate}>
-                                            <span className={styles.title}>Behavior Rate</span>
-                                            <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
-                                                {
-                                                    gridNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
-                                                }
-                                            </animated.span>
-                                        </div>
+                                        <Rate />
                                     </div>
                                     <div className={styles.bottom}>
                                         {data.status}
