@@ -5,11 +5,11 @@
 */
 import aircraftSide from '../../images/aircraftLeft@2x.png';
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { useSpring, animated, easings } from '@react-spring/web';
+import React, { useState, useMemo } from 'react';
+import { animated } from '@react-spring/web';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { Item, Chart, Button } from '../../components';
-import { percentColor, gradient } from '../../util';
+import { Item, Chart, Button, ItemRate } from '../../components';
+import { percentColor } from '../../util';
 import styles from './item.module.scss';
 
 import classNames from 'classnames';
@@ -20,71 +20,9 @@ const App = () => {
     const { data, type, bind, index, currentIndex, spring } = useOutletContext();
     const color = percentColor(data.value);
 
-    const [num, setNum] = useState(0);
-    const [listTransition, setListTransition] = useState(false);
-    const [gridTransition, setGridTransition] = useState(false);
-    const { listNum, width } = useSpring({
-        from: { listNum: 0, width: '0%' },
-        to: async (next, cancel) => {
-            await next({
-                listNum: Number(num),
-                width: Number(num) + '%'
-            })
-        },
-        config: {
-            duration: 480,//index === 0 ? 1440 : 480,
-            easing: easings.easeInOutExpo
-        },
-        delay: 240,
-        onStart: () => {
-            setListTransition(true)
-        },
-        onRest: () => {
-            setListTransition(false)
-        }
-    })
-
-    const { gridNum } = useSpring({
-        from: { gridNum: 0 },
-        to: async (next, cancel) => {
-            await next({
-                gridNum: type === 'GRID' ? Number(data.value) : Number(0)
-            })
-        },
-        config: {
-            easing: easings.easeInOutExpo
-        },
-        onStart: () => {
-            setGridTransition(true)
-        },
-        onRest: () => {
-            setGridTransition(false)
-        }
-    })
-
-    const Rate = () => {
-        return (
-            <div className={styles.rate}>
-                <span className={styles.title}>Behavior Rate</span>
-                <animated.span className={styles.text} style={{ color: percentColor(data.value) }}>
-                    {
-                        type === 'LIST' ?
-                            listTransition ? listNum.to(num => num.toFixed(2).padStart(5, '0') + '%') : Number(num).toFixed(2).padStart(5, '0') + '%'
-                            :
-                            gridTransition ? gridNum.to(num => num.toFixed(2).padStart(5, '0') + '%') : Number(data.value).toFixed(2).padStart(5, '0') + '%'
-                    }
-                </animated.span>
-            </div>
-        )
-    }
-
     useMemo(() => {
         type === 'LIST' && index === currentIndex ? setActive(true) : setActive(false)
     }, [currentIndex, index, type])
-
-    useEffect(() => {
-        setNum(active ? data.value : 0);
-    }, [active, data.value])
 
     return (
         <>
@@ -103,7 +41,7 @@ const App = () => {
                                         </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} label={data.base} valueColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.value} active={active} />
-                                        <Rate />
+                                        <ItemRate num={data.value} active={active} bar={false} duration={960} />
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
@@ -118,10 +56,7 @@ const App = () => {
                                             value={'OH:' + data.oh + ' / FH:' + data.fh}
                                         />
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
-                                        <Rate />
-                                        <div className={styles.bar}>
-                                            <animated.span className={styles.value} style={{ width, background: gradient(data.value, -90) }}></animated.span>
-                                        </div>
+                                        <ItemRate num={data.value} active={active} />
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />
@@ -143,7 +78,7 @@ const App = () => {
                                 <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                                     <div className={styles.main}>
                                         <div className={styles.title}><h3 className={styles.text}>{data.label}</h3></div>
-                                        <Rate />
+                                        <ItemRate num={data.value} active={true} type={type} />
                                     </div>
                                     <div className={styles.bottom}>
                                         {data.status}

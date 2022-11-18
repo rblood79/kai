@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 
 const App = (props) => {
     const delay = 100;
-    const duration = 1440;
+    const duration = 960;
     const easing = d3.easeExp;
     const svgRef = useRef(null);
 
