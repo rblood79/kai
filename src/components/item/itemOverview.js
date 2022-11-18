@@ -31,16 +31,16 @@ const App = (props) => {
             </div>
             <div className={styles.body}>
                 <img className={styles.aircraft} src={aircraftFront} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(props.data.rate) + ')' }} />
+
                 <div className={styles.rate}>
-                    <div className={styles.item}>
-                        <span className={styles.title}>Behavior Rate</span>
-                        <span className={styles.text} style={{ color: percentColor(data.rate) }}>
-                            {Number(data.rate).toFixed(2).padStart(5,'0') + '%'}
-                        </span>
-                    </div>
-                    <div className={styles.bar}>
-                        <span className={styles.value} style={{ width: data.rate + '%', background: gradient(data.rate, 90) }} />
-                    </div>
+                    <span className={styles.title}>Behavior Rate</span>
+                    <span className={styles.text} style={{ color: percentColor(data.rate) }}>
+                        {Number(data.rate).toFixed(2).padStart(5, '0') + '%'}
+                    </span>
+                </div>
+
+                <div className={styles.bar}>
+                    <span className={styles.value} style={{ width: data.rate + '%', background: gradient(data.rate, 90) }} />
                 </div>
             </div>
             <div className={styles.footer}>
