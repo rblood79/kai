@@ -1,13 +1,13 @@
 .container {
   //margin-top: 8px;
   background-color: #f4f4f4;
-  border: 1px solid rgba(0,0,0,0.056);
+  border: 1px solid rgba(0, 0, 0, 0.056);
   border-radius: var(--borderRadius-50);
   padding: 16px;
   position: relative;
   .baseIcon {
     background-color: var(--colorCard);
-    border: 1px solid rgba(0,0,0,0.056);
+    border: 1px solid rgba(0, 0, 0, 0.056);
     color: #0c90e7;
     width: 36px;
     height: 36px;
@@ -41,35 +41,35 @@
       }
       .label {
         color: var(--colorTitle);
-        font-size: var(--textSize);
+        font-size: var(--normalSize);
         display: flex;
         align-items: center;
         height: 56px;
       }
     }
+
     .bar {
+      border: 6px solid var(--colorLight);
+      //border-radius: var(--borderRadius);
+      background: var(--colorCard);
       height: 16px;
-      display: flex;
-      background-color: var(--colorCard);
-      border-radius: var(--borderRadius);
-      border: 4px solid #efefef;
-      margin: 8px 0 24px 0;
+      margin: 8px -6px 24px;
       position: relative;
       .value {
+        display: flex;
         height: 100%;
-        background: linear-gradient(90deg, #3bafcd 0%, #004e92 100%);
-        width: 0%;
-        height: 100%;
-        border-radius: var(--borderRadius-50);
+        border-radius: inherit;
+        will-change: width;
       }
       .text {
         display: flex;
         position: absolute;
         right: -4px;
         top: 16px;
-        font-size: var(--textSize);
+        font-size: var(--normalSize);
       }
     }
+
     .item {
       height: 32px;
       flex: 1;
@@ -77,16 +77,16 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      
+
       .label {
-        font-size: var(--textSize);
+        font-size: var(--normalSize);
         color: var(--colorLabel);
         padding: 0;
         display: flex;
         align-items: center;
       }
       .text {
-        font-size: var(--textSize);
+        font-size: var(--normalSize);
         color: var(--colorText);
       }
       .textGroup {
@@ -94,10 +94,9 @@
         flex-direction: column;
         .text {
           padding: 4px 0;
-          font-size: var(--textSize);
+          font-size: var(--normalSize);
         }
       }
-      
     }
   }
 }

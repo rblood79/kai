@@ -27,7 +27,7 @@
       align-items: center;
     }
     .text {
-      font-size: var(--textSize);
+      font-size: var(--normalSize);
     }
     .button {
       background: var(--colorPrimary);
@@ -35,7 +35,7 @@
       height: 28px;
       padding: 0 16px;
       border-radius: var(--borderRadius);
-      font-size: var(--textSize);
+      font-size: var(--normalSize);
     }
   }
   .header {

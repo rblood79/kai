@@ -10,8 +10,8 @@
     align-items: center;
     justify-content: center;
     .title {
-      font-size: var(--textSize);
-      line-height: var(--textSize);
+      font-size: var(--normalSize);
+      line-height: var(--normalSize);
       word-break: keep-all;
       background: linear-gradient(90deg, #141414, #194bb5);
       -webkit-background-clip: text;

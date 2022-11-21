@@ -23,7 +23,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--textSize);
+      font-size: var(--normalSize);
       color: var(--colorMid);
     }
     & + button {
@@ -42,7 +42,7 @@
     width: 100%;
     height: 48px;
     font-family: inherit;
-    font-size: var(--textSize);
+    font-size: var(--normalSize);
     padding: 0 16px;
     background-color: var(--colorBase);
 
@@ -96,7 +96,7 @@
     justify-content: space-between;
     height: 56px;
     color: var(--colorLabel);
-    font-size: var(--textSize);
+    font-size: var(--normalSize);
     &.active {
       color: var(--colorSecondary);
       background: url("../../images/check.svg");
@@ -111,7 +111,7 @@
     border-radius: var(--borderRadius-50);
     width: 100%;
     font-family: inherit;
-    font-size: var(--textSize);
+    font-size: var(--normalSize);
     padding: 16px;
     background-color: var(--colorBase);
     display: grid;

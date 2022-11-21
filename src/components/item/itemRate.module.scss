@@ -9,8 +9,8 @@
 
   &::before {
     content: "00.00%";
-    font-size: var(--bigSize);
-    line-height: var(--bigSize);
+    font-size: var(--largeSize);
+    line-height: var(--largeSize);
     font-family: "Digital Numbers Regular";
     position: absolute;
     color: var(--colorTitle);
@@ -23,12 +23,12 @@
   }
   .title {
     color: var(--colorLabel);
-    font-size: var(--textSize);
+    font-size: var(--normalSize);
   }
   .text {
     height: 40px;
-    font-size: var(--bigSize);
-    line-height: var(--bigSize);
+    font-size: var(--largeSize);
+    line-height: var(--largeSize);
     font-family: "Digital Numbers Regular";
     margin-right: -8px;
     z-index: 1;
@@ -45,10 +45,11 @@
   &.grid {
     align-items: flex-start;
     &::before {
-      content: "00.00%";
       font-size: var(--titleSize);
       line-height: var(--titleSize);
       left: -2px;
+      height: inherit;
+      text-align: left;
     }
     .title {
       font-size: var(--mediumSize);
@@ -56,6 +57,7 @@
     .text {
       font-size: var(--titleSize);
       line-height: var(--titleSize);
+      height: auto;
       margin-left: -2px;
     }
   }
@@ -66,11 +68,11 @@
   //border-radius: var(--borderRadius);
   background: var(--colorCard);
   height: 16px;
+  margin: 0 -6px;
   .value {
     display: flex;
     height: 100%;
     border-radius: inherit;
-    background: #f00;
     will-change: width;
   }
   &.grid {

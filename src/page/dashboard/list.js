@@ -59,7 +59,7 @@ const App = () => {
         }
     }, {
         drag: {
-            axis: 'lock'
+            //axis: 'lock'
         }
     });
 

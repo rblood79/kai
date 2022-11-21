@@ -11,14 +11,14 @@
     justify-content: center;
     gap: 8px;
     .title {
-      font-size: var(--largeSize);
-      height: var(--largeSize);
+      font-size: var(--maxSize);
+      height: var(--maxSize);
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .comment {
-      font-size: var(--textSize);
+      font-size: var(--normalSize);
     }
   }
   .footer {

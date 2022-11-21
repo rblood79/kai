@@ -41,7 +41,7 @@ const App = () => {
                                         </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} label={data.base} valueColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.value} active={active} />
-                                        <ItemRate num={data.value} active={active} bar={false} duration={960} />
+                                        <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} duration={960} />
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
@@ -56,7 +56,7 @@ const App = () => {
                                             value={'OH:' + data.oh + ' / FH:' + data.fh}
                                         />
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
-                                        <ItemRate num={data.value} active={active} />
+                                        <ItemRate label={'Availability Rate'} num={data.value} active={active} />
                                     </div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />

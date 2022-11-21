@@ -117,7 +117,6 @@ const App = (props) => {
 
         const arcMin = -pi / 2;
         const arcMax = pi / 2;
-        const labelPad = 10;
         const dataDomain = [0, 50, 100];
         const arcScale = d3.scaleLinear().domain(dataDomain).range([arcMin, 0, arcMax]);
 
@@ -188,13 +187,15 @@ const App = (props) => {
             .attr("class", "ticks")
             .style("fill", "#b4b4b4")
             .style("font-size", "12px")
+            .style("font-weight", "900")
+            .style("font-family", "Digital Numbers Regular")
             .style("text-anchor", "middle")
             .text(function (d) { return d; });
 
         chart.selectAll(".ticks")
             .attr("x", function (d) {
                 var xVal = Math.cos(arcScale(d) + arcMin) * (radius - 6);
-                return d === 0 ? xVal - 3 : d === 100 ? xVal - 3 : xVal;
+                return d === 0 ? xVal - 3 : d === 100 ? xVal - 8 : xVal;
             })
             .attr("y", function (d) {
                 var yVal = Math.sin(arcScale(d) + arcMin) * (radius - 12);

@@ -6,6 +6,8 @@ import * as d3 from 'd3';
 const standalone = 'standalone' in window.navigator && window.navigator.standalone;
 
 const percentColor = d3.scaleSequential(d3.interpolateHslLong("#FF5A03", "#0F4DD8")).domain([0, 100]);
+//const hex = d3.color(percentColor).formatHex()
+
 const percentColor2 = d3.scaleSequential(d3.interpolateCubehelixLong("#FF5A03", "#0F4DD8")).domain([0, 100]);
 
 const gradient = (percent, deg) => {

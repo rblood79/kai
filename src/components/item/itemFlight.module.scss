@@ -47,7 +47,7 @@
       &.col {
         .label {
           color: var(--colorTitle);
-          font-size: var(--textSize);
+          font-size: var(--normalSize);
           margin-bottom: 16px;
         }
       }
@@ -65,7 +65,7 @@
           align-items: flex-end;
           .text {
             color: #e78a0c;
-            font-size: var(--textSize);
+            font-size: var(--normalSize);
           }
         }
       }
@@ -76,7 +76,7 @@
           align-items: flex-end;
           .text {
             color: #0c90e7;
-            font-size: var(--textSize);
+            font-size: var(--normalSize);
           }
         }
       }

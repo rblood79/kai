@@ -4,8 +4,8 @@
 
 */
 import React, { useEffect, useState } from 'react';
-
 import { gradient } from '../../util'
+import ItemRate from './itemRate';
 
 import styles from './itemMaintenance.module.scss';
 
@@ -24,8 +24,9 @@ const App = (props) => {
                     <span className={styles.label}>Date</span>
                     <span className={styles.text}>{item.date}</span>
                 </div>
+
                 <div className={styles.bar}>
-                    <span className={styles.value} style={{ width: item.value + '%', background: gradient(item.value, 90) }} />
+                    <span className={styles.value} style={{ width: item.value + '%', background: gradient(item.value, -90) }} />
                     <span className={styles.text}>{item.value}%</span>
                 </div>
             </div>

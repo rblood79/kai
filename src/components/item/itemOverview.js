@@ -30,7 +30,7 @@ const App = (props) => {
             </div>
             <div className={styles.body}>
                 <img className={styles.aircraft} src={aircraftFront} alt='aircraft' style={{ filter: 'drop-shadow(0px 0px 56px ' + percentColor(props.data.rate) + ')' }} />
-                <ItemRate num={props.data.rate} active={true} row={true} />
+                <ItemRate label={'Availability rate'} num={props.data.rate} active={true} row={true} duration={0} />
             </div>
             <div className={styles.footer}>
                 <Item label={'Aircraft Status'} value={props.data.status} valueColor={'var(--colorCard)'} height={26} />
