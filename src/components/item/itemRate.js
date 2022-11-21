@@ -12,8 +12,8 @@ import styles from './itemRate.module.scss';
 import classNames from 'classnames';
 
 const App = (props) => {
-    const [def, setDef] = useState(false);
     const [num, setNum] = useState(0);
+
     const { listNum, width } = useSpring({
         from: { listNum: 0, width: '0%' },
         to: async (next, cancel) => {
@@ -23,18 +23,16 @@ const App = (props) => {
             })
         },
         config: {
-            duration: props.duration,
+            duration: props.duration + (4.8 * num),
             easing: easings.easeInOutExpo
         },
         delay: props.delay,
         onStart: () => {
-            setDef(true)
         },
     })
 
     useEffect(() => {
         setNum(props.active ? props.num : 0);
-        setDef(false)
     }, [props.active, props.num])
 
     return (
@@ -51,9 +49,12 @@ const App = (props) => {
                             <span className={styles.title}>{props.label}</span>
                             <animated.span className={styles.text} style={{ color: percentColor(num) }}>
                                 {
-                                    def ?
-                                        listNum.to(num => num.toFixed(2).padStart(5, '0') + '%') :
-                                        '00.00%'
+                                    //listNum.to(num => num.toFixed(2).padStart(5, '0') + '%')
+                                    listNum.to(num => {
+                                        const xxx = num <= 0.000001 ? Number('00.01').toFixed(2).padStart(5, '0') + '%' :
+                                            num.toFixed(2).padStart(5, '0') + '%';
+                                        return xxx
+                                    })
                                 }
                             </animated.span>
                         </div>
@@ -82,7 +83,7 @@ export default React.memo(App);
 App.defaultProps = {
     label: 'label',
     duration: 480,
-    delay: 240,
+    delay: 120,
     bar: true,
     row: false,
 };
