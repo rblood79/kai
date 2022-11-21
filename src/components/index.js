@@ -5,7 +5,7 @@ import Bottom from './bottom';
 import Button from './button';
 import Card from './card';
 import Chart from './chart';
-//import List from './list';
+import Text from './text';
 import Header from './header';
 import Layout from './layout';
 import Input from './input';
@@ -28,6 +28,6 @@ import ItemOverview from './item/itemOverview';
 
 export {
     Encrypt, Decrypt,
-    Api, Input, Button, Tab, Modal, Card, Header, Sheet, Chart, Top, Bottom, Item, Layout, ItemList, ItemCollapse, ItemRate,
+    Api, Text, Input, Button, Tab, Modal, Card, Header, Sheet, Chart, Top, Bottom, Item, Layout, ItemList, ItemCollapse, ItemRate,
     ItemFlight, ItemDefect, ItemMaintenance, ItemConsume, ItemOverview
 }

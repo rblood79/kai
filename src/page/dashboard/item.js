@@ -8,7 +8,7 @@ import aircraftSide from '../../images/aircraftLeft@2x.png';
 import React, { useState, useMemo } from 'react';
 import { animated } from '@react-spring/web';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { Item, Chart, Button, ItemRate } from '../../components';
+import { Item, Chart, Button, ItemRate, Text } from '../../components';
 import { percentColor } from '../../util';
 import styles from './item.module.scss';
 
@@ -35,7 +35,7 @@ const App = () => {
                                     <div className={classNames(styles.main, styles.total)}>
                                         <div className={styles.title}>
                                             <h3 className={styles.text}>
-                                                {data.label}
+                                                <Text label={data.label} active={active} />
                                             </h3>
                                             <span className={styles.line} />
                                         </div>
@@ -50,7 +50,12 @@ const App = () => {
                                 </> :
                                 <>
                                     <div className={styles.main} >
-                                        <div className={styles.title}><h3 className={styles.text}>{data.label}</h3><span className={styles.line} /></div>
+                                        <div className={styles.title}>
+                                            <h3 className={styles.text}>
+                                                {data.label}
+                                            </h3>
+                                            <span className={styles.line} />
+                                        </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} valueColor={'var(--colorBase)'} value={data.intro} />
                                         <Item height={24} direction={'column'} align={'flex-start'} label={'Fuselage Time'} valueColor={'var(--colorBase)'}
                                             value={'OH:' + data.oh + ' / FH:' + data.fh}
@@ -77,8 +82,12 @@ const App = () => {
                             <animated.div className={styles.itemGrid}>
                                 <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                                     <div className={styles.main}>
-                                        <div className={styles.title}><h3 className={styles.text}>{data.label}</h3></div>
-                                        <ItemRate num={data.value} active={true} type={type} />
+                                        <div className={styles.title}>
+                                            <h3 className={styles.text}>
+                                                {data.label}
+                                            </h3>
+                                        </div>
+                                        <ItemRate label={'Availability Rate'} num={data.value} active={true} type={type} />
                                     </div>
                                     <div className={styles.bottom}>
                                         {data.status}

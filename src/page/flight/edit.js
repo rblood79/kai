@@ -25,8 +25,8 @@ const App = (props) => {
             rear: 'Mike',
             rwy: 'Javis',
             flt: 'Siri',
-            to:'18 wing',
-            ld:'19 wing',
+            to: '18 wing',
+            ld: '19 wing',
             tail: '001',
         }
     );
@@ -99,8 +99,7 @@ const App = (props) => {
     }
 
     useEffect(() => {
-        //setDataG(location.state.dataG)
-        setTitle('KF21-' + id)
+        setTitle('KF21-' + id + 'Edit')
     }, [id])
 
     return (
@@ -123,10 +122,10 @@ const App = (props) => {
                     <Input label={'Front (Pilot)'} required={true} type={'select'} value={params.front} data={frontData} column={'front'} onChange={setParams} />
                     <Input label={'Rear (Co Pilot)'} value={params.rear} column={'rear'} onChange={setParams} />
                     <Input label={'RWY Controller'} value={params.rwy} column={'rwy'} onChange={setParams} />
-                    <Input label={'FLT Controller'} value={params.flt} column={'flt'} onChange={setParams}/>
-                    <Input label={'T/O AB'} value={params.to} column={'to'} onChange={setParams}/>
+                    <Input label={'FLT Controller'} value={params.flt} column={'flt'} onChange={setParams} />
+                    <Input label={'T/O AB'} value={params.to} column={'to'} onChange={setParams} />
                     <Input label={'L/D AB'} value={params.ld} column={'ld'} onChange={setParams} />
-                    <Input label={'Tail No'} type={'select'} value={params.tail} data={tailData} column={'tail'} onChange={setParams}/>
+                    <Input label={'Tail No'} type={'select'} value={params.tail} data={tailData} column={'tail'} onChange={setParams} />
                 </Card>
             </Layout>
 

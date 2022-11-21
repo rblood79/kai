@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { userContext } from '../../context';
 //import { useNavigate } from "react-router-dom";
-import { Api, Layout, Input, Button, Modal, Encrypt, Decrypt } from '../../components';
+import { Text, Api, Layout, Input, Button, Modal, Encrypt, Decrypt } from '../../components';
 import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
@@ -75,7 +75,7 @@ const App = () => {
                                 <Input placeholder={'ID'} value={params.id} column={'id'} onChange={setParams} />
                                 <Input placeholder={'PASSWORD'} value={params.pw} column={'pw'} onChange={setParams} type={'password'} />
                             </div>
-                            <Button label={'Sign In'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
+                            <Button label={'Sign in'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
                         </form>
                         <Button label={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={help} />
                     </div>

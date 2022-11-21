@@ -13,6 +13,7 @@ const App = (props) => {
                 borderRadius: props.radius,
                 padding: props.padding,
                 border: props.border,
+                color: props.color
             }}
             type={props.type}
             onClick={props.onClick}>

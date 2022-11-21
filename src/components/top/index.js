@@ -9,7 +9,7 @@ import { ReactComponent as CloseIcon } from '../../images/close.svg';
 import { ReactComponent as FilterIcon } from '../../images/filter.svg';
 
 import Aside from '../aside';
-
+//import Text from '../text';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 
@@ -39,7 +39,9 @@ const App = (props) => {
             }
 
             <div className={classNames(styles.location)}>
-                <h1 className={classNames(styles.title, location.pathname === '/dashboard' && styles.active)}>{props.title}</h1>
+                <h1 className={classNames(styles.title, location.pathname === '/dashboard' && styles.active)}>
+                    {props.title && props.title}
+                </h1>
             </div>
 
             {
