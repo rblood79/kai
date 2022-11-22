@@ -66,13 +66,16 @@
         mask-position: 4px center;
       }
     }
-
-    img {
-      pointer-events: none;
+    .image {
+      display: flex;
       align-self: end;
       justify-self: center;
-      width: min(294px, calc(100% - 0px));
-      will-change: filter;
+      will-change: transform;
+      img {
+        pointer-events: none;
+        width: min(294px, calc(100% - 0px));
+        will-change: filter;
+      }
     }
   }
   .total {

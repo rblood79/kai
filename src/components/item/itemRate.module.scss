@@ -82,23 +82,23 @@
   &::before {
     content: "";
     border-bottom: 1px solid var(--colorMid);
-    border-right: 1px solid var(--colorMid);
-    display: flex;
-    width: 8px;
-    height: 8px;
-    position: absolute;
-    right: -6px;
-    bottom: -6px;
-  }
-  &::after {
-    content: "";
-    border-top: 1px solid var(--colorMid);
     border-left: 1px solid var(--colorMid);
     display: flex;
     width: 8px;
     height: 8px;
     position: absolute;
     left: -6px;
+    bottom: -6px;
+  }
+  &::after {
+    content: "";
+    border-top: 1px solid var(--colorMid);
+    border-right: 1px solid var(--colorMid);
+    display: flex;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: -6px;
     top: -6px;
   }
 }

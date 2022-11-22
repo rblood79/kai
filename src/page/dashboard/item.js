@@ -28,14 +28,17 @@ const App = () => {
         <>
             {
                 type === 'LIST' ?
-                    <animated.div {...bind()} className={styles.itemList} style={{ display: spring.display, x: spring.x, scale: spring.scale }}>
+                    <animated.div {...bind()} className={styles.itemList}
+                        style={{
+                            display: spring.display, x: spring.x, scale: spring.scale,
+                        }}>
                         {
                             index === 0 ?
                                 <>
                                     <animated.div className={classNames(styles.main, styles.total)} >
                                         <div className={styles.title}>
                                             <h3 className={styles.text}>
-                                                <Text label={data.label} active={active} width={'11px'}/>
+                                                <Text label={data.label} active={active} width={'11px'} />
                                             </h3>
                                             <span className={styles.line} />
                                         </div>
@@ -60,7 +63,10 @@ const App = () => {
                                         <Item height={24} direction={'column'} align={'flex-start'} label={'Fuselage Time'} valueColor={'var(--colorBase)'}
                                             value={'OH:' + data.oh + ' / FH:' + data.fh}
                                         />
-                                        <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
+                                        <animated.div className={styles.image} style={{ transform: spring.x.to((tx) => `translateX(${tx - 48}px)`) }}>
+                                            <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
+                                        </animated.div>
+
                                         <ItemRate label={'Availability Rate'} num={data.value} active={active} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>

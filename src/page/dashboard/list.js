@@ -48,7 +48,7 @@ const App = () => {
                 const scale = i === index.current ? 1 : 0.8
                 const ty = i === index.current ? -16 : -96
                 return {
-                    x, y, scale, display: 'grid', ty,
+                    x, y, ty, scale, display: 'grid',
                     config: {
                         mass: 1,
                         tension: 210,

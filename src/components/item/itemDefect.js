@@ -16,6 +16,7 @@ import classNames from 'classnames';
 const App = (props) => {
 
     useEffect(() => {
+        console.log(props.data)
     }, [])
 
     return (
