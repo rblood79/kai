@@ -9,7 +9,7 @@
   }
   .inputGroup {
     display: flex;
-    gap: 16px;
+    gap: var(--gap);
   }
   .picker {
     border-bottom: 1px solid #efefef;

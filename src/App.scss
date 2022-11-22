@@ -15,7 +15,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      will-change: transform, opacity;
+      will-change: transform;
 
       &::after {
         content: "";
@@ -50,7 +50,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  //background: rgba(0,0,0,0.48);
   &::after {
     content: "\F080";
     font-family: "remixicon";
@@ -90,7 +89,7 @@
 
 @media (orientation: landscape) {
   /* Landscape CSS */
-  /*.App {
+  .App {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,6 +105,7 @@
       justify-content: center;
       transform: rotate(-90deg);
       color: var(--colorLabel);
+      position: absolute;
     }
     &::after {
       content: "Landscape mode is not supported";
@@ -119,11 +119,13 @@
       background: linear-gradient(90deg, #141414, var(--colorPrimary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      position: absolute;
+      top: calc(50% - 8px);
     }
   }
   .container {
-    display: none;
-  }*/
+    transform: scale(0);
+  }
 }
 
 @media (prefers-color-scheme: dark) {

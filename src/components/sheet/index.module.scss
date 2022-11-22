@@ -91,7 +91,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: var(--gap);
       position: relative;
       &::after {
         content: "";

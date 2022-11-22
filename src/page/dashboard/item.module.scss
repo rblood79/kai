@@ -70,10 +70,11 @@
       display: flex;
       align-self: end;
       justify-self: center;
+      width: min(294px, calc(100% - 0px));
       will-change: transform;
       img {
         pointer-events: none;
-        width: min(294px, calc(100% - 0px));
+        width: inherit;
         will-change: filter;
       }
     }

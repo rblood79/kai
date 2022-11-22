@@ -73,6 +73,7 @@ svg {
   --borderRadius-150: calc(var(--borderRadius) * 1.5);
 
   --padding: 16px;
+  --gap: 16px;
 
   --maxSize: 48px;
   --largeSize: 36px;
