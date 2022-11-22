@@ -14,7 +14,7 @@ import { isIOS, orientation } from './util';
 
 //default library
 import { useState, useEffect, useRef, useContext } from 'react';
-import { useTransition, animated, easings } from 'react-spring';
+import { useTransition, animated, easings } from '@react-spring/web';
 import { useLocation, Routes, Route, useNavigate } from "react-router-dom";
 
 //404
@@ -114,6 +114,7 @@ const App = () => {
     console.log(orientation)
   });
   return () => { clearTimeout(window.removeEventListener('resize')) }*/
+
   /*
   * @description  : default useEffect
   * @parameter    : none
@@ -121,6 +122,7 @@ const App = () => {
   useEffect(() => {
     authenticated && location.pathname === '/' && navigate('/dashboard', { replace: true })
   }, [location])
+
   /*
   * @description  : web brouser left right swipe cancle
   * @parameter    : none
@@ -135,12 +137,13 @@ const App = () => {
     };
   }, [])
 
+  
   /*
   * @description  : App routes
   * @parameter    : none
   */
   return (
-    <div className="App" ref={viewport}>
+    <animated.div className="App" ref={viewport} >
       <div className='container'>
         {
           transitions((styles, item) => {
@@ -205,7 +208,7 @@ const App = () => {
           })
         }
       </div>
-    </div>
+    </animated.div>
   );
 }
 

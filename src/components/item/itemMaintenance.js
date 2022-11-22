@@ -5,7 +5,6 @@
 */
 import React, { useEffect, useState } from 'react';
 import { gradient } from '../../util'
-import ItemRate from './itemRate';
 
 import styles from './itemMaintenance.module.scss';
 

@@ -20,15 +20,18 @@ const App = (props) => {
                 })
             },
             config: {
-                duration: 960,
+                duration: props.duration,
             },
+            delay: props.delay,
         })
         useEffect(() => {
-            setNum(props.active ? props.item.charCodeAt(0) : 0);
+            //setNum(props.active ? props.item.charCodeAt(0) : 0);
+            props.active && setNum(props.item.charCodeAt(0));
+            return () => { setNum(0) }
         }, [props.active, props.item])
 
         return (
-            <animated.span style={{ color: props.color }}>
+            <animated.span style={{ color: props.color, width: props.width, minWidth: props.width }}>
                 {
                     textNum.to(num => {
                         const fixNum = num.toFixed(0)
@@ -43,7 +46,7 @@ const App = (props) => {
         <div className={styles.container} >
             {
                 words.map((item, index) => {
-                    return <Item key={index} item={item} active={props.active} />;
+                    return <Item key={index} item={item} active={props.active} color={props.color} width={props.width} duration={props.duration} delay={props.delay}/>;
                 })
             }
         </div>
@@ -53,5 +56,7 @@ const App = (props) => {
 export default React.memo(App);
 
 App.defaultProps = {
-
+    delay: 120,
+    duration: 480,
+    width: '12px',
 };

@@ -32,24 +32,24 @@ const App = () => {
                         {
                             index === 0 ?
                                 <>
-                                    <div className={classNames(styles.main, styles.total)}>
+                                    <animated.div className={classNames(styles.main, styles.total)} >
                                         <div className={styles.title}>
                                             <h3 className={styles.text}>
-                                                <Text label={data.label} active={active} />
+                                                <Text label={data.label} active={active} width={'11px'}/>
                                             </h3>
                                             <span className={styles.line} />
                                         </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} label={data.base} valueColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.value} active={active} />
                                         <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} duration={960} />
-                                    </div>
+                                    </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
                                         <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'} />
                                     </animated.div>
                                 </> :
                                 <>
-                                    <div className={styles.main} >
+                                    <animated.div className={styles.main} >
                                         <div className={styles.title}>
                                             <h3 className={styles.text}>
                                                 {data.label}
@@ -62,7 +62,7 @@ const App = () => {
                                         />
                                         <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                                         <ItemRate label={'Availability Rate'} num={data.value} active={active} />
-                                    </div>
+                                    </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />
                                         <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'} />
@@ -79,7 +79,7 @@ const App = () => {
                     <>
                         {
                             index > 0 &&
-                            <animated.div className={styles.itemGrid}>
+                            <div className={styles.itemGrid} >
                                 <button className={styles.itemButton} onClick={() => { navigate(data.id) }}>
                                     <div className={styles.main}>
                                         <div className={styles.title}>
@@ -93,7 +93,7 @@ const App = () => {
                                         {data.status}
                                     </div>
                                 </button>
-                            </animated.div>
+                            </div>
                         }
                     </>
             }

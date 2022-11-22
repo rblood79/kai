@@ -124,10 +124,9 @@
       background: linear-gradient(180deg, #141414 0%, #282828 100%);
       border-radius: var(--borderRadius);
       padding: var(--padding);
-      aspect-ratio: 1.2;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 4px;
       .title {
         .text {
           font-size: var(--normalSize);

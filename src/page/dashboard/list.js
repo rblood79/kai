@@ -5,7 +5,7 @@
 
 import { useState, useRef } from 'react';
 
-import { useGesture } from '@use-gesture/react'
+import { useGesture } from '@use-gesture/react';
 import { useSprings } from '@react-spring/web';
 
 import { Outlet, useOutletContext } from 'react-router-dom';

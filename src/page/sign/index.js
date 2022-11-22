@@ -61,13 +61,17 @@ const App = () => {
                 <div className={styles.container} >
                     <div className={styles.header}>
                         <div className={styles.titleGroup}>
-                            <span className={styles.title}>KF-21</span>
+                            <span className={styles.title}>
+                                KF-21
+                            </span>
                             <div className={styles.sub}>
                                 Logistics<br />
                                 Information System
                             </div>
                         </div>
-                        <span className={styles.subTitle}>Next-Generation Fighter</span>
+                        <span className={styles.subTitle}>
+                            Next-Generation Fighter
+                        </span>
                     </div>
                     <div className={styles.main} style={{ paddingBottom: bottomStatusHeight }}>
                         <form className={styles.form} onSubmit={signIn}>

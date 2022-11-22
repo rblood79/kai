@@ -1,5 +1,4 @@
 .rate {
-  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -64,6 +63,7 @@
 }
 
 .bar {
+  position: relative;
   border: 6px solid var(--colorDark);
   //border-radius: var(--borderRadius);
   background: var(--colorCard);
@@ -78,5 +78,27 @@
   &.grid {
     border-color: #141414;
     margin: 0 -6px;
+  }
+  &::before {
+    content: "";
+    border-bottom: 1px solid var(--colorMid);
+    border-right: 1px solid var(--colorMid);
+    display: flex;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+  }
+  &::after {
+    content: "";
+    border-top: 1px solid var(--colorMid);
+    border-left: 1px solid var(--colorMid);
+    display: flex;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    left: -6px;
+    top: -6px;
   }
 }
