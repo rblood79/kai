@@ -47,7 +47,7 @@
       padding: 0 4px;
       transition: transform 0.16s ease-in-out;
       &.active {
-        background: linear-gradient(90deg, #141414, #194bb5);
+        background: linear-gradient(90deg, var(--colorSecondary), var(--colorActive));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         transform: skew(-20deg);

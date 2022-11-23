@@ -55,6 +55,7 @@ svg {
 :root {
   --colorBase: #f8f8f8;
   --colorPrimary: #0c90e7;
+  --colorActive: #194bb5;
   --colorSecondary: #141414;
   --colorSuccess: #76b7b2;
   --colorEditable: #f28e2c;

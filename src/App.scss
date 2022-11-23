@@ -1,6 +1,6 @@
 .App {
   height: 100%;
-  touch-action: none;
+  /*touch-action: none;*/
   /*overflow: hidden;*/
   .container {
     width: 100%;
@@ -83,30 +83,45 @@
   }
 }
 
-@media (orientation: portrait) {
-  /* Portrait CSS */
-}
-
-@media (orientation: landscape) {
-  /* Landscape CSS */
+@media all and (min-aspect-ratio: 5/4) and (orientation: landscape) {
   .App {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     &::before {
-      content: "\F15A";
-      font-family: remixicon;
-      font-size: 48px;
-      height: 56px;
-      width: 56px;
+      content: "Landscape mode is not supported";
+      color: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
-      transform: rotate(-90deg);
-      color: var(--colorLabel);
+      box-sizing: border-box;
+      font-size: 18px;
+      font-weight: 400;
       position: absolute;
+      padding: 16px 32px;
+      background: linear-gradient(
+            to right,
+            var(--colorSecondary) 4px,
+            transparent 4px
+          )
+          0 0,
+        linear-gradient(to right, var(--colorSecondary) 4px, transparent 4px) 0
+          100%,
+        linear-gradient(to left, var(--colorPrimary) 4px, transparent 4px) 100%
+          0,
+        linear-gradient(to left, var(--colorPrimary) 4px, transparent 4px) 100%
+          100%,
+        linear-gradient(to bottom, var(--colorSecondary) 4px, transparent 4px) 0 0,
+        linear-gradient(to bottom, var(--colorPrimary) 4px, transparent 4px)
+          100% 0,
+        linear-gradient(to top, var(--colorSecondary) 4px, transparent 4px) 0 100%,
+        linear-gradient(to top, var(--colorPrimary) 4px, transparent 4px) 100%
+          100%;
+      background-repeat: no-repeat;
+      background-size: 12px 12px;
     }
+
     &::after {
       content: "Landscape mode is not supported";
       display: flex;
@@ -116,7 +131,7 @@
       font-family: "HelveticaNeue Condensed Bold", sans-serif;
       font-size: 18px;
       font-weight: 400;
-      background: linear-gradient(90deg, #141414, var(--colorPrimary));
+      background: linear-gradient(90deg, var(--colorSecondary), var(--colorPrimary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       position: absolute;
@@ -126,6 +141,13 @@
   .container {
     transform: scale(0);
   }
+}
+
+@media (orientation: portrait) {
+  /* Portrait CSS */
+}
+
+@media (orientation: landscape) {
 }
 
 @media (prefers-color-scheme: dark) {
