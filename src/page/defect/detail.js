@@ -24,33 +24,47 @@ const App = () => {
             id: id,
             body: [
                 {
-                    label: 'Aircraft',
-                    value: '220218-KFX-002',
+                    id: '001',
+                    label: 'left wing',
+                    value: 'fail',
+                    date: '2022-01-18',
+                    point: 'A'
                 },
                 {
-                    label: 'Tail No',
-                    value: '27-003',
+                    id: '002',
+                    label: 'right wing',
+                    value: 'fail123',
+                    date: '2022-01-16',
+                    point: 'B'
                 },
                 {
-                    label: 'Mission',
-                    value: 'Basic Fighter Maneuver',
+                    id: '003',
+                    label: 'left engine',
+                    value: 'stop',
+                    date: '2022-02-08',
+                    point: 'C'
                 },
                 {
-                    label: 'Date',
-                    value: '16 May 2021',
+                    id: '004',
+                    label: 'right engine',
+                    value: 'stop123',
+                    date: '2021-02-08',
+                    point: 'D'
                 },
                 {
-                    label: 'Call-Sign',
-                    value: 'Black Dog',
+                    id: '005',
+                    label: 'radar',
+                    value: 'not found',
+                    date: '2022-02-08',
+                    point: 'E'
                 },
                 {
-                    label: 'Flight Config',
-                    value: 'SL01',
+                    id: '006',
+                    label: 'radar',
+                    value: 'missing',
+                    date: '2022-02-08',
+                    point: 'E'
                 },
-                {
-                    label: 'Area',
-                    value: 'Instrument Navigation',
-                }
             ]
         }
     );
@@ -79,7 +93,7 @@ const App = () => {
                     label: 'engineer',
                     value: 'Thomas Cruise',
                 },
-                
+
             ]
         }
     );

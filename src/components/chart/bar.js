@@ -48,7 +48,6 @@ const App = (props) => {
       right: 0
     };
 
-
     const chart = svg.append('g').attr('class', 'chart').attr('transform', `translate(${margin.left},${margin.top})`);
 
     const chartWidth = width - margin.left - margin.right;
