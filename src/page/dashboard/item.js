@@ -28,7 +28,7 @@ const App = () => {
         <>
             {
                 type === 'LIST' ?
-                    <animated.div {...bind()} className={styles.itemList}
+                    <animated.div {...bind()} className={styles.container}
                         style={{
                             display: spring.display, x: spring.x, scale: spring.scale,
                         }}>
