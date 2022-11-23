@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useSpring, animated } from '@react-spring/web';
 import { userContext } from '../../context';
-//import { useNavigate } from "react-router-dom";
-import { Text, Api, Layout, Input, Button, Modal, Encrypt, Decrypt } from '../../components';
+import { Api, Layout, Input, Button, Modal, Encrypt, Decrypt } from '../../components';
 import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
@@ -9,7 +9,6 @@ import styles from './index.module.scss';
 const App = () => {
     //const navigate = useNavigate();
     const { setUser } = useContext(userContext);
-
     const [params, setParams] = useState(
         {
             id: '',
@@ -30,7 +29,8 @@ const App = () => {
             });
             setUser(Decrypt(response.data))
         } catch (error) {
-            modalStateSet(error)
+            //modalStateSet(error)
+            setUser(Decrypt(fakeData))
         }
     };
 
@@ -51,15 +51,32 @@ const App = () => {
 
     const [modalState, modalStateSet] = useState(false);
     const modalSet = () => {
-        setUser(Decrypt(fakeData))
         modalStateSet(false)
     }
+
+    const [num, setNum] = useState(0);
+
+    const { ty, opacity } = useSpring({
+        from: { ty: 100, opacity: 0 },
+        to: async (next, cancel) => {
+            await next({
+                ty: Number(num),
+                opacity: 1,
+            })
+        },
+        delay: 120,
+    })
+
+    useEffect(() => {
+        setNum(0)
+    }, [])
 
     return (
         <>
             <Layout height={'100%'} padding={'0px'}>
+
                 <div className={styles.container} >
-                    <div className={styles.header}>
+                    <animated.div className={styles.header} style={{opacity}}>
                         <div className={styles.titleGroup}>
                             <span className={styles.title}>
                                 KF-21
@@ -72,8 +89,8 @@ const App = () => {
                         <span className={styles.subTitle}>
                             Next-Generation Fighter
                         </span>
-                    </div>
-                    <div className={styles.main} style={{ paddingBottom: bottomStatusHeight }}>
+                    </animated.div>
+                    <animated.div className={styles.main} style={{ paddingBottom: bottomStatusHeight, opacity, transform: ty.to((ty) => `translateY(${ty}%)`) }}>
                         <form className={styles.form} onSubmit={signIn}>
                             <div className={styles.inputGroup}>
                                 <Input placeholder={'ID'} value={params.id} column={'id'} onChange={setParams} />
@@ -82,9 +99,11 @@ const App = () => {
                             <Button label={'Sign in'} background={'var(--colorPrimary)'} color={'var(--colorBase)'} type={'submit'} />
                         </form>
                         <Button label={'Need help?'} background={'transparent'} color={'var(--colorLight)'} onClick={help} />
-                    </div>
+                    </animated.div>
                 </div>
+
             </Layout>
+
             <Modal title={modalState.code} state={modalState} apply={modalSet}>
                 {modalState.message}
             </Modal>
