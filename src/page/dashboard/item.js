@@ -47,8 +47,8 @@ const App = () => {
                                         <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} duration={960} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
-                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'} />
+                                        <Item height={24} label={'Last Flight No'} value={data.flight} />
+                                        <Item height={24} label={'Last Defect'} value={data.defect} />
                                     </animated.div>
                                 </> :
                                 <>
@@ -70,13 +70,13 @@ const App = () => {
                                         <ItemRate label={'Availability Rate'} num={data.value} active={active} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />
-                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'} />
+                                        <Item height={24} label={'Aircraft Status'} value={data.status} />
+                                        <Item height={24} label={'Maintenance Date'} value={data.date} />
                                     </animated.div>
                                 </>
                         }
                         <div className={styles.button} >
-                            <Button width={38} height={38} radius={38} padding={0} background={'#fff'} color={'var(--colorPrimary)'} onClick={() => navigate(data.id)}>
+                            <Button width={38} height={38} radius={38} padding={0} background={'var(--colorCard)'} color={'var(--colorPrimary)'} onClick={() => navigate(data.id)}>
                                 <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
                             </Button>
                         </div>

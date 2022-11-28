@@ -1,18 +1,17 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    padding-top: 16px;
-    .title {
-      font-size: var(--titleSize);
-      line-height: 32px;
-      word-break: keep-all;
-      background: linear-gradient(#2980b9, #6dd5fa);
-      background: linear-gradient(#141414, #939393);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .date {
-      color: var(--colorMid);
-    }
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  .title {
+    font-size: var(--titleSize);
+    line-height: 32px;
+    word-break: keep-all;
+    background: linear-gradient(var(--colorPrimary), var(--colorActive));
+    background: linear-gradient(var(--colorSecondary), var(--colorMid));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  
+  .date {
+    color: var(--colorMid);
+  }
+}

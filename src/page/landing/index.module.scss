@@ -13,7 +13,7 @@
       font-size: var(--normalSize);
       line-height: var(--normalSize);
       word-break: keep-all;
-      background: linear-gradient(90deg, #141414, #194bb5);
+      background: linear-gradient(90deg, var(--colorSecondary), var(--colorPrimary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transform: skew(-20deg);

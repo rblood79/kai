@@ -1,5 +1,5 @@
 .overview {
-  background-color: #171717;
+  background-color: var(--colorSecondary);
   height: 498px;
   border-radius: var(--borderRadius);
   display: flex;
@@ -25,10 +25,11 @@
       width: calc(100% - 32px);
       height: 1px;
       border-radius: 2px;
-      background: linear-gradient(90deg, #000428 0%, #3bafcd 100%);
+      background: linear-gradient(90deg, var(--colorSecondary) 0%, transparent 100%);
       position: absolute;
     }
     .baseIcon {
+      color: var(--colorPrimary);
       background-color: var(--colorCard);
       width: 32px;
       height: 32px;

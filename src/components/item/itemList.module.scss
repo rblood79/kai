@@ -8,7 +8,7 @@
   .baseIcon {
     background-color: var(--colorCard);
     border: 1px solid rgba(0,0,0,0.056);
-    color: #0c90e7;
+    color: var(--colorPrimary);
     width: 36px;
     height: 36px;
     display: flex;
@@ -20,7 +20,7 @@
     top: calc(0px - 18px);
     left: calc(50% - 18px);
     i {
-      background: linear-gradient(#141414, #a9a9a9);
+      background: linear-gradient(var(--colorSecondary), #a9a9a9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 

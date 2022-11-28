@@ -76,7 +76,7 @@
     will-change: width;
   }
   &.grid {
-    border-color: #141414;
+    border-color: var(--colorSecondary);
     margin: 0 -6px;
   }
   &::before {

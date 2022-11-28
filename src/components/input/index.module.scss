@@ -12,7 +12,7 @@
     gap: var(--gap);
   }
   .picker {
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid var(--colorBase);
     display: flex;
     flex-direction: row;
     //padding-top: 20px;
@@ -61,7 +61,7 @@
       height: 100%;
     }
     &.required {
-      background-color: #fdebdf;
+      background: var(--colorRequired);
     }
     &::placeholder {
       color: var(--colorLabel);
@@ -71,7 +71,7 @@
     }
     &:disabled,
     &.disabled {
-      background-color: #d9d9d9 !important;
+      background: var(--colorDisabled) !important;
       pointer-events: none;
     }
     &.rightButton {
@@ -128,7 +128,7 @@
           content: "";
           border: 1px solid var(--colorLabel);
           margin-right: 8px;
-          background: #fff;
+          background: var(--colorWhite);
           display: flex;
           width: 21px;
           height: 21px;

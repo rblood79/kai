@@ -38,7 +38,7 @@
         writing-mode: vertical-rl;
   
         color: #707070;
-        background: linear-gradient(#141414, #0c90e7);
+        background: linear-gradient(car(--colorSecondary), var(--colorPrimary));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
