@@ -6,7 +6,7 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 56px);
     overflow: hidden;
-    border-top: 1px solid #efefef;
+    border-top: 1px solid rgba(0, 0, 0, 0.096);
     .nav {
       will-change: transform;
       grid-column: 1 / 5;

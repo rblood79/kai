@@ -86,3 +86,27 @@ svg {
   --boxShadow: 0px 4px 8px rgba(0, 0, 0, 0.048);
   --boxShadowIn: inset 0px 0px 8px rgba(0, 0, 0, 0.48);
 }
+@media (prefers-color-scheme: light) {
+  /* light CSS */
+}
+
+@media (prefers-color-scheme: dark) {
+  /* dark CSS */
+  /*:root {
+    --colorBase: #343434;
+    --colorPrimary: #0c90e7;
+    --colorActive: #194bb5;
+    --colorSecondary: #141414;
+    --colorSuccess: #76b7b2;
+    --colorEditable: #f28e2c;
+    --colorError: #e15759;
+    --colorMid: #939393;
+    --colorLight: #343434;
+    --colorDark: #343434;
+  
+    --colorCard: #141414;
+    --colorTitle: #969696;
+    --colorLabel: #b4b4b4;
+    --colorText: #606060;
+  }*/
+}
