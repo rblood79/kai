@@ -59,10 +59,10 @@ const App = () => {
                                             </h3>
                                             <span className={styles.line} />
                                         </div>
-                                        <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} valueColor={'var(--colorBase)'} value={data.intro} />
-                                        <Item height={24} direction={'column'} align={'flex-start'} label={'Fuselage Time'} valueColor={'var(--colorBase)'}
-                                            value={'OH:' + data.oh + ' / FH:' + data.fh}
-                                        />
+                                        <div className={styles.itemGroup}>
+                                            <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} valueColor={'var(--colorBase)'} value={data.intro} />
+                                            <Item height={24} direction={'column'} align={'flex-end'} label={'Fuselage Time'} valueColor={'var(--colorBase)'} value={'OH:' + data.oh + ' / FH:' + data.fh}/>
+                                        </div>
                                         <animated.div className={styles.image} style={{ transform: spring.x.to((tx) => `translateX(${tx - 48}px)`) }}>
                                             <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
                                         </animated.div>
