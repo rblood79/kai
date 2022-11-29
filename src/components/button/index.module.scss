@@ -10,7 +10,7 @@
   border: none;
   outline: none;
   text-decoration: none;
-  font-size: 18px;
+  font-size: var(--titleSize);
   transition: transform 0.24s ease-in-out;
   z-index: 1;
   .label {

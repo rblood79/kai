@@ -44,8 +44,8 @@
       .title {
         margin-right: 8px;
         height: 100%;
-        font-size: 48px;
-        line-height: 48px;
+        font-size: var(--maxSize);
+        line-height: var(--maxSize);
         word-break: keep-all;
         background: linear-gradient(
           90deg,
@@ -76,7 +76,7 @@
         flex-direction: column;
         align-items: flex-start;
         &::after {
-          content: "TM";
+          content: "";
           position: absolute;
           width: 128%;
           height: 2px;
@@ -95,7 +95,7 @@
       transform: skew(-20deg);
       letter-spacing: 0.46em;
       color: var(--colorLabel);
-      background: linear-gradient(135deg, #ccc, var(--colorSecondary));
+      background: linear-gradient(135deg, var(--colorPrimary), var(--colorSecondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }

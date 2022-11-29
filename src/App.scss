@@ -53,7 +53,7 @@
   &::after {
     content: "\F080";
     font-family: "remixicon";
-    font-size: 36px;
+    font-size: var(--largeSize);
     color: var(--colorPrimary);
     border: 1px solid var(--colorLight);
     background: var(--colorBase);
@@ -96,7 +96,7 @@
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
-      font-size: 18px;
+      font-size: var(--titleSize);
       font-weight: 400;
       position: absolute;
       padding: 16px 32px;
@@ -131,7 +131,7 @@
       justify-content: center;
       box-sizing: border-box;
       font-family: "HelveticaNeue Condensed Bold", sans-serif;
-      font-size: 18px;
+      font-size: var(--titleSize);
       font-weight: 400;
       background: linear-gradient(
         90deg,

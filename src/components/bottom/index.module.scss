@@ -1,6 +1,5 @@
 .container {
   box-shadow: 0 -8px 8px rgba(0, 0, 0, 0.048);
-  //padding-bottom: 8px;
   .contents {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -22,8 +21,7 @@
         padding-top: 8px;
         color: var(--colorText);
         .label {
-          //display: none;
-          font-size: 12px;
+          font-size: var(--smallSize);;
           color: var(--colorLabel);
         }
       }
@@ -36,7 +34,7 @@
       color: var(--colorPrimary);
       .box {
         border: 2px solid var(--colorText);
-        width: 18px;
+        width: var(--titleSize);
         height: 24px;
         border-radius: 2px;
         overflow: hidden;

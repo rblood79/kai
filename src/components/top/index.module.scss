@@ -37,17 +37,23 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    overflow: hidden;
     .title {
-      height: 100%;
-      display: flex;
-      align-items: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
       color: var(--colorTitle);
-      font-size: 18px;
+      font-size: var(--titleSize);
       letter-spacing: 1px;
-      padding: 0 4px;
+      padding: 0px;
       transition: transform 0.16s ease-in-out;
       &.active {
-        background: linear-gradient(90deg, var(--colorSecondary), var(--colorActive));
+        background: linear-gradient(
+          90deg,
+          var(--colorSecondary),
+          var(--colorActive)
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         transform: skew(-20deg);

@@ -35,7 +35,7 @@
         align-items: center;
         justify-content: center;
         i{
-          font-size: 36px;
+          font-size: var(--largeSize);
         }
       }
       .name {
@@ -60,7 +60,7 @@
         align-items: center;
         justify-content: flex-end;
         color: var(--colorCard);
-        font-size: 14px;
+        font-size: var(--mediumSize);;
         text-align: center;
         text-decoration: none;
         i {

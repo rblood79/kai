@@ -38,7 +38,7 @@
       grid-template-columns: 36px auto 36px;
       .title {
         grid-column: 2/3;
-        font-size: 18px;
+        font-size: var(--titleSize);
         height: 56px;
         display: flex;
         align-items: center;
@@ -56,7 +56,7 @@
       height: 100%;
       overflow-y: auto;
       font-size: var(--normalSize);
-      line-height: 21px;
+      line-height: var(--labelSize);
       color: var(--colorText);
     }
     .footer {

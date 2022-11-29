@@ -50,11 +50,21 @@
       }
       .title {
         grid-column: 2/3;
-        font-size: 18px;
         height: 56px;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+        padding: 0 8px;
+        .text {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: block;
+          color: var(--colorTitle);
+          font-size: var(--titleSize);
+          letter-spacing: 1px;
+        }
         &::before {
           content: "";
           position: absolute;

@@ -17,7 +17,7 @@ import styles from './index.module.scss';
 
 const App = (props) => {
     const [view, setView] = useState(false)
-    
+
     const [height] = useState(
         props.height === 'full' ? window.innerHeight :
             props.height === 'body' ? window.innerHeight - 56 :
@@ -63,7 +63,9 @@ const App = (props) => {
                         y, display, height: !props.height ? 'auto' : `${height}px`
                     }}>
                         <header className={styles.header}>
-                            <div className={styles.title}>{props.title}</div>
+                            <div className={styles.title}>
+                                <span className={styles.text}>{props.title}</span>
+                            </div>
                             <div className={styles.right}>
                                 <button className={styles.close} onClick={() => close()}>
                                     <CloseIcon width={24} height={24} fill={'var(--colorSecondary)'} />

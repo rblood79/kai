@@ -44,8 +44,8 @@
   &.grid {
     align-items: flex-start;
     &::before {
-      font-size: var(--titleSize);
-      line-height: var(--titleSize);
+      font-size: var(--headerSize);
+      line-height: var(--headerSize);
       left: -2px;
       height: inherit;
       text-align: left;
@@ -54,8 +54,8 @@
       font-size: var(--mediumSize);
     }
     .text {
-      font-size: var(--titleSize);
-      line-height: var(--titleSize);
+      font-size: var(--headerSize);
+      line-height: var(--headerSize);
       height: auto;
       margin-left: -2px;
     }

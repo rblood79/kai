@@ -17,7 +17,7 @@
       width: 24px;
       top: 0px;
       left: -34px;
-      font-size: 14px;
+      font-size: var(--mediumSize);
 
       justify-content: center;
       align-items: center;
@@ -67,7 +67,7 @@
       display: grid;
       grid-template-columns: auto 1fr;
       .text {
-        font-size: var(--titleSize);
+        font-size: var(--headerSize);
         height: 36px;
         color: var(--colorLabel);
         display: flex;

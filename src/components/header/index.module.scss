@@ -3,7 +3,7 @@
   flex-direction: column;
   padding-top: 16px;
   .title {
-    font-size: var(--titleSize);
+    font-size: var(--headerSize);
     line-height: 32px;
     word-break: keep-all;
     background: linear-gradient(var(--colorPrimary), var(--colorActive));
