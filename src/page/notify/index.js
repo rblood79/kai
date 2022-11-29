@@ -41,7 +41,7 @@ const App = (props) => {
         return tab !== 'All' ? data.filter(item => tab === item.type) : data;
     }, [tab, data]);
 
-    const [params, setParams] = useState(
+    const [params] = useState(
         {
             range: '1M',
             sq: '4Q',
