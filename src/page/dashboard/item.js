@@ -44,7 +44,7 @@ const App = () => {
                                         </div>
                                         <Item height={24} direction={'column'} align={'flex-start'} label={data.base} valueColor={'var(--colorPrimary)'} value={data.unit + ' Air Fighter in this Unit'} />
                                         <Chart type={'guage'} data={data.value} active={active} />
-                                        <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} duration={960} />
+                                        <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
                                         <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'}/>
