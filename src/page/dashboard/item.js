@@ -47,8 +47,8 @@ const App = () => {
                                         <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} duration={960} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Last Flight No'} value={data.flight} />
-                                        <Item height={24} label={'Last Defect'} value={data.defect} />
+                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'}/>
+                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'}/>
                                     </animated.div>
                                 </> :
                                 <>
@@ -70,8 +70,8 @@ const App = () => {
                                         <ItemRate label={'Availability Rate'} num={data.value} active={active} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Aircraft Status'} value={data.status} />
-                                        <Item height={24} label={'Maintenance Date'} value={data.date} />
+                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'}/>
+                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'}/>
                                     </animated.div>
                                 </>
                         }
