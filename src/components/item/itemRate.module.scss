@@ -64,9 +64,14 @@
 
 .bar {
   position: relative;
-  border: 6px solid var(--colorDark);
-  //border-radius: var(--borderRadius);
-  background: var(--colorCard);
+  //border: 6px solid var(--colorDark);
+  //background: var(--colorCard);
+
+  border: 6px solid transparent;
+  background-image: linear-gradient(var(--colorBase), var(--colorCard)), linear-gradient(to right, var(--colorDeep) 0%, transparent 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
   height: 16px;
   margin: 0 -6px;
   .value {

@@ -67,7 +67,7 @@
     &.active::after {
       content: "";
       position: absolute;
-      background-color: var(--colorEditable);
+      background-color: var(--colorRed);
       border-radius: var(--borderRadius-50);
       width: 8px;
       height: 8px;

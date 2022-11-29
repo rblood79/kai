@@ -13,7 +13,8 @@
           "overscroll-behavior-x",
           "overscroll-behavior-y",
           "-webkit-tap-highlight-color",
-          "user-select"
+          "user-select",
+          "background-clip"
         ]
       }
     ],

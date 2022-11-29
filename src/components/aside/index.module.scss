@@ -1,6 +1,7 @@
 .container {
   position: absolute;
-  background-color: var(--colorSecondary);
+  background: var(--colorSecondary);
+  background: linear-gradient(180deg, var(--colorSecondary) 0%, var(--colorDeep) 100%);
   padding: 16px;
   width: 100%;
   height: 100vh;
@@ -25,17 +26,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
       .avatar {
-        border: 4px solid var(--colorLabel);
-        width: 98px;
-        height: 98px;
-        border-radius: 98px;
+        border: 4px solid var(--colorBase);
+        width: 56px;
+        height: 56px;
+        border-radius: 56px;
         display: flex;
         align-items: center;
         justify-content: center;
         i{
-          font-size: var(--largeSize);
+          font-size: var(--labelSize);
         }
       }
       .name {
@@ -52,7 +52,7 @@
       width: 100%;
       max-width: 360px;
       .item {
-        border: 1px solid var(--colorSecondary);
+        //border: 1px solid var(--colorSecondary);
         aspect-ratio: 1;
         padding: 8px;
         display: flex;

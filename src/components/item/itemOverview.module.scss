@@ -65,7 +65,7 @@
     grid-template-rows: auto 16px 40px;
 
     border-radius: var(--borderRadius);
-    background: linear-gradient(180deg, transparent, #282828);
+    background: linear-gradient(180deg, transparent, var(--colorDeep));
     box-shadow: var(--boxShadow);
 
     .aircraft {
