@@ -1,4 +1,9 @@
 
+/*
+* @date         : 2022-11-01
+* @description  : app navigation
+* @parameter    : none
+*/
 
 import React, { useContext } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
@@ -8,7 +13,6 @@ import styles from './index.module.scss';
 
 const App = (props) => {
     const navigate = useNavigate();
-    //const state = useContext(context);
     const { user, setUser } = useContext(userContext);
     const data = [
         {

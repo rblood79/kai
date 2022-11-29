@@ -1,4 +1,10 @@
 
+/*
+* @date         : 2022-11-01
+* @description  : app button
+* @parameter    : width, height, background, borderRadius, padding, border, color, fontSize, label, type, onClick
+*/
+
 import React from 'react';
 import styles from './index.module.scss';
 

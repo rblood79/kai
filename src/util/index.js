@@ -1,4 +1,10 @@
 
+/*
+* @date         : 2022-11-01
+* @description  : function
+* @parameter    : orientation, percentColor, percentColor2, isMobile, isIOS, isAndroid, standalone, bottomStatusHeight, gradient, numberPad, getType, useNav, useNavReplace, useNavBack 
+*/
+
 import { isMobile, isIOS, isAndroid } from 'react-device-detect';
 import { useNavigate } from "react-router-dom";
 import * as d3 from 'd3';
@@ -44,4 +50,4 @@ const useNavBack = () => {
 const orientation = window.matchMedia('(orientation: portrait)').matches;
 
 
-export { orientation, percentColor, percentColor2, gradient, numberPad, isMobile, isIOS, isAndroid, standalone, bottomStatusHeight, getType, useNav, useNavReplace, useNavBack };
+export { orientation, percentColor, percentColor2, isMobile, isIOS, isAndroid, standalone, bottomStatusHeight, gradient, numberPad, getType, useNav, useNavReplace, useNavBack };

@@ -1,4 +1,10 @@
 
+/*
+* @date         : 2022-11-01
+* @description  : app tab
+* @parameter    : label, background, padding
+*/
+
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web';
 

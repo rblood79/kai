@@ -1,3 +1,10 @@
+
+/*
+* @date         : 2022-11-01
+* @description  : context
+* @parameter    : use custom
+*/
+
 import { createContext, useState, useEffect } from 'react';
 import { Encrypt, Decrypt } from '../components';
 export const userContext = createContext({

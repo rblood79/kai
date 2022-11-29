@@ -1,13 +1,14 @@
 
 /*
-
-
+* @date         : 2022-11-01
+* @description  : app sheet
+* @parameter    : children, gap
 */
+
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
 import React, { useEffect, useState } from 'react';
-//import { useGesture, useDrag } from '@use-gesture/react'
-import { a, useSpring, easings, config } from '@react-spring/web';
+import { animated, useSpring, easings } from '@react-spring/web';
 //util
 import { bottomStatusHeight } from '../../util';
 import { Button } from '../../components';
@@ -31,19 +32,16 @@ const App = (props) => {
         opacity: y.to([0, height], [0.48, 0], 'clamp')
     }
 
-    const open = ({ canceled }) => {
+    const open = () => {
         setView(true)
         api.start({
             y: 0, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart },
-            onRest: () => {
-
-            }
         })
     }
 
-    const close = (velocity = 0) => {
+    const close = () => {
         api.start({
-            y: height, immediate: false, config: { ...config.stiff, velocity },
+            y: height, immediate: false, config: { duration: 480, easing: easings.easeInOutQuart },
             onRest: () => {
                 props.close(false)
                 setView(false)
@@ -52,16 +50,16 @@ const App = (props) => {
     }
 
     useEffect(() => {
-        props.state ? open('') : close();
+        props.state ? open() : close();
     }, [props.state])
 
     return (
         <>
             {
                 view &&
-                <a.div className={styles.container}>
-                    <a.div className={styles.bg} style={bgStyle} onClick={() => close()} />
-                    <a.div className={styles.sheet} style={{
+                <animated.div className={styles.container}>
+                    <animated.div className={styles.bg} style={bgStyle} onClick={() => close()} />
+                    <animated.div className={styles.sheet} style={{
                         y, display, height: !props.height ? 'auto' : `${height}px`
                     }}>
                         <header className={styles.header}>
@@ -82,8 +80,8 @@ const App = (props) => {
                                 <Button label={'Apply'} background={'var(--colorPrimary)'} color={'var(--colorCard)'} onClick={() => props.apply()} />
                             </footer>
                         }
-                    </a.div>
-                </a.div>
+                    </animated.div>
+                </animated.div>
             }
         </>
     )

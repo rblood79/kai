@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { userContext } from './context';
 
 //util
-import { isIOS, orientation } from './util';
+import { isIOS} from './util';
 
 //default library
 import { useState, useEffect, useRef, useContext } from 'react';

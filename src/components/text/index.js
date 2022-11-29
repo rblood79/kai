@@ -1,7 +1,10 @@
+
 /*
-
-
+* @date         : 2022-11-01
+* @description  : app text animation
+* @parameter    : label, delay, duration, width
 */
+
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import styles from './index.module.scss';

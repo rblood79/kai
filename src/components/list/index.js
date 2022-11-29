@@ -1,7 +1,10 @@
+
 /*
-
-
+* @date         : 2022-11-01
+* @description  : app list
+* @parameter    : not used
 */
+
 import React, { useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 

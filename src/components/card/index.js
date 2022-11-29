@@ -1,6 +1,8 @@
+
 /*
-
-
+* @date         : 2022-11-01
+* @description  : app card
+* @parameter    : title, rightType, rightText, rightLink, rightBackground, rightColor, gap, line, outline
 */
 
 import React, { useEffect } from 'react';
