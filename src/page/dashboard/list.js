@@ -3,12 +3,14 @@
 
 */
 
-import { useState, useRef } from 'react';
+import { useState, useRef} from 'react';
 
 import { useGesture } from '@use-gesture/react';
 import { useSprings } from '@react-spring/web';
 
 import { Outlet, useOutletContext } from 'react-router-dom';
+
+import { standalone } from '../../util';
 
 import styles from './list.module.scss';
 import classNames from 'classnames';
@@ -63,10 +65,12 @@ const App = () => {
         }
     });
 
-
     return (
         <>
             <section className={classNames(styles.container, type === 'LIST' ? styles.list : styles.grid)}>
+                {
+                    type === 'LIST' && index.current > 0 ? null : <span className={classNames(styles.copyright, standalone && styles.standalone)} />
+                }
                 <div className={styles.contents}>
                     {
                         springs.map((spring, index) => (
@@ -74,6 +78,9 @@ const App = () => {
                         ))
                     }
                 </div>
+
+
+
             </section>
         </>
     )

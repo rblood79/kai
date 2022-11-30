@@ -8,45 +8,11 @@
   display: grid;
   grid-template-rows: 1fr 96px;
 
-  &:first-child {
-    &::before {
-      content: "KF-21 BORAMAE LOGISTICS INFORMATION SYSTEM";
-      display: flex;
-      position: absolute;
-      height: calc(100% - 16px);
-      width: 24px;
-      top: 0px;
-      left: -34px;
-      font-size: var(--mediumSize);
-
-      justify-content: center;
-      align-items: center;
-      writing-mode: vertical-rl;
-
-      color: #707070;
-      background: linear-gradient( var(--colorSecondary), var(--colorPrimary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
   &:last-child {
     margin-right: 48px;
   }
 
   .main {
-    /*&::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0px;
-      width: 100%;
-      //height: calc(100% - 148px);
-      height: 132px;
-      border-radius: 16px;
-      background: var(--colorPrimary);
-      z-index: 0;
-      opacity: 0.4;
-    }*/
     & > div {
       z-index: 1;
     }
