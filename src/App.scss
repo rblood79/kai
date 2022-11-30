@@ -1,12 +1,8 @@
 .App {
   height: 100%;
-  /*touch-action: none;*/
-  /*overflow: hidden;*/
   .container {
     width: 100%;
     height: inherit;
-    //display: grid;
-    //grid-auto-rows: 56px auto;
     .contents {
       overflow: hidden;
       background: var(--colorBase);
