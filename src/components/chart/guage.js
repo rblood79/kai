@@ -238,6 +238,6 @@ export default React.memo(App);
 App.defaultProps = {
     percent: 50,
     barWidth: 28,
-    delay: 120,
+    delay: 180,
     duration: 960,
 };

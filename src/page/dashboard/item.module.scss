@@ -74,8 +74,6 @@
     }
   }
   .bottom {
-    //border: 2px solid #f00;
-    //grid-row: 2 / 3;
     z-index: 0;
     padding: 32px 16px 16px 16px;
     width: 100%;
@@ -85,7 +83,6 @@
     border-radius: 0 0 16px 16px;
     box-shadow: inset 0 24px 8px var(--colorBlack);
     will-change: auto;
-    //transform: translateY(-16px);
   }
   .button {
     z-index: 3;
@@ -99,6 +96,7 @@
     position: absolute;
     bottom: 72px;
     left: calc(50% - 24px);
+    will-change: auto;
   }
 }
 

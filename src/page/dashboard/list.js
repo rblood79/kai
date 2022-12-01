@@ -30,8 +30,9 @@ const App = () => {
 
     const [springs, api] = useSprings(data.length, i => ({
         x: (i * width) + 48,
-        //y: 0,
-        act: i === 0 ? 1 : 0,
+        y: i === 0 ? -16 : -96,
+        scale: i === 0 ? 1 : 0.82,
+        //act: i === 0 ? 1 : 0,
         display: 'grid',
     }))
 
@@ -45,10 +46,11 @@ const App = () => {
             api.start(i => {
                 if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
                 const x = (i - index.current) * width + (active ? mx + 48 : 48)
-                //const y = mx
-                const act = i === index.current ? 1 : 0
+                const y = i === index.current ? -16 : -96
+                const scale = i === index.current ? 1 : 0.82
+                //const act = i === index.current ? 1 : 0
                 return {
-                    x, act, display: 'grid',
+                    x, y, scale, display: 'grid',
                     config: {
                         mass: 1,
                         tension: 210,

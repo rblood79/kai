@@ -59,7 +59,7 @@ const App = (props) => {
 export default React.memo(App);
 
 App.defaultProps = {
-    delay: 120,
+    delay: 160,
     duration: 480,
     width: '12px',
 };

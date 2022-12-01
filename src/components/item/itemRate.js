@@ -83,7 +83,7 @@ export default React.memo(App);
 App.defaultProps = {
     label: 'label',
     duration: 480,
-    delay: 120,
+    delay: 180,
     bar: true,
     row: false,
 };

@@ -32,11 +32,12 @@ const App = () => {
                         style={{
                             display: spring.display,
                             x: spring.x,
-                            scale: spring.act
+                            scale: spring.scale
+                            /*scale: spring.act
                                 .to({
                                     range: [0, 1],
-                                    output: [0.8, 1]
-                                }),
+                                    output: [0.82, 1]
+                                }),*/
                         }}>
                         {
                             index === 0 ?
@@ -53,12 +54,13 @@ const App = () => {
                                         <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{
-                                        transform: spring.act
+                                        transform: spring.y.to((y) => `translateY(${y}px)`)
+                                        /*transform: spring.act
                                             .to({
                                                 range: [0, 1],
                                                 output: [-96, -16]
                                             })
-                                            .to(y => `translateY(${y}px)`)
+                                            .to(y => `translateY(${y}px)`)*/
                                     }}>
                                         <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
                                         <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'} />
@@ -83,13 +85,7 @@ const App = () => {
                                         <ItemRate label={'Availability Rate'} num={data.value} active={active} />
                                     </animated.div>
                                     <animated.div className={styles.bottom} style={{
-                                        //transform: spring.act.to((y) => `translateY(${y}px)`)
-                                        transform: spring.act
-                                            .to({
-                                                range: [1, 0],
-                                                output: [-16, -96]
-                                            })
-                                            .to(y => `translateY(${y}px)`)
+                                        transform: spring.y.to((y) => `translateY(${y}px)`)
                                     }}>
                                         <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />
                                         <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'} />
@@ -97,7 +93,7 @@ const App = () => {
                                 </>
                         }
                         <animated.div className={styles.button} style={{
-                            opacity: spring.act
+                            display: !active && 'none'
                         }}>
                             <Button width={38} height={38} radius={38} padding={0} background={'var(--colorCard)'} color={'var(--colorPrimary)'} onClick={() => navigate(data.id)}>
                                 <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
