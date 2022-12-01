@@ -46,7 +46,7 @@
       color: var(--colorTitle);
       font-size: var(--titleSize);
       letter-spacing: 1px;
-      padding: 0px;
+      padding: 4px 0px;
       transition: transform 0.16s ease-in-out;
       &.active {
         background: linear-gradient(

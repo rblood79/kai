@@ -30,7 +30,13 @@ const App = () => {
                 type === 'LIST' ?
                     <animated.div {...bind()} className={styles.container}
                         style={{
-                            display: spring.display, x: spring.x, scale: spring.scale,
+                            display: spring.display,
+                            x: spring.x,
+                            scale: spring.act
+                                .to({
+                                    range: [0, 1],
+                                    output: [0.8, 1]
+                                }),
                         }}>
                         {
                             index === 0 ?
@@ -46,9 +52,16 @@ const App = () => {
                                         <Chart type={'guage'} data={data.value} active={active} />
                                         <ItemRate label={'Flight Rate'} num={data.value} active={active} bar={false} />
                                     </animated.div>
-                                    <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'}/>
-                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'}/>
+                                    <animated.div className={styles.bottom} style={{
+                                        transform: spring.act
+                                            .to({
+                                                range: [0, 1],
+                                                output: [-96, -16]
+                                            })
+                                            .to(y => `translateY(${y}px)`)
+                                    }}>
+                                        <Item height={24} label={'Last Flight No'} value={data.flight} valueColor={'var(--colorCard)'} />
+                                        <Item height={24} label={'Last Defect'} value={data.defect} valueColor={'var(--colorCard)'} />
                                     </animated.div>
                                 </> :
                                 <>
@@ -61,7 +74,7 @@ const App = () => {
                                         </div>
                                         <div className={styles.itemGroup}>
                                             <Item height={24} direction={'column'} align={'flex-start'} label={'First Intro'} valueColor={'var(--colorBase)'} value={data.intro} />
-                                            <Item height={24} direction={'column'} align={'flex-end'} label={'Fuselage Time'} valueColor={'var(--colorBase)'} value={'OH:' + data.oh + ' / FH:' + data.fh}/>
+                                            <Item height={24} direction={'column'} align={'flex-end'} label={'Fuselage Time'} valueColor={'var(--colorBase)'} value={'OH:' + data.oh + ' / FH:' + data.fh} />
                                         </div>
                                         <animated.div className={styles.image} style={{ transform: spring.x.to((tx) => `translateX(${tx - 48}px)`) }}>
                                             <img className={styles.aircraft} src={aircraftSide} alt='aircraft' style={{ filter: 'drop-shadow(16px 0px 48px ' + color + ')' }} />
@@ -69,17 +82,27 @@ const App = () => {
 
                                         <ItemRate label={'Availability Rate'} num={data.value} active={active} />
                                     </animated.div>
-                                    <animated.div className={styles.bottom} style={{ transform: spring.ty.to((ty) => `translateY(${ty}px)`) }}>
-                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'}/>
-                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'}/>
+                                    <animated.div className={styles.bottom} style={{
+                                        //transform: spring.act.to((y) => `translateY(${y}px)`)
+                                        transform: spring.act
+                                            .to({
+                                                range: [1, 0],
+                                                output: [-16, -96]
+                                            })
+                                            .to(y => `translateY(${y}px)`)
+                                    }}>
+                                        <Item height={24} label={'Aircraft Status'} value={data.status} valueColor={'var(--colorCard)'} />
+                                        <Item height={24} label={'Maintenance Date'} value={data.date} valueColor={'var(--colorCard)'} />
                                     </animated.div>
                                 </>
                         }
-                        <div className={styles.button} >
+                        <animated.div className={styles.button} style={{
+                            opacity: spring.act
+                        }}>
                             <Button width={38} height={38} radius={38} padding={0} background={'var(--colorCard)'} color={'var(--colorPrimary)'} onClick={() => navigate(data.id)}>
                                 <i className='ri-arrow-up-s-line' style={{ fontSize: 32 }}></i>
                             </Button>
-                        </div>
+                        </animated.div>
                     </animated.div>
                     :
                     <>
