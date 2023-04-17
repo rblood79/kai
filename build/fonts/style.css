@@ -13,3 +13,10 @@
     font-weight: normal;
     src: local('HelveticaNeue Condensed Bold'), url('HelveticaNeue-CondensedBold.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'PretendardVariable';
+    font-style: normal;
+    font-weight: normal;
+    src: local('PretendardVariable'), url('PretendardVariable.woff2') format('woff2');
+}

@@ -9,6 +9,7 @@
   &::before {
     content: "00.00%";
     font-size: var(--largeSize);
+    font-weight: 400;
     line-height: var(--largeSize);
     font-family: "Digital Numbers Regular";
     position: absolute;
@@ -27,6 +28,7 @@
   .text {
     height: 40px;
     font-size: var(--largeSize);
+    font-weight: 400;
     line-height: var(--largeSize);
     font-family: "Digital Numbers Regular";
     margin-right: -8px;

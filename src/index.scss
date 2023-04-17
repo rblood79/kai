@@ -10,17 +10,25 @@ html {
     padding: 0;
     margin: 0;
     height: 100%;
-    font-family: "HelveticaNeue Condensed Bold", sans-serif;
+    font-variant-numeric: tabular-nums;
 
+    /*font-family: "HelveticaNeue Condensed Bold", sans-serif;
     font-size: var(--mediumSize);
     line-height: var(--normalSize);
-    font-weight: 400;
-    //letter-spacing: -0.028em;
+    font-weight: 400;*/
+    
+    font-family: 'PretendardVariable';
+    font-size: var(--mediumSize);
+    line-height: var(--normalSize);
+    font-weight: 600;
+    letter-spacing: -0.028em;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-x: none;
     overscroll-behavior-y: contain;
     touch-action: none;
+    
     #root {
       height: 100%;
     }

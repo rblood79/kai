@@ -13,6 +13,7 @@ p {
 
 i {
   font-size: var(--headerSize);
+  font-weight: 400;
 }
 
 a, button {
