@@ -8,7 +8,7 @@ import Item from './swipeItem';
 import styles from './index.module.scss';
 
 
-const App = (props) => {
+const DatePicker = (props) => {
     const [data, setData] = useState(
         {
             year: moment(props.data, props.format).format('YYYY'),
@@ -71,8 +71,8 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(DatePicker);
 
-App.defaultProps = {
+DatePicker.defaultProps = {
 
 };

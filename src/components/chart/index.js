@@ -6,7 +6,7 @@ import Line from './line';
 
 import styles from './index.module.scss';
 
-const App = (props) => {
+const Chart = (props) => {
 
     return (
         <div className={styles.container} style={{ height: props.height }}>
@@ -14,13 +14,13 @@ const App = (props) => {
                 props.type === 'guage' ? <Guage {...props} /> :
                     props.type === 'donut' ? <Donut {...props} /> :
                         props.type === 'line' ? <Line {...props} /> :
-                            props.type === 'bar' && <Bar {...props} /> 
+                            props.type === 'bar' && <Bar {...props} />
             }
         </div>
     );
 }
 
-export default React.memo(App);
+export default React.memo(Chart);
 
-App.defaultProps = {
+Chart.defaultProps = {
 };

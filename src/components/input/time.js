@@ -10,8 +10,7 @@ import Item from './swipeItem';
 import styles from './index.module.scss';
 
 
-const App = (props) => {
-    //console.log(props.data, props.format)
+const TimePicker = (props) => {
     const [data, setData] = useState(
         {
             hour: moment(props.data, props.format).format('HH'),
@@ -63,8 +62,8 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(TimePicker);
 
-App.defaultProps = {
+TimePicker.defaultProps = {
 
 };

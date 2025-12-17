@@ -8,10 +8,10 @@ import moment from 'moment';
 import classNames from 'classnames';
 import styles from './itemCollapse.module.scss';
 
-const App = (props) => {
+const ItemCollapse = (props) => {
     const [state, setState] = useState(false);
     useEffect(() => {
-        
+
     }, [])
 
     return (
@@ -29,9 +29,9 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(ItemCollapse);
 
-App.defaultProps = {
+ItemCollapse.defaultProps = {
     label: 'TITLE',
     type: 'Notice',
     comment: 'Memo',

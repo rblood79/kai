@@ -9,9 +9,9 @@ import React, { useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import styles from './index.module.scss';
 
-const App = (props) => {
+const TextAnimation = (props) => {
     const words = props.label.split('');
-    const Item = (props) => {
+    const CharItem = (props) => {
         const engNum = /^[a-zA-Z0-9]*$/;
         const ran = Math.round(Math.random() * (122 - 48)) + 48;
         const [num, setNum] = useState(0);
@@ -49,16 +49,16 @@ const App = (props) => {
         <div className={styles.container} >
             {
                 words.map((item, index) => {
-                    return <Item key={index} item={item} active={props.active} color={props.color} width={props.width} duration={props.duration} delay={props.delay}/>;
+                    return <CharItem key={index} item={item} active={props.active} color={props.color} width={props.width} duration={props.duration} delay={props.delay}/>;
                 })
             }
         </div>
     );
 }
 
-export default React.memo(App);
+export default React.memo(TextAnimation);
 
-App.defaultProps = {
+TextAnimation.defaultProps = {
     delay: 160,
     duration: 480,
     width: '12px',

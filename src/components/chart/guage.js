@@ -7,7 +7,7 @@ import React, { useRef, useEffect, } from 'react';
 import * as d3 from 'd3';
 
 
-const App = (props) => {
+const GaugeChart = (props) => {
     const delay = props.delay;
     const duration = props.duration;
     const easing = d3.easeExp;
@@ -232,9 +232,9 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(GaugeChart);
 
-App.defaultProps = {
+GaugeChart.defaultProps = {
     percent: 50,
     barWidth: 28,
     delay: 180,

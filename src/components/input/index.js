@@ -20,16 +20,14 @@ import styles from './index.module.scss';
 
 
 
-const App = (props) => {
+const Input = (props) => {
 
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
     const fnSelect = () => {
-        console.log('fnSelect')
+        // TODO: Implement select functionality
     }
-
-    //const [text, setText] = useState(props.value ? props.value : '')
 
     const textItem = () => {
 
@@ -277,9 +275,9 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Input);
 
-App.defaultProps = {
+Input.defaultProps = {
     disabled: false,
     required: false,
     autoComplete: "off",

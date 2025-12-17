@@ -8,7 +8,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 
-const App = (props) => {
+const List = (props) => {
     const target = useRef(null);
     const data = props.data;
     useEffect(() => {
@@ -28,9 +28,9 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(List);
 
-App.defaultProps = {
+List.defaultProps = {
     padding: '0px 16px 48px 16px',
     gap: '48px',
     height: 'auto',

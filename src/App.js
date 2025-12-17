@@ -110,11 +110,6 @@ const App = () => {
     },
   })
 
-  /*window.addEventListener('resize', function () {
-    console.log(orientation)
-  });
-  return () => { clearTimeout(window.removeEventListener('resize')) }*/
-
   /*
   * @description  : default useEffect
   * @parameter    : none

@@ -11,7 +11,7 @@ import styles from './itemRate.module.scss';
 
 import classNames from 'classnames';
 
-const App = (props) => {
+const ItemRate = (props) => {
     const [num, setNum] = useState(0);
 
     const { listNum, width } = useSpring({
@@ -78,9 +78,9 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(ItemRate);
 
-App.defaultProps = {
+ItemRate.defaultProps = {
     label: 'label',
     duration: 480,
     delay: 180,

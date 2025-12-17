@@ -9,7 +9,7 @@ import React, { useEffect, useCallback, useRef } from 'react';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 
-const App = (props) => {
+const Layout = (props) => {
     const target = useRef(null);
 
     const onScroll = useCallback((event) => {
@@ -33,9 +33,9 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Layout);
 
-App.defaultProps = {
+Layout.defaultProps = {
     padding: '0px 16px 48px 16px',
     gap: '48px',
     height: 'auto',

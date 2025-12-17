@@ -10,7 +10,7 @@ import { useSpring, animated, easings } from '@react-spring/web';
 
 import styles from './index.module.scss';
 
-const App = (props) => {
+const Tab = (props) => {
     const bgWidth = 100 / props.label.length;
     const [active, setActive] = useState(0)
 
@@ -46,9 +46,9 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Tab);
 
-App.defaultProps = {
+Tab.defaultProps = {
     margin: '0px',
     background: 'var(--colorSecondary)',
 };

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { userContext } from '../../context';
 import styles from './index.module.scss';
 
-const App = (props) => {
+const Aside = (props) => {
     const navigate = useNavigate();
     const { user, setUser } = useContext(userContext);
     const data = [
@@ -115,8 +115,8 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Aside);
 
-App.defaultProps = {
+Aside.defaultProps = {
 
 };

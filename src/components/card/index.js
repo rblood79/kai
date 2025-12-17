@@ -11,7 +11,7 @@ import Button from '../button';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 
-const App = (props) => {
+const Card = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,10 +49,9 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Card);
 
-App.defaultProps = {
-    //title: 'Title',
+Card.defaultProps = {
     rightType: 'text',
     rightText: null,
     rightLink: null,
@@ -61,5 +60,4 @@ App.defaultProps = {
     gap: 48,
     line: true,
     outline: true,
-
 };

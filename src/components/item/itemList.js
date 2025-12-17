@@ -9,9 +9,9 @@ import Item from './item';
 
 import styles from './itemList.module.scss';
 
-const App = (props) => {
+const ItemList = (props) => {
 
-    const List = useCallback(
+    const ListItems = useCallback(
         () => props.data && props.data.map((item, index) => {
             return (<Item label={item.label} value={item.value} key={index} />)
         }),
@@ -29,7 +29,7 @@ const App = (props) => {
                 <div className={props.box ? styles.container : styles.containerEmpty}>
                     {props.icon && <span className={styles.baseIcon}><i className={props.icon}></i></span>}
                     <div className={styles.list}>
-                        {<List />}
+                        {<ListItems />}
                     </div>
                 </div>
 
@@ -39,9 +39,9 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(ItemList);
 
-App.defaultProps = {
+ItemList.defaultProps = {
     height: 40,
     icon: null,
     box: true,

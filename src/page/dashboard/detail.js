@@ -6,9 +6,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Api, Layout, Top, Card, ItemList, ItemOverview, ItemFlight, ItemDefect, ItemMaintenance, ItemConsume } from '../../components';
+import { Api, Layout, Top, Card, ItemList, ItemOverview, ItemFlight, ItemDefect, ItemMaintenance } from '../../components';
 
-const App = () => {
+const DashboardDetail = () => {
     const { id } = useParams();
     const [scrollTop, setScrollTop] = useState(true);
     const [data, setData] = useState(
@@ -195,7 +195,7 @@ const App = () => {
                             gap={8}
                         >
                             <ItemList data={data.dataC.header} box={false}/>
-                            <ItemConsume data={data.dataC.body} />
+                            <ItemMaintenance data={data.dataC.body} icon="ri-shopping-bag-line" gradientAngle={90} />
                         </Card>
                     </Layout>
                 </>
@@ -205,8 +205,8 @@ const App = () => {
     );
 }
 
-export default App;
+export default DashboardDetail;
 
-App.defaultProps = {
+DashboardDetail.defaultProps = {
 
 };
