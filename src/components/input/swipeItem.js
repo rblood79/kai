@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 
 import styles from './swipeItem.module.scss';
 
-const App = (props) => {
+const SwipeItem = (props) => {
     const viewport = useRef(null);
     useEffect(() => {
         const list = Array.from(viewport.current.children);
@@ -57,7 +57,7 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(SwipeItem);
 
-App.defaultProps = {
+SwipeItem.defaultProps = {
 };

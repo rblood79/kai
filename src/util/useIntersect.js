@@ -1,16 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const App = (onIntersect, option) => {
-    
+const useIntersect = (onIntersect, option) => {
     const [ref, setRef] = useState(null);
-      // intersecting이 있을 때 target 엔트리와 observer를 넘겨주자.
+
     const checkIntersect = useCallback(([entry], observer) => {
-        console.log('//')
       if (entry.isIntersecting) {
-        
         onIntersect(entry, observer);
       }
-    }, []);
+    }, [onIntersect]);
       // ref나 option이 바뀔 경우 observer를 새로 등록한다.
     useEffect(() => {
         
@@ -27,4 +24,4 @@ const App = (onIntersect, option) => {
     return [ref, setRef];
   };
 
-  export default App;
+  export default useIntersect;

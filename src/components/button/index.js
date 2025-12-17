@@ -8,7 +8,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-const App = (props) => {
+const Button = (props) => {
     return (
         <button
             className={styles.button}
@@ -29,8 +29,8 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Button);
 
-App.defaultProps = {
+Button.defaultProps = {
     background: 'var(--colorBase)',
 };

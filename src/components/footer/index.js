@@ -8,14 +8,14 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-const App = () => {
+const Footer = () => {
     return (
         <footer className={styles.footer}>copyright KF-21 LIS</footer>
     );
 }
 
-export default React.memo(App);
+export default React.memo(Footer);
 
-App.defaultProps = {
-    
+Footer.defaultProps = {
+
 };

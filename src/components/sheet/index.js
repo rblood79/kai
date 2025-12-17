@@ -15,7 +15,7 @@ import { Button } from '../../components';
 import styles from './index.module.scss';
 
 
-const App = (props) => {
+const Sheet = (props) => {
     const [view, setView] = useState(false)
 
     const [height] = useState(
@@ -89,9 +89,9 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(Sheet);
 
-App.defaultProps = {
+Sheet.defaultProps = {
     type: 'text',
     gap: '20px',
 };

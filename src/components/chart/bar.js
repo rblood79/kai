@@ -7,7 +7,7 @@ import React, { useRef, useEffect, } from 'react';
 import { percentColor, gradient } from '../../util';
 import * as d3 from 'd3';
 
-const App = (props) => {
+const BarChart = (props) => {
   const svgRef = useRef(null);
   const data = props.data;
   /*const colors = d3
@@ -110,9 +110,9 @@ const App = (props) => {
   );
 }
 
-export default React.memo(App);
+export default React.memo(BarChart);
 
-App.defaultProps = {
+BarChart.defaultProps = {
   margin: 16,
   innerRadius: 48,
   line: 1,

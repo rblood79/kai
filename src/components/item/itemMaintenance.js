@@ -8,7 +8,7 @@ import { gradient } from '../../util'
 
 import styles from './itemMaintenance.module.scss';
 
-const App = (props) => {
+const ItemMaintenance = (props) => {
     const [data, setData] = useState([]);
 
     const listItem = data && data.map((item, index) => {
@@ -25,7 +25,7 @@ const App = (props) => {
                 </div>
 
                 <div className={styles.bar}>
-                    <span className={styles.value} style={{ width: item.value + '%', background: gradient(item.value, -90) }} />
+                    <span className={styles.value} style={{ width: item.value + '%', background: gradient(item.value, props.gradientAngle) }} />
                     <span className={styles.text}>{item.value}%</span>
                 </div>
             </div>
@@ -53,8 +53,9 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(ItemMaintenance);
 
-App.defaultProps = {
-    icon: 'ri-user-settings-line'
+ItemMaintenance.defaultProps = {
+    icon: 'ri-user-settings-line',
+    gradientAngle: -90,
 };

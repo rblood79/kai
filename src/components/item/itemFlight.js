@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './itemFlight.module.scss';
 import classNames from 'classnames';
 
-const App = (props) => {
+const ItemFlight = (props) => {
     const [data, setData] = useState(null);
 
     const listItem = data && data.map((item, index) => {
@@ -27,6 +27,7 @@ const App = (props) => {
     useEffect(() => {
         props.data && setData(props.data)
     }, [props.data])
+
     return (
         <>
             {
@@ -43,8 +44,8 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(ItemFlight);
 
-App.defaultProps = {
+ItemFlight.defaultProps = {
     icon: 'ri-flight-takeoff-fill'
 };

@@ -16,7 +16,7 @@ import Aside from '../aside';
 import styles from './index.module.scss';
 import classNames from 'classnames';
 
-const App = (props) => {
+const TopNavigation = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -79,10 +79,9 @@ const App = (props) => {
     );
 }
 
-//export default App;
-export default React.memo(App);
+export default React.memo(TopNavigation);
 
-App.defaultProps = {
+TopNavigation.defaultProps = {
     scrollTop: true,
     background: 'transparent',
 };

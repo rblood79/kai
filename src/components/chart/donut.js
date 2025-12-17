@@ -7,7 +7,7 @@ import React, { useRef, useEffect, } from 'react';
 //import { percentColor, gradient } from '../../util';
 import * as d3 from 'd3';
 
-const App = (props) => {
+const DonutChart = (props) => {
   const svgRef = useRef(null);
   const data = props.data;
   /*const colors = d3
@@ -155,9 +155,9 @@ const App = (props) => {
   );
 }
 
-export default React.memo(App);
+export default React.memo(DonutChart);
 
-App.defaultProps = {
+DonutChart.defaultProps = {
   margin: 16,
   innerRadius: 48,
   line: 1,

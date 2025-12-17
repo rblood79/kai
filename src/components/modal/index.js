@@ -12,7 +12,7 @@ import { Button } from '../../components';
 import styles from './index.module.scss';
 
 
-const App = (props) => {
+const Modal = (props) => {
     const [navState, setNavState] = useState(false);
     const [o, api] = useSpring(() => ({ opacity: 0 }))
 
@@ -63,8 +63,8 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(Modal);
 
-App.defaultProps = {
+Modal.defaultProps = {
 
 };

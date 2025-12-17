@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 
 import styles from './item.module.scss';
 
-const App = (props) => {
+const Item = (props) => {
 
     useEffect(() => {
     }, [])
@@ -20,9 +20,9 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(Item);
 
-App.defaultProps = {
+Item.defaultProps = {
     height: 40,
     label: 'TITLE',
     value: 'TEXT',

@@ -11,7 +11,7 @@ import { bottomStatusHeight } from '../../util';
 
 import styles from './index.module.scss';
 
-const App = () => {
+const BottomNavigation = () => {
     const [navState, setNavState] = useState(false);
     const toggleNav = () => setNavState(!navState);
 
@@ -106,8 +106,8 @@ const App = () => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(BottomNavigation);
 
-App.defaultProps = {
+BottomNavigation.defaultProps = {
     background: '#e5e7eb',
 };

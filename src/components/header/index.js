@@ -8,7 +8,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-const App = (props) => {
+const Header = (props) => {
     return (
         <header className={styles.header}>
             <div className={styles.title}>
@@ -21,8 +21,8 @@ const App = (props) => {
     );
 }
 
-export default React.memo(App);
+export default React.memo(Header);
 
-App.defaultProps = {
+Header.defaultProps = {
 
 };

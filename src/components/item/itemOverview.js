@@ -12,7 +12,7 @@ import ItemRate from './itemRate';
 import aircraftFront from '../../images/aircraftFront@3x.png';
 import styles from './itemOverview.module.scss';
 
-const App = (props) => {
+const ItemOverview = (props) => {
     useEffect(() => {
     }, [])
 
@@ -40,8 +40,8 @@ const App = (props) => {
     )
 }
 
-export default React.memo(App);
+export default React.memo(ItemOverview);
 
-App.defaultProps = {
+ItemOverview.defaultProps = {
 
 };
